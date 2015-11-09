@@ -1,6 +1,9 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -11,7 +14,15 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage stage) throws Exception {
 		System.out.println("test");
+
+		Parent root = FXMLLoader.load(getClass().getResource("/view/FenetreTest.fxml"));
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("Fenetre de Test");
+        stage.show();
 	}
 }
