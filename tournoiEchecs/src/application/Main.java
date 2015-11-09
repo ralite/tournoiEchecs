@@ -12,6 +12,7 @@ public class Main extends Application {
 		try {
 			String str = "test";
 			String str2 = "test2";
+			String str3 = "test3";
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
