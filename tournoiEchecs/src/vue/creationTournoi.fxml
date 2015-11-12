@@ -5,23 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
    <children>
       <TextField id="tf_nomTournoi" layoutX="250.0" layoutY="14.0" />
       <TextField id="tf_lieuTournoi" layoutX="250.0" layoutY="45.0" />
-      <TextField id="tf_date" layoutX="250.0" layoutY="77.0" />
-      <TextField id="tf_nbRondes" layoutX="250.0" layoutY="140.0" />
-      <ListView layoutX="13.0" layoutY="222.0" prefHeight="116.0" prefWidth="210.0" />
-      <TextField id="tf_arbitre" layoutX="250.0" layoutY="108.0" />
-      <Button id="button_departage" layoutX="238.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Ajouter au départage" />
+      <TextField id="tf_nbRondes" layoutX="250.0" layoutY="169.0" />
+      <ListView layoutX="13.0" layoutY="240.0" prefHeight="116.0" prefWidth="210.0" />
+      <TextField id="tf_arbitre" layoutX="250.0" layoutY="138.0" />
+      <Button id="button_departage" layoutX="238.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="141.0" text="Ajouter au départage" />
       <Button id="button_valider" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#actionFenetreJoueurs" text="Valider" />
       <Button id="button_annuler" layoutX="456.0" layoutY="361.0" mnemonicParsing="false" text="Annuler" />
-      <Label id="label_nom" layoutX="14.0" layoutY="18.0" text="Nom" />
-      <Label id="label_lieu" layoutX="17.0" layoutY="49.0" text="Lieu" />
-      <Label id="label_date" layoutX="15.0" layoutY="81.0" text="Date" />
-      <Label id="label_arbitre" contentDisplay="TOP" layoutX="10.0" layoutY="112.0" text="Arbitre" />
-      <Label id="label_nbRones" layoutX="17.0" layoutY="144.0" text="Nombre de rondes" />
-      <Label id="label_departages" layoutX="15.0" layoutY="192.0" text="Departages (3 minimum)" />
-      <ListView layoutX="399.0" layoutY="215.0" prefHeight="116.0" prefWidth="192.0" />
+      <Label id="label_nom" layoutX="15.0" layoutY="14.0" text="Nom" />
+      <Label id="label_lieu" layoutX="15.0" layoutY="45.0" text="Lieu" />
+      <Label id="label_date" layoutX="15.0" layoutY="76.0" text="Date de début" />
+      <Label id="label_nbRones" layoutX="15.0" layoutY="169.0" text="Nombre de rondes" />
+      <Label id="label_departages" layoutX="15.0" layoutY="210.0" text="Departages (3 minimum)" />
+      <ListView layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0" />
+      <Label layoutX="15.0" layoutY="138.0" text="Arbitre" />
+      <DatePicker layoutX="250.0" layoutY="76.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label id="label_date" layoutX="15.0" layoutY="107.0" text="Date de fin" />
+      <DatePicker layoutX="250.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" />
    </children>
 </AnchorPane>

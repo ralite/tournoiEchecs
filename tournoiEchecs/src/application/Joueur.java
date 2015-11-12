@@ -1,19 +1,32 @@
 package application;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Joueur {
 	private String numLicence;
 	private String nomJoueur;
 	private String prenomJoueur;
+	private String sexe;
+	private LocalDate dateNaissance;
+	private String titreFide;
+	private String ligue;
 	private float elo;
 	private String categorie;
-	
-	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, float elo, String categorie) {
+	private String club;
+
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, float elo, String categorie, String club) {
 		super();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
+		this.sexe = sexe;
+		this.dateNaissance = dateNaissance;
+		this.titreFide = titreFide;
+		this.ligue = ligue;
 		this.elo = elo;
 		this.categorie = categorie;
+		this.club = club;
 	}
 
 	public String getNumLicence() {
@@ -40,6 +53,38 @@ public class Joueur {
 		this.prenomJoueur = prenomJoueur;
 	}
 
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+
+	public LocalDate getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(LocalDate dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+
+	public String getTitreFide() {
+		return titreFide;
+	}
+
+	public void setTitreFide(String titreFide) {
+		this.titreFide = titreFide;
+	}
+
+	public String getLigue() {
+		return ligue;
+	}
+
+	public void setLigue(String ligue) {
+		this.ligue = ligue;
+	}
+
 	public float getElo() {
 		return elo;
 	}
@@ -55,7 +100,12 @@ public class Joueur {
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
-	
-	
 
+	public String getClub() {
+		return club;
+	}
+
+	public void setClub(String club) {
+		this.club = club;
+	}
 }

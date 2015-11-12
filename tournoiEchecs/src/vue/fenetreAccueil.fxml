@@ -7,6 +7,6 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreAccueil">
    <center>
-      <Button mnemonicParsing="false" onAction="#actionCreerTournoi" prefHeight="103.0" prefWidth="100.0" text="Button" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#actionCreerTournoi" prefHeight="103.0" prefWidth="139.0" text="Créer un tournoi" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
