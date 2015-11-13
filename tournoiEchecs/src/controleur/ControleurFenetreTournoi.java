@@ -13,8 +13,7 @@ import javafx.fxml.FXML;
 import javafx.stage.Window;
 import vue.AjouterJoueurTournoi;
 import vue.CreationTournoi;
-
-import application.Tournoi;
+import metier.Tournoi;
 
 public class ControleurFenetreTournoi {
 
@@ -40,7 +39,7 @@ public class ControleurFenetreTournoi {
 	@FXML
     private void actionFenetreJoueurs() {
 		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && check(tf_arbitre) && check(tf_nbRondes) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null)) {
-			//Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),(Integer)tf_nbRondes,);
+			//Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueof(tf_nbRondes.getText));
 
     	AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
 		ajoutjoueur.show();
