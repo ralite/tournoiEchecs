@@ -8,20 +8,18 @@ public class Tournoi {
 	private String Lieu;
 	private Date DateDeb;
 	private Date DateFin;
-	private String nomArbitre;
-	private String prenomArbitre;
+	private String arbitre;
 	private int nbRondes;
 	private ArrayList<String> ListeDepartages;
 	
-	public Tournoi(String nomTournoi, String lieu, Date dateDeb, Date dateFin, String nomArbitre, String prenomArbitre,
+	public Tournoi(String nomTournoi, String lieu, Date dateDeb, Date dateFin, String arbitre,
 			int nbRondes, ArrayList<String> listeDepartages) {
 		super();
 		this.nomTournoi = nomTournoi;
 		Lieu = lieu;
 		DateDeb = dateDeb;
 		DateFin = dateFin;
-		this.nomArbitre = nomArbitre;
-		this.prenomArbitre = prenomArbitre;
+		this.arbitre=arbitre;
 		this.nbRondes = nbRondes;
 		ListeDepartages = listeDepartages;
 	}
@@ -59,21 +57,14 @@ public class Tournoi {
 		DateFin = dateFin;
 	}
 
-	public String getNomArbitre() {
-		return nomArbitre;
+	public String getArbitre() {
+		return arbitre;
 	}
 
-	public void setNomArbitre(String nomArbitre) {
-		this.nomArbitre = nomArbitre;
+	public void setArbitre(String Arbitre) {
+		this.arbitre = Arbitre;
 	}
 
-	public String getPrenomArbitre() {
-		return prenomArbitre;
-	}
-
-	public void setPrenomArbitre(String prenomArbitre) {
-		this.prenomArbitre = prenomArbitre;
-	}
 
 	public int getNbRondes() {
 		return nbRondes;
@@ -90,10 +81,5 @@ public class Tournoi {
 	public void setListeDepartages(ArrayList<String> listeDepartages) {
 		ListeDepartages = listeDepartages;
 	}
-
-	
-public String getArbitre(){
-	return this.nomArbitre;
-}
 
 }
