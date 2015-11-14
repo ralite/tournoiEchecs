@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Date;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.ListProperty;
@@ -85,6 +86,9 @@ public class Tournoi {
 		this.arbitre = Arbitre;
 	}
 
+	/*public void addDepartages(Departage d) {
+		listeDepartages.add(d);
+	}*/
 	
 
 

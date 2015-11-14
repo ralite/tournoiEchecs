@@ -1,9 +1,10 @@
 package controleur;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
-import application.Joueur;
+import metier.Joueur;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
