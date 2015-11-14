@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.ListView;
 import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,7 +74,17 @@ public class ControleurFenetreTournoi implements Initializable {
 			return true;
 		}
 	}
-
+	
+	/*
+	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
+		if(newValue.intValue() > oldValue.intValue()){
+            char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
+            if(!(ch >= '0' && ch <= '9' )){       
+            	leChampDeSaisie.setText(leChampDeSaisie.getText().substring(0,leChampDeSaisie.getText().length()-1)); 
+            }
+       }
+	}
+	*/
 
 
 	@Override
