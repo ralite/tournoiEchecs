@@ -41,11 +41,15 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	@FXML
 	public void ajouterJoueur(Event e) {
-		System.out.println(tf_numLicence.getText());
 		//recherche joueur
 		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
 		//test si le joueur retourné n'est pas nulll !
-		data.add(j);
+		if(data.contains(j)){
+			System.out.println("deja present");
+		}
+		else{
+			data.add(j);
+		}
 		tf_numLicence.setText("");
 	}
 	
