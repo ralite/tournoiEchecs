@@ -1,10 +1,13 @@
 package controleur;
 
 
+import java.awt.Color;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+
 
 
 
@@ -28,6 +31,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -43,15 +47,19 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	TextField tf_numLicence;
 	
 	@FXML
+	Label lb_info;
+	
+	@FXML
 	public void ajouterJoueur(Event e) {
+		lb_info.setText("");
 		//recherche joueur
 		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
 		//test si le joueur retourné n'est pas nulll !
 		if(j==null){
-		System.out.println("num licence introuvé");
+		lb_info.setText("numéro de licence introuvable");
 		}
 		else if(data.contains(j)){
-				System.out.println("deja present");
+				lb_info.setText("deja present");
 			}
 			else{
 				data.add(j);
