@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAjouterJoueurTournoi">
    <left>
-      <ListView prefHeight="359.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ListView fx:id="listePersonne" prefHeight="359.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="10.0" top="30.0" />
          </BorderPane.margin>
@@ -25,12 +24,12 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField>
+            <TextField fx:id="tf_numLicence">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
             </TextField>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Button" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterJoueur" text="Button" />
          </children>
       </VBox>
    </center>
