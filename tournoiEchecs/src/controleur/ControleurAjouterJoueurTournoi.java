@@ -52,7 +52,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
-		//recherche joueur
+		//recherche joueur test
 		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
 		//test si le joueur retourné n'est pas nulll !
 		if(j==null){
