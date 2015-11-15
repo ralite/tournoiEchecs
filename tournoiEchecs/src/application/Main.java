@@ -22,7 +22,7 @@ public class Main extends Application {
 		try {
 			Main.fenetrePrincipale = primaryStage;
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/vue/fenetreAccueil.fxml"));
-			Scene scene = new Scene(root,434,160);
+			Scene scene = new Scene(root,600,400);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
