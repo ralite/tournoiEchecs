@@ -29,7 +29,7 @@ public class Validation {
 			return false;	
 		}
 	}
-	
+	//test
 	public static boolean estChaine(TextField tx) {
 		if(tx.getText().trim().matches("^[a-zA-Z]*$")){
 			return true;
