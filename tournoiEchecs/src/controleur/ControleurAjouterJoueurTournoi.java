@@ -1,5 +1,6 @@
 package controleur;
 
+
 import java.lang.reflect.Array;
 import java.net.URL;
 
@@ -40,9 +41,27 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		//recherche joueur
 		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
 		//test si le joueur retourné n'est pas nulll !
+
 		if(data.contains(j))
 			data.add(j);
+
+		if(j==null){
+		System.out.println("num licence introuvé");
+		}
+		else if(data.contains(j)){
+				System.out.println("deja present");
+			}
+			else{
+				data.add(j);
+		}
+
 		tf_numLicence.setText("");
+	}
+	
+	@FXML
+	public void retirerJoueur(Event e) {
+		data.remove(
+                (TestJooueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 	
 	@Override
