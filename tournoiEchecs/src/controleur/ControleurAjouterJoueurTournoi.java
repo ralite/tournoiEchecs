@@ -21,9 +21,11 @@ import java.util.ResourceBundle;
 
 
 
+
 import metier.Joueur;
 import metier.TestJooueur;
 import modele.ModeleJoueur;
+import modele.Validation;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,16 +55,21 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
 		//recherche joueur
-		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
-		//test si le joueur retourné n'est pas nulll !
-		if(j==null){
-		lb_info.setText("numéro de licence introuvable");
-		}
-		else if(data.contains(j)){
-				lb_info.setText("deja present");
+		if(Validation.estEntierPos(tf_numLicence)){
+			TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
+			//test si le joueur retourné n'est pas nulll !
+			if(j==null){
+			lb_info.setText("numéro de licence introuvable");
 			}
-			else{
-				data.add(j);
+			else if(data.contains(j)){
+					lb_info.setText("deja present");
+				}
+				else{
+					data.add(j);
+			}
+		}
+		else {
+			lb_info.setText("numéro de licence incohérent");
 		}
 	
 		tf_numLicence.setText("");
