@@ -22,9 +22,11 @@ import java.util.ResourceBundle;
 
 
 
+
 import metier.Joueur;
 import metier.TestJooueur;
 import modele.ModeleJoueur;
+import modele.ModeleTournoi;
 import modele.Validation;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -42,6 +44,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	private ObservableList<TestJooueur> data = FXCollections.observableArrayList();
 
+	@FXML
+	private Label lb_nomTournoi;
+	
 	@FXML
 	private ListView<TestJooueur> listePersonne;
 	
@@ -83,6 +88,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNomTournoi());
+		
 		TestJooueur j1 = new TestJooueur(1, "jean", "jacques");
 		TestJooueur j2 = new TestJooueur(2, "boubi", "baaa");
 		ModeleJoueur.ajouterJoueur(j1);
