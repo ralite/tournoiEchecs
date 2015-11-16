@@ -12,20 +12,21 @@
       <TextField fx:id="tf_nbRondes" layoutX="250.0" layoutY="169.0" />
       <ListView fx:id="lv_listeDepartages" layoutX="11.0" layoutY="233.0" prefHeight="116.0" prefWidth="210.0" />
       <TextField fx:id="tf_arbitre" layoutX="250.0" layoutY="138.0" />
-      <Button fx:id="button_addDepartage" layoutX="283.0" layoutY="266.0" onAction="#actionRajouterDepartage" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="&gt;" />
+      <Button fx:id="button_addDepartage" layoutX="283.0" layoutY="266.0" mnemonicParsing="false" onAction="#actionRajouterDepartage" prefHeight="25.0" prefWidth="59.0" text="&gt;" />
       <Button fx:id="button_valider" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#actionFenetreJoueurs" text="Valider" />
-      <Button fx:id="button_annuler" onAction="#actionAnnuler" layoutX="455.0" layoutY="361.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="button_annuler" layoutX="455.0" layoutY="361.0" mnemonicParsing="false" onAction="#actionAnnuler" text="Annuler" />
       <Label fx:id="label_nom" layoutX="15.0" layoutY="14.0" text="Nom" />
       <Label fx:id="label_lieu" layoutX="15.0" layoutY="45.0" text="Lieu" />
       <Label fx:id="label_date" layoutX="15.0" layoutY="76.0" text="Date de début" />
       <Label fx:id="label_nbRones" layoutX="15.0" layoutY="169.0" text="Nombre de rondes" />
-      <Label fx:id="label_departages" layoutX="15.0" layoutY="202.0" text="Departages (3 minimum)" />
-      <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0"/>
+      <Label fx:id="label_departages" layoutX="15.0" layoutY="202.0" text="Departages" />
+      <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0" />
+      <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0" />
       <Label fx:id="label_arbitre" layoutX="15.0" layoutY="138.0" text="Arbitre" />
       <DatePicker fx:id="dp_dateDeb" layoutX="250.0" layoutY="76.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="label_date" layoutX="15.0" layoutY="107.0" text="Date de fin" />
       <DatePicker fx:id="dp_dateFin" layoutX="250.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" />
-      <Button fx:id="button_removeDepartage" layoutX="283.0" layoutY="304.0" onAction="#actionEnleverDepartage" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="&lt;" />
-      <Label fx:id="label_departageChoisi" layoutX="484.0" layoutY="202.0" text="Departages choisis" />
+      <Button fx:id="button_removeDepartage" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" onAction="#actionEnleverDepartage" prefHeight="25.0" prefWidth="59.0" text="&lt;" />
+      <Label fx:id="label_departageChoisi" layoutX="396.0" layoutY="202.0" text="Departages choisis (3 minimums)" />
    </children>
 </AnchorPane>

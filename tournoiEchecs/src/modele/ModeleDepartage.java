@@ -1,13 +1,13 @@
 package modele;
 
 import javafx.beans.property.ListProperty;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import metier.Departage;
-import metier.TestJooueur;
 
 public class ModeleDepartage {
 	

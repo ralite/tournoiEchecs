@@ -20,16 +20,9 @@ public class Tournoi {
 	private LocalDate DateDeb;
 	private LocalDate DateFin;
 	private String arbitre;
-	
-	private StringProperty nbRondes = new SimpleStringProperty();
-	public StringProperty groupeProperty(){return nbRondes;}
-	public String getNbRondes() {return nbRondes.get();}
-	public void setNbRondes(int nbRondes) {this.nbRondes.set(String.valueOf(nbRondes));}
-	
-	private ListProperty<Departage> listeDepartages = new SimpleListProperty<>(FXCollections.observableArrayList());
-	public ListProperty<Departage> listeDepartagesProperty() {return this.listeDepartages;}
-	public ObservableList<Departage> getListeDepartages() {return this.listeDepartagesProperty().get();}
-	public void setListeDepartages(ObservableList<Departage> listeDepartages) {this.listeDepartagesProperty().set(listeDepartages);}
+	private int nbRondes;
+
+	private ArrayList<Departage> listeDepartages;
 
 	
 	public Tournoi(String nomTournoi, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre,
@@ -43,11 +36,23 @@ public class Tournoi {
 		setListeDepartages(listeDepartages);
 	}
 	
+	private ArrayList<Departage> getListeDepartages() {
+		return this.listeDepartages;
+	}
+	
+	private void setListeDepartages(ArrayList<Departage> liste) {
+		this.listeDepartages=liste;
+	}
+	
 	
 
 	private String nomTournoi;
 	public String getNomTournoi() {
 		return nomTournoi;
+	}
+	
+	public void setNbRondes(int nbRondes){
+		this.nbRondes=nbRondes;
 	}
 
 	public void setNomTournoi(String nomTournoi) {

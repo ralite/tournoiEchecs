@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="ap_accueil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreAccueil">
    <children>
-      <Button fx:id="button_tournoiAccueil" layoutX="248.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#onClickTournoi" prefHeight="39.0" prefWidth="104.0" text="Tournoi" />
+      <Button fx:id="button_tournoiAccueil" layoutX="248.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#onClickTournoi" prefHeight="58.0" prefWidth="104.0" text="Tournoi" />
       <Button fx:id="button_joueurAccueil" layoutX="248.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#onClickJoueur" prefHeight="58.0" prefWidth="104.0" text="Joueur" />
       <Button fx:id="button_parcourirTournoi" layoutX="353.0" layoutY="178.0" mnemonicParsing="false" onAction="#actionParcourirTournoi" prefHeight="32.0" prefWidth="104.0" text="ouvrir tournoi..." visible="false" />
       <Label fx:id="label_cheminTournoi" layoutX="464.0" layoutY="184.0" prefHeight="32.0" prefWidth="104.0" />

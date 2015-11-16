@@ -1,7 +1,6 @@
 package controleur;
 
 import javafx.scene.Node;
-
 import javafx.scene.control.*;
 
 import java.net.URL;
@@ -10,9 +9,14 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import modele.ModeleDepartage;
+
+
+
+
+//import org.controlsfx.dialog.Dialog;
+//import org.controlsfx.dialog.Dialogs;
 import application.Main;
 import metier.Departage;
-import metier.TestJooueur;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -24,23 +28,14 @@ import javafx.fxml.Initializable;
 import javafx.stage.Window;
 import vue.AjouterJoueurTournoi;
 import vue.CreationTournoi;
-import metier.TestJooueur;
 import metier.Tournoi;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 
 public class ControleurFenetreTournoi implements Initializable {
-	
-	
-	
-	/*private ObjectProperty<Departage> DepartageSelectionne = new SimpleObjectProperty<>();
-	public final ObjectProperty<Departage> DepartageSelectionneProperty() {return this.DepartageSelectionne;}
-	public final Departage getDepartageSelectionne() {return this.DepartageSelectionneProperty().get();}
-	public final void setDepartageSelectionne(final Departage DepartageSelectionne) {this.DepartageSelectionneProperty().set(DepartageSelectionne);}
-*/
+
 	private ObservableList<Departage> items;
 	private ObservableList<Departage> itemsChoisis;
-
 	
 	@FXML
 	ListView<Departage> lv_listeDepartages;
@@ -103,6 +98,10 @@ public class ControleurFenetreTournoi implements Initializable {
 		itemsChoisis.add((Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
 		items.remove(
                 (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
+	}
+
+	public void actionRajouterDepartage(){
+  	//	 ((Object) lv_listeDepartagesChoisis).addDepartage(DepartageSelectionne);
 		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
 		itemsChoisis.add(dep);
 		items.remove(dep);
@@ -126,23 +125,14 @@ public class ControleurFenetreTournoi implements Initializable {
        }
 	}
 
-	/*
-	private boolean showConfirm(String message, Window owner) {
-		return (Dialogs.create()
-			      .owner(owner)
-			      .title("Question")
-			      .message(message)
-			      .actions(Dialog.ACTION_YES,Dialog.ACTION_NO)
-			      .showConfirm() == Dialog.ACTION_YES);
-	}*/
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		items =FXCollections.observableArrayList (
+				Departage.Cumulatif,Departage.departage2,Departage.departage3,Departage.departage4,Departage.departage5);
 		lv_listeDepartages.setItems(items);
 		itemsChoisis =FXCollections.observableArrayList ();
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
-		//DepartageSelectionne.bind(lv_listeDepartages.getSelectionModel().selectedItemProperty());
 	}
 
 }
