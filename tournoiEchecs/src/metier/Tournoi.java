@@ -15,7 +15,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Tournoi {
-	
+
+	private String nomTournoi;
 	private String Lieu;
 	private LocalDate DateDeb;
 	private LocalDate DateFin;
@@ -24,9 +25,7 @@ public class Tournoi {
 
 	private ArrayList<Departage> listeDepartages;
 
-	
-	public Tournoi(String nomTournoi, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre,
-			Integer nbRondes) {
+	public Tournoi(String nomTournoi, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, Integer nbRondes) {
 		setNomTournoi(nomTournoi);
 		setLieu(lieu);
 		setDateDeb(dateDeb);
@@ -35,22 +34,19 @@ public class Tournoi {
 		setNbRondes(nbRondes);
 		setListeDepartages(listeDepartages);
 	}
-	
+
 	private ArrayList<Departage> getListeDepartages() {
 		return this.listeDepartages;
 	}
-	
+
 	private void setListeDepartages(ArrayList<Departage> liste) {
 		this.listeDepartages=liste;
 	}
-	
-	
 
-	private String nomTournoi;
 	public String getNomTournoi() {
 		return nomTournoi;
 	}
-	
+
 	public void setNbRondes(int nbRondes){
 		this.nbRondes=nbRondes;
 	}
@@ -94,7 +90,4 @@ public class Tournoi {
 	/*public void addDepartages(Departage d) {
 		listeDepartages.add(d);
 	}*/
-	
-
-
 }
