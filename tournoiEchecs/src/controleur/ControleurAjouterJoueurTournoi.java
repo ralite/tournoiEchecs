@@ -21,9 +21,13 @@ import java.util.ResourceBundle;
 
 
 
+
+
 import metier.Joueur;
 import metier.TestJooueur;
 import modele.ModeleJoueur;
+import modele.ModeleTournoi;
+import modele.Validation;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +45,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	private ObservableList<TestJooueur> data = FXCollections.observableArrayList();
 
 	@FXML
+	private Label lb_nomTournoi;
+	
+	@FXML
 	private ListView<TestJooueur> listePersonne;
 	
 	@FXML
@@ -53,16 +60,21 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
 		//recherche joueur
-		TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
-		//test si le joueur retourné n'est pas nulll !
-		if(j==null){
-		lb_info.setText("numéro de licence introuvable");
-		}
-		else if(data.contains(j)){
-				lb_info.setText("deja present");
+		if(Validation.estEntierPos(tf_numLicence)){
+			TestJooueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
+			//test si le joueur retourné n'est pas nulll !
+			if(j==null){
+			lb_info.setText("numéro de licence introuvable");
 			}
-			else{
-				data.add(j);
+			else if(data.contains(j)){
+					lb_info.setText("deja present");
+				}
+				else{
+					data.add(j);
+			}
+		}
+		else {
+			lb_info.setText("numéro de licence incohérent");
 		}
 	
 		tf_numLicence.setText("");
@@ -76,6 +88,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNomTournoi());
+		
 		TestJooueur j1 = new TestJooueur(1, "jean", "jacques");
 		TestJooueur j2 = new TestJooueur(2, "boubi", "baaa");
 		ModeleJoueur.ajouterJoueur(j1);

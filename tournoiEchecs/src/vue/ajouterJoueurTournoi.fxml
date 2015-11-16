@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -54,4 +55,14 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <Label fx:id="lb_nomTournoi" text="Label" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
 </BorderPane>

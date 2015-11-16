@@ -20,7 +20,7 @@
       <Label fx:id="label_date" layoutX="15.0" layoutY="76.0" text="Date de début" />
       <Label fx:id="label_nbRones" layoutX="15.0" layoutY="169.0" text="Nombre de rondes" />
       <Label fx:id="label_departages" layoutX="15.0" layoutY="202.0" text="Departages (3 minimum)" />
-      <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0" items="${lv_listeDepartages.selectionModel.selectedItem.lv_listeDepartagesChoisis}"/>
+      <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0"/>
       <Label fx:id="label_arbitre" layoutX="15.0" layoutY="138.0" text="Arbitre" />
       <DatePicker fx:id="dp_dateDeb" layoutX="250.0" layoutY="76.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="label_date" layoutX="15.0" layoutY="107.0" text="Date de fin" />

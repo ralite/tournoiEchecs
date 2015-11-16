@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-//import org.controlsfx.dialog.Dialog;
-//import org.controlsfx.dialog.Dialogs;
+import modele.ModeleDepartage;
 import application.Main;
 import metier.Departage;
+import metier.TestJooueur;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -24,15 +24,22 @@ import javafx.fxml.Initializable;
 import javafx.stage.Window;
 import vue.AjouterJoueurTournoi;
 import vue.CreationTournoi;
-import metier.Departage;
+import metier.TestJooueur;
 import metier.Tournoi;
+import modele.ModeleJoueur;
+import modele.ModeleTournoi;
 
 public class ControleurFenetreTournoi implements Initializable {
 	
-	private ObjectProperty<Departage> DepartageSelectionne = new SimpleObjectProperty<>();
+	
+	
+	/*private ObjectProperty<Departage> DepartageSelectionne = new SimpleObjectProperty<>();
 	public final ObjectProperty<Departage> DepartageSelectionneProperty() {return this.DepartageSelectionne;}
 	public final Departage getDepartageSelectionne() {return this.DepartageSelectionneProperty().get();}
 	public final void setDepartageSelectionne(final Departage DepartageSelectionne) {this.DepartageSelectionneProperty().set(DepartageSelectionne);}
+*/
+	private ObservableList<Departage> items;
+	private ObservableList<Departage> itemsChoisis;
 
 	
 	@FXML
@@ -64,14 +71,14 @@ public class ControleurFenetreTournoi implements Initializable {
     private void actionFenetreJoueurs(Event e) {
 		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && check(tf_arbitre) && check(tf_nbRondes) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null)) {
 			Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
-				
+			ModeleTournoi.ajouterTournoi(tournoi);	
+			
     	AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
 		ajoutjoueur.show();
 		}
 		//else showWarning("Merci de remplir tous les champs", ((Node)e.getSource()).getScene().getWindow());
     }
 	
-
 	
 	@FXML
 	public void actionAnnuler(Event e) {
@@ -91,13 +98,22 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 	
-	public void actionRajouterDepartage(){
-  	//	 ((Object) lv_listeDepartagesChoisis).addDepartage(DepartageSelectionne);
+	@FXML
+	public void actionRajouterDepartage(Event e){
+		itemsChoisis.add((Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
+		items.remove(
+                (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
+		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
+		itemsChoisis.add(dep);
+		items.remove(dep);
 	}
 	
 	
-	public void actionEnleverDepartage(){
-		
+	@FXML
+	public void actionEnleverDepartage(Event e){
+		itemsChoisis.remove(
+                (Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem());
+		items.add((Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem());
 	}
 	
 	
@@ -122,12 +138,11 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ObservableList<Departage> items =FXCollections.observableArrayList (
-				Departage.Cumulatif,Departage.departage2,Departage.departage3,Departage.departage4,Departage.departage5);
 		lv_listeDepartages.setItems(items);
+		itemsChoisis =FXCollections.observableArrayList ();
+		lv_listeDepartagesChoisis.setItems(itemsChoisis);
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
-		DepartageSelectionne.bind(lv_listeDepartages.getSelectionModel().selectedItemProperty());
-		
+		//DepartageSelectionne.bind(lv_listeDepartages.getSelectionModel().selectedItemProperty());
 	}
 
 }
