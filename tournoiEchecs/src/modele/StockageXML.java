@@ -13,6 +13,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import metier.Departage;
 import metier.Tournoi;
 
 public class StockageXML {
@@ -34,21 +35,29 @@ public class StockageXML {
 			lieu.appendChild(doc.createTextNode(tournoi.getLieu()));
 			rootElement.appendChild(lieu);
 
-			Element dateDebut = doc.createElement("datedebut");
-			dateDebut.appendChild(doc.createTextNode(tournoi.getDateDeb().toString()));
-			rootElement.appendChild(dateDebut);
+			Element datedebut = doc.createElement("datedebut");
+			datedebut.appendChild(doc.createTextNode(tournoi.getDateDeb().toString()));
+			rootElement.appendChild(datedebut);
 
-			Element dateFin = doc.createElement("datefin");
-			dateFin.appendChild(doc.createTextNode(tournoi.getDateFin().toString()));
-			rootElement.appendChild(dateFin);
+			Element datefin = doc.createElement("datefin");
+			datefin.appendChild(doc.createTextNode(tournoi.getDateFin().toString()));
+			rootElement.appendChild(datefin);
 
 			Element arbitre = doc.createElement("arbitre");
 			arbitre.appendChild(doc.createTextNode(tournoi.getArbitre()));
 			rootElement.appendChild(arbitre);
 
-			Element nbRondes = doc.createElement("nbrondes");
-			//nbRondes.appendChild(doc.createTextNode(tournoi.getNbRondes()));
-			rootElement.appendChild(nbRondes);
+			Element nbrondes = doc.createElement("nbrondes");
+			Integer i = (Integer)tournoi.getNbRondes();
+			nbrondes.appendChild(doc.createTextNode(i.toString()));
+			rootElement.appendChild(nbrondes);
+
+			Element departage = doc.createElement("departage");
+			rootElement.appendChild(departage);
+
+			/*for(Departage dep : tournoi.getListeDepartages()) {
+
+			}*/
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

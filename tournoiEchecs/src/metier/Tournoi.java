@@ -32,13 +32,14 @@ public class Tournoi {
 		DateFin = dateFin;
 		Arbitre = arbitre;
 		NbRondes = nbRondes;
+		ListeDepartages = new ArrayList<Departage>();
 	}
 
-	private ArrayList<Departage> getListeDepartages() {
+	public ArrayList<Departage> getListeDepartages() {
 		return this.ListeDepartages;
 	}
 
-	private void setListeDepartages(ArrayList<Departage> liste) {
+	public void setListeDepartages(ArrayList<Departage> liste) {
 		this.ListeDepartages=liste;
 	}
 
