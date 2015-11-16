@@ -41,23 +41,23 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class ControleurAjouterJoueurTournoi implements Initializable {
-	
+
 	private ObservableList<Joueur> data = FXCollections.observableArrayList();
 
 	@FXML
 	private Label lb_nomTournoi;
-	
+
 	@FXML
 
 	private ListView<Joueur> listePersonne;
 
-	
+
 	@FXML
 	TextField tf_numLicence;
-	
+
 	@FXML
 	Label lb_info;
-	
+
 	@FXML
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
@@ -83,28 +83,28 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		else {
 			lb_info.setText("numéro de licence incohérent");
 		}
-	
+
 		tf_numLicence.setText("");
 	}
-	
+
 	@FXML
 	public void retirerJoueur(Event e) {
 		data.remove(
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNomTournoi());
+		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
 		Joueur j1 = new Joueur(1, "jean", "jacques");
 		Joueur j2 = new Joueur(2, "pierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
 
-		
+
 		listePersonne.setItems(data);
-		
+
 	}
 
 }

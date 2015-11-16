@@ -22,41 +22,40 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	private ObservableList<Departage> items;
 	private ObservableList<Departage> itemsChoisis;
-	
+
 	@FXML
 	ListView<Departage> lv_listeDepartages;
-	
+
 	@FXML
 	ListView<Departage> lv_listeDepartagesChoisis;
 
 	@FXML
 	DatePicker dp_dateDeb;
-	
+
 	@FXML
 	Button button_addDepartage;
 	
 	@FXML
 	Button button_removeDepartage;
-	
+
 	@FXML
 	DatePicker dp_dateFin;
-	
+
 	@FXML
 	TextField tf_nomTournoi;
-	
+
 	@FXML
 	TextField tf_lieuTournoi;
-	
+
 	@FXML
 	TextField tf_nbRondes;
-	
+
 	@FXML
 	TextField tf_arbitre;
-	
-	
-	
+
 	@FXML
     private void actionFenetreJoueurs(Event e) {
+
 		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null) &&check(tf_arbitre) && check(tf_nbRondes)) {
 			if (lv_listeDepartagesChoisis.getItems().size()>=3){
 				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
@@ -68,19 +67,17 @@ public class ControleurFenetreTournoi implements Initializable {
 			else {
 				lv_listeDepartagesChoisis.setStyle("-fx-control-inner-background : red; ");
 			}
-			
 		}
-		//else showWarning("Merci de remplir tous les champs", ((Node)e.getSource()).getScene().getWindow());
-    }
-	
-	
+	}
+
+
 	@FXML
 	public void actionAnnuler(Event e) {
 		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
 			((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
-	
+
+
 
 	private boolean check(TextField leChampDeSaisie) {
 		if (Validation.estVide(leChampDeSaisie)) {
@@ -92,6 +89,13 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 
+	@FXML
+	public void actionRajouterDepartage(Event e){
+		itemsChoisis.add((Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
+		items.remove(
+                (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
+	}
+
 	public void actionRajouterDepartage(){
 		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
 		if(dep!=null){
@@ -99,8 +103,8 @@ public class ControleurFenetreTournoi implements Initializable {
 			items.remove(dep);
 		}
 	}
-	
-	
+
+
 	@FXML
 	public void actionEnleverDepartage(){
 		Departage dep=(Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem();
@@ -111,13 +115,13 @@ public class ControleurFenetreTournoi implements Initializable {
 		else {
 		}
 	}
-	
-	
+
+
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){
             char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
-            if(!(ch >= '0' && ch <= '9' )){       
-            	leChampDeSaisie.setText(leChampDeSaisie.getText().substring(0,leChampDeSaisie.getText().length()-1)); 
+            if(!(ch >= '0' && ch <= '9' )){
+            	leChampDeSaisie.setText(leChampDeSaisie.getText().substring(0,leChampDeSaisie.getText().length()-1));
             }
        }
 	}

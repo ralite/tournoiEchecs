@@ -17,43 +17,39 @@ import metier.departage.Departage;
 
 public class Tournoi {
 
-	private String nomTournoi;
+	private String Nom;
 	private String Lieu;
 	private LocalDate DateDeb;
 	private LocalDate DateFin;
-	private String arbitre;
-	private int nbRondes;
+	private String Arbitre;
+	private int NbRondes;
 
-	private ArrayList<Departage> listeDepartages;
+	private ArrayList<Departage> ListeDepartages;
 
-	public Tournoi(String nomTournoi, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, Integer nbRondes) {
-		setNomTournoi(nomTournoi);
-		setLieu(lieu);
-		setDateDeb(dateDeb);
-		setDateFin(dateFin);
-		setArbitre(arbitre);
-		setNbRondes(nbRondes);
-		setListeDepartages(listeDepartages);
+	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes) {
+		Nom = nom;
+		Lieu = lieu;
+		DateDeb = dateDeb;
+		DateFin = dateFin;
+		Arbitre = arbitre;
+		NbRondes = nbRondes;
+		ListeDepartages = new ArrayList<Departage>();
 	}
 
-	private ArrayList<Departage> getListeDepartages() {
-		return this.listeDepartages;
+	public ArrayList<Departage> getListeDepartages() {
+		return this.ListeDepartages;
 	}
 
-	private void setListeDepartages(ArrayList<Departage> liste) {
-		this.listeDepartages=liste;
+	public void setListeDepartages(ArrayList<Departage> liste) {
+		this.ListeDepartages=liste;
 	}
 
-	public String getNomTournoi() {
-		return nomTournoi;
+	public String getNom() {
+		return Nom;
 	}
 
-	public void setNbRondes(int nbRondes){
-		this.nbRondes=nbRondes;
-	}
-
-	public void setNomTournoi(String nomTournoi) {
-		this.nomTournoi = nomTournoi;
+	public void setNom(String nom) {
+		Nom = nom;
 	}
 
 	public String getLieu() {
@@ -81,14 +77,18 @@ public class Tournoi {
 	}
 
 	public String getArbitre() {
-		return arbitre;
+		return Arbitre;
 	}
 
-	public void setArbitre(String Arbitre) {
-		this.arbitre = Arbitre;
+	public void setArbitre(String arbitre) {
+		Arbitre = arbitre;
 	}
 
-	/*public void addDepartages(Departage d) {
-		listeDepartages.add(d);
-	}*/
+	public int getNbRondes() {
+		return NbRondes;
+	}
+
+	public void setNbRondes(int nbRondes) {
+		NbRondes = nbRondes;
+	}
 }
