@@ -27,7 +27,6 @@ import javafx.stage.Window;
 import vue.AjouterJoueurTournoi;
 import vue.CreationTournoi;
 import metier.Departage;
-import metier.TestJooueur;
 import metier.Tournoi;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;

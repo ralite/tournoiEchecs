@@ -1,7 +1,8 @@
 package modele;
 
 
-import metier.TestJooueur;
+
+import metier.Joueur;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -10,22 +11,22 @@ import javafx.collections.ObservableList;
 
 public class ModeleJoueur {
 	 
-		private static final ListProperty<TestJooueur> collectionJoueurs = new SimpleListProperty<>(FXCollections.observableArrayList());
-		public static final ListProperty<TestJooueur> collectionJoueursProperty() {return collectionJoueurs;}
-		public static final ObservableList<TestJooueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
-		public static final void setcollectionJoueurs(final ObservableList<TestJooueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
+		private static final ListProperty<Joueur> collectionJoueurs = new SimpleListProperty<>(FXCollections.observableArrayList());
+		public static final ListProperty<Joueur> collectionJoueursProperty() {return collectionJoueurs;}
+		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
+		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 		
 		public static void creerJoueur(int num, String prenom, String nom) {
-			collectionJoueurs.add(new TestJooueur(num,prenom,nom));
+			collectionJoueurs.add(new Joueur(num,prenom,nom));
 		}
 		
-		public static void ajouterJoueur(TestJooueur j) {
+		public static void ajouterJoueur(Joueur j) {
 			collectionJoueurs.add(j);
 		}
 		
-		public static TestJooueur rechercherJoueur(int num) {
-			for (TestJooueur j : collectionJoueurs) {
-				if(j.getNum()==num){
+		public static Joueur rechercherJoueur(int num) {
+			for (Joueur j : collectionJoueurs) {
+				if(j.getNumLicence()==num){
 					return j;
 				}
 			}
