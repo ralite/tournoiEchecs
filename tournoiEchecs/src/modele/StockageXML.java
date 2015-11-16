@@ -17,7 +17,7 @@ import metier.Tournoi;
 
 public class StockageXML {
 
-	public static void writeXMLTournoi(Tournoi tournoi){
+	public static void writeXMLTournoi(Tournoi tournoi,String savePath){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -25,6 +25,10 @@ public class StockageXML {
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("tournoi");
 			doc.appendChild(rootElement);
+
+			Element nom = doc.createElement("nom");
+			nom.appendChild(doc.createTextNode(tournoi.getNom()));
+			rootElement.appendChild(nom);
 
 			Element lieu = doc.createElement("lieu");
 			lieu.appendChild(doc.createTextNode(tournoi.getLieu()));
@@ -38,17 +42,18 @@ public class StockageXML {
 			dateFin.appendChild(doc.createTextNode(tournoi.getDateFin().toString()));
 			rootElement.appendChild(dateFin);
 
-			/*Element arbitre = doc.createElement("arbitre");
+			Element arbitre = doc.createElement("arbitre");
 			arbitre.appendChild(doc.createTextNode(tournoi.getArbitre()));
 			rootElement.appendChild(arbitre);
 
-			Element departage = doc.createElement("departage");
-			rootElement.appendChild(departage);*/
+			Element nbRondes = doc.createElement("nbrondes");
+			//nbRondes.appendChild(doc.createTextNode(tournoi.getNbRondes()));
+			rootElement.appendChild(nbRondes);
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("tournoi_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
+			StreamResult result = new StreamResult(new File(savePath + "/tournoi_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
 
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {
@@ -56,5 +61,9 @@ public class StockageXML {
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		}
+	}
+
+	public static void readXMLTournoi(Tournoi tournoi){
+
 	}
 }
