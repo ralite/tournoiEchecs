@@ -4,33 +4,19 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import modele.ModeleDepartage;
-
-
-
-
-//import org.controlsfx.dialog.Dialog;
-//import org.controlsfx.dialog.Dialogs;
 import application.Main;
-import metier.Departage;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Window;
 import vue.AjouterJoueurTournoi;
-import vue.CreationTournoi;
 import metier.Tournoi;
-import modele.ModeleJoueur;
+import metier.departage.Departage;
 import modele.ModeleTournoi;
+import modele.Validation;
 
 public class ControleurFenetreTournoi implements Initializable {
 
@@ -68,14 +54,21 @@ public class ControleurFenetreTournoi implements Initializable {
 	TextField tf_arbitre;
 	
 	
+	
 	@FXML
     private void actionFenetreJoueurs(Event e) {
-		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && check(tf_arbitre) && check(tf_nbRondes) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null) && (lv_listeDepartagesChoisis.getItems().size()>=3)) {
-			Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
-			ModeleTournoi.ajouterTournoi(tournoi);	
+		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null) &&check(tf_arbitre) && check(tf_nbRondes)) {
+			if (lv_listeDepartagesChoisis.getItems().size()>=3){
+				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
+				ModeleTournoi.ajouterTournoi(tournoi);	
+				
+				AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
+				ajoutjoueur.show();
+			}
+			else {
+				lv_listeDepartagesChoisis.setStyle("-fx-control-inner-background : red; ");
+			}
 			
-    	AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
-		ajoutjoueur.show();
 		}
 		//else showWarning("Merci de remplir tous les champs", ((Node)e.getSource()).getScene().getWindow());
     }
@@ -90,7 +83,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	
 
 	private boolean check(TextField leChampDeSaisie) {
-		if (leChampDeSaisie.getText().trim().isEmpty()) {
+		if (Validation.estVide(leChampDeSaisie)) {
 			leChampDeSaisie.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		} else {
@@ -116,7 +109,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		items.add(dep);
 		}
 		else {
-			
 		}
 	}
 	
@@ -133,7 +125,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		items =FXCollections.observableArrayList (
-				Departage.Cumulatif,Departage.departage2,Departage.departage3,Departage.departage4,Departage.departage5);
+				ModeleDepartage.getcollectionDepartages());
 		lv_listeDepartages.setItems(items);
 		itemsChoisis =FXCollections.observableArrayList ();
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
