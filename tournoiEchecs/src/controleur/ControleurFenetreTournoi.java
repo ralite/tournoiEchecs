@@ -47,6 +47,12 @@ public class ControleurFenetreTournoi implements Initializable {
 	DatePicker dp_dateDeb;
 	
 	@FXML
+	Button button_addDepartage;
+	
+	@FXML
+	Button button_removeDepartage;
+	
+	@FXML
 	DatePicker dp_dateFin;
 	
 	@FXML
@@ -64,7 +70,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	
 	@FXML
     private void actionFenetreJoueurs(Event e) {
-		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && check(tf_arbitre) && check(tf_nbRondes) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null)) {
+		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && check(tf_arbitre) && check(tf_nbRondes) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null) && (lv_listeDepartagesChoisis.getItems().size()>=3)) {
 			Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 			ModeleTournoi.ajouterTournoi(tournoi);	
 			
@@ -92,27 +98,26 @@ public class ControleurFenetreTournoi implements Initializable {
 			return true;
 		}
 	}
-	
-	@FXML
-	public void actionRajouterDepartage(Event e){
-		itemsChoisis.add((Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
-		items.remove(
-                (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
-	}
 
 	public void actionRajouterDepartage(){
-  	//	 ((Object) lv_listeDepartagesChoisis).addDepartage(DepartageSelectionne);
 		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
-		itemsChoisis.add(dep);
-		items.remove(dep);
+		if(dep!=null){
+			itemsChoisis.add(dep);
+			items.remove(dep);
+		}
 	}
 	
 	
 	@FXML
-	public void actionEnleverDepartage(Event e){
-		itemsChoisis.remove(
-                (Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem());
-		items.add((Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem());
+	public void actionEnleverDepartage(){
+		Departage dep=(Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem();
+		if(dep!=null){
+		itemsChoisis.remove(dep);
+		items.add(dep);
+		}
+		else {
+			
+		}
 	}
 	
 	
