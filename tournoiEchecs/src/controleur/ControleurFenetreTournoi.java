@@ -89,13 +89,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 
-	@FXML
-	public void actionRajouterDepartage(Event e){
-		itemsChoisis.add((Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
-		items.remove(
-                (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem());
-	}
-
 	public void actionRajouterDepartage(){
 		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
 		if(dep!=null){
