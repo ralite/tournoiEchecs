@@ -56,13 +56,14 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 
-		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null) &&check(tf_arbitre) && check(tf_nbRondes)) {
+		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null)&& checkDate(dp_dateDeb, dp_dateFin) &&check(tf_arbitre) && check(tf_nbRondes)) {
 			if (lv_listeDepartagesChoisis.getItems().size()>=3){
 				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 				ModeleTournoi.ajouterTournoi(tournoi);	
 				
 				AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
 				ajoutjoueur.show();
+				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 			else {
 				lv_listeDepartagesChoisis.setStyle("-fx-control-inner-background : red; ");
@@ -85,6 +86,18 @@ public class ControleurFenetreTournoi implements Initializable {
 			return false;
 		} else {
 			leChampDeSaisie.setStyle("-fx-control-inner-background : white; ");
+			return true;
+		}
+	}
+	
+	private boolean checkDate(DatePicker d1,DatePicker d2) {
+		if (!Validation.verifDate(d1, d2)) {
+			d1.setStyle("-fx-control-inner-background : red; ");
+			d2.setStyle("-fx-control-inner-background : red; ");
+			return false;
+		} else {
+			d1.setStyle("-fx-control-inner-background : white; ");
+			d2.setStyle("-fx-control-inner-background : red; ");
 			return true;
 		}
 	}

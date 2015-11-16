@@ -1,5 +1,8 @@
 package modele;
 
+import java.time.LocalDate;
+
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class Validation {
@@ -35,6 +38,17 @@ public class Validation {
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean verifDate(DatePicker d1, DatePicker d2) {
+		LocalDate date1 = d1.getValue();
+		LocalDate date2 = d2.getValue();
+		if(date1.isAfter(date2)){
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 }
