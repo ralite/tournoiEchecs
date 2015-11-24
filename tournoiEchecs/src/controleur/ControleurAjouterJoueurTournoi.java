@@ -63,9 +63,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		lb_info.setText("");
 		//recherche joueur
 		if(Validation.estEntierPos(tf_numLicence)){
-
-
-			Joueur j = ModeleJoueur.rechercherJoueur(Integer.parseInt(tf_numLicence.getText()));
+			Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
 			//test si le joueur retourné n'est pas nulll !
 			if(j==null){
 			lb_info.setText("numéro de licence introuvable");
@@ -97,8 +95,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
-		Joueur j1 = new Joueur(1, "jean", "jacques");
-		Joueur j2 = new Joueur(2, "pierre", "paul");
+		Joueur j1 = new Joueur("1", "jean", "jacques");
+		Joueur j2 = new Joueur("2", "pierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
 
