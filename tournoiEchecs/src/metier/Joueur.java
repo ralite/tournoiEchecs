@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Joueur {
-	private int numLicence;
+	private String numLicence;
 	private String nomJoueur;
 	private String prenomJoueur;
 	private String sexe;
@@ -15,7 +15,7 @@ public class Joueur {
 	private String categorie;
 	private String club;
 
-	public Joueur(int numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, float elo, String categorie, String club) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, float elo, String categorie, String club) {
 		super();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
@@ -29,17 +29,17 @@ public class Joueur {
 		this.club = club;
 	}
 
-	public Joueur(int numLicence, String nomJoueur, String prenomJoueur) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur) {
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
 	}
 
-	public int getNumLicence() {
+	public String getNumLicence() {
 		return numLicence;
 	}
 
-	public void setNumLicence(int numLicence) {
+	public void setNumLicence(String numLicence) {
 		this.numLicence = numLicence;
 	}
 

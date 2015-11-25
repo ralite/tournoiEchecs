@@ -16,7 +16,7 @@ public class ModeleJoueur {
 		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
 		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 		
-		public static void creerJoueur(int num, String prenom, String nom) {
+		public static void creerJoueur(String num, String prenom, String nom) {
 			collectionJoueurs.add(new Joueur(num,prenom,nom));
 		}
 		
@@ -24,9 +24,9 @@ public class ModeleJoueur {
 			collectionJoueurs.add(j);
 		}
 		
-		public static Joueur rechercherJoueur(int num) {
+		public static Joueur rechercherJoueur(String num) {
 			for (Joueur j : collectionJoueurs) {
-				if(j.getNumLicence()==num){
+				if(j.getNumLicence().equals(num)){
 					return j;
 				}
 			}
