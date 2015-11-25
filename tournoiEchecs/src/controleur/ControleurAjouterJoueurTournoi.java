@@ -7,27 +7,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import application.Main;
 import metier.Joueur;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.Validation;
+import vue.RecapTournoi;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +21,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -50,6 +37,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 
 	private ListView<Joueur> listePersonne;
+	
+	@FXML
+	Button button_OK;
 
 
 	@FXML
@@ -91,6 +81,13 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void retirerJoueur(Event e) {
 		data.remove(
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
+	}
+	
+	@FXML
+	public void actionOK(Event e){
+		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
+		recap.show();
+		((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@Override
