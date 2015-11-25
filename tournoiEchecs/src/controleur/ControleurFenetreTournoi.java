@@ -56,7 +56,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 
-		if (check(tf_nomTournoi) && check(tf_lieuTournoi) && (dp_dateDeb.getValue()!=null) && (dp_dateFin.getValue()!=null)&& checkDate(dp_dateDeb, dp_dateFin) &&check(tf_arbitre) && check(tf_nbRondes)) {
+		if (check(tf_nomTournoi) && check(tf_lieuTournoi)&& checkDate(dp_dateDeb, dp_dateFin) && check(tf_arbitre) && check(tf_nbRondes)) {
 			if (lv_listeDepartagesChoisis.getItems().size()>=3){
 				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 				ModeleTournoi.ajouterTournoi(tournoi);	
@@ -97,11 +97,12 @@ public class ControleurFenetreTournoi implements Initializable {
 			return false;
 		} else {
 			d1.setStyle("-fx-control-inner-background : white; ");
-			d2.setStyle("-fx-control-inner-background : red; ");
+			d2.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}
 	}
 
+	@FXML
 	public void actionRajouterDepartage(){
 		Departage dep =  (Departage)lv_listeDepartages.getSelectionModel().getSelectedItem();
 		if(dep!=null){
@@ -121,7 +122,17 @@ public class ControleurFenetreTournoi implements Initializable {
 		else {
 		}
 	}
+	
+	@FXML
+	public void limiteTexte(){
+		tf_nomTournoi=Validation.verifLongueurTexte(tf_nomTournoi,30);
+		tf_lieuTournoi=Validation.verifLongueurTexte(tf_lieuTournoi,30);
+		tf_arbitre=Validation.verifLongueurTexte(tf_arbitre,30);
+		tf_nbRondes=Validation.verifLongueurTexte(tf_nbRondes,6);
+		
+	}
 
+	
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){

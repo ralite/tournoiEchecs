@@ -41,14 +41,29 @@ public class Validation {
 	}
 	
 	public static boolean verifDate(DatePicker d1, DatePicker d2) {
-		LocalDate date1 = d1.getValue();
-		LocalDate date2 = d2.getValue();
-		if(date1.isAfter(date2)){
-			return false;
+		if(d1.getValue()!=null && d2.getValue()!=null){
+			LocalDate date1 = d1.getValue();
+			LocalDate date2 = d2.getValue();
+			if(date1.isAfter(date2)){
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 		else {
-			return true;
+			return false;
 		}
 	}
+	
+	public static TextField verifLongueurTexte(TextField tf, int longeur){
+		int longueurMax=longeur;
+		if(tf.getText().length()>=longueurMax){
+            tf.setText(tf.getText().substring(1, longueurMax));
+		}
+		return tf;
+	}
+	
+	
 	
 }
