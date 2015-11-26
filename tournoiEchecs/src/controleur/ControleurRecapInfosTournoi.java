@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -40,6 +41,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	
 	@FXML
 	ListView<Departage> lv_recapDepartagesChoisis;
+	
 	
 	
 	@Override
