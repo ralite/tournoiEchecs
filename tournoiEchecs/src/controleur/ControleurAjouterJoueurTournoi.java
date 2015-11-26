@@ -8,21 +8,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import metier.Joueur;
 import metier.Joueur;
 import modele.ModeleJoueur;

@@ -11,11 +11,11 @@ public class Joueur {
 	private LocalDate dateNaissance;
 	private String titreFide;
 	private String ligue;
-	private float elo;
+	private int elo;
 	private String categorie;
 	private String club;
 
-	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, float elo, String categorie, String club) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, int elo, String categorie, String club) {
 		super();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
@@ -91,11 +91,11 @@ public class Joueur {
 		this.ligue = ligue;
 	}
 
-	public float getElo() {
+	public int getElo() {
 		return elo;
 	}
 
-	public void setElo(float elo) {
+	public void setElo(int elo) {
 		this.elo = elo;
 	}
 
