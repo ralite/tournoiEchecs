@@ -43,6 +43,14 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	ListView<Departage> lv_recapDepartagesChoisis;
 	
 	
+	public void recapAjouterJoueur(Event e){
+		
+	}
+	
+	public void recapModifierTournoi(Event e){
+		
+	}
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -23,6 +23,7 @@ public class RecapTournoi extends Stage {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+		
 	}
 	
 }

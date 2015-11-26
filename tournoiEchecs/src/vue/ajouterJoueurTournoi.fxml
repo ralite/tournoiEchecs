@@ -54,7 +54,7 @@
             </Button>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="button_ok" mnemonicParsing="false" onAction="#actionOK" text="OK" />
+                  <Button fx:id="button_ok"  mnemonicParsing="false" onAction="#actionOK" text="OK" />
                </children>
             </HBox>
          </children>

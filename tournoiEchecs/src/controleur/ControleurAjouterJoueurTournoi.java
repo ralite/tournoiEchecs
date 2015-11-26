@@ -81,6 +81,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 	
+	
 	@FXML
 	public void actionOK(Event e){
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());

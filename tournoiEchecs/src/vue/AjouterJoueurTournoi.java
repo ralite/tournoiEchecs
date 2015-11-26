@@ -25,4 +25,5 @@ public class AjouterJoueurTournoi extends Stage{
 			ex.printStackTrace();
 		}
 	}
+	
 }
