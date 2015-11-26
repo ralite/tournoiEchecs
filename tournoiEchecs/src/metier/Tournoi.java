@@ -36,6 +36,14 @@ public class Tournoi {
 		ListeDepartages = new ArrayList<Departage>();
 	}
 
+	public void AddDepartages(Departage d) {
+		this.ListeDepartages.add(d);
+	}
+
+	public void RemoveDepartages(Departage d) {
+		this.ListeDepartages.remove(d);
+	}
+
 	public ArrayList<Departage> getListeDepartages() {
 		return this.ListeDepartages;
 	}
@@ -91,4 +99,12 @@ public class Tournoi {
 	public void setNbRondes(int nbRondes) {
 		NbRondes = nbRondes;
 	}
+
+	@Override
+	public String toString() {
+		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
+				+ Arbitre + ", NbRondes=" + NbRondes + "]";
+	}
+
+
 }

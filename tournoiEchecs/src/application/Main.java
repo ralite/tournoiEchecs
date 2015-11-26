@@ -1,22 +1,25 @@
 package application;
-	
-import java.io.File;
+
+import java.time.LocalDate;
 
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.FileChooser.ExtensionFilter;
+import metier.Tournoi;
+import metier.departage.Buchholz;
+import metier.departage.Cumulatif;
+import metier.departage.Departage;
+import modele.xml.StockageXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 
 public class Main extends Application {
-	
+
 	private static Stage fenetrePrincipale = null;
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -29,9 +32,22 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+
+		/*LocalDate DateDeb = LocalDate.parse("2015-02-20");
+		LocalDate DateFin = LocalDate.parse("2015-02-28");
+		Tournoi tournoi = new Tournoi("nomtest", "ici", DateDeb, DateFin, "john doe", 3);
+		Departage dep1 = new Buchholz();
+		Departage dep2 = new Cumulatif();
+		tournoi.AddDepartages(dep1);
+		tournoi.AddDepartages(dep2);
+		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\grunwalda\\Downloads");*/
+
+		Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\grunwalda\\Downloads\\tournoi_nomtest_ici_2015-02-20.xml");
+		System.out.println(tournoi.toString());
+
 	}
 
 	public static Window getPrimaryStage() {

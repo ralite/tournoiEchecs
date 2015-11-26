@@ -1,4 +1,4 @@
-package modele;
+package modele.xml;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import metier.Tournoi;
+import metier.departage.Departage;
 
 public class StockageXML {
 
@@ -54,17 +55,22 @@ public class StockageXML {
 			nbrondes.appendChild(doc.createTextNode(i.toString()));
 			rootElement.appendChild(nbrondes);
 
-			/*Element departage = doc.createElement("departage");
+			Element departage = doc.createElement("departage");
 			rootElement.appendChild(departage);
 
+			int numdep = 0;
 			for(Departage dep : tournoi.getListeDepartages()) {
-
-			}*/
+				Element sousdepartage = doc.createElement("departage");
+				//sousdepartage.
+				//sousdepartage.appendChild(doc.createTextNode(dep.toString()));
+				departage.appendChild(sousdepartage);
+				numdep++;
+			}
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(savePath + "/tournoi_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
+			StreamResult result = new StreamResult(new File(savePath + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
 
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {
@@ -76,10 +82,10 @@ public class StockageXML {
 
 	public static Tournoi readXMLTournoi(String filePath){
 		try {
-			File fXmlFile = new File(filePath);
+			File XMLFile = new File(filePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(XMLFile);
 			doc.getDocumentElement().normalize();
 
 			String Nom = doc.getElementsByTagName("nom").item(0).getTextContent();
@@ -90,7 +96,7 @@ public class StockageXML {
 			String Arbitre = doc.getElementsByTagName("arbitre").item(0).getTextContent();
 			int NbRondes = (Integer.parseInt(doc.getElementsByTagName("nbrondes").item(0).getTextContent()));
 
-			/*NodeList departageList = doc.getElementsByTagName("departage");
+			NodeList departageList = doc.getElementsByTagName("departage");
 			for (int i = 0; i < departageList.getLength(); i++) {
 
 				Node node = departageList.item(i);
@@ -98,8 +104,9 @@ public class StockageXML {
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element element = (Element) node;
+
 				}
-			}*/
+			}
 
 			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes);
 
