@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import metier.Joueur;
 import metier.Tournoi;
+import metier.departage.Departage;
+import modele.ModeleDepartage;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 
@@ -33,12 +35,12 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	Label label_recapNbRondes;
 
-	/*@FXML
-	ListView lv_recapJoueursInscrits;
+	@FXML
+	ListView<Joueur> lv_recapJoueursInscrits;
 	
 	@FXML
-	ListView lv_recapDepartagesChoisis;
-	*/
+	ListView<Departage> lv_recapDepartagesChoisis;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -48,6 +50,8 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		label_recapDateDeb.setText(String.valueOf(ModeleTournoi.getTournoi().getDateDeb()));
 		label_recapDateFin.setText(String.valueOf(ModeleTournoi.getTournoi().getDateFin()));
 		label_recapNbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
+		lv_recapJoueursInscrits.setItems(ModeleJoueur.getcollectionJoueurs());
+		lv_recapDepartagesChoisis.setItems(ModeleDepartage.getcollectionDepartages());
 	}
 
 }
