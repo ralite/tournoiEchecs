@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
+   <children>
+      <Label fx:id="label_recapNom" layoutX="26.0" layoutY="6.0" prefHeight="17.0" prefWidth="55.0" text="label" />
+      <Label fx:id="label_recapLieu" layoutX="25.0" layoutY="30.0" text="Label" />
+      <Label fx:id="label_recapArbitre" layoutX="25.0" layoutY="56.0" text="Label" />
+      <Label fx:id="label_recapDateDeb" layoutX="526.0" layoutY="6.0" text="Label" />
+      <Label fx:id="label_recapDateFin" layoutX="526.0" layoutY="30.0" text="Label" />
+      <Label fx:id="label_recapNbRondes" layoutX="526.0" layoutY="56.0" text="Label" />
+      <ListView fx:id="lv_recapJoueursInscrits" layoutX="26.0" layoutY="113.0" prefHeight="200.0" prefWidth="170.0" />
+      <ListView fx:id="lv_recapDepartagesChoisis" layoutX="334.0" layoutY="114.0" prefHeight="200.0" prefWidth="170.0" />
+      <Label fx:id="label_joueursInscrits" layoutX="25.0" layoutY="96.0" text="Joueurs inscrits" />
+      <Button fx:id="button_recapRetirerJoueur" layoutX="26.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Retirer joueur" />
+      <Button layoutX="26.0" layoutY="386.0" mnemonicParsing="false" onAction="#recapAjouterJoueur" prefHeight="25.0" prefWidth="170.0" text="Ajouter joueur" />
+      <Label fx:id="button_recapDeaprtages" layoutX="334.0" layoutY="96.0" text="Départages du tournoi" />
+      <Button fx:id="button_recapModifierJoueur" layoutX="26.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" text="Modifier Joueur" />
+      <Button layoutX="465.0" layoutY="386.0" mnemonicParsing="false" text="Apparier les joueurs" />
+      <Button fx:id="button_recapModifierTournoi" layoutX="465.0" layoutY="353.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="122.0" text="Modifier tournoi" />
+   </children>
+</AnchorPane>

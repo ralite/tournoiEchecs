@@ -21,12 +21,12 @@
       <Label fx:id="label_lieu" layoutX="15.0" layoutY="45.0" text="Lieu" />
       <Label fx:id="label_date" layoutX="15.0" layoutY="76.0" text="Date de début" />
       <Label fx:id="label_nbRones" layoutX="15.0" layoutY="169.0" text="Nombre de rondes" />
-      <Label fx:id="label_departages" layoutX="15.0" layoutY="202.0" text="Departages" />
+      <Label fx:id="label_departages" layoutX="14.0" layoutY="211.0" text="Departages" />
       <ListView fx:id="lv_listeDepartagesChoisis" layoutX="399.0" layoutY="233.0" prefHeight="116.0" prefWidth="192.0" />
       <Label fx:id="label_arbitre" layoutX="15.0" layoutY="138.0" text="Arbitre" />
       
       <Label fx:id="label_date" layoutX="15.0" layoutY="107.0" text="Date de fin" />
       <Button fx:id="button_removeDepartage" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" onAction="#actionEnleverDepartage" prefHeight="25.0" prefWidth="59.0" text="&lt;" />
-      <Label fx:id="label_departageChoisi" layoutX="396.0" layoutY="202.0" text="Departages choisis (3 minimums)" />
+      <Label fx:id="label_departageChoisi" layoutX="399.0" layoutY="211.0" text="Departages choisis (3 minimum)" />
    </children>
 </AnchorPane>
