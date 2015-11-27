@@ -95,7 +95,7 @@ public class ControleurCreerJoueur implements Initializable {
 	Label lb_erreurClub;
 
 	@FXML
-	Label lb_erreurLicence1;
+	Label lb_erreur;
 
 
 	@Override
@@ -105,6 +105,17 @@ public class ControleurCreerJoueur implements Initializable {
 		Joueur j2 = new Joueur("2", "pierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
+
+		lb_erreurLicence.setText("");
+		lb_erreurNom.setText("");
+		lb_erreurPrenom.setText("");
+		lb_erreurSexe.setText("");
+		lb_erreurDate.setText("");
+		lb_erreurTitreFide.setText("");
+		lb_erreurLigue.setText("");
+		lb_erreurElo.setText("");
+		lb_erreurCategorie.setText("");
+		lb_erreurClub.setText("");
 
 		chbx_sexe.setItems(listeSexe);
 	}
@@ -116,12 +127,10 @@ public class ControleurCreerJoueur implements Initializable {
 		{
 			if(infosCorrectes())
 			{
-				lb_erreurLicence1.setText("ok");
-				//surcharger pour +infos
-				//méthode vérifier numlicence
-				//String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, int elo, String categorie, String club
-				//ModeleJoueur.creerJoueur(tf_numLicence.getText().toString(),tf_prenom.getText().toString(),chbx_sexe.getTypeSelector(),dp_dateNaissance.get);
-				//Integer.parseInt(tf_classementElo.getText.toString());
+				lb_erreur.setText("ok");
+				//ModeleJoueur.creerJoueur(tf_numLicence.getText().toString(),tf_prenom.getText().toString(),chbx_sexe.getValue().toString(),
+				//dp_dateNaissance.getEditor().getText().toString(),tf_titreFide.getText().toString(),tf_ligue.getText().toString(),
+				//Integer.parseInt(tf_classementElo.getText().toString()),tf_categorie.getText().toString(),tf_club.getTet().toString());
 
 				//((Node)e.getSource()).getScene().getWindow().hide();
 			}//infosCorrectes
@@ -176,7 +185,7 @@ public class ControleurCreerJoueur implements Initializable {
 		boolean res = true;
 
 		//numLicence
-		if(!Validation.verifNumLicence(tf_numLicence.getText()))
+		if(!Validation.verifNumLicence(tf_numLicence.getText().toString()))
 		{
 			lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
 			tf_numLicence.setStyle("-fx-control-inner-background : red; ");
@@ -184,6 +193,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurLicence.setText("");
+			tf_numLicence.setStyle("-fx-control-inner-background : white; ");
 		}
 		if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 		{
@@ -193,6 +203,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurLicence.setText("");
+			tf_numLicence.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		if(!Validation.estChaine(tf_nom))
@@ -203,6 +214,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurNom.setText("");
+			tf_nom.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		if(!Validation.estChaine(tf_prenom))
@@ -213,6 +225,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurPrenom.setText("");
+			tf_prenom.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		if(!Validation.verifDate(dp_dateNaissance, new DatePicker(LocalDate.now())))
@@ -221,7 +234,7 @@ public class ControleurCreerJoueur implements Initializable {
 			dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		} else {
-			dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
+			dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		//titreFide
@@ -237,6 +250,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurElo.setText("");
+			tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 			if(Integer.parseInt(tf_classementElo.getText()) < 500 || Integer.parseInt(tf_classementElo.getText()) > 3000 )
 			{
 				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
@@ -245,6 +259,7 @@ public class ControleurCreerJoueur implements Initializable {
 			}else
 			{
 				lb_erreurElo.setText("");
+				tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 			}
 		}
 
@@ -260,6 +275,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurClub.setText("");
+			tf_club.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		return res;
