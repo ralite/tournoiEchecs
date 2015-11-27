@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
    <children>
-      <TextField fx:id="tf_nomTournoi" layoutX="250.0" layoutY="14.0" onKeyPressed="#limiteTexte" />
+      <TextField fx:id="tf_nomTournoi" layoutX="250.0" layoutY="14.0" onKeyPressed="#limiteTexte" prefHeight="25.0" prefWidth="260.0" />
       <TextField fx:id="tf_lieuTournoi" layoutX="250.0" layoutY="45.0" onKeyPressed="#limiteTexte" />
       <DatePicker fx:id="dp_dateDeb" layoutX="250.0" layoutY="76.0" prefHeight="25.0" prefWidth="149.0" />
       <DatePicker fx:id="dp_dateFin" layoutX="250.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" />

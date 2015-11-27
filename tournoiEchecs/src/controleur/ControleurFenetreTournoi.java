@@ -17,6 +17,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import vue.AjouterJoueurTournoi;
+import vue.RecapTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
@@ -60,52 +61,60 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 
-		if (check(tf_nomTournoi) && check(tf_lieuTournoi)&& checkDate(dp_dateDeb, dp_dateFin) && check(tf_arbitre) && check(tf_nbRondes)) {
-			if (lv_listeDepartagesChoisis.getItems().size()>=3){
+		if (formulaireRempli()) {
+			if (infosCorrectes()){
 				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 				tournoi.setListeDepartages(new ArrayList<Departage>(itemsChoisis));
 				ModeleTournoi.ajouterTournoi(tournoi);	
 				
-				AjouterJoueurTournoi ajoutjoueur = new AjouterJoueurTournoi(Main.getPrimaryStage());
-				ajoutjoueur.show();
+				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
-			}
-			else {
-				lv_listeDepartagesChoisis.setStyle("-fx-control-inner-background : red; ");
 			}
 		}
 	}
+	
+ 
+	private boolean formulaireRempli(){
+		boolean res = true;
 
+		if(Validation.estVide(tf_nomTournoi))
+			res = false;
+		if(Validation.estVide(tf_lieuTournoi))
+			res = false;
+		if(Validation.estVide(dp_dateDeb))
+			res = false;
+		if(Validation.estVide(dp_dateFin))
+			res = false;
+		if(Validation.estVide(tf_arbitre))
+			res = false;
+		if(Validation.estVide(tf_nbRondes))
+			res = false;
+		if(Validation.estVide(lv_listeDepartagesChoisis))
+			res = false;
+		return res;
+	}
+	
+	private boolean infosCorrectes(){
+		boolean res = true;
 
+		if(!Validation.verifDate(dp_dateDeb,dp_dateFin))
+			res = false;
+		if(!Validation.nomcomposé(tf_arbitre))
+			res = false;
+		if (lv_listeDepartagesChoisis.getItems().size()<3){
+			lv_listeDepartagesChoisis.setStyle("-fx-control-inner-background : red; ");
+			res=false;
+		}
+		return res;
+		
+	}
 	@FXML
 	public void actionAnnuler(Event e) {
 		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
 			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
-
-
-	private boolean check(TextField leChampDeSaisie) {
-		if (Validation.estVide(leChampDeSaisie)) {
-			leChampDeSaisie.setStyle("-fx-control-inner-background : red; ");
-			return false;
-		} else {
-			leChampDeSaisie.setStyle("-fx-control-inner-background : white; ");
-			return true;
-		}
-	}
-	
-	private boolean checkDate(DatePicker d1,DatePicker d2) {
-		if (!Validation.verifDate(d1, d2)) {
-			d1.setStyle("-fx-control-inner-background : red; ");
-			d2.setStyle("-fx-control-inner-background : red; ");
-			return false;
-		} else {
-			d1.setStyle("-fx-control-inner-background : white; ");
-			d2.setStyle("-fx-control-inner-background : white; ");
-			return true;
-		}
-	}
 
 	@FXML
 	public void actionRajouterDepartage(){
@@ -130,10 +139,10 @@ public class ControleurFenetreTournoi implements Initializable {
 	
 	@FXML
 	public void limiteTexte(){
-		tf_nomTournoi=Validation.verifLongueurTexte(tf_nomTournoi,30);
-		tf_lieuTournoi=Validation.verifLongueurTexte(tf_lieuTournoi,30);
-		tf_arbitre=Validation.verifLongueurTexte(tf_arbitre,30);
-		tf_nbRondes=Validation.verifLongueurTexte(tf_nbRondes,6);
+		Validation.verifLongueurTexte(tf_nomTournoi,30);
+		Validation.verifLongueurTexte(tf_lieuTournoi,30);
+		Validation.verifLongueurTexte(tf_arbitre,30);
+		Validation.verifLongueurTexte(tf_nbRondes,6);
 		
 	}
 
@@ -142,8 +151,8 @@ public class ControleurFenetreTournoi implements Initializable {
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){
             char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
-            if(!(ch >= '0' && ch <= '9' )){
-            	leChampDeSaisie.setText(leChampDeSaisie.getText().substring(0,leChampDeSaisie.getText().length()-1));
+            if(!Validation.estChiffre(leChampDeSaisie)){
+            	leChampDeSaisie.setText(leChampDeSaisie.getText().replaceAll("[a-zA-Z]",""));
             }
        }
 	}
