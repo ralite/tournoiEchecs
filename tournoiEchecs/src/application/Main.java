@@ -34,7 +34,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		//launch(args);
+		launch(args);
 
 		/*LocalDate DateDeb = LocalDate.parse("2015-02-20");
 		LocalDate DateFin = LocalDate.parse("2015-02-28");
@@ -45,8 +45,8 @@ public class Main extends Application {
 		tournoi.AddDepartages(dep2);
 		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\grunwalda\\Downloads");*/
 
-		Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\grunwalda\\Downloads\\tournoi_nomtest_ici_2015-02-20.xml");
-		System.out.println(tournoi.toString());
+		//Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\grunwalda\\Downloads\\tournoi_nomtest_ici_2015-02-20.xml");
+		//System.out.println(tournoi.toString());
 
 	}
 
