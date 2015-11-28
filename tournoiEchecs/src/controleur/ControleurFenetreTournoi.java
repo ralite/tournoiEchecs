@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import modele.ModeleDepartage;
+import modele.ModeleJoueur;
 import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,6 +58,9 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	TextField tf_arbitre;
+	
+	
+	
 
 	@FXML
     private void actionFenetreJoueurs(Event e) {
@@ -66,11 +70,11 @@ public class ControleurFenetreTournoi implements Initializable {
 				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 				tournoi.setListeDepartages(new ArrayList<Departage>(itemsChoisis));
 				ModeleTournoi.ajouterTournoi(tournoi);	
-				
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
+			
 		}
 	}
 	
@@ -166,7 +170,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		
 		if(ModeleTournoi.getTournoi()!=null){
 			tf_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-			tf_lieuTournoi.setText(ModeleTournoi.getTournoi().getNom());
+			tf_lieuTournoi.setText(ModeleTournoi.getTournoi().getLieu());
 			dp_dateDeb.setValue(ModeleTournoi.getTournoi().getDateDeb());
 			dp_dateFin.setValue(ModeleTournoi.getTournoi().getDateFin());
 			tf_arbitre.setText(ModeleTournoi.getTournoi().getArbitre());

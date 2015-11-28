@@ -49,6 +49,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	Label lb_info;
 
+
+
 	@FXML
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
@@ -63,7 +65,6 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 					lb_info.setText("deja present");
 
-					lb_info.setText("déjà present");
 				}
 				else{
 					data.add(j);
@@ -85,23 +86,22 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	@FXML
 	public void actionOK(Event e){
+		listePersonne.setItems(data);
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
-		((Node)e.getSource()).getScene().getWindow().hide();
+		((Node)e.getSource()).getScene().getWindow().hide();	
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL location, ResourceBundle resources) {
+		
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-
+		
 		Joueur j1 = new Joueur("1", "jean", "jacques");
 		Joueur j2 = new Joueur("2", "pierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
-
-
 		listePersonne.setItems(data);
-
 	}
 
 }

@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
 
 public class Validation {
 
-
+	private static LocalDate dateActuelle = LocalDate.now();
+	
 	public static boolean estEntierPos(TextField tx){
 		int r;
 		try{
@@ -76,7 +77,7 @@ public class Validation {
 	}
 
 	public static boolean nomcomposé(TextField tx) {
-		if(tx.getText().trim().matches("^[a-zA-Z]*[-]?[a-zA-Z]*$")){
+		if(tx.getText().trim().matches("^[a-zA-Z]*[ ]?[a-zA-Z]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}
@@ -88,13 +89,13 @@ public class Validation {
 	}
 
 	
-	public static boolean verifDate(DatePicker d1, DatePicker d2) {
+	public static boolean verifDate(DatePicker d1, DatePicker d2) {	
 		if(d1==null || d2 ==null || !estDate(d1) || !estDate(d2)){
 			d1.setStyle("-fx-control-inner-background : red; ");
 			d2.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}else {
-			if(!d1.getValue().isAfter(d2.getValue())){
+			if(!d1.getValue().isAfter(d2.getValue()) && (d1.getValue().isEqual(dateActuelle) || d1.getValue().isAfter(dateActuelle)) ){
 				d1.setStyle("-fx-control-inner-background : white; ");
 				d2.setStyle("-fx-control-inner-background : white; ");
 				return true;				
@@ -107,6 +108,7 @@ public class Validation {
 		
 		
 	}
+
 
 	public static void verifLongueurTexte(TextField tf, int longeur){
 		int longueurMax=longeur;
