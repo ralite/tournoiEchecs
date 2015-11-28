@@ -116,6 +116,7 @@ public class ControleurCreerJoueur implements Initializable {
 		lb_erreurElo.setText("");
 		lb_erreurCategorie.setText("");
 		lb_erreurClub.setText("");
+		lb_erreur.setText("");
 
 		chbx_sexe.setItems(listeSexe);
 	}
@@ -190,21 +191,16 @@ public class ControleurCreerJoueur implements Initializable {
 			lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
 			tf_numLicence.setStyle("-fx-control-inner-background : red; ");
 			res = false;
-		}else
-		{
-			lb_erreurLicence.setText("");
-			tf_numLicence.setStyle("-fx-control-inner-background : white; ");
-		}
-		if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
+		}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 		{
 			lb_erreurLicence.setText("Le numéro de licence existe déjà.");
 			tf_numLicence.setStyle("-fx-control-inner-background : red; ");
 			res = false;
-		}else
-		{
+		}else{
 			lb_erreurLicence.setText("");
 			tf_numLicence.setStyle("-fx-control-inner-background : white; ");
 		}
+
 
 		if(!Validation.estChaine(tf_nom))
 		{
