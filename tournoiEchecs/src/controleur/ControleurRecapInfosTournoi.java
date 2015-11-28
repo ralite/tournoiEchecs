@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import com.sun.media.jfxmedia.events.NewFrameEvent;
+
 import application.Main;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -85,6 +87,14 @@ public class ControleurRecapInfosTournoi implements Initializable {
 				button_recapModifierTournoi.isDisabled();
 			}
 		}
+		
+		@FXML
+		public void modifierJoueur(Event e){
+			
+			AjouterJoueurTournoi aj = new AjouterJoueurTournoi(Main.getPrimaryStage());
+			aj.show();
+			((Node)e.getSource()).getScene().getWindow().hide();
+		}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +105,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		label_recapDateDeb.setText(String.valueOf(ModeleTournoi.getTournoi().getDateDeb()));
 		label_recapDateFin.setText(String.valueOf(ModeleTournoi.getTournoi().getDateFin()));
 		label_recapNbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
-		lv_recapJoueursInscrits.setItems(ModeleJoueur.getcollectionJoueurs());
+		lv_recapJoueursInscrits.setItems(ModeleTournoi.getJoueurs());
 		lv_recapDepartagesChoisis.setItems(ModeleDepartage.getcollectionDepartages());
 	}
 

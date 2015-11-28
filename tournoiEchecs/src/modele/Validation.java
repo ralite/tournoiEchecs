@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 
 public class Validation {
 
-	private static LocalDate dateActuelle = LocalDate.now();
 	
 	public static boolean estEntierPos(TextField tx){
 		int r;
@@ -95,7 +94,7 @@ public class Validation {
 			d2.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}else {
-			if(!d1.getValue().isAfter(d2.getValue()) && (d1.getValue().isEqual(dateActuelle) || d1.getValue().isAfter(dateActuelle)) ){
+			if(!d1.getValue().isAfter(d2.getValue())){
 				d1.setStyle("-fx-control-inner-background : white; ");
 				d2.setStyle("-fx-control-inner-background : white; ");
 				return true;				

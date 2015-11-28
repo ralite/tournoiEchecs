@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 
 import java.awt.List;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -38,11 +39,6 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	DatePicker dp_dateDeb;
 
-	@FXML
-	Button button_addDepartage;
-	
-	@FXML
-	Button button_removeDepartage;
 
 	@FXML
 	DatePicker dp_dateFin;
@@ -59,6 +55,8 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	TextField tf_arbitre;
 	
+	@FXML
+	Label lb_erreurDate;
 	
 	
 
@@ -67,9 +65,19 @@ public class ControleurFenetreTournoi implements Initializable {
 
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
-				Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
-				tournoi.setListeDepartages(new ArrayList<Departage>(itemsChoisis));
-				ModeleTournoi.ajouterTournoi(tournoi);	
+				if(ModeleTournoi.getTournoi()==null){
+					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
+					tournoi.setListeDepartages(new ArrayList<Departage>(itemsChoisis));
+					ModeleTournoi.ajouterTournoi(tournoi);	
+				}
+				else{
+					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
+					ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
+					ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
+					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
+					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
+					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
+				}
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
@@ -101,9 +109,20 @@ public class ControleurFenetreTournoi implements Initializable {
 	
 	private boolean infosCorrectes(){
 		boolean res = true;
-
-		if(!Validation.verifDate(dp_dateDeb,dp_dateFin))
+		DatePicker dateActuelle = new DatePicker(LocalDate.now());
+		lb_erreurDate.setText("");
+		if(!Validation.verifDate(dp_dateDeb,dp_dateFin)){
+			lb_erreurDate.setText("Verifiez les dates");
 			res = false;
+		}
+		else if(!Validation.verifDate(dateActuelle, dp_dateDeb)){
+			lb_erreurDate.setText("date actuelle < date de début");
+			res=false;
+			}
+			else if(!Validation.verifDate(dateActuelle, dp_dateFin)){
+				lb_erreurDate.setText("1 date actuelle < date de fin");
+				res=false;
+				}
 		if(!Validation.nomcomposé(tf_arbitre))
 			res = false;
 		if (lv_listeDepartagesChoisis.getItems().size()<3){
@@ -143,7 +162,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	
 	@FXML
 	public void limiteTexte(){
-		Validation.verifLongueurTexte(tf_nomTournoi,30);
+		Validation.verifLongueurTexte(tf_nomTournoi,40);
 		Validation.verifLongueurTexte(tf_lieuTournoi,30);
 		Validation.verifLongueurTexte(tf_arbitre,30);
 		Validation.verifLongueurTexte(tf_nbRondes,6);

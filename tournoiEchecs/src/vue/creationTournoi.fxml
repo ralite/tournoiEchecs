@@ -28,5 +28,6 @@
       <Label fx:id="label_date" layoutX="15.0" layoutY="107.0" text="Date de fin" />
       <Button fx:id="button_removeDepartage" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" onAction="#actionEnleverDepartage" prefHeight="25.0" prefWidth="59.0" text="&lt;" />
       <Label fx:id="label_departageChoisi" layoutX="399.0" layoutY="211.0" text="Departages choisis (3 minimum)" />
+      <Label fx:id="lb_erreurDate" layoutX="406.0" layoutY="94.0" prefHeight="27.0" prefWidth="224.0" textFill="#e40606" />
    </children>
 </AnchorPane>

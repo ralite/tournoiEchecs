@@ -100,12 +100,6 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		Joueur j1 = new Joueur("1", "jean", "jacques");
-		Joueur j2 = new Joueur("2", "pierre", "paul");
-		ModeleJoueur.ajouterJoueur(j1);
-		ModeleJoueur.ajouterJoueur(j2);
-
 		lb_erreurLicence.setText("");
 		lb_erreurNom.setText("");
 		lb_erreurPrenom.setText("");

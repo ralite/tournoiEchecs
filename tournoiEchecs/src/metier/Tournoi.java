@@ -23,9 +23,14 @@ public class Tournoi {
 	private LocalDate DateFin;
 	private String Arbitre;
 	private int NbRondes;
-
+	private ObservableList<Joueur> joueurs;
 	private ArrayList<Departage> ListeDepartages;
 
+	public void setJoueurs(ObservableList<Joueur> joueurs) {
+		this.joueurs = joueurs;
+	}
+
+	
 	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes) {
 		Nom = nom;
 		Lieu = lieu;
@@ -33,7 +38,6 @@ public class Tournoi {
 		DateFin = dateFin;
 		Arbitre = arbitre;
 		NbRondes = nbRondes;
-		ListeDepartages = new ArrayList<Departage>();
 	}
 
 	public void AddDepartages(Departage d) {
@@ -104,6 +108,12 @@ public class Tournoi {
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
 				+ Arbitre + ", NbRondes=" + NbRondes + "]";
+	}
+
+
+	public ObservableList<Joueur> getJoueurs() {
+		// TODO Auto-generated method stub
+		return joueurs;
 	}
 
 

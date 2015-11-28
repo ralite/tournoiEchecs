@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 
 import java.io.File;
 
+import modele.ModeleTournoi;
 import application.Main;
 
 public class ControleurFenetreAccueil {
@@ -31,6 +32,7 @@ public class ControleurFenetreAccueil {
 	
     @FXML
     private void actionCreerTournoi() {
+    	ModeleTournoi.nouveauTournoi();
     	CreationTournoi creationTournoi = new CreationTournoi(Main.getPrimaryStage());
 		creationTournoi.show();
     }

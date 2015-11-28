@@ -34,7 +34,7 @@ public class FenetreAccueil extends Stage {
 	public static File choisirTournoi(Window owner){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Choisissez un tournoi");
-		fileChooser.setSelectedExtensionFilter(new ExtensionFilter("xml","JSON"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("xml Files", "*.xml"));
 		return fileChooser.showOpenDialog(owner);
 	}
 }
