@@ -205,33 +205,26 @@ public class ControleurCreerJoueur implements Initializable {
 		if(!Validation.estChaine(tf_nom))
 		{
 			lb_erreurNom.setText("Saisissez un nom valide.");
-			tf_nom.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		}else
 		{
 			lb_erreurNom.setText("");
-			tf_nom.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		if(!Validation.estChaine(tf_prenom))
 		{
 			lb_erreurPrenom.setText("Saisissez un prénom valide.");
-			tf_prenom.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		}else
 		{
 			lb_erreurPrenom.setText("");
-			tf_prenom.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		if(!Validation.verifDate(dp_dateNaissance, new DatePicker(LocalDate.now())))
 		{
 			lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle.");
-			dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
 			res = false;
-		} else {
-			dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-		}
+		} 
 
 		//titreFide
 
@@ -266,12 +259,10 @@ public class ControleurCreerJoueur implements Initializable {
 		if(!Validation.estChaine(tf_club))
 		{
 			lb_erreurClub.setText("Saisissez un nom de club valide.");
-			tf_club.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		}else
 		{
 			lb_erreurClub.setText("");
-			tf_club.setStyle("-fx-control-inner-background : white; ");
 		}
 
 		return res;
