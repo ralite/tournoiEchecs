@@ -182,7 +182,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		if(newValue.intValue() > oldValue.intValue()){
             char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
             if(!Validation.estChiffre(leChampDeSaisie)){
-            	leChampDeSaisie.setText(leChampDeSaisie.getText().replaceAll("[a-zA-Z]",""));
+            	leChampDeSaisie.setText(leChampDeSaisie.getText().replaceAll("[^0-9]",""));
             }
        }
 	}
