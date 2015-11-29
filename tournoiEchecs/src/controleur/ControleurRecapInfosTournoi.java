@@ -106,7 +106,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		label_recapDateFin.setText(String.valueOf(ModeleTournoi.getTournoi().getDateFin()));
 		label_recapNbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 		lv_recapJoueursInscrits.setItems(ModeleTournoi.getJoueurs());
-		lv_recapDepartagesChoisis.setItems(ModeleDepartage.getcollectionDepartages());
+		lv_recapDepartagesChoisis.setItems(ModeleTournoi.getTournoi().getListeDepartages());
 	}
 
 }

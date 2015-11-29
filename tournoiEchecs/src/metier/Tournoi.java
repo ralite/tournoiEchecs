@@ -24,7 +24,7 @@ public class Tournoi {
 	private String Arbitre;
 	private int NbRondes;
 	private ObservableList<Joueur> joueurs;
-	private ArrayList<Departage> ListeDepartages;
+	private ObservableList<Departage> ListeDepartages;
 
 	public void setJoueurs(ObservableList<Joueur> joueurs) {
 		this.joueurs = joueurs;
@@ -48,11 +48,11 @@ public class Tournoi {
 		this.ListeDepartages.remove(d);
 	}
 
-	public ArrayList<Departage> getListeDepartages() {
+	public ObservableList<Departage> getListeDepartages() {
 		return this.ListeDepartages;
 	}
 
-	public void setListeDepartages(ArrayList<Departage> liste) {
+	public void setListeDepartages(ObservableList<Departage> liste) {
 		this.ListeDepartages=liste;
 	}
 

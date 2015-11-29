@@ -67,7 +67,7 @@ public class ControleurFenetreTournoi implements Initializable {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
-					tournoi.setListeDepartages(new ArrayList<Departage>(itemsChoisis));
+					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);	
 				}
 				else{
