@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
    <children>
       <TextField fx:id="tf_nomTournoi" layoutX="250.0" layoutY="14.0" onKeyPressed="#limiteTexte" prefHeight="25.0" prefWidth="260.0" />
       <TextField fx:id="tf_lieuTournoi" layoutX="250.0" layoutY="45.0" onKeyPressed="#limiteTexte" />
@@ -29,5 +29,7 @@
       <Button fx:id="button_removeDepartage" layoutX="283.0" layoutY="304.0" mnemonicParsing="false" onAction="#actionEnleverDepartage" prefHeight="25.0" prefWidth="59.0" text="&lt;" />
       <Label fx:id="label_departageChoisi" layoutX="399.0" layoutY="211.0" text="Departages choisis (3 minimum)" />
       <Label fx:id="lb_erreurDate" layoutX="406.0" layoutY="94.0" prefHeight="27.0" prefWidth="224.0" textFill="#e40606" />
+      <Label fx:id="lb_cadenceJeu" layoutX="15.0" layoutY="365.0" text="Cadence de jeu (en secondes) :" />
+      <TextField fx:id="tf_cadenceJeu" layoutX="191.0" layoutY="361.0" prefHeight="25.0" prefWidth="59.0" />
    </children>
 </AnchorPane>

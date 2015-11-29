@@ -58,6 +58,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	ListView<Departage> lv_recapDepartagesChoisis;
 	
+	@FXML
+	Label lb_recapCadenceDeJeu;
+	
 	private LocalDate dateActuelle =  LocalDate.now();
 	
 	public void recapAjouterJoueur(Event e){
@@ -105,6 +108,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		label_recapDateDeb.setText(String.valueOf(ModeleTournoi.getTournoi().getDateDeb()));
 		label_recapDateFin.setText(String.valueOf(ModeleTournoi.getTournoi().getDateFin()));
 		label_recapNbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
+		lb_recapCadenceDeJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
 		lv_recapJoueursInscrits.setItems(ModeleTournoi.getJoueurs());
 		lv_recapDepartagesChoisis.setItems(ModeleTournoi.getTournoi().getListeDepartages());
 	}

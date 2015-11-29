@@ -25,19 +25,31 @@ public class Tournoi {
 	private int NbRondes;
 	private ObservableList<Joueur> joueurs;
 	private ObservableList<Departage> ListeDepartages;
+	private int cadenceJeu;
+
+	public int getCadenceJeu() {
+		return cadenceJeu;
+	}
+
+
+	public void setCadenceJeu(int cadenceJeu) {
+		this.cadenceJeu = cadenceJeu;
+	}
+
 
 	public void setJoueurs(ObservableList<Joueur> joueurs) {
 		this.joueurs = joueurs;
 	}
 
 	
-	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes) {
+	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
 		Nom = nom;
 		Lieu = lieu;
 		DateDeb = dateDeb;
 		DateFin = dateFin;
 		Arbitre = arbitre;
 		NbRondes = nbRondes;
+		cadenceJeu=cadence;
 	}
 
 	public void AddDepartages(Departage d) {
@@ -107,7 +119,7 @@ public class Tournoi {
 	@Override
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
-				+ Arbitre + ", NbRondes=" + NbRondes + "]";
+				+ Arbitre + ", NbRondes=" + NbRondes + ", CadenceJeu=" + cadenceJeu + "]";
 	}
 
 

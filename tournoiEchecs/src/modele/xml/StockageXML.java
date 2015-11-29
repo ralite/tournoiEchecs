@@ -57,6 +57,11 @@ public class StockageXML {
 
 			Element departage = doc.createElement("departage");
 			rootElement.appendChild(departage);
+			
+			Element cadenceJeu = doc.createElement("departage");
+			Integer j = (Integer)tournoi.getCadenceJeu();
+			cadenceJeu.appendChild(doc.createTextNode(j.toString()));
+			rootElement.appendChild(cadenceJeu);
 
 			int numdep = 0;
 			for(Departage dep : tournoi.getListeDepartages()) {
@@ -95,6 +100,7 @@ public class StockageXML {
 			LocalDate DateFin = LocalDate.parse(doc.getElementsByTagName("datefin").item(0).getTextContent(), formatter);
 			String Arbitre = doc.getElementsByTagName("arbitre").item(0).getTextContent();
 			int NbRondes = (Integer.parseInt(doc.getElementsByTagName("nbrondes").item(0).getTextContent()));
+			int CadenceJeu = (Integer.parseInt(doc.getElementsByTagName("cadenceJeu").item(0).getTextContent()));
 
 			NodeList departageList = doc.getElementsByTagName("departage");
 			for (int i = 0; i < departageList.getLength(); i++) {
@@ -108,7 +114,7 @@ public class StockageXML {
 				}
 			}
 
-			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes);
+			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes, CadenceJeu);
 
 			return returnTournoi;
 

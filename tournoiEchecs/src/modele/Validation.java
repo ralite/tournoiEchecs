@@ -141,7 +141,7 @@ public class Validation {
 			return false;
 		}
 	}
-
+	
 	public static boolean estChiffre(TextField tx) {
 		if(tx.getText().trim().matches("^[0-9]*$")){
 			return true;
