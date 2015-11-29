@@ -3,6 +3,7 @@ package controleur;
 import vue.CreationTournoi;
 import vue.CreerJoueur;
 import vue.FenetreAccueil;
+import vue.FenetreFileChooser;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -45,7 +46,7 @@ public class ControleurFenetreAccueil {
     
     @FXML
     private void actionParcourirTournoi(Event e) {
-    	fileTournoi = FenetreAccueil.choisirTournoi(Main.getPrimaryStage());
+    	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
 			label_cheminTournoi.setText(fileTournoi.getName());
 		}

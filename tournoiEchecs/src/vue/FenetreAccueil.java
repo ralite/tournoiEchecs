@@ -1,12 +1,10 @@
 package vue;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -31,10 +29,4 @@ public class FenetreAccueil extends Stage {
 	}
 	
 	
-	public static File choisirTournoi(Window owner){
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Choisissez un tournoi");
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("xml Files", "*.xml"));
-		return fileChooser.showOpenDialog(owner);
-	}
 }

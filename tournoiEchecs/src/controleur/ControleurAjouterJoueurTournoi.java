@@ -97,6 +97,11 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
+		
+		Joueur j1 = new Joueur("1", "jean", "jacques");
+		Joueur j2 = new Joueur("2", "pierre", "paul");
+		ModeleJoueur.ajouterJoueur(j1);
+		ModeleJoueur.ajouterJoueur(j2);
 		listePersonne.setItems(data);
 	}
 

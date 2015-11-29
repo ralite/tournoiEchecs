@@ -19,6 +19,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import vue.AjouterJoueurTournoi;
+import vue.FenetreFileChooser;
 import vue.RecapTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
@@ -69,6 +70,7 @@ public class ControleurFenetreTournoi implements Initializable {
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()));
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);	
+					FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 				}
 				else{
 					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
