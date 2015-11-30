@@ -5,7 +5,14 @@ import java.awt.Color;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
+
+
+
+
 
 
 import application.Main;
@@ -54,8 +61,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
+		if(Validation.verifNumLicence(tf_numLicence.getText().toString())){
 		//recherche joueur
-		if(Validation.estEntierPos(tf_numLicence)){
 			Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
 			//test si le joueur retourné n'est pas nulll !
 			if(j==null){
@@ -67,10 +74,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 				}
 				else{
-					data.add(j);
+					ajouterTrier(data, j);
 			}
-		}
-		else {
+		}else {
 			lb_info.setText("numéro de licence incohérent");
 		}
 
@@ -98,11 +104,32 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 		
-		Joueur j1 = new Joueur("1", "jean", "jacques");
-		Joueur j2 = new Joueur("2", "pierre", "paul");
+		Joueur j1 = new Joueur("A11111", "jean", "jacques");
+		Joueur j2 = new Joueur("A22222", "pierre", "paul");
+		Joueur j3 = new Joueur("B11111", "pierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
+		ModeleJoueur.ajouterJoueur(j3);
 		listePersonne.setItems(data);
+		System.out.println(data.size());
+	}
+	
+	void ajouterTrier(ObservableList<Joueur> data, Joueur j){
+		int place=0;
+		int i=0;
+		if(data.size()!=0){
+			while( i<data.size() && data.get(i).getNumLicence().compareTo(j.getNumLicence())<0 ){
+				i++;
+			}
+		}
+		data.add(j);
+		place=i;
+	
+		for(;i<data.size()-1;i++){
+			data.set(i+1, data.get(i));
+		}
+		data.set(place, j);
+		
 	}
 
 }
