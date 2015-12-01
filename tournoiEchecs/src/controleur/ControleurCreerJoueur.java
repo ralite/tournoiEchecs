@@ -34,7 +34,8 @@ public class ControleurCreerJoueur implements Initializable {
 	TextField tf_prenom;
 
 	@FXML
-	TextField tf_titreFide;
+	TextField tf_titre;
+	private ObservableList<String> listeTitre = FXCollections.observableArrayList("Maitre International","Grand Maitre International","Maitre","Maitre International Feminin","Grand Maitre International Feminin","Maitre Feminin");
 
 	@FXML
 	ChoiceBox<String> chbx_sexe;
@@ -80,7 +81,7 @@ public class ControleurCreerJoueur implements Initializable {
 	Label lb_erreurDate;
 
 	@FXML
-	Label lb_erreurTitreFide;
+	Label lb_erreurTitre;
 
 	@FXML
 	Label lb_erreurLigue;
@@ -105,7 +106,7 @@ public class ControleurCreerJoueur implements Initializable {
 		lb_erreurPrenom.setText("");
 		lb_erreurSexe.setText("");
 		lb_erreurDate.setText("");
-		lb_erreurTitreFide.setText("");
+		lb_erreurTitre.setText("");
 		lb_erreurLigue.setText("");
 		lb_erreurElo.setText("");
 		lb_erreurCategorie.setText("");
@@ -124,7 +125,7 @@ public class ControleurCreerJoueur implements Initializable {
 			{
 				lb_erreur.setText("ok");
 				//ModeleJoueur.creerJoueur(tf_numLicence.getText().toString(),tf_prenom.getText().toString(),chbx_sexe.getValue().toString(),
-				//dp_dateNaissance.getEditor().getText().toString(),tf_titreFide.getText().toString(),tf_ligue.getText().toString(),
+				//dp_dateNaissance.getEditor().getText().toString(),tf_titre.getText().toString(),tf_ligue.getText().toString(),
 				//Integer.parseInt(tf_classementElo.getText().toString()),tf_categorie.getText().toString(),tf_club.getTet().toString());
 
 				//((Node)e.getSource()).getScene().getWindow().hide();
@@ -153,7 +154,7 @@ public class ControleurCreerJoueur implements Initializable {
 			lb_erreurSexe.setText("");
 		if(Validation.estVide(dp_dateNaissance))
 			res = false;
-		if(Validation.estVide(tf_titreFide))
+		if(Validation.estVide(tf_titre))
 			res = false;
 		if(Validation.estVide(tf_ligue))
 			res = false;
@@ -180,19 +181,19 @@ public class ControleurCreerJoueur implements Initializable {
 		boolean res = true;
 
 		//numLicence
-		if(!Validation.verifNumLicence(tf_numLicence.getText().toString()))
+		if(!Validation.verifNumLicence(tf_numLicence))
 		{
 			lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
-			tf_numLicence.setStyle("-fx-control-inner-background : red; ");
+			//tf_numLicence.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 		{
 			lb_erreurLicence.setText("Le numéro de licence existe déjà.");
-			tf_numLicence.setStyle("-fx-control-inner-background : red; ");
+			//tf_numLicence.setStyle("-fx-control-inner-background : red; ");
 			res = false;
 		}else{
 			lb_erreurLicence.setText("");
-			tf_numLicence.setStyle("-fx-control-inner-background : white; ");
+			//tf_numLicence.setStyle("-fx-control-inner-background : white; ");
 		}
 
 
@@ -214,13 +215,32 @@ public class ControleurCreerJoueur implements Initializable {
 			lb_erreurPrenom.setText("");
 		}
 
-		if(!Validation.verifDate(dp_dateNaissance, new DatePicker(LocalDate.now())))
-		{
-			lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle.");
-			res = false;
-		} 
 
-		//titreFide
+		if(Validation.estDate(dp_dateNaissance))
+		{
+			lb_erreurDate.setText("");
+			if(!Validation.verifDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
+			{
+				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle.");
+				res = false;
+			}else
+			{
+				lb_erreurDate.setText("");
+			}
+		}else
+		{
+			lb_erreurDate.setText("Saisissez une date au format JJ/MM/AAAA.");
+		}
+
+		//titre
+		if(!Validation.estChaine(tf_titre))
+		{
+			lb_erreurTitre.setText("Saisissez un titre valide.");
+			res = false;
+		}else
+		{
+			lb_erreurTitre.setText("");
+		}
 
 		//ligue
 
@@ -257,6 +277,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurClub.setText("");
+			//parcourir liste pour trouver si tf_club.getText() fait parti de la liste
 		}
 
 		return res;

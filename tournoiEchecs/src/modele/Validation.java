@@ -12,19 +12,23 @@ import javafx.scene.control.TextField;
 
 public class Validation {
 
-	
+	private static LocalDate dateActuelle = LocalDate.now();
+
 	public static boolean estEntierPos(TextField tx){
 		int r;
 		try{
 			r=Integer.parseInt(tx.getText());
 		}
 		catch(Exception e){
+			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
 		if(r>0){
+			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}
 		else{
+			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
 
@@ -61,21 +65,23 @@ public class Validation {
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
-		
+
 	}
-	
+
 	public static boolean estDate(DatePicker dp) {
 		SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
 		     try {
 		          format.parse(dp.getValue().toString());
+		          dp.setStyle("-fx-control-inner-background : white; ");
 		          return true;
 		     }
 		     catch(Exception e){
+		    	  dp.setStyle("-fx-control-inner-background : red; ");
 		          return false;
 		     }
 	}
 
-	public static boolean nomcomposé(TextField tx) {
+	public static boolean estNomCompose(TextField tx) {
 		if(tx.getText().trim().matches("^[a-zA-Z]*[ ]?[a-zA-Z]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
@@ -84,11 +90,11 @@ public class Validation {
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
-		
+
 	}
 
-	
-	public static boolean verifDate(DatePicker d1, DatePicker d2) {	
+
+	public static boolean verifDate(DatePicker d1, DatePicker d2) {
 		if(d1==null || d2 ==null || !estDate(d1) || !estDate(d2)){
 			d1.setStyle("-fx-control-inner-background : red; ");
 			d2.setStyle("-fx-control-inner-background : red; ");
@@ -97,15 +103,15 @@ public class Validation {
 			if(!d1.getValue().isAfter(d2.getValue())){
 				d1.setStyle("-fx-control-inner-background : white; ");
 				d2.setStyle("-fx-control-inner-background : white; ");
-				return true;				
+				return true;
 			}else {
 				d1.setStyle("-fx-control-inner-background : red; ");
 				d2.setStyle("-fx-control-inner-background : red; ");
 				return false;
 			}
 		}
-		
-		
+
+
 	}
 
 
@@ -116,18 +122,25 @@ public class Validation {
 		}
 	}
 
-	public static boolean verifNumLicence(String numLicence){
-		if(numLicence.length()!=6)
+	public static boolean verifNumLicence(TextField tf){
+		if(tf.getText().length()!=6)
+		{
+			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
-		if(!Character.isLetter(numLicence.charAt(0)))
+		}else if(!Character.isLetter(tf.getText().charAt(0)))
+		{
+			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
+		}
 		try{
-			Integer.parseInt(numLicence.substring(1, 5));
+			Integer.parseInt(tf.getText().substring(1, 5));
 		}catch(NumberFormatException e)
 		{
+			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
 
+		tf.setStyle("-fx-control-inner-background : white; ");
 		return true;
 	}
 
@@ -144,9 +157,11 @@ public class Validation {
 	
 	public static boolean estChiffre(TextField tx) {
 		if(tx.getText().trim().matches("^[0-9]*$")){
+			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}
 		else{
+			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
 	}

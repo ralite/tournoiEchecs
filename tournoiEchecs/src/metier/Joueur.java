@@ -9,20 +9,20 @@ public class Joueur {
 	private String prenomJoueur;
 	private String sexe;
 	private LocalDate dateNaissance;
-	private String titreFide;
+	private String titre;
 	private String ligue;
 	private int elo;
 	private String categorie;
 	private String club;
 
-	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, int elo, String categorie, String club) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String categorie, String club) {
 		super();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
 		this.sexe = sexe;
 		this.dateNaissance = dateNaissance;
-		this.titreFide = titreFide;
+		this.titre = titre;
 		this.ligue = ligue;
 		this.elo = elo;
 		this.categorie = categorie;
@@ -75,12 +75,12 @@ public class Joueur {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public String getTitreFide() {
-		return titreFide;
+	public String getTitre() {
+		return titre;
 	}
 
-	public void setTitreFide(String titreFide) {
-		this.titreFide = titreFide;
+	public void setTitreFide(String titre) {
+		this.titre = titre;
 	}
 
 	public String getLigue() {

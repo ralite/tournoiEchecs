@@ -26,7 +26,7 @@
       <Label fx:id="lb_erreurLicence" layoutX="362.0" layoutY="29.0" text="Label" textFill="RED" />
       <TextField fx:id="tf_prenom" layoutX="183.0" layoutY="105.0" />
       <DatePicker fx:id="dp_dateNaissance" layoutX="183.0" layoutY="185.0" />
-      <TextField fx:id="tf_titreFide" layoutX="183.0" layoutY="225.0" />
+      <TextField fx:id="tf_titre" layoutX="183.0" layoutY="225.0" />
       <TextField fx:id="tf_ligue" layoutX="183.0" layoutY="265.0" />
       <TextField fx:id="tf_categorie" layoutX="183.0" layoutY="345.0" />
       <TextField fx:id="tf_club" layoutX="183.0" layoutY="385.0" />
@@ -37,7 +37,7 @@
       <Label fx:id="lb_erreurElo" layoutX="362.0" layoutY="290.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurNom" layoutX="362.0" layoutY="69.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurPrenom" layoutX="362.0" layoutY="109.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurTitreFide" layoutX="362.0" layoutY="229.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurTitre" layoutX="362.0" layoutY="229.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurLigue" layoutX="362.0" layoutY="269.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurCategorie" layoutX="362.0" layoutY="349.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurClub" layoutX="362.0" layoutY="389.0" text="Label" textFill="RED" />
