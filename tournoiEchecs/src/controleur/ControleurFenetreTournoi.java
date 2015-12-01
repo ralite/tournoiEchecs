@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import java.awt.List;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -65,7 +66,6 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
     private void actionFenetreJoueurs(Event e) {
-
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
@@ -94,15 +94,27 @@ public class ControleurFenetreTournoi implements Initializable {
  
 	private boolean formulaireRempli(){
 		boolean res = true;
-
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate d = LocalDate.parse(dp_dateDeb.getEditor().getText().toString(),formatter);
+		dp_dateDeb.setValue(d);
+		LocalDate df = LocalDate.parse(dp_dateFin.getEditor().getText().toString(),formatter);
+		dp_dateFin.setValue(df);
+		
 		if(Validation.estVide(tf_nomTournoi))
 			res = false;
 		if(Validation.estVide(tf_lieuTournoi))
 			res = false;
-		if(Validation.estVide(dp_dateDeb))
+		if(Validation.estVide(dp_dateDeb)){
 			res = false;
-		if(Validation.estVide(dp_dateFin))
+		}else {
+			dp_dateDeb.setValue(LocalDate.parse(dp_dateDeb.getEditor().getText().toString(),formatter));
+			
+		}
+		if(Validation.estVide(dp_dateFin)){			
 			res = false;
+		}else{
+			dp_dateFin.setValue(LocalDate.parse(dp_dateFin.getEditor().getText().toString(),formatter));
+		}
 		if(Validation.estVide(tf_arbitre))
 			res = false;
 		if(Validation.estVide(tf_nbRondes))
