@@ -19,8 +19,8 @@ public class ModeleJoueur {
 		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
 		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 
-		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titreFide, String ligue, int elo, String categorie, String club ) {
-			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titreFide, ligue,elo,categorie,club));
+		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String categorie, String club ) {
+			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue,elo,categorie,club));
 		}
 
 		public static void ajouterJoueur(Joueur j) {

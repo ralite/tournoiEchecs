@@ -45,7 +45,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 
 	private ListView<Joueur> listePersonne;
-	
+
 	@FXML
 	Button button_OK;
 
@@ -61,7 +61,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void ajouterJoueur(Event e) {
 		lb_info.setText("");
-		if(Validation.verifNumLicence(tf_numLicence.getText().toString())){
+		if(Validation.verifNumLicence(tf_numLicence)){
 		//recherche joueur
 			Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
 			//test si le joueur retourné n'est pas nulll !
@@ -88,22 +88,22 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		data.remove(
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
-	
-	
+
+
 	@FXML
 	public void actionOK(Event e){
 		listePersonne.setItems(data);
 		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
-		((Node)e.getSource()).getScene().getWindow().hide();	
+		((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-		
+
 		Joueur j1 = new Joueur("A11111", "jean", "jacques");
 		Joueur j2 = new Joueur("A22222", "pierre", "paul");
 		Joueur j3 = new Joueur("B11111", "pierre", "paul");
@@ -113,7 +113,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		listePersonne.setItems(data);
 		System.out.println(data.size());
 	}
-	
+
 	void ajouterTrier(ObservableList<Joueur> data, Joueur j){
 		int place=0;
 		int i=0;
@@ -124,12 +124,12 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		}
 		data.add(j);
 		place=i;
-	
+
 		for(;i<data.size()-1;i++){
 			data.set(i+1, data.get(i));
 		}
 		data.set(place, j);
-		
+
 	}
 
 }
