@@ -8,14 +8,23 @@
 
 <AnchorPane fx:id="ap_accueil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreAccueil">
    <children>
-      <Button fx:id="button_tournoiAccueil" layoutX="248.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#onClickTournoi" prefHeight="58.0" prefWidth="104.0" text="Tournoi" />
-      <Button fx:id="button_joueurAccueil" layoutX="248.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#onClickJoueur" prefHeight="58.0" prefWidth="104.0" text="Joueur" />
-      <Button fx:id="button_parcourirTournoi" layoutX="353.0" layoutY="158.0" mnemonicParsing="false" onAction="#actionParcourirTournoi" prefHeight="32.0" prefWidth="104.0" text="ouvrir tournoi..." visible="false" />
-      <Label fx:id="label_cheminTournoi" layoutX="464.0" layoutY="164.0" prefHeight="32.0" prefWidth="104.0" />
-      <Label fx:id="label_titre_accueil" alignment="CENTER" layoutX="158.0" layoutY="23.0" prefHeight="39.0" prefWidth="285.0" text="Tournoi d'Echecs" textAlignment="CENTER">
+      <ImageView fx:id="imageView" fitHeight="414.0" fitWidth="614.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="button_tournoiAccueil" layoutX="78.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#onClickTournoi" prefHeight="58.0" prefWidth="104.0" text="Tournoi" />
+      <Button fx:id="button_joueurAccueil" layoutX="78.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#onClickJoueur" prefHeight="58.0" prefWidth="104.0" text="Joueur" />
+      <Button fx:id="button_parcourirTournoi" layoutX="183.0" layoutY="158.0" mnemonicParsing="false" onAction="#actionParcourirTournoi" prefHeight="32.0" prefWidth="104.0" text="ouvrir tournoi..." visible="false" />
+      <Label fx:id="label_cheminTournoi" layoutX="294.0" layoutY="164.0" prefHeight="32.0" prefWidth="104.0" />
+      <Label fx:id="label_titre_accueil" alignment="CENTER" layoutX="28.0" layoutY="7.0" prefHeight="41.0" prefWidth="362.0" text="Tournoi d'Echecs" textAlignment="CENTER">
          <font>
-            <Font name="Arial Bold" size="34.0" />
+            <Font name="Batang" size="39.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.1428571428571429" startX="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Label>
       <Button fx:id="button_quitterAccueil" layoutX="249.0" layoutY="312.0" mnemonicParsing="false" onAction="#actionFermer" prefHeight="58.0" prefWidth="104.0" text="Quitter" />
       <Button fx:id="button_creerTournoi" layoutX="353.0" layoutY="126.0" mnemonicParsing="false" onAction="#actionCreerTournoi" prefHeight="32.0" prefWidth="104.0" text="Créer un tournoi" visible="false" />
