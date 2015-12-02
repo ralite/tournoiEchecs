@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import modele.ModeleTournoi;
 import application.Main;
 
-public class ControleurFenetreAccueil implements Initializable {
+public class ControleurFenetreAccueil {
 	
 	@FXML
 	private Button button_creerTournoi;
@@ -79,16 +79,6 @@ public class ControleurFenetreAccueil implements Initializable {
     	button_parcourirTournoi.setVisible(false);
     	button_creerTournoi.setVisible(false);
     	button_modifierJoueurAccueil.setVisible(true);
-    }
-    
-    @FXML
-    private ImageView imageView;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("src/echecs.jpg");
-        Image image = new Image(file.toURI().toString());
-        imageView.setImage(image);
     }
 
 }
