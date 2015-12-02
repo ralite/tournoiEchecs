@@ -31,6 +31,9 @@ public class ControleurFenetreAccueil {
 	@FXML
 	private Label label_cheminTournoi;
 	
+	@FXML
+	private Button button_modifierJoueurAccueil;
+	
     @FXML
     private void actionCreerTournoi() {
     	ModeleTournoi.nouveauTournoi();
@@ -62,6 +65,7 @@ public class ControleurFenetreAccueil {
     	button_parcourirTournoi.setVisible(true);
     	button_creerTournoi.setVisible(true);
     	button_creerJoueur.setVisible(false);
+    	button_modifierJoueurAccueil.setVisible(false);
     }
     
     @FXML
@@ -69,6 +73,7 @@ public class ControleurFenetreAccueil {
     	button_creerJoueur.setVisible(true);
     	button_parcourirTournoi.setVisible(false);
     	button_creerTournoi.setVisible(false);
+    	button_modifierJoueurAccueil.setVisible(true);
     }
 
 }
