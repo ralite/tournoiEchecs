@@ -1,18 +1,22 @@
 package controleur;
 
-import java.awt.List;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.Main;
+import vue.CreerJoueur;
 import vue.ModifierJoueur;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -25,6 +29,9 @@ public class ControleurModifierJoueur implements Initializable{
 	
 	@FXML
 	TextField tf_recherche;
+	
+	@FXML
+	Label lb_info;
 
 	@FXML
 	public void actionChercher(){
@@ -34,12 +41,28 @@ public class ControleurModifierJoueur implements Initializable{
 		j=ModeleJoueur.rechercherJoueur(tf_recherche.getText().toString());
 		if(j==null){
 			joueurs=ModeleJoueur.rechercherNomJoueur(tf_recherche.getText().toString());
-			if(joueurs!=null){
+			if(!joueurs.isEmpty()){
 				data.addAll(joueurs);
+			}
+			else {
+				lb_info.setText("Aucun joueurs trouvés");
 			}
 		}
 		else{
 			data.add(j);
+		}
+	}
+	
+	@FXML
+	public void actionModifier(Event e){
+		ModeleJoueur.setJoueurAmofifier((Joueur)lv_joueurs.getSelectionModel().getSelectedItem());
+		if(ModeleJoueur.getJoueurAmodifier()==null){
+			lb_info.setText("Veuillez selectionner un joueur");
+		}
+		else{
+			CreerJoueur cj = new CreerJoueur(Main.getPrimaryStage());
+			cj.show();
+			((Node)e.getSource()).getScene().getWindow().hide();
 		}
 	}
 	

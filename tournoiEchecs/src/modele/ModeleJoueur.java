@@ -5,6 +5,7 @@ package modele;
 import metier.Joueur;
 
 import java.time.LocalDate;
+import java.time.temporal.JulianFields;
 import java.util.ArrayList;
 
 import javafx.beans.property.ListProperty;
@@ -21,6 +22,16 @@ public class ModeleJoueur {
 		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
 		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 
+		private static Joueur joueurAmodifier=null;
+		
+		public static void setJoueurAmofifier(Joueur j){
+			joueurAmodifier=j;
+		}
+		
+		public static Joueur getJoueurAmodifier(){
+			return joueurAmodifier;
+		}
+		
 		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String categorie, String club ) {
 			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue,elo,categorie,club));
 		}
@@ -46,4 +57,7 @@ public class ModeleJoueur {
 			}
 			return joueurs;
 		}
+		
+		
+
 }
