@@ -4,6 +4,7 @@ import vue.CreationTournoi;
 import vue.CreerJoueur;
 import vue.FenetreAccueil;
 import vue.FenetreFileChooser;
+import vue.ModifierJoueur;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -45,6 +46,12 @@ public class ControleurFenetreAccueil {
     private void actionCreerJoueur() {
     	CreerJoueur creerJoueur = new CreerJoueur(Main.getPrimaryStage());
     	creerJoueur.show();
+    }
+    
+    @FXML 
+    private void actionModifierJoueur(){
+    	ModifierJoueur modifJoueur = new ModifierJoueur(Main.getPrimaryStage());
+    	modifJoueur.show();
     }
     
     @FXML

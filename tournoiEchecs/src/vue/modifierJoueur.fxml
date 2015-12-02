@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="385.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurModifierJoueur">
+   <children>
+      <ListView fx:id="lv_joueurs" layoutX="27.0" layoutY="94.0" prefHeight="227.0" prefWidth="136.0" />
+      <TextField fx:id="tf_recherche" layoutX="145.0" layoutY="39.0" prefHeight="39.0" prefWidth="196.0" />
+      <Button layoutX="340.0" layoutY="39.0" mnemonicParsing="false" onAction="#actionChercher" prefHeight="39.0" prefWidth="116.0" text="Chercher" />   
+      <Label layoutX="320.0" layoutY="126.0" text="${lv_joueurs.selectionModel.selectedItem.numLicence}"  />
+      <Label layoutX="320.0" layoutY="175.0" text="${lv_joueurs.selectionModel.selectedItem.nomJoueur}" />
+      <Label layoutX="320.0" layoutY="216.0" text="${lv_joueurs.selectionModel.selectedItem.prenomJoueur}"  />
+      <Button layoutX="298.0" layoutY="321.0" mnemonicParsing="false" text="Annuler" />
+      <Button layoutX="412.0" layoutY="321.0" mnemonicParsing="false" text="Mofifier" />
+   </children>
+</AnchorPane>

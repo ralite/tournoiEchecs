@@ -104,9 +104,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
-		Joueur j1 = new Joueur("A11111", "jean", "jacques");
-		Joueur j2 = new Joueur("A22222", "pierre", "paul");
-		Joueur j3 = new Joueur("B11111", "pierre", "paul");
+		Joueur j1 = new Joueur("A11111", "ajean", "jacques");
+		Joueur j2 = new Joueur("A22222", "bpierre", "paul");
+		Joueur j3 = new Joueur("B11111", "cpierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
 		ModeleJoueur.ajouterJoueur(j3);
@@ -118,7 +118,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		int place=0;
 		int i=0;
 		if(data.size()!=0){
-			while( i<data.size() && data.get(i).getNumLicence().compareTo(j.getNumLicence())<0 ){
+			while( i<data.size() && data.get(i).getNomJoueur().compareTo(j.getNomJoueur())<0 ){
 				i++;
 			}
 		}

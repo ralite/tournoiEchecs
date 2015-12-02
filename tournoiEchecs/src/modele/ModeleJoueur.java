@@ -5,11 +5,13 @@ package modele;
 import metier.Joueur;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart.Data;
 
 
 public class ModeleJoueur {
@@ -34,5 +36,14 @@ public class ModeleJoueur {
 				}
 			}
 			return null;
+		}
+		public static ArrayList<Joueur> rechercherNomJoueur(String nom) {
+			ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+			for (Joueur j : collectionJoueurs) {
+				if(j.getNomJoueur().equals(nom)){
+					joueurs.add(j);
+				}
+			}
+			return joueurs;
 		}
 }
