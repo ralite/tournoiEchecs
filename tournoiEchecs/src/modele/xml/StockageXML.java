@@ -63,23 +63,22 @@ public class StockageXML {
 			cadenceJeu.appendChild(doc.createTextNode(j.toString()));
 			rootElement.appendChild(cadenceJeu);
 
-			Element departages = doc.createElement("departage");
-			rootElement.appendChild(departages);
-			
 			for(Departage dep : tournoi.getListeDepartages()) {
-				Element sousdepartage = doc.createElement("departage");
-				sousdepartage.appendChild(doc.createTextNode(dep.toString()));
-				departages.appendChild(sousdepartage);
+				Element departage = doc.createElement("departage");
+				departage.appendChild(doc.createTextNode(dep.toString()));
+				rootElement.appendChild(departage);
 			}
-			
-			Element joueurs = doc.createElement("joueurs");
+
+			/*Element joueurs = doc.createElement("joueur");
 			rootElement.appendChild(joueurs);
-			
+
+			int indice2 = 0;
 			for(Joueur joueur : tournoi.getListeJoueurs()) {
-				Element sousjoueur = doc.createElement("joueur");
+				Element sousjoueur = doc.createElement("joueur" + indice);
 				sousjoueur.appendChild(doc.createTextNode(joueur.getNumLicence()));
 				joueurs.appendChild(sousjoueur);
-			}
+				indice2++;
+			}*/
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -112,22 +111,27 @@ public class StockageXML {
 			int CadenceJeu = (Integer.parseInt(doc.getElementsByTagName("cadenceJeu").item(0).getTextContent()));
 
 			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes, CadenceJeu);
-			
+
 			NodeList departageList = doc.getElementsByTagName("departage");
+
 			for (int i = 0; i < departageList.getLength(); i++) {
 
 				Node node = departageList.item(i);
-				
-				System.out.println(departageList.getLength());
-				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
 
+				//NodeList noms = node.getElementsByTagName("nom");
+
+				Element nom = (Element) ((Element) node).getElementsByTagName("departage").item(0);
+
+
+
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) node;
-					String nomDepartage = element.getElementsByTagName("departage").item(0).getTextContent();
+					System.out.println(element.getNodeName());
+					String nomDepartage = doc.getElementsByTagName("departage").item(0).getTextContent();
 					System.out.println(nomDepartage);
 				}
 			}
-			
+
 			/*NodeList joueurList = doc.getElementsByTagName("joueurs");
 			for (int i = 0; i < joueurList.getLength(); i++) {
 
@@ -148,10 +152,10 @@ public class StockageXML {
 			return null;
 		}
 	}
-	
+
 	public static void ReadJoueur(String savePath){
-		
-		
-		
+
+
+
 	}
 }

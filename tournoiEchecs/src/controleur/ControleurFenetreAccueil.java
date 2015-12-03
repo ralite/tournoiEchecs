@@ -19,59 +19,58 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import modele.ModeleTournoi;
+import modele.xml.StockageXML;
 import application.Main;
 
 public class ControleurFenetreAccueil {
-	
+
 	@FXML
 	private Button button_creerTournoi;
-	
+
 	@FXML
 	private Button button_creerJoueur;
-	
+
 	@FXML
 	private Button button_parcourirTournoi;
-	
+
 	private File fileTournoi;
-	
-	@FXML
-	private Label label_cheminTournoi;
-	
+
 	@FXML
 	private Button button_modifierJoueurAccueil;
-	
+
     @FXML
     private void actionCreerTournoi() {
     	ModeleTournoi.nouveauTournoi();
     	CreationTournoi creationTournoi = new CreationTournoi(Main.getPrimaryStage());
 		creationTournoi.show();
     }
-    
+
     @FXML
     private void actionCreerJoueur() {
     	CreerJoueur creerJoueur = new CreerJoueur(Main.getPrimaryStage());
     	creerJoueur.show();
     }
-    
-    @FXML 
+
+    @FXML
     private void actionModifierJoueur(){
     	ModifierJoueur modifJoueur = new ModifierJoueur(Main.getPrimaryStage());
     	modifJoueur.show();
     }
-    
+
     @FXML
     private void actionParcourirTournoi(Event e) {
     	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
-			label_cheminTournoi.setText(fileTournoi.getName());
+			System.out.println(fileTournoi.getAbsolutePath());
+			ModeleTournoi.ajouterTournoi(StockageXML.readXMLTournoi(fileTournoi.getAbsolutePath()));
 		}
     }
-    
+
     @FXML
     private void actionFermer(Event e) {
     	((Node)e.getSource()).getScene().getWindow().hide();
     }
-    
+
     @FXML
     private void onClickTournoi(Event e){
     	button_parcourirTournoi.setVisible(true);
@@ -79,7 +78,7 @@ public class ControleurFenetreAccueil {
     	button_creerJoueur.setVisible(false);
     	button_modifierJoueurAccueil.setVisible(false);
     }
-    
+
     @FXML
     private void onClickJoueur(Event e){
     	button_creerJoueur.setVisible(true);

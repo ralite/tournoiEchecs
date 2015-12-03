@@ -43,9 +43,9 @@ public class Main extends Application {
 		Departage dep2 = new Cumulatif();
 		tournoi.AddDepartages(dep1);
 		tournoi.AddDepartages(dep2);
-		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\jeje\\Desktop");*/
+		StockageXML.writeXMLTournoi(tournoi, "Z:\\Documents\\Projet_Echecs");*/
 
-		//Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\jeje\\Desktop\\tournoi_nomtest_ici_2015-02-20.xml");
+		//Tournoi tournoi = StockageXML.readXMLTournoi("Z:\\Documents\\Projet_Echecs\\tournoi_nomtest_ici_2015-02-20.xml");
 		//System.out.println(tournoi.toString());
 
 	}
