@@ -38,14 +38,14 @@ public class Main extends Application {
 
 		/*LocalDate DateDeb = LocalDate.parse("2015-02-20");
 		LocalDate DateFin = LocalDate.parse("2015-02-28");
-		Tournoi tournoi = new Tournoi("nomtest", "ici", DateDeb, DateFin, "john doe", 3);
+		Tournoi tournoi = new Tournoi("nomtest", "ici", DateDeb, DateFin, "john doe", 3, 0);
 		Departage dep1 = new Buchholz();
 		Departage dep2 = new Cumulatif();
 		tournoi.AddDepartages(dep1);
 		tournoi.AddDepartages(dep2);
-		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\grunwalda\\Downloads");*/
+		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\jeje\\Desktop");*/
 
-		//Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\grunwalda\\Downloads\\tournoi_nomtest_ici_2015-02-20.xml");
+		//Tournoi tournoi = StockageXML.readXMLTournoi("C:\\Users\\jeje\\Desktop\\tournoi_nomtest_ici_2015-02-20.xml");
 		//System.out.println(tournoi.toString());
 
 	}
