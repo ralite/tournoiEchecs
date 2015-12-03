@@ -12,10 +12,12 @@ public class Joueur {
 	private String titre;
 	private String ligue;
 	private int elo;
+	private String typeElo;
+	private String federation;
 	private String categorie;
 	private String club;
 
-	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String categorie, String club) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
 		super();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
@@ -25,6 +27,8 @@ public class Joueur {
 		this.titre = titre;
 		this.ligue = ligue;
 		this.elo = elo;
+		this.setTypeElo(typeElo);
+		this.setFederation(federation);
 		this.categorie = categorie;
 		this.club = club;
 	}
@@ -97,6 +101,22 @@ public class Joueur {
 
 	public void setElo(int elo) {
 		this.elo = elo;
+	}
+
+	public String getTypeElo() {
+		return typeElo;
+	}
+
+	public void setTypeElo(String typeElo) {
+		this.typeElo = typeElo;
+	}
+
+	public String getFederation() {
+		return federation;
+	}
+
+	public void setFederation(String federation) {
+		this.federation = federation;
 	}
 
 	public String getCategorie() {

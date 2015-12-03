@@ -5,42 +5,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurCreerJoueur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurCreerJoueur">
    <children>
       <Label layoutX="35.0" layoutY="25.0" text="Numéro de licence :" />
       <Label layoutX="35.0" layoutY="65.0" text="Nom :" />
       <Label layoutX="35.0" layoutY="105.0" text="Prénom :" />
       <Label layoutX="35.0" layoutY="145.0" text="Sexe :" />
       <Label layoutX="35.0" layoutY="185.0" text="Date de naissance :" />
-      <Label layoutX="35.0" layoutY="225.0" text="Titre FIDE :" />
-      <Label layoutX="35.0" layoutY="265.0" text="Ligue :" />
+      <Label layoutX="36.0" layoutY="265.0" text="Titre :" />
+      <Label layoutX="35.0" layoutY="425.0" text="Ligue :" />
       <Label layoutX="35.0" layoutY="305.0" text="Classement ELO :" />
       <Label layoutX="35.0" layoutY="345.0" text="Catégorie :" />
       <Label layoutX="35.0" layoutY="385.0" text="Club :" />
       <TextField fx:id="tf_numLicence" layoutX="183.0" layoutY="25.0" />
-      <CheckBox fx:id="ckbx_national" layoutX="357.0" layoutY="309.0" mnemonicParsing="false" text="National" />
-      <CheckBox fx:id="ckbx_etranger" layoutX="448.0" layoutY="309.0" mnemonicParsing="false" text="Etranger" />
-      <CheckBox fx:id="ckbx_fide" layoutX="539.0" layoutY="309.0" mnemonicParsing="false" text="FIDE" />
       <TextField fx:id="tf_nom" layoutX="183.0" layoutY="65.0" />
-      <Button layoutX="533.0" layoutY="403.0" mnemonicParsing="false" onAction="#onClick_Valider" text="Valider" />
-      <Label fx:id="lb_erreurLicence" layoutX="362.0" layoutY="29.0" text="Label" textFill="RED" />
       <TextField fx:id="tf_prenom" layoutX="183.0" layoutY="105.0" />
-      <DatePicker fx:id="dp_dateNaissance" layoutX="183.0" layoutY="185.0" />
-      <TextField fx:id="tf_titre" layoutX="183.0" layoutY="225.0" />
-      <TextField fx:id="tf_ligue" layoutX="183.0" layoutY="265.0" />
-      <TextField fx:id="tf_categorie" layoutX="183.0" layoutY="345.0" />
-      <TextField fx:id="tf_club" layoutX="183.0" layoutY="385.0" />
-      <TextField fx:id="tf_classementElo" layoutX="183.0" layoutY="305.0" />
       <ChoiceBox fx:id="chbx_sexe" layoutX="183.0" layoutY="145.0" prefWidth="150.0" />
-      <Label fx:id="lb_erreurSexe" layoutX="362.0" layoutY="149.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurDate" layoutX="362.0" layoutY="189.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurElo" layoutX="362.0" layoutY="290.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurNom" layoutX="362.0" layoutY="69.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurPrenom" layoutX="362.0" layoutY="109.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurTitre" layoutX="362.0" layoutY="229.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurLigue" layoutX="362.0" layoutY="269.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurCategorie" layoutX="362.0" layoutY="349.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurClub" layoutX="362.0" layoutY="389.0" text="Label" textFill="RED" />
+      <DatePicker fx:id="dp_dateNaissance" layoutX="183.0" layoutY="185.0" />
+      <TextField fx:id="tf_federation" layoutX="183.0" layoutY="225.0" />
+      <ChoiceBox fx:id="chbx_titre" layoutX="183.0" layoutY="265.0" prefWidth="150.0" />
+      <TextField fx:id="tf_classementElo" layoutX="183.0" layoutY="305.0" />
+      <CheckBox fx:id="ckbx_national" layoutX="357.0" layoutY="309.0" mnemonicParsing="false" text="National" />
+      <CheckBox fx:id="ckbx_fide" layoutX="457.0" layoutY="309.0" mnemonicParsing="false" text="Fide" />
+      <CheckBox fx:id="ckbx_nouveau" layoutX="557.0" layoutY="309.0" mnemonicParsing="false" text="Nouveau" />
+      <ChoiceBox fx:id="chbx_categorie" layoutX="183.0" layoutY="345.0" prefWidth="150.0" />
+      <TextField fx:id="tf_club" layoutX="183.0" layoutY="385.0" />
+      <TextField fx:id="tf_ligue" layoutX="183.0" layoutY="425.0" />
+      <Button layoutX="428.0" layoutY="477.0" mnemonicParsing="false" onAction="#onClick_Creer" text="Créer le joueur" />
+      <Button layoutX="554.0" layoutY="477.0" mnemonicParsing="false" onAction="#onClick_Quitter" text="Quitter" />
+      <Label fx:id="lb_erreurLicence" layoutX="370.0" layoutY="29.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurSexe" layoutX="370.0" layoutY="149.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurDate" layoutX="370.0" layoutY="189.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurElo" layoutX="370.0" layoutY="290.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurNom" layoutX="370.0" layoutY="69.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurPrenom" layoutX="370.0" layoutY="109.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurTitre" layoutX="370.0" layoutY="269.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurLigue" layoutX="370.0" layoutY="429.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurCategorie" layoutX="370.0" layoutY="349.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurClub" layoutX="370.0" layoutY="389.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreur" layoutX="572.0" layoutY="97.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurFederation" layoutX="370.0" layoutY="229.0" text="Label" textFill="RED" />
+      <Label layoutX="35.0" layoutY="225.0" text="Fédération :" />
    </children>
 </AnchorPane>
