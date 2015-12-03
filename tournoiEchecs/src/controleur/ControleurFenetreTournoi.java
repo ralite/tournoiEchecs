@@ -95,10 +95,16 @@ public class ControleurFenetreTournoi implements Initializable {
 	private boolean formulaireRempli(){
 		boolean res = true;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate d = LocalDate.parse(dp_dateDeb.getEditor().getText().toString(),formatter);
-		dp_dateDeb.setValue(d);
-		LocalDate df = LocalDate.parse(dp_dateFin.getEditor().getText().toString(),formatter);
-		dp_dateFin.setValue(df);
+		lb_erreurDate.setText("");
+		if(!Validation.recupValeursDate(dp_dateDeb)){
+			lb_erreurDate.setText("Remplir la date de debut");
+			res=false;
+		}
+		
+		if(!Validation.recupValeursDate(dp_dateFin)){
+			lb_erreurDate.setText("Remplir la date de fin");
+			res=false;
+		}
 		
 		if(Validation.estVide(tf_nomTournoi))
 			res = false;
@@ -185,7 +191,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		Validation.verifLongueurTexte(tf_lieuTournoi,30);
 		Validation.verifLongueurTexte(tf_arbitre,30);
 		Validation.verifLongueurTexte(tf_nbRondes,6);
-
+		Validation.verifLongueurTexte(tf_cadenceJeu, 4);
 	}
 
 
