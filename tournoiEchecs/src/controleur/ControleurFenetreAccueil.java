@@ -4,13 +4,19 @@ import vue.CreationTournoi;
 import vue.CreerJoueur;
 import vue.FenetreAccueil;
 import vue.FenetreFileChooser;
+import vue.ModifierJoueur;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import modele.ModeleTournoi;
 import application.Main;
@@ -31,6 +37,9 @@ public class ControleurFenetreAccueil {
 	@FXML
 	private Label label_cheminTournoi;
 	
+	@FXML
+	private Button button_modifierJoueurAccueil;
+	
     @FXML
     private void actionCreerTournoi() {
     	ModeleTournoi.nouveauTournoi();
@@ -42,6 +51,12 @@ public class ControleurFenetreAccueil {
     private void actionCreerJoueur() {
     	CreerJoueur creerJoueur = new CreerJoueur(Main.getPrimaryStage());
     	creerJoueur.show();
+    }
+    
+    @FXML 
+    private void actionModifierJoueur(){
+    	ModifierJoueur modifJoueur = new ModifierJoueur(Main.getPrimaryStage());
+    	modifJoueur.show();
     }
     
     @FXML
@@ -62,6 +77,7 @@ public class ControleurFenetreAccueil {
     	button_parcourirTournoi.setVisible(true);
     	button_creerTournoi.setVisible(true);
     	button_creerJoueur.setVisible(false);
+    	button_modifierJoueurAccueil.setVisible(false);
     }
     
     @FXML
@@ -69,6 +85,7 @@ public class ControleurFenetreAccueil {
     	button_creerJoueur.setVisible(true);
     	button_parcourirTournoi.setVisible(false);
     	button_creerTournoi.setVisible(false);
+    	button_modifierJoueurAccueil.setVisible(true);
     }
 
 }

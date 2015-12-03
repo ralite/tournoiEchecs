@@ -18,7 +18,7 @@ public class ModeleTournoi {
 	}
 	
 	public static void ajouterJoueurs(ObservableList<Joueur> joueurs){
-		tournoi.setJoueurs(joueurs);
+		tournoi.setListeJoueurs(joueurs);
 	}
 	
 	public static Tournoi getTournoi() {
@@ -26,8 +26,7 @@ public class ModeleTournoi {
 	}
 
 	public static ObservableList<Joueur> getJoueurs() {
-		// TODO Auto-generated method stub
-		return tournoi.getJoueurs();
+		return tournoi.getListeJoueurs();
 	}
 	
 }

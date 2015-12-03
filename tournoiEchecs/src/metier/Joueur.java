@@ -27,8 +27,8 @@ public class Joueur {
 		this.titre = titre;
 		this.ligue = ligue;
 		this.elo = elo;
-		this.setTypeElo(typeElo);
-		this.setFederation(federation);
+		this.typeElo = typeElo;
+		this.federation = federation;
 		this.categorie = categorie;
 		this.club = club;
 	}

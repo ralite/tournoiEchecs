@@ -12,10 +12,13 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
+import metier.Joueur;
 import metier.Tournoi;
 import metier.departage.Departage;
 
@@ -55,21 +58,27 @@ public class StockageXML {
 			nbrondes.appendChild(doc.createTextNode(i.toString()));
 			rootElement.appendChild(nbrondes);
 
-			Element departage = doc.createElement("departage");
-			rootElement.appendChild(departage);
-			
-			Element cadenceJeu = doc.createElement("departage");
+			Element cadenceJeu = doc.createElement("cadenceJeu");
 			Integer j = (Integer)tournoi.getCadenceJeu();
 			cadenceJeu.appendChild(doc.createTextNode(j.toString()));
 			rootElement.appendChild(cadenceJeu);
 
-			int numdep = 0;
+			Element departages = doc.createElement("departage");
+			rootElement.appendChild(departages);
+			
 			for(Departage dep : tournoi.getListeDepartages()) {
 				Element sousdepartage = doc.createElement("departage");
-				//sousdepartage.
-				//sousdepartage.appendChild(doc.createTextNode(dep.toString()));
-				departage.appendChild(sousdepartage);
-				numdep++;
+				sousdepartage.appendChild(doc.createTextNode(dep.toString()));
+				departages.appendChild(sousdepartage);
+			}
+			
+			Element joueurs = doc.createElement("joueurs");
+			rootElement.appendChild(joueurs);
+			
+			for(Joueur joueur : tournoi.getListeJoueurs()) {
+				Element sousjoueur = doc.createElement("joueur");
+				sousjoueur.appendChild(doc.createTextNode(joueur.getNumLicence()));
+				joueurs.appendChild(sousjoueur);
 			}
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -102,19 +111,35 @@ public class StockageXML {
 			int NbRondes = (Integer.parseInt(doc.getElementsByTagName("nbrondes").item(0).getTextContent()));
 			int CadenceJeu = (Integer.parseInt(doc.getElementsByTagName("cadenceJeu").item(0).getTextContent()));
 
+			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes, CadenceJeu);
+			
 			NodeList departageList = doc.getElementsByTagName("departage");
 			for (int i = 0; i < departageList.getLength(); i++) {
 
 				Node node = departageList.item(i);
+				
+				System.out.println(departageList.getLength());
+				
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element element = (Element) node;
+					String nomDepartage = element.getElementsByTagName("departage").item(0).getTextContent();
+					System.out.println(nomDepartage);
+				}
+			}
+			
+			/*NodeList joueurList = doc.getElementsByTagName("joueurs");
+			for (int i = 0; i < joueurList.getLength(); i++) {
+
+				Node node = joueurList.item(i);
 
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element element = (Element) node;
-
+					String nomJoueur = element.getElementsByTagName("joueur").item(0).getTextContent();
+					System.out.println(nomJoueur);
 				}
-			}
-
-			Tournoi returnTournoi = new Tournoi(Nom, Lieu, DateDeb, DateFin, Arbitre, NbRondes, CadenceJeu);
+			}*/
 
 			return returnTournoi;
 
@@ -122,5 +147,11 @@ public class StockageXML {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static void ReadJoueur(String savePath){
+		
+		
+		
 	}
 }

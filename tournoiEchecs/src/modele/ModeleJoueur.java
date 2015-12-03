@@ -5,11 +5,14 @@ package modele;
 import metier.Joueur;
 
 import java.time.LocalDate;
+import java.time.temporal.JulianFields;
+import java.util.ArrayList;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart.Data;
 
 
 public class ModeleJoueur {
@@ -19,6 +22,16 @@ public class ModeleJoueur {
 		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
 		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 
+		private static Joueur joueurAmodifier=null;
+		
+		public static void setJoueurAmofifier(Joueur j){
+			joueurAmodifier=j;
+		}
+		
+		public static Joueur getJoueurAmodifier(){
+			return joueurAmodifier;
+		}
+		
 		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club ) {
 			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue, elo, typeElo, federation, categorie,club));
 		}
@@ -35,4 +48,16 @@ public class ModeleJoueur {
 			}
 			return null;
 		}
+		public static ArrayList<Joueur> rechercherNomJoueur(String nom) {
+			ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+			for (Joueur j : collectionJoueurs) {
+				if(j.getNomJoueur().equals(nom)){
+					joueurs.add(j);
+				}
+			}
+			return joueurs;
+		}
+		
+		
+
 }

@@ -4,6 +4,7 @@ package controleur;
 import java.awt.Color;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,6 +31,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -60,27 +62,33 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	public void ajouterJoueur(Event e) {
+		LocalDate dateActuelle = LocalDate.now();
 		lb_info.setText("");
-		if(Validation.verifNumLicence(tf_numLicence)){
-		//recherche joueur
-			Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
-			//test si le joueur retourné n'est pas nulll !
-			if(j==null){
-			lb_info.setText("numéro de licence introuvable");
-			}
-			else if(data.contains(j)){
+		if(Validation.verifDate(new DatePicker(dateActuelle), new DatePicker(ModeleTournoi.getTournoi().getDateDeb()))){
+			if(Validation.verifNumLicence(tf_numLicence)){
+				//recherche joueur
+					Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
+					//test si le joueur retourné n'est pas nulll !
+					if(j==null){
+					lb_info.setText("numéro de licence introuvable");
+					}
+					else if(data.contains(j)){
 
-					lb_info.setText("deja present");
+							lb_info.setText("deja present");
 
+						}
+						else{
+							ajouterTrier(data, j);
+					}
+				}else {
+					lb_info.setText("numéro de licence incohérent");
 				}
-				else{
-					ajouterTrier(data, j);
-			}
-		}else {
-			lb_info.setText("numéro de licence incohérent");
-		}
 
-		tf_numLicence.setText("");
+				tf_numLicence.setText("");
+		}
+		else {
+			lb_info.setText("Impossible d'ajouter des joueurs une fois le tournoi débuté");
+		}
 	}
 
 	@FXML
@@ -104,21 +112,23 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
-		Joueur j1 = new Joueur("A11111", "jean", "jacques");
-		Joueur j2 = new Joueur("A22222", "pierre", "paul");
-		Joueur j3 = new Joueur("B11111", "pierre", "paul");
+		Joueur j1 = new Joueur("A11111", "ajean", "jacques");
+		Joueur j2 = new Joueur("A22222", "bpierre", "paul");
+		Joueur j3 = new Joueur("B11111", "cpierre", "paul");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
 		ModeleJoueur.ajouterJoueur(j3);
+		if(ModeleTournoi.getJoueurs()!=null){
+			data.setAll(ModeleTournoi.getJoueurs());
+		}
 		listePersonne.setItems(data);
-		System.out.println(data.size());
 	}
 
 	void ajouterTrier(ObservableList<Joueur> data, Joueur j){
 		int place=0;
 		int i=0;
 		if(data.size()!=0){
-			while( i<data.size() && data.get(i).getNumLicence().compareTo(j.getNumLicence())<0 ){
+			while( i<data.size() && data.get(i).getNomJoueur().compareTo(j.getNomJoueur())<0 ){
 				i++;
 			}
 		}

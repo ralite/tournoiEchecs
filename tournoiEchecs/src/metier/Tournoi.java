@@ -23,25 +23,10 @@ public class Tournoi {
 	private LocalDate DateFin;
 	private String Arbitre;
 	private int NbRondes;
-	private ObservableList<Joueur> joueurs;
+	private ObservableList<Joueur> ListeJoueurs;
 	private ObservableList<Departage> ListeDepartages;
 	private int cadenceJeu;
 
-	public int getCadenceJeu() {
-		return cadenceJeu;
-	}
-
-
-	public void setCadenceJeu(int cadenceJeu) {
-		this.cadenceJeu = cadenceJeu;
-	}
-
-
-	public void setJoueurs(ObservableList<Joueur> joueurs) {
-		this.joueurs = joueurs;
-	}
-
-	
 	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
 		Nom = nom;
 		Lieu = lieu;
@@ -50,8 +35,26 @@ public class Tournoi {
 		Arbitre = arbitre;
 		NbRondes = nbRondes;
 		cadenceJeu=cadence;
+		ListeJoueurs = FXCollections.observableArrayList();
+		ListeDepartages = FXCollections.observableArrayList();
 	}
 
+	public void AddJoueur(Joueur j) {
+		this.ListeJoueurs.add(j);
+	}
+
+	public void RemoveJoueurs(Joueur j) {
+		this.ListeJoueurs.remove(j);
+	}
+
+	public ObservableList<Joueur> getListeJoueurs() {
+		return this.ListeJoueurs;
+	}
+
+	public void setListeJoueurs(ObservableList<Joueur> liste) {
+		this.ListeJoueurs=liste;
+	}
+	
 	public void AddDepartages(Departage d) {
 		this.ListeDepartages.add(d);
 	}
@@ -116,17 +119,17 @@ public class Tournoi {
 		NbRondes = nbRondes;
 	}
 
+	public int getCadenceJeu() {
+		return cadenceJeu;
+	}
+
+	public void setCadenceJeu(int cadenceJeu) {
+		this.cadenceJeu = cadenceJeu;
+	}
+	
 	@Override
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
 				+ Arbitre + ", NbRondes=" + NbRondes + ", CadenceJeu=" + cadenceJeu + "]";
 	}
-
-
-	public ObservableList<Joueur> getJoueurs() {
-		// TODO Auto-generated method stub
-		return joueurs;
-	}
-
-
 }

@@ -63,15 +63,12 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	
 	private LocalDate dateActuelle =  LocalDate.now();
 	
-	public void recapAjouterJoueur(Event e){
-		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
-			button_recapModifierTournoi.isDisabled();
-		}
-		else {
+	public void recapGererJoueurs(Event e){
+	
 			AjouterJoueurTournoi ajt=new AjouterJoueurTournoi(Main.getPrimaryStage());
 			ajt.show();
-		}
 	}
+	
 	
 	public void recapModifierTournoi(Event e){
 		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
@@ -84,20 +81,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		}
 	}
 	
-		@FXML
-		public void retirerJoueur(Event e) {
-			if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
-				button_recapModifierTournoi.isDisabled();
-			}
-		}
-		
-		@FXML
-		public void modifierJoueur(Event e){
-			
-			AjouterJoueurTournoi aj = new AjouterJoueurTournoi(Main.getPrimaryStage());
-			aj.show();
-			((Node)e.getSource()).getScene().getWindow().hide();
-		}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

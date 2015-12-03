@@ -3,6 +3,7 @@ package modele;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import metier.departage.Departage;
 import javafx.scene.control.ChoiceBox;
@@ -162,6 +163,19 @@ public class Validation {
 		}
 		else{
 			tx.setStyle("-fx-control-inner-background : red; ");
+			return false;
+		}
+	}
+	
+	public static boolean recupValeursDate(DatePicker dp){
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		try{
+			LocalDate d = LocalDate.parse(dp.getEditor().getText().toString(),formatter);
+			dp.setValue(d);
+			return true;
+		}
+		catch(Exception e){
 			return false;
 		}
 	}

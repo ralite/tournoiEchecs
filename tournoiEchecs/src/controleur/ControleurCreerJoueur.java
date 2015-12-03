@@ -239,7 +239,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 					LocalDate d = LocalDate.parse(dp_dateNaissance.getEditor().getText().toString(),formatter);
-					dp_dateNaissance.setValue(d); 
+					dp_dateNaissance.setValue(d);
 		            if(!Validation.estVide(dp_dateNaissance))
 		            {
 		        		if(Validation.estDate(dp_dateNaissance))
@@ -320,7 +320,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 		        }
 		        else{
-		            if(!Validation.estVide(tf_classementElo) && (!ckbx_national.isSelected() && !ckbx_fide.isSelected() && !ckbx_nouveau.isSelected()))
+		            if(!Validation.estVide(tf_classementElo) && (!ckbx_national.isSelected() || !ckbx_fide.isSelected() || !ckbx_nouveau.isSelected()))
 		            {
 		            	if(!Validation.estVide(tf_classementElo))
 		            	{
@@ -343,8 +343,15 @@ public class ControleurCreerJoueur implements Initializable {
 			        			}
 			        		}
 		            	}else{
-		            		lb_erreurElo.setText("Entrez le classement Elo du joueur");
+		            		lb_erreurElo.setText("Saississez le classement Elo du joueur");
 		            	}
+		            	if((!ckbx_national.isSelected() || !ckbx_fide.isSelected() || !ckbx_nouveau.isSelected()))
+		            	{
+		            		lb_erreurElo.setText("Sélectionnez un type d'Elo");
+		            	}else{
+		            		lb_erreurElo.setText("");
+		            	}
+		            	
 		            }else{
 		            	lb_erreurElo.setText("Sélectionnez un classement et un type d'ELO.");
 		            }
@@ -531,8 +538,6 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 			lb_erreurDate.setText("");
 
-
-
 		if(chbx_titre.getValue() == null)
 		{
 			lb_erreurTitre.setText("Sélectionnez le titre du joueur.");
@@ -639,7 +644,6 @@ public class ControleurCreerJoueur implements Initializable {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate d = LocalDate.parse(dp_dateNaissance.getEditor().getText().toString(),formatter);
 				dp_dateNaissance.setValue(d);
-				lb_erreurDate.setText(d.toString());
 			}
 		}else
 		{
