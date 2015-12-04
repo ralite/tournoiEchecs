@@ -23,15 +23,15 @@ public class ModeleJoueur {
 		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 
 		private static Joueur joueurAmodifier=null;
-		
+
 		public static void setJoueurAmofifier(Joueur j){
 			joueurAmodifier=j;
 		}
-		
+
 		public static Joueur getJoueurAmodifier(){
 			return joueurAmodifier;
 		}
-		
+
 		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club ) {
 			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue, elo, typeElo, federation, categorie,club));
 		}
@@ -57,7 +57,15 @@ public class ModeleJoueur {
 			}
 			return joueurs;
 		}
-		
-		
+
+		public static final ArrayList<Joueur> getArrayJoueurs() {
+			ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+			for (Joueur joueur : collectionJoueurs) {
+				joueurs.add(joueur);
+			}
+			return joueurs;
+		}
+
+
 
 }

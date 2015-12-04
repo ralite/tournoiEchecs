@@ -22,7 +22,7 @@ import modele.ModeleTournoi;
 import modele.xml.StockageXML;
 import application.Main;
 
-public class ControleurFenetreAccueil {
+public class ControleurFenetreAccueil implements Initializable{
 
 	@FXML
 	private Button button_creerTournoi;
@@ -87,4 +87,8 @@ public class ControleurFenetreAccueil {
     	button_modifierJoueurAccueil.setVisible(true);
     }
 
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
+    	// chargement du fichier des joueurs
+    }
 }
