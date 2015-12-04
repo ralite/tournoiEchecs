@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -10,14 +12,35 @@ import metier.departage.Departage;
 import metier.departage.Departage3;
 
 public class ModeleDepartage {
-	
-	
+
+
 	private static final ListProperty<Departage> collectionDepartages = new SimpleListProperty<>(FXCollections.observableArrayList(new Cumulatif(), new Buchholz(), new Departage3()));
 	public static final ListProperty<Departage> collectionDepartagesProperty() {return collectionDepartages;}
 	public static final ObservableList<Departage> getcollectionDepartages() {return collectionDepartagesProperty().get();}
 	public static final void setcollectionJoueurs(final ObservableList<Departage> collectionDepartages) {collectionDepartagesProperty().set(collectionDepartages);}
-	
+
 	public static void ajouterDepartageChoisi(Departage j) {
 		collectionDepartages.add(j);
+	}
+
+	public static ArrayList<Departage> factoryDepartage(ArrayList<String> list){
+		ArrayList<Departage> list2 = new ArrayList<Departage>();
+
+		for (String departage : list) {
+
+			if(departage.equalsIgnoreCase("buchholz")){
+				list2.add(new Buchholz());
+			}
+
+			if(departage.equalsIgnoreCase("buchholz")){
+				list2.add(new Cumulatif());
+			}
+
+			if(departage.equalsIgnoreCase("buchholz")){
+				list2.add(new Departage3());
+			}
+		}
+
+		return list2;
 	}
 }

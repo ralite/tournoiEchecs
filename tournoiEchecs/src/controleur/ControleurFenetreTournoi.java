@@ -41,7 +41,6 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	DatePicker dp_dateDeb;
 
-
 	@FXML
 	DatePicker dp_dateFin;
 
@@ -62,7 +61,6 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	TextField tf_cadenceJeu;
-
 
 	@FXML
     private void actionFenetreJoueurs(Event e) {
@@ -91,7 +89,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 
-
 	private boolean formulaireRempli(){
 		boolean res = true;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -100,12 +97,12 @@ public class ControleurFenetreTournoi implements Initializable {
 			lb_erreurDate.setText("Remplir la date de debut");
 			res=false;
 		}
-		
+
 		if(!Validation.recupValeursDate(dp_dateFin)){
 			lb_erreurDate.setText("Remplir la date de fin");
 			res=false;
 		}
-		
+
 		if(Validation.estVide(tf_nomTournoi))
 			res = false;
 		if(Validation.estVide(tf_lieuTournoi))
@@ -114,9 +111,9 @@ public class ControleurFenetreTournoi implements Initializable {
 			res = false;
 		}else {
 			dp_dateDeb.setValue(LocalDate.parse(dp_dateDeb.getEditor().getText().toString(),formatter));
-			
+
 		}
-		if(Validation.estVide(dp_dateFin)){			
+		if(Validation.estVide(dp_dateFin)){
 			res = false;
 		}else{
 			dp_dateFin.setValue(LocalDate.parse(dp_dateFin.getEditor().getText().toString(),formatter));
@@ -133,6 +130,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	}
 
 	private boolean infosCorrectes(){
+
 		boolean res = true;
 		DatePicker dateActuelle = new DatePicker(LocalDate.now());
 		lb_erreurDate.setText("");
@@ -157,12 +155,12 @@ public class ControleurFenetreTournoi implements Initializable {
 		return res;
 
 	}
+
 	@FXML
 	public void actionAnnuler(Event e) {
 		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
 			((Node)e.getSource()).getScene().getWindow().hide();
 	}
-
 
 	@FXML
 	public void actionRajouterDepartage(){
@@ -172,7 +170,6 @@ public class ControleurFenetreTournoi implements Initializable {
 			items.remove(dep);
 		}
 	}
-
 
 	@FXML
 	public void actionEnleverDepartage(){
@@ -193,8 +190,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		Validation.verifLongueurTexte(tf_nbRondes,6);
 		Validation.verifLongueurTexte(tf_cadenceJeu, 4);
 	}
-
-
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){
