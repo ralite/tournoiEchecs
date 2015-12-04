@@ -1,6 +1,7 @@
 package metier;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class Joueur {
@@ -125,6 +126,36 @@ public class Joueur {
 
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
+	}
+
+	public static String getCategorieCalculee(LocalDate dateNaissance)
+	{
+		String categorie="";
+		LocalDate ref = LocalDate.parse(LocalDate.now().getYear()+"-01-01");
+
+		long age = ChronoUnit.YEARS.between(dateNaissance, ref);
+
+		if(age<8)
+			categorie = "Petit Poussin";
+		else if(age<10 && (age>8||age==8))
+			categorie = "Poussin";
+		else if(age<12 && (age>10||age==10))
+			categorie = "Pupille";
+		else if(age<14 && (age>12||age==12))
+			categorie = "Benjamin";
+		else if(age<16 && (age>14||age==14))
+			categorie = "Minime";
+		else if(age<18 && (age>16||age==16))
+			categorie = "Cadet";
+		else if(age<20 && (age>18||age==18))
+			categorie = "Junior";
+		else if((age>20||age==20) && age<55)
+			categorie = "Senior";
+		else if(age==55||age>55)
+			categorie="Vétéran";
+
+		return categorie;
+
 	}
 
 	public String getClub() {
