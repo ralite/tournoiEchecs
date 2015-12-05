@@ -83,7 +83,7 @@ public class Validation {
 	}
 
 	public static boolean estNomCompose(TextField tx) {
-		if(tx.getText().trim().matches("^[a-zA-Z]*[-]?[a-zA-Z]*$")){
+		if(tx.getText().trim().matches("^[^0-9]*[-]?[^0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}

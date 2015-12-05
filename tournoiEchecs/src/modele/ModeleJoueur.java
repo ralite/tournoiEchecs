@@ -42,7 +42,7 @@ public class ModeleJoueur {
 
 		public static Joueur rechercherJoueur(String num) {
 			for (Joueur j : collectionJoueurs) {
-				if(j.getNumLicence().equals(num)){
+				if(j.getNumLicence().equalsIgnoreCase(num)){
 					return j;
 				}
 			}
@@ -51,7 +51,7 @@ public class ModeleJoueur {
 		public static ArrayList<Joueur> rechercherNomJoueur(String nom) {
 			ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 			for (Joueur j : collectionJoueurs) {
-				if(j.getNomJoueur().equals(nom)){
+				if(j.getNomJoueur().equalsIgnoreCase(nom)){
 					joueurs.add(j);
 				}
 			}
@@ -64,6 +64,24 @@ public class ModeleJoueur {
 				joueurs.add(joueur);
 			}
 			return joueurs;
+		}
+		public static void modifierJoueur(String numLicence, String nom,
+				String prenom, String sexe, LocalDate dateNaissance,
+				String titre, String ligue, int elo, String typeElo,
+				String federation, String categorie, String club) {
+
+			joueurAmodifier.setNumLicence(numLicence);
+			joueurAmodifier.setNomJoueur(nom);
+			joueurAmodifier.setPrenomJoueur(prenom);
+			joueurAmodifier.setSexe(sexe);
+			joueurAmodifier.setDateNaissance(dateNaissance);
+			joueurAmodifier.setTitreFide(titre);
+			joueurAmodifier.setLigue(ligue);
+			joueurAmodifier.setElo(elo);
+			joueurAmodifier.setTypeElo(typeElo);
+			joueurAmodifier.setFederation(federation);
+			joueurAmodifier.setCategorie(categorie);
+			joueurAmodifier.setClub(club);
 		}
 
 

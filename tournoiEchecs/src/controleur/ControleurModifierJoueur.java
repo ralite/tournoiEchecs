@@ -38,6 +38,7 @@ public class ControleurModifierJoueur implements Initializable{
 		Joueur j;
 		ArrayList<Joueur> joueurs;
 		data.clear();
+		lb_info.setText("");
 		j=ModeleJoueur.rechercherJoueur(tf_recherche.getText().toString());
 		if(j==null){
 			joueurs=ModeleJoueur.rechercherNomJoueur(tf_recherche.getText().toString());

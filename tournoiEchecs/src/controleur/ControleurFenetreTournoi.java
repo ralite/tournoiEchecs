@@ -184,8 +184,8 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	public void limiteTexte(){
-		Validation.verifLongueurTexte(tf_nomTournoi,40);
-		Validation.verifLongueurTexte(tf_lieuTournoi,30);
+		Validation.verifLongueurTexte(tf_nomTournoi,50);
+		Validation.verifLongueurTexte(tf_lieuTournoi,50);
 		Validation.verifLongueurTexte(tf_arbitre,30);
 		Validation.verifLongueurTexte(tf_nbRondes,6);
 		Validation.verifLongueurTexte(tf_cadenceJeu, 4);

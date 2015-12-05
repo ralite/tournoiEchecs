@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import vue.CreerJoueur;
+import application.Main;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +19,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -120,7 +124,9 @@ public class ControleurCreerJoueur implements Initializable {
 		chbx_titre.setItems(listeTitre);
 
 		clearFormulaire();
-
+		if(ModeleJoueur.getJoueurAmodifier()!=null){
+			chargerFormulaire();
+		}
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -133,9 +139,6 @@ public class ControleurCreerJoueur implements Initializable {
 			    		if(!Validation.verifNumLicence(tf_numLicence))
 			    		{
 			    			lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
-			    		}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
-			    		{
-			    			lb_erreurLicence.setText("Le numéro de licence existe déjà.");
 			    		}else{
 			    			lb_erreurLicence.setText("");
 			    		}
@@ -324,11 +327,13 @@ public class ControleurCreerJoueur implements Initializable {
 		    @Override
 		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
 		        if (isNowSelected) {
+			    	lb_erreurElo.setText("");
 		        	lb_erreurType.setText("");
 		            rb_national.setSelected(false);
 		            rb_fide.setSelected(false);
+		            tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 		            tf_classementElo.setDisable(true);
-		            tf_classementElo.setText("-1");
+		            tf_classementElo.setText("aucun");
 		        }
 		    }
 		});
@@ -387,6 +392,31 @@ public class ControleurCreerJoueur implements Initializable {
 
 	}
 
+	private void chargerFormulaire() {
+		tf_numLicence.setText(ModeleJoueur.getJoueurAmodifier().getNumLicence());
+		tf_nom.setText(ModeleJoueur.getJoueurAmodifier().getNomJoueur());
+		tf_prenom.setText(ModeleJoueur.getJoueurAmodifier().getPrenomJoueur());
+		chbx_sexe.setValue(ModeleJoueur.getJoueurAmodifier().getSexe());
+		dp_dateNaissance.setValue(ModeleJoueur.getJoueurAmodifier().getDateNaissance());
+		lb_categorie.setText(ModeleJoueur.getJoueurAmodifier().getCategorie());
+		tf_ligue.setText(ModeleJoueur.getJoueurAmodifier().getLigue());
+		tf_classementElo.setText(String.valueOf(ModeleJoueur.getJoueurAmodifier().getElo()));
+		tf_federation.setText(ModeleJoueur.getJoueurAmodifier().getFederation());
+		tf_club.setText(ModeleJoueur.getJoueurAmodifier().getClub());
+		chbx_titre.setValue(ModeleJoueur.getJoueurAmodifier().getTitre());
+		String typeElo=ModeleJoueur.getJoueurAmodifier().getTypeElo();
+		if(typeElo.equalsIgnoreCase("National"))
+			rb_national.setSelected(true);
+		else if(typeElo.equalsIgnoreCase("FIDE"))
+			rb_fide.setSelected(true);
+		else if(typeElo.equalsIgnoreCase("Nouveau")){
+			rb_nouveau.setSelected(true);
+			tf_classementElo.setText("aucun");
+			tf_classementElo.setDisable(true);
+		}
+		
+	}
+
 	@FXML
 	public void onClick_Quitter(Event e)
 	{
@@ -398,6 +428,10 @@ public class ControleurCreerJoueur implements Initializable {
 	{
 		if(formulaireCorrect())
 		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Succès");
+			alert.setHeaderText(null);
+			
 			String numLicence = tf_numLicence.getText().substring(0,1).toUpperCase().concat(tf_numLicence.getText().substring(1,6)) ;
 
 			String nom = tf_nom.getText().toUpperCase();
@@ -411,8 +445,13 @@ public class ControleurCreerJoueur implements Initializable {
 			String titre = chbx_titre.getValue();
 
 			String ligue = tf_ligue.getText().toUpperCase();
-
-			int elo = Integer.parseInt(tf_classementElo.getText());
+			
+			int elo ;
+			try{
+				elo=Integer.parseInt(tf_classementElo.getText());
+			}catch(Exception ex){
+				elo=-1;
+			}
 
 			String typeElo="";
 			if(rb_national.isSelected())
@@ -427,9 +466,17 @@ public class ControleurCreerJoueur implements Initializable {
 			String categorie = lb_categorie.getText();
 
 			String club = tf_club.getText().substring(0,1).toUpperCase().concat(tf_club.getText().substring(1).toLowerCase());
-
-			ModeleJoueur.creerJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
-
+			((Node)e.getSource()).getScene().getWindow().hide();
+			if(ModeleJoueur.getJoueurAmodifier()==null){
+				ModeleJoueur.creerJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
+				alert.setContentText("Joueur créé avec succès !");				
+			}else {
+				ModeleJoueur.modifierJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
+				ModeleJoueur.setJoueurAmofifier(null);
+				alert.setContentText("Joueur modifié avec succès !");	
+			}	
+			alert.showAndWait();
+			
 		}//formulaireCorrect
 	}
 
@@ -484,7 +531,7 @@ public class ControleurCreerJoueur implements Initializable {
 			{
 				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
 				res = false;
-			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
+			}else if(ModeleJoueur.getJoueurAmodifier()==null && ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 			{
 				lb_erreurLicence.setText("Le numéro de licence existe déjà.");
 				res = false;
@@ -659,11 +706,11 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@FXML
 	public void limiteTexte(){
-		Validation.verifLongueurTexte(tf_numLicence,6);
+		Validation.verifLongueurTexte(tf_numLicence,7);
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
-		Validation.verifLongueurTexte(tf_ligue,3);
+		Validation.verifLongueurTexte(tf_ligue,4);
 		Validation.verifLongueurTexte(tf_club, 50);
 	}
 
