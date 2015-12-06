@@ -3,10 +3,7 @@ package metier.departage;
 public class Departage3 extends Departage {
 	
 	public Departage3(){
-		super();
+		super("Departage3");
 	}
-	
-	public String toString() {
-		return "Departage3";
-	}
+
 }

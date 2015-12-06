@@ -32,11 +32,11 @@ public class ModeleDepartage {
 				list2.add(new Buchholz());
 			}
 
-			if(departage.equalsIgnoreCase("buchholz")){
+			if(departage.equalsIgnoreCase("cumulatif")){
 				list2.add(new Cumulatif());
 			}
 
-			if(departage.equalsIgnoreCase("buchholz")){
+			if(departage.equalsIgnoreCase("departage3")){
 				list2.add(new Departage3());
 			}
 		}
