@@ -307,7 +307,6 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_fide.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
-		            tf_classementElo.setText("");
 		        }
 		    }
 		});
@@ -320,7 +319,6 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_national.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
-		            tf_classementElo.setText("");
 		        }
 		    }
 		});
