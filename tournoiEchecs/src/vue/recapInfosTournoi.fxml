@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
    <children>
       <Label fx:id="label_recapNom" layoutX="26.0" layoutY="6.0" prefHeight="17.0" prefWidth="303.0" text="label" />
       <Label fx:id="label_recapLieu" layoutX="25.0" layoutY="30.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
@@ -27,5 +27,6 @@
       <Label fx:id="lb_recapCadenceJeu" layoutX="414.0" layoutY="79.0" prefHeight="17.0" prefWidth="109.0" text="Cadence de jeu :" />
       <Label fx:id="lb_recapCadenceDeJeu" layoutX="526.0" layoutY="79.0" text="Label" />
       <Label fx:id="lb_recapCadence" layoutX="559.0" layoutY="79.0" text="min(s)" />
+      <Button layoutX="293.0" layoutY="417.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
    </children>
 </AnchorPane>

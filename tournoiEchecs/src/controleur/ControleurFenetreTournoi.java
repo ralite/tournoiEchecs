@@ -170,7 +170,11 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	public void actionAnnuler(Event e) {
 		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
-			((Node)e.getSource()).getScene().getWindow().hide();
+		if(ModeleTournoi.getTournoi()!=null){
+			RecapTournoi rp = new RecapTournoi(Main.getPrimaryStage());
+			rp.show();
+		}
+		((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@FXML
@@ -227,7 +231,6 @@ public class ControleurFenetreTournoi implements Initializable {
 			tf_arbitre.setText(ModeleTournoi.getTournoi().getArbitre());
 			tf_nbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 			itemsChoisis.addAll(ModeleTournoi.getTournoi().getListeDepartages());
-			System.out.println(ModeleTournoi.getTournoi().getListeDepartages());
 			items.removeAll(itemsChoisis);
 			tf_cadenceJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
 		}

@@ -465,7 +465,6 @@ public class ControleurCreerJoueur implements Initializable {
 			String categorie = lb_categorie.getText();
 
 			String club = tf_club.getText().substring(0,1).toUpperCase().concat(tf_club.getText().substring(1).toLowerCase());
-			((Node)e.getSource()).getScene().getWindow().hide();
 			if(ModeleJoueur.getJoueurAmodifier()==null){
 				ModeleJoueur.creerJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
 				alert.setContentText("Joueur créé avec succès !");				
@@ -476,6 +475,7 @@ public class ControleurCreerJoueur implements Initializable {
 			}
 			StockageXML.WriteXMLJoueur(StockageXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
 			alert.showAndWait();
+			((Node)e.getSource()).getScene().getWindow().hide();
 			
 		}//formulaireCorrect
 	}
@@ -531,10 +531,12 @@ public class ControleurCreerJoueur implements Initializable {
 			{
 				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
 				res = false;
-			}else if(ModeleJoueur.getJoueurAmodifier()==null && ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
+			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 			{
-				lb_erreurLicence.setText("Le numéro de licence existe déjà.");
-				res = false;
+				if(!ModeleJoueur.getJoueurAmodifier().getNumLicence().equals(tf_numLicence.getText().toString())){
+					lb_erreurLicence.setText("Le numéro de licence existe déjà.");
+					res = false;
+				}
 			}else{
 				lb_erreurLicence.setText("");
 			}

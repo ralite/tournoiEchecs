@@ -65,7 +65,6 @@ public class ControleurFenetreAccueil implements Initializable{
     private void actionParcourirTournoi(Event e) {
     	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
-			System.out.println(fileTournoi.getAbsolutePath());
 			ModeleTournoi.ajouterTournoi(StockageXML.readXMLTournoi(fileTournoi.getAbsolutePath()));
 			ModeleTournoi.setFichierTournoi(fileTournoi);
 			RecapTournoi recapT = new RecapTournoi(Main.getPrimaryStage());

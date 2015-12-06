@@ -13,9 +13,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import metier.Joueur;
 import metier.Tournoi;
@@ -70,10 +72,18 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 	
+	@FXML
+	public void fermerRecap(Event e){
+		((Node)e.getSource()).getScene().getWindow().hide();
+	}
 	
 	public void recapModifierTournoi(Event e){
 		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
-			button_recapModifierTournoi.isDisabled();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Erreur");
+			alert.setHeaderText(null);
+			alert.setContentText("Impossible de modifier un tournoi en cours !");	
+			alert.showAndWait();
 		}
 		else {
 			CreationTournoi ct = new CreationTournoi(Main.getPrimaryStage());
