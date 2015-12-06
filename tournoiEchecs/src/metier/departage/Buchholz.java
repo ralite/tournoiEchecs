@@ -3,11 +3,9 @@ package metier.departage;
 public class Buchholz extends Departage{
 
 	public Buchholz() {
-		super();
+		super("Buchholz");
 	}
 	
-	public String toString() {
-		return "Buchholz";
-	}
+
 
 }

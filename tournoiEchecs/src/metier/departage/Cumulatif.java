@@ -3,11 +3,9 @@ package metier.departage;
 public class Cumulatif extends Departage {
 
 	public Cumulatif() {
-		super();
+		super("Cumulatif");
 	}
 	
-	public String toString() {
-		return "Cumulatif";
-	}
+
 
 }

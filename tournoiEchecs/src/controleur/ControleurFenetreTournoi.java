@@ -227,6 +227,7 @@ public class ControleurFenetreTournoi implements Initializable {
 			tf_arbitre.setText(ModeleTournoi.getTournoi().getArbitre());
 			tf_nbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 			itemsChoisis.addAll(ModeleTournoi.getTournoi().getListeDepartages());
+			System.out.println(ModeleTournoi.getTournoi().getListeDepartages());
 			items.removeAll(itemsChoisis);
 			tf_cadenceJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
 		}
