@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAjouterJoueurTournoi">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAjouterJoueurTournoi">
    <left>
       <ListView fx:id="listePersonne" prefHeight="359.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -28,7 +28,10 @@
                   <Insets left="50.0" right="50.0" />
                </VBox.margin>
             </TextField>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterJoueur" text="Ajouter" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterJoueur" text="Ajouter">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin></Button>
             <Label text="${listePersonne.selectionModel.selectedItem.numLicence}">
                <VBox.margin>
                   <Insets />
@@ -47,14 +50,28 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
+            <Label layoutX="205.0" layoutY="231.0" text="${listePersonne.selectionModel.selectedItem.elo}">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
             <Button mnemonicParsing="false" onAction="#retirerJoueur" text="Retirer">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="button_ok"  mnemonicParsing="false" onAction="#actionOK" text="OK" />
+                  <Button mnemonicParsing="false" onAction="#actionValider" text="Valider">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#actionAnnuler" text="Annuler">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>

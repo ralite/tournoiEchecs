@@ -55,6 +55,11 @@ public class ControleurModifierJoueur implements Initializable{
 	}
 	
 	@FXML
+	public void actionAnnuler(Event e){
+		((Node)e.getSource()).getScene().getWindow().hide();
+	}
+	
+	@FXML
 	public void actionModifier(Event e){
 		ModeleJoueur.setJoueurAmofifier((Joueur)lv_joueurs.getSelectionModel().getSelectedItem());
 		if(ModeleJoueur.getJoueurAmodifier()==null){
@@ -69,12 +74,6 @@ public class ControleurModifierJoueur implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Joueur j1 = new Joueur("A11111", "jean", "jacques");
-		Joueur j2 = new Joueur("A22222", "jean", "paul");
-		Joueur j3 = new Joueur("B11111", "cpierre", "paul");
-		ModeleJoueur.ajouterJoueur(j1);
-		ModeleJoueur.ajouterJoueur(j2);
-		ModeleJoueur.ajouterJoueur(j3);
 		lv_joueurs.setItems(data);
 	}
 

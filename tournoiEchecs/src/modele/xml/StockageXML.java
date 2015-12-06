@@ -180,6 +180,7 @@ public class StockageXML {
 					returnTournoi.AddJoueur(ModeleJoueur.rechercherJoueur(numJoueur));
 				}
 			}
+			
 			return returnTournoi;
 
 		} catch (NullPointerException e) {

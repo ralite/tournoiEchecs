@@ -41,14 +41,6 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		/*LocalDate d1 = LocalDate.parse("1965-02-28");
-		LocalDate d2 = LocalDate.parse("1980-09-20");
-		Joueur j1 = new Joueur("A11112", "damier", "jacques","M",d1,"maitre","francaise",1200,"FIDE","LR","senior","mtp");
-		Joueur j2 = new Joueur("A11113", "ideo", "paul","M",d2,"aucun","francaise",1800,"FIDE","AUV","senior","cmt");
-		ModeleJoueur.ajouterJoueur(j1);
-		ModeleJoueur.ajouterJoueur(j2);
-		StockageXML.WriteXMLJoueur(StockageXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());*/
-
 		launch(args);
 	}
 

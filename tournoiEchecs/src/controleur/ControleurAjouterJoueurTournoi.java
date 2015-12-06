@@ -74,13 +74,11 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 					lb_info.setText("numéro de licence introuvable");
 					}
 					else if(data.contains(j)){
-
 							lb_info.setText("deja present");
-
 						}
 						else{
 							ajouterTrier(data, j);
-					}
+						}
 				}else {
 					lb_info.setText("numéro de licence incohérent");
 				}
@@ -98,9 +96,15 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 
-
 	@FXML
-	public void actionOK(Event e){
+	public void actionAnnuler(Event e){
+		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
+		recap.show();
+		((Node)e.getSource()).getScene().getWindow().hide();
+	}
+	
+	@FXML
+	public void actionValider(Event e){
 		listePersonne.setItems(data);
 		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
 		StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
@@ -114,12 +118,6 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
-		Joueur j1 = new Joueur("A11111", "ajean", "jacques");
-		Joueur j2 = new Joueur("A22222", "bpierre", "paul");
-		Joueur j3 = new Joueur("B11111", "cpierre", "paul");
-		ModeleJoueur.ajouterJoueur(j1);
-		ModeleJoueur.ajouterJoueur(j2);
-		ModeleJoueur.ajouterJoueur(j3);
 		if(ModeleTournoi.getJoueurs()!=null){
 			data.setAll(ModeleTournoi.getJoueurs());
 		}
