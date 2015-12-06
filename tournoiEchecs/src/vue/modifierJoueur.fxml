@@ -14,7 +14,7 @@
       <Label layoutX="320.0" layoutY="175.0" text="${lv_joueurs.selectionModel.selectedItem.nomJoueur}" />
       <Label layoutX="320.0" layoutY="216.0" text="${lv_joueurs.selectionModel.selectedItem.prenomJoueur}" />
       <Button layoutX="298.0" layoutY="321.0" mnemonicParsing="false" text="Annuler" />
-      <Button layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionModifier" text="Mofifier" />
+      <Button layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
       <Label fx:id="lb_info" layoutX="201.0" layoutY="285.0" prefHeight="27.0" prefWidth="277.0" textFill="#dd0505" />
    </children>
 </AnchorPane>
