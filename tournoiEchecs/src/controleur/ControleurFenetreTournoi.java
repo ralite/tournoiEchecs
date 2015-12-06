@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import java.awt.List;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,7 @@ import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
 import modele.Validation;
+import modele.xml.StockageXML;
 
 public class ControleurFenetreTournoi implements Initializable {
 
@@ -67,10 +69,12 @@ public class ControleurFenetreTournoi implements Initializable {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
+					File fic;
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),Integer.valueOf(tf_cadenceJeu.getText()));
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
-					FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
+					fic=FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
+					StockageXML.writeXMLTournoi(tournoi, fic.getPath());
 				}
 				else{
 					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
