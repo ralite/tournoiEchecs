@@ -5,7 +5,10 @@ import javafx.scene.control.*;
 
 import java.awt.List;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	private ObservableList<Departage> items;
 	private ObservableList<Departage> itemsChoisis;
 
+	
 	@FXML
 	ListView<Departage> lv_listeDepartages;
 
@@ -64,17 +68,18 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	TextField tf_cadenceJeu;
 
+	
+	
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
-					File fic;
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),Integer.valueOf(tf_cadenceJeu.getText()));
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
-					fic=FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
-					StockageXML.writeXMLTournoi(tournoi, fic.getPath());
+					ModeleTournoi.setFichierTournoi(FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage()));
+					StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),0);
 				}
 				else{
 					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
@@ -84,7 +89,9 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
+					StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
 				}
+				
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();

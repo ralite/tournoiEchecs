@@ -24,12 +24,14 @@ import org.w3c.dom.Element;
 import metier.Joueur;
 import metier.Tournoi;
 import metier.departage.Departage;
+import modele.ModeleDepartage;
+import modele.ModeleJoueur;
 
 public class StockageXML {
 
 	public static String joueurFilePath = "saveJoueur.xml";
 
-	public static void writeXMLTournoi(Tournoi tournoi,String savePath){
+	public static void writeXMLTournoi(Tournoi tournoi,String savePath,int existe){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -83,8 +85,14 @@ public class StockageXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(savePath + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
-
+			
+			StreamResult result;
+			
+			if(existe == 1){
+				result = new StreamResult(new File(savePath));
+			}else{
+				result = new StreamResult(new File(savePath + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
+			}
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
@@ -101,12 +109,78 @@ public class StockageXML {
 			Document doc = dBuilder.parse(XMLFile);
 			doc.getDocumentElement().normalize();
 
-			// code lecture fichier XML
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-			//Tournoi returnTournoi = new Tournoi(nom, lieu, dateDeb, dateFin, arbitre, nbRondes, cadenceJeu);
+			boolean b1 = false;
+			boolean b2 = false;
+			
+			String nom = null;
+			String lieu = null;
+			LocalDate dateDeb = null;
+			LocalDate dateFin = null;
+			String arbitre = null;
+			int nbRondes = 0;
+			int cadenceJeu = 0;
+			ArrayList<String> listNomDepartage = new ArrayList<String>();
+			ArrayList<Departage> listDepartage = new ArrayList<Departage>();
+			ArrayList<String> listNumJoueur = new ArrayList<String>();
 
-			//return returnTournoi;
-			return null;
+			Element racine = doc.getDocumentElement();
+			NodeList racineNoeuds = racine.getChildNodes();
+			int nbRacineNoeuds = racineNoeuds.getLength();
+
+			for (int i = 0; i < nbRacineNoeuds; i++) {
+
+				if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+
+					Node node = racineNoeuds.item(i);
+
+					if(node.getNodeName() == "nom"){
+						nom = node.getTextContent();
+					}
+					if(node.getNodeName() == "lieu"){
+						lieu = node.getTextContent();
+					}
+					if(node.getNodeName() == "datedebut"){
+						dateDeb = LocalDate.parse(node.getTextContent(), formatter);
+					}
+					if(node.getNodeName() == "datefin"){
+						dateFin = LocalDate.parse(node.getTextContent(), formatter);
+					}
+					if(node.getNodeName() == "arbitre"){
+						arbitre = node.getTextContent();
+					}
+					if(node.getNodeName() == "nbrondes"){
+						nbRondes = Integer.parseInt(node.getTextContent());
+					}
+					if(node.getNodeName() == "cadencejeu"){
+						cadenceJeu = Integer.parseInt(node.getTextContent());
+					}
+					if(node.getNodeName() == "departage"){
+						listNomDepartage.add(node.getTextContent());
+						b1 = true;
+					}
+					if(node.getNodeName() == "joueur"){
+						listNumJoueur.add(node.getTextContent());
+						b2 = true;
+					}
+				}
+			}
+			
+			Tournoi returnTournoi = new Tournoi(nom, lieu, dateDeb, dateFin, arbitre, nbRondes, cadenceJeu);
+			
+			if(b1){
+				listDepartage = ModeleDepartage.factoryDepartage(listNomDepartage);
+				for (Departage departage : listDepartage) {
+					returnTournoi.AddDepartages(departage);
+				}
+			}
+			if(b2){
+				for (String numJoueur : listNumJoueur) {
+					returnTournoi.AddJoueur(ModeleJoueur.rechercherJoueur(numJoueur));
+				}
+			}
+			return returnTournoi;
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

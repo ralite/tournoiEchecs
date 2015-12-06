@@ -22,6 +22,7 @@ import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.Validation;
+import modele.xml.StockageXML;
 import vue.RecapTournoi;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -102,6 +103,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void actionOK(Event e){
 		listePersonne.setItems(data);
 		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
+		StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();

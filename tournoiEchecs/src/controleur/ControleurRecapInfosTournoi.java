@@ -67,6 +67,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	
 			AjouterJoueurTournoi ajt=new AjouterJoueurTournoi(Main.getPrimaryStage());
 			ajt.show();
+			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 	
 	

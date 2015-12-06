@@ -1,5 +1,6 @@
 package modele;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import metier.Tournoi;
 
 public class ModeleTournoi {
 	private static Tournoi tournoi=null;
+	private static File fichierTournoi = null;
 	
 	public static void ajouterTournoi(Tournoi t) {
 		tournoi=t;
@@ -28,5 +30,12 @@ public class ModeleTournoi {
 	public static ObservableList<Joueur> getJoueurs() {
 		return tournoi.getListeJoueurs();
 	}
-	
+
+	public static File getFichierTournoi() {
+		return fichierTournoi;
+	}
+
+	public static void setFichierTournoi(File fichierTournoi) {
+		ModeleTournoi.fichierTournoi = fichierTournoi;
+	}
 }
