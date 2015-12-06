@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.Validation;
+import modele.xml.StockageXML;
 
 public class ControleurCreerJoueur implements Initializable {
 
@@ -474,7 +475,8 @@ public class ControleurCreerJoueur implements Initializable {
 				ModeleJoueur.modifierJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
 				ModeleJoueur.setJoueurAmofifier(null);
 				alert.setContentText("Joueur modifié avec succès !");	
-			}	
+			}
+			StockageXML.WriteXMLJoueur(StockageXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
 			alert.showAndWait();
 			
 		}//formulaireCorrect

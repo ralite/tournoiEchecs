@@ -43,33 +43,13 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		/*LocalDate d1 = LocalDate.parse("1965-02-28");
 		LocalDate d2 = LocalDate.parse("1980-09-20");
-		Joueur j1 = new Joueur("A11111", "jean", "jacques","M",d1,"maitre","francaise",1200,"FIDE","LR","senior","mtp");
-		Joueur j2 = new Joueur("A22222", "jean", "paul","M",d2,"aucun","francaise",1800,"FIDE","AUV","senior","cmt");
+		Joueur j1 = new Joueur("A11112", "damier", "jacques","M",d1,"maitre","francaise",1200,"FIDE","LR","senior","mtp");
+		Joueur j2 = new Joueur("A11113", "ideo", "paul","M",d2,"aucun","francaise",1800,"FIDE","AUV","senior","cmt");
 		ModeleJoueur.ajouterJoueur(j1);
 		ModeleJoueur.ajouterJoueur(j2);
-
 		StockageXML.WriteXMLJoueur(StockageXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());*/
 
-		/*try {
-			Files.delete(Paths.get(StockageXML.joueurFilePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-
-
 		launch(args);
-
-		/*LocalDate DateDeb = LocalDate.parse("2015-02-20");
-		LocalDate DateFin = LocalDate.parse("2015-02-28");
-		Tournoi tournoi = new Tournoi("nomtest", "ici", DateDeb, DateFin, "john doe", 3, 0);
-		Departage dep1 = new Buchholz();
-		Departage dep2 = new Cumulatif();
-		tournoi.AddDepartages(dep1);
-		tournoi.AddDepartages(dep2);
-		StockageXML.writeXMLTournoi(tournoi, "C:\\Users\\Antoine\\Downloads");*/
-
-		//Tournoi tournoi = StockageXML.readXMLTournoi("Z:\\Documents\\Projet_Echecs\\tournoi_nomtest_ici_2015-02-20.xml");
-		//System.out.println(tournoi.toString());
 	}
 
 	public static Window getPrimaryStage() {

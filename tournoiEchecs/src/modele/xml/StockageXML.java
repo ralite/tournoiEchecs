@@ -29,7 +29,7 @@ import modele.ModeleJoueur;
 
 public class StockageXML {
 
-	public static String joueurFilePath = "saveJoueur.xml";
+	public static String joueurFilePath = "src\\ressource\\saveJoueur.xml";
 
 	public static void writeXMLTournoi(Tournoi tournoi,String savePath,int existe){
 		try {
@@ -206,8 +206,10 @@ public class StockageXML {
 			Element rootElement = doc.createElement("joueurs");
 			doc.appendChild(rootElement);
 
+			int indiceJoueur = 0;
+			
 			for(Joueur jou : listJoueur) {
-				Element joueur = doc.createElement("joueur");
+				Element joueur = doc.createElement("joueur" + indiceJoueur);
 				rootElement.appendChild(joueur);
 
 				Element num = doc.createElement("num");
@@ -228,7 +230,7 @@ public class StockageXML {
 
 				Element dateNaissance = doc.createElement("datenaissance");
 				dateNaissance.appendChild(doc.createTextNode(jou.getDateNaissance().toString()));
-				rootElement.appendChild(dateNaissance);
+				joueur.appendChild(dateNaissance);
 
 				Element titre = doc.createElement("titre");
 				titre.appendChild(doc.createTextNode(jou.getTitre()));
@@ -258,6 +260,8 @@ public class StockageXML {
 				Element club = doc.createElement("club");
 				club.appendChild(doc.createTextNode(jou.getClub()));
 				joueur.appendChild(club);
+				
+				indiceJoueur++;
 			}
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -281,9 +285,85 @@ public class StockageXML {
 			Document doc = dBuilder.parse(XMLFile);
 			doc.getDocumentElement().normalize();
 
-			// code lecture fichier XML
+			ArrayList<Joueur> listJoueur = new ArrayList<Joueur>();
+			
+			Element racine = doc.getDocumentElement();
+			NodeList racineNoeuds = racine.getChildNodes();
+			int nbRacineNoeuds = racineNoeuds.getLength();
 
-			return null;
+			for (int i = 0; i < nbRacineNoeuds; i++) {
+
+				if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+
+					Node node = racineNoeuds.item(i);
+					NodeList joueurNoeuds = node.getChildNodes();
+					int nbJoueurNoeuds = joueurNoeuds.getLength();
+					
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					
+					String num = null;
+					String nom = null;
+					String prenom = null;
+					String sexe = null;
+					LocalDate dateNaissance = null;
+					String titre = null;
+					String ligue = null;
+					int elo = 0;
+					String typeElo = null;
+					String federation = null;
+					String categorie = null;
+					String club = null;
+					
+					for (int j = 0; j < nbJoueurNoeuds; j++) {
+
+						if (joueurNoeuds.item(j).getNodeType() == Node.ELEMENT_NODE) {
+							
+							Node sousNode = joueurNoeuds.item(j);
+							
+							if(sousNode.getNodeName() == "num"){
+								num = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "nom"){
+								nom = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "prenom"){
+								prenom = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "sexe"){
+								sexe = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "datenaissance"){
+								dateNaissance = LocalDate.parse(sousNode.getTextContent(), formatter);
+							}
+							if(sousNode.getNodeName() == "titre"){
+								titre = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "ligue"){
+								ligue = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "elo"){
+								elo = Integer.parseInt(sousNode.getTextContent());
+							}
+							if(sousNode.getNodeName() == "typeelo"){
+								typeElo = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "federation"){
+								federation = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "categorie"){
+								categorie = sousNode.getTextContent();
+							}
+							if(sousNode.getNodeName() == "club"){
+								club = sousNode.getTextContent();
+							}
+						}
+					}
+					
+					listJoueur.add(new Joueur(num,nom,prenom,sexe,dateNaissance,titre,ligue,elo,typeElo,federation,categorie,club));
+				}
+			}
+
+			return listJoueur;
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

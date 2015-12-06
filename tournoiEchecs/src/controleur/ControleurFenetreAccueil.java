@@ -14,11 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import metier.Joueur;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.StockageXML;
 import application.Main;
@@ -93,6 +96,11 @@ public class ControleurFenetreAccueil implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	// chargement du fichier des joueurs
+    	ArrayList<Joueur> listJoueur = StockageXML.readXMLJoueur(StockageXML.joueurFilePath);
+    	if(listJoueur != null){
+	    	for (Joueur joueur : listJoueur) {
+				ModeleJoueur.ajouterJoueur(joueur);
+			}
+    	}
     }
 }
