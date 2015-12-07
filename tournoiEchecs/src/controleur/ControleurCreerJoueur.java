@@ -384,8 +384,9 @@ public class ControleurCreerJoueur implements Initializable {
 		            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
 		            		|| tf_federation.getText().equalsIgnoreCase("Fr"))
 		        	{
+		        		tf_ligue.setDisable(false);
+		        	}else
 		        		tf_ligue.setDisable(true);
-		        	}
 		        }
 		    }
 		});
