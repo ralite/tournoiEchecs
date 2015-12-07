@@ -128,6 +128,7 @@ public class ControleurCreerJoueur implements Initializable {
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
 		}
+
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -413,7 +414,7 @@ public class ControleurCreerJoueur implements Initializable {
 			tf_classementElo.setText("aucun");
 			tf_classementElo.setDisable(true);
 		}
-		
+
 	}
 
 	@FXML
@@ -430,7 +431,7 @@ public class ControleurCreerJoueur implements Initializable {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Succès");
 			alert.setHeaderText(null);
-			
+
 			String numLicence = tf_numLicence.getText().substring(0,1).toUpperCase().concat(tf_numLicence.getText().substring(1,6)) ;
 
 			String nom = tf_nom.getText().toUpperCase();
@@ -444,7 +445,7 @@ public class ControleurCreerJoueur implements Initializable {
 			String titre = chbx_titre.getValue();
 
 			String ligue = tf_ligue.getText().toUpperCase();
-			
+
 			int elo ;
 			try{
 				elo=Integer.parseInt(tf_classementElo.getText());
@@ -467,16 +468,17 @@ public class ControleurCreerJoueur implements Initializable {
 			String club = tf_club.getText().substring(0,1).toUpperCase().concat(tf_club.getText().substring(1).toLowerCase());
 			if(ModeleJoueur.getJoueurAmodifier()==null){
 				ModeleJoueur.creerJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
-				alert.setContentText("Joueur créé avec succès !");				
+				alert.setContentText("Joueur créé avec succès !");
+				alert.showAndWait();
 			}else {
 				ModeleJoueur.modifierJoueur(numLicence, nom, prenom, sexe, dateNaissance, titre, ligue, elo, typeElo, federation, categorie, club);
 				ModeleJoueur.setJoueurAmofifier(null);
-				alert.setContentText("Joueur modifié avec succès !");	
+				alert.setContentText("Joueur modifié avec succès !");
+				alert.showAndWait();
+				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 			StockageXML.WriteXMLJoueur(StockageXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
-			alert.showAndWait();
-			((Node)e.getSource()).getScene().getWindow().hide();
-			
+			clearFormulaire();
 		}//formulaireCorrect
 	}
 
@@ -597,9 +599,10 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-			lb_erreurDate.setText("Entrez la date de naissance du joueur.");
+			lb_erreurDate.setText("Entrez une date de naissance valide.");
 			lb_erreurCategorie.setText("Entrez une date de naissance pour obtenir la catégorie du joueur");
 			lb_categorie.setText("Non assignée");
+			res=false;
 		}
 
 		//classementElo
@@ -658,6 +661,7 @@ public class ControleurCreerJoueur implements Initializable {
 	    		{
 					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
 					tf_ligue.setStyle("-fx-control-inner-background : red; ");
+					res =false;
 	    		}else{
 	    			lb_erreurLigue.setText("");
 	    			tf_ligue.setStyle("-fx-control-inner-background : white; ");
