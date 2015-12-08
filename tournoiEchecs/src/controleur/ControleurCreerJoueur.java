@@ -128,7 +128,8 @@ public class ControleurCreerJoueur implements Initializable {
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
 		}
-
+		tf_numLicence.setDisable(true);
+/*
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -150,7 +151,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-
+*/
 		tf_nom.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -521,7 +522,7 @@ public class ControleurCreerJoueur implements Initializable {
 	{//plusieurs if pour avoir plusieurs champs en rouge et pas seulement le premier testé
 
 		boolean res = true;
-
+/*
 		//numLicence
 		if(Validation.estVide(tf_numLicence))
 		{
@@ -544,7 +545,7 @@ public class ControleurCreerJoueur implements Initializable {
 				lb_erreurLicence.setText("");
 			}
 		}
-
+*/
 		//nom
 		if(Validation.estVide(tf_nom))
 		{
@@ -713,7 +714,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@FXML
 	public void limiteTexte(){
-		Validation.verifLongueurTexte(tf_numLicence,7);
+		//Validation.verifLongueurTexte(tf_numLicence,7);
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
