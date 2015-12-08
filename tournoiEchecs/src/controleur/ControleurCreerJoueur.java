@@ -123,9 +123,9 @@ public class ControleurCreerJoueur implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {		
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
+			tf_numLicence.setDisable(true);
 		}
-		tf_numLicence.setDisable(true);
-/*
+
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -133,21 +133,26 @@ public class ControleurCreerJoueur implements Initializable {
 		    {
 		        if (oldPropertyValue)
 		        {
-		            if(!Validation.estVide(tf_numLicence))
-		            {
-			    		if(!Validation.verifNumLicence(tf_numLicence))
-			    		{
-			    			lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
-			    		}else{
-			    			lb_erreurLicence.setText("");
-			    		}
-		            }else{
-		            	lb_erreurLicence.setText("Entrez le numéro de licence du joueur.");
-		            }
+		    		if(Validation.estVide(tf_numLicence))
+		    		{
+		    			lb_erreurLicence.setText("Entrez le numéro de licence du joueur.");
+		    		}else
+		    		{
+		    			lb_erreurLicence.setText("");
+		    			if(!Validation.verifNumLicence(tf_numLicence))
+		    			{
+		    				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
+		    			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
+		    			{
+	    					lb_erreurLicence.setText("Le numéro de licence existe déjà.");
+		    			}else{
+		    				lb_erreurLicence.setText("");
+		    			}
+		    		}
 		        }
 		    }
 		});
-*/
+
 		tf_nom.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -540,7 +545,7 @@ public class ControleurCreerJoueur implements Initializable {
 	{//plusieurs if pour avoir plusieurs champs en rouge et pas seulement le premier testé
 
 		boolean res = true;
-/*
+
 		//numLicence
 		if(Validation.estVide(tf_numLicence))
 		{
@@ -563,7 +568,7 @@ public class ControleurCreerJoueur implements Initializable {
 				lb_erreurLicence.setText("");
 			}
 		}
-*/
+
 		//nom
 		if(Validation.estVide(tf_nom))
 		{
