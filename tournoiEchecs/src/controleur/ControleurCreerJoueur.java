@@ -46,7 +46,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@FXML
 	ChoiceBox<String> chbx_titre;
-	private ObservableList<String> listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Masculin","Maître FIDE Féminin","Candidat Maître Masculin","Candidat Maître Féminin","Maître International Masculin", "Maître International Féminin", "Grand Maître International Masculin", "Grand Maître International Feminin");
+	private ObservableList<String> listeTitre;
 
 	@FXML
 	ChoiceBox<String> chbx_sexe;
@@ -120,11 +120,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		chbx_sexe.setItems(listeSexe);
-		chbx_titre.setItems(listeTitre);
-
-		clearFormulaire();
+	public void initialize(URL location, ResourceBundle resources) {		
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
 		}
@@ -233,6 +229,25 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
+		chbx_sexe.focusedProperty().addListener(new ChangeListener<Boolean>()
+		{
+		    @Override
+		    public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+		    {
+		        if (oldPropertyValue)
+		        {
+		        	if(chbx_sexe.getValue() == "Homme")
+		        	{
+		        		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Masculin","Candidat Maître Masculin","Maître International Masculin", "Grand Maître International Masculin");
+		        	}else{
+		        		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Féminin","Candidat Maître Féminin", "Maître International Féminin", "Grand Maître International Feminin");
+		        	}
+	        		chbx_titre.setItems(listeTitre);
+	        		chbx_titre.setValue("Aucun titre");
+		        }
+		    }
+		});
+		
 		tf_ligue.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -337,8 +352,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-
-
+		
 		tf_club.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -390,7 +404,8 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-
+		
+		clearFormulaire();
 	}
 
 	private void chargerFormulaire() {
@@ -500,7 +515,10 @@ public class ControleurCreerJoueur implements Initializable {
 		lb_erreur.setText("");
 		lb_categorie.setText("Non assignée");
 
+		chbx_sexe.setItems(listeSexe);
 		chbx_sexe.setValue("Homme");
+		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Masculin","Candidat Maître Masculin","Maître International Masculin", "Grand Maître International Masculin");
+		chbx_titre.setItems(listeTitre);
 		chbx_titre.setValue("Aucun titre");
 
 		tf_numLicence.clear();
