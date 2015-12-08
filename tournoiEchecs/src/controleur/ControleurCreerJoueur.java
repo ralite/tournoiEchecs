@@ -121,6 +121,8 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		clearFormulaire();
+
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
 		}
@@ -410,7 +412,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
-		clearFormulaire();
+		
 	}
 
 	private void chargerFormulaire() {
@@ -442,6 +444,7 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	public void onClick_Quitter(Event e)
 	{
+		ModeleJoueur.setJoueurAmofifier(null);
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
@@ -558,7 +561,7 @@ public class ControleurCreerJoueur implements Initializable {
 			{
 				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
 				res = false;
-			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
+			}else if(ModeleJoueur.getJoueurAmodifier()==null && ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 			{
 				lb_erreurLicence.setText("Le numéro de licence existe déjà.");
 				res = false;
