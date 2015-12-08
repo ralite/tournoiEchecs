@@ -120,10 +120,9 @@ public class ControleurCreerJoueur implements Initializable {
 
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {		
+	public void initialize(URL location, ResourceBundle resources) {
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
 			chargerFormulaire();
-			tf_numLicence.setDisable(true);
 		}
 
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
@@ -253,7 +252,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-		
+
 		tf_ligue.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -358,7 +357,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-		
+
 		tf_club.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -410,11 +409,12 @@ public class ControleurCreerJoueur implements Initializable {
 		        }
 		    }
 		});
-		
+
 		clearFormulaire();
 	}
 
 	private void chargerFormulaire() {
+		tf_numLicence.setDisable(true);
 		tf_numLicence.setText(ModeleJoueur.getJoueurAmodifier().getNumLicence());
 		tf_nom.setText(ModeleJoueur.getJoueurAmodifier().getNomJoueur());
 		tf_prenom.setText(ModeleJoueur.getJoueurAmodifier().getPrenomJoueur());
@@ -560,10 +560,8 @@ public class ControleurCreerJoueur implements Initializable {
 				res = false;
 			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 			{
-				if(!ModeleJoueur.getJoueurAmodifier().getNumLicence().equals(tf_numLicence.getText().toString())){
-					lb_erreurLicence.setText("Le numéro de licence existe déjà.");
-					res = false;
-				}
+				lb_erreurLicence.setText("Le numéro de licence existe déjà.");
+				res = false;
 			}else{
 				lb_erreurLicence.setText("");
 			}
