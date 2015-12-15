@@ -45,8 +45,7 @@ public class ControleurCreerJoueur implements Initializable {
 	TextField tf_prenom;
 
 	@FXML
-	ChoiceBox<String> chbx_titre;
-	private ObservableList<String> listeTitre;
+	DatePicker dp_dateNaissance;
 
 	@FXML
 	ChoiceBox<String> chbx_sexe;
@@ -59,7 +58,17 @@ public class ControleurCreerJoueur implements Initializable {
 	TextField tf_classementElo;
 
 	@FXML
-	DatePicker dp_dateNaissance;
+	RadioButton rb_national;
+
+	@FXML
+	RadioButton rb_fide;
+
+	@FXML
+	RadioButton rb_nouveau;
+
+	@FXML
+	ChoiceBox<String> chbx_titre;
+	private ObservableList<String> listeTitre;
 
 	@FXML
 	TextField tf_club;
@@ -109,18 +118,10 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	Label lb_erreur;
 
-	@FXML
-	RadioButton rb_national;
-
-	@FXML
-	RadioButton rb_fide;
-
-	@FXML
-	RadioButton rb_nouveau;
-
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL location, ResourceBundle resources)
+	{
 		clearFormulaire();
 
 		if(ModeleJoueur.getJoueurAmodifier()!=null){
@@ -163,7 +164,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(!Validation.estVide(tf_nom))
 		            {
-			    		if(!Validation.estChaine(tf_nom))
+			    		if(!Validation.estNomCompose(tf_nom))
 			    		{
 			    			lb_erreurNom.setText("Saisissez un nom valide.");
 			    		}else{
@@ -185,7 +186,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(!Validation.estVide(tf_prenom))
 		            {
-			    		if(!Validation.estChaine(tf_prenom))
+			    		if(!Validation.estNomCompose(tf_prenom))
 			    		{
 			    			lb_erreurPrenom.setText("Saisissez un prénom valide.");
 			    		}else{
@@ -369,7 +370,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(!Validation.estVide(tf_club))
 		            {
-			    		if(!Validation.estChaine(tf_club))
+			    		if(!Validation.estChaineChiffree(tf_club))
 			    		{
 			    			lb_erreurClub.setText("Saisissez un club valide.");
 			    		}else{
@@ -389,6 +390,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    {
 		        if (oldPropertyValue)
 		        {
+		        	//validation fédération
 		        	if(!Validation.estVide(tf_federation))
 		            {
 			    		if(!Validation.estChaine(tf_federation))
@@ -401,18 +403,23 @@ public class ControleurCreerJoueur implements Initializable {
 		            	lb_erreurFederation.setText("Entrez la fédération du joueur.");
 		            }
 
+		        	//grisage de la ligue en cas de non-fr
 		            if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
 		            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-		            		|| tf_federation.getText().equalsIgnoreCase("Fr"))
+		            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra"))
 		        	{
 		        		tf_ligue.setDisable(false);
-		        	}else
+		        	}else{
 		        		tf_ligue.setDisable(true);
+		        		tf_ligue.clear();
+		        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
+		        		lb_erreurLigue.setText("");
+		        	}
 		        }
 		    }
 		});
 
-		
+
 	}
 
 	private void chargerFormulaire() {
@@ -672,9 +679,9 @@ public class ControleurCreerJoueur implements Initializable {
 		}
 
 		//ligue
-		if(!tf_federation.getText().equalsIgnoreCase("Francaise") && !tf_federation.getText().equalsIgnoreCase("Francais")
-        		&& !tf_federation.getText().equalsIgnoreCase("Française") && !tf_federation.getText().equalsIgnoreCase("Français")
-        		&& !tf_federation.getText().equalsIgnoreCase("Fr"))
+		if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
+        		|| tf_federation.getText().equalsIgnoreCase("Française") || tf_federation.getText().equalsIgnoreCase("Français")
+        		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra"))
     	{
 			if(Validation.estVide(tf_ligue))
 			{
@@ -683,7 +690,7 @@ public class ControleurCreerJoueur implements Initializable {
 			}else
 			{
 				lb_erreurLigue.setText("");
-	    		if(!Validation.estChaine(tf_ligue)||tf_ligue.getText().length()!=3)
+	    		if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
 	    		{
 					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
 					tf_ligue.setStyle("-fx-control-inner-background : red; ");
@@ -693,8 +700,6 @@ public class ControleurCreerJoueur implements Initializable {
 	    			tf_ligue.setStyle("-fx-control-inner-background : white; ");
 	    		}
 			}
-
-
     	}
 
 		//club

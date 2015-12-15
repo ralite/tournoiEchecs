@@ -69,6 +69,18 @@ public class Validation {
 
 	}
 
+	public static boolean estChaineChiffree(TextField tx) {
+		if(tx.getText().trim().matches("^[0-9a-zA-Z]*$")){
+			tx.setStyle("-fx-control-inner-background : white; ");
+			return true;
+		}
+		else{
+			tx.setStyle("-fx-control-inner-background : red; ");
+			return false;
+		}
+
+	}
+
 	public static boolean estDate(DatePicker dp) {
 		SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
 		     try {
