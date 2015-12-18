@@ -406,7 +406,8 @@ public class ControleurCreerJoueur implements Initializable {
 		        	//grisage de la ligue en cas de non-fr
 		            if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
 		            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-		            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra"))
+		            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
+		            		|| tf_federation.getText().equalsIgnoreCase("France"))
 		        	{
 		        		tf_ligue.setDisable(false);
 		        	}else{
@@ -681,7 +682,8 @@ public class ControleurCreerJoueur implements Initializable {
 		//ligue
 		if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
         		|| tf_federation.getText().equalsIgnoreCase("Française") || tf_federation.getText().equalsIgnoreCase("Français")
-        		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra"))
+        		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
+        		|| tf_federation.getText().equalsIgnoreCase("France"))
     	{
 			if(Validation.estVide(tf_ligue))
 			{
