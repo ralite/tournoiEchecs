@@ -1,5 +1,6 @@
 package controleur;
 
+import vue.AppariementJoueur;
 import vue.CreationTournoi;
 import vue.CreerJoueur;
 import vue.FenetreAccueil;
@@ -101,5 +102,6 @@ public class ControleurFenetreAccueil implements Initializable{
 				ModeleJoueur.ajouterJoueur(joueur);
 			}
     	}
+
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="475.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAppariement">
+   <children>
+      <ListView fx:id="lv_appariements" layoutX="353.0" layoutY="88.0" prefHeight="262.0" prefWidth="250.0" />
+      <Label alignment="CENTER" layoutX="353.0" layoutY="61.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="478.0" layoutY="61.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="lv_joueurInscrit" layoutX="24.0" layoutY="45.0" prefHeight="305.0" prefWidth="125.0" />
+      <Label fx:id="lb_joueurNoir" alignment="CENTER" contentDisplay="RIGHT" layoutX="176.0" layoutY="102.0" prefHeight="27.0" prefWidth="169.0" text="Label" wrapText="true" />
+      <Button layoutX="196.0" layoutY="129.0" mnemonicParsing="false" onAction="#onClickNoir" prefHeight="0.0" prefWidth="88.0" text="Noir" wrapText="true" />
+      <Label fx:id="lb_joueurBlanc" alignment="CENTER" layoutX="176.0" layoutY="206.0" prefHeight="27.0" prefWidth="169.0" text="Label" wrapText="true" />
+      <Button layoutX="201.0" layoutY="233.0" mnemonicParsing="false" onAction="#onClickBlanc" prefHeight="0.0" prefWidth="88.0" text="Blanc" wrapText="true" />
+      <Button layoutX="176.0" layoutY="311.0" mnemonicParsing="false" onAction="#onClickAjouter" prefHeight="39.0" prefWidth="138.0" text="Ajouter" />
+   </children>
+</AnchorPane>

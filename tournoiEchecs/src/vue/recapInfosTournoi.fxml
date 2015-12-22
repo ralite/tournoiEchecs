@@ -18,7 +18,7 @@
       <Label fx:id="label_joueursInscrits" layoutX="25.0" layoutY="96.0" text="Joueurs inscrits" />
       <Label fx:id="button_recapDeaprtages" layoutX="274.0" layoutY="96.0" text="Départages du tournoi" />
       <Button fx:id="button_recapGererJoueurs" layoutX="26.0" layoutY="386.0" mnemonicParsing="false" onAction="#recapGererJoueurs" prefHeight="25.0" prefWidth="170.0" text="Gérer les joueurs inscrits" />
-      <Button layoutX="465.0" layoutY="386.0" mnemonicParsing="false" text="Apparier les joueurs" />
+      <Button layoutX="465.0" layoutY="386.0" mnemonicParsing="false" onAction="#apparierJoueurs" text="Apparier les joueurs" />
       <Button fx:id="button_recapModifierTournoi" layoutX="465.0" layoutY="353.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="122.0" text="Modifier tournoi" />
       <Label fx:id="lb_recapWarning" layoutX="219.0" layoutY="390.0" prefHeight="17.0" prefWidth="225.0" />
       <Label fx:id="lb_recapDebTournoi" layoutX="414.0" layoutY="6.0" prefHeight="17.0" prefWidth="109.0" text="Début du tournoi :" />

@@ -26,6 +26,7 @@ import modele.ModeleDepartage;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
+import vue.AppariementJoueur;
 import vue.CreationTournoi;
 
 public class ControleurRecapInfosTournoi implements Initializable {
@@ -105,6 +106,12 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		lb_recapCadenceDeJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
 		lv_recapJoueursInscrits.setItems(ModeleTournoi.getJoueurs());
 		lv_recapDepartagesChoisis.setItems(ModeleTournoi.getTournoi().getListeDepartages());
+	}
+	
+	@FXML
+	public void apparierJoueurs(){
+		AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());
+		app.show();
 	}
 
 }
