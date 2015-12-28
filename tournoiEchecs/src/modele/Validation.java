@@ -131,8 +131,9 @@ public class Validation {
 	public static void verifLongueurTexte(TextField tf, int longeur){
 		int longueurMax=longeur;
 		if(tf.getText().length()>=longueurMax){
-            tf.setText(tf.getText().substring(1, longueurMax));
+            tf.setText(tf.getText().substring(0, longueurMax-1));
 		}
+		tf.positionCaret(tf.getText().length());;
 	}
 
 	public static boolean verifNumLicence(TextField tf){
