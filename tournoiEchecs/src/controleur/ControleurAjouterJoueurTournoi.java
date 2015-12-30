@@ -16,9 +16,11 @@ import java.util.ResourceBundle;
 
 
 
+
 import application.Main;
 import metier.Joueur;
 import metier.Joueur;
+import metier.departage.Departage;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.Validation;
@@ -40,59 +42,63 @@ import javafx.scene.control.TextField;
 
 public class ControleurAjouterJoueurTournoi implements Initializable {
 
-	private ObservableList<Joueur> data = FXCollections.observableArrayList();
+	private ObservableList<Joueur> joueurInscrit = FXCollections.observableArrayList();
+	
+	private ObservableList<Joueur> resutatRecherche = FXCollections.observableArrayList();
 
 	@FXML
 	private Label lb_nomTournoi;
 
 	@FXML
-
 	private ListView<Joueur> listePersonne;
+	
+	@FXML
+	private ListView<Joueur> lv_recherche;
 
 	@FXML
 	Button button_OK;
 
 
 	@FXML
-	TextField tf_numLicence;
+	TextField tf_rechercher;
 
 	@FXML
 	Label lb_info;
 
 
+	@FXML
+	public void actionChercher(){
+		Joueur j;
+		ArrayList<Joueur> joueurs;
+		resutatRecherche.clear();
+		lb_info.setText("");
+		j=ModeleJoueur.rechercherJoueur(tf_rechercher.getText().toString());
+		if(j==null){
+			joueurs=ModeleJoueur.rechercherNomJoueur(tf_rechercher.getText().toString());
+			if(!joueurs.isEmpty()){
+				resutatRecherche.addAll(joueurs);
+			}
+			else {
+				lb_info.setText("Aucun joueurs trouvés");
+			}
+		}
+		else{
+			resutatRecherche.add(j);
+		}
+	}
 
 	@FXML
 	public void ajouterJoueur(Event e) {
-		LocalDate dateActuelle = LocalDate.now();
-		lb_info.setText("");
-		if(Validation.verifDate(new DatePicker(dateActuelle), new DatePicker(ModeleTournoi.getTournoi().getDateDeb()))){
-			if(Validation.verifNumLicence(tf_numLicence)){
-				//recherche joueur
-					Joueur j = ModeleJoueur.rechercherJoueur(tf_numLicence.getText());
-					//test si le joueur retourné n'est pas nulll !
-					if(j==null){
-					lb_info.setText("numéro de licence introuvable");
-					}
-					else if(data.contains(j)){
-							lb_info.setText("deja present");
-						}
-						else{
-							ajouterTrier(data, j);
-						}
-				}else {
-					lb_info.setText("numéro de licence incohérent");
-				}
-
-				tf_numLicence.setText("");
-		}
-		else {
-			lb_info.setText("Impossible d'ajouter des joueurs une fois le tournoi débuté");
+		Joueur joueurSelectionné =  (Joueur)lv_recherche.getSelectionModel().getSelectedItem();
+		if(joueurSelectionné!=null){
+			ajouterTrier(joueurInscrit, joueurSelectionné);
+			resutatRecherche.remove(joueurSelectionné);
 		}
 	}
 
 	@FXML
 	public void retirerJoueur(Event e) {
-		data.remove(
+		joueurInscrit.remove(
                 (Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 
@@ -105,7 +111,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	
 	@FXML
 	public void actionValider(Event e){
-		listePersonne.setItems(data);
+		listePersonne.setItems(joueurInscrit);
 		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
 		StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
@@ -119,9 +125,10 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
 		if(ModeleTournoi.getJoueurs()!=null){
-			data.setAll(ModeleTournoi.getJoueurs());
+			joueurInscrit.setAll(ModeleTournoi.getJoueurs());
 		}
-		listePersonne.setItems(data);
+		listePersonne.setItems(joueurInscrit);
+		lv_recherche.setItems(resutatRecherche);
 	}
 
 	void ajouterTrier(ObservableList<Joueur> data, Joueur j){

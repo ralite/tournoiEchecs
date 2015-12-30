@@ -16,9 +16,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ControleurModifierJoueur implements Initializable{
 	
@@ -68,6 +70,22 @@ public class ControleurModifierJoueur implements Initializable{
 		else{
 			CreerJoueur cj = new CreerJoueur(Main.getPrimaryStage());
 			cj.show();
+			((Node)e.getSource()).getScene().getWindow().hide();
+		}
+	}
+	
+	@FXML
+	public void actionSupprimer(Event e){
+		Joueur joueurSelectionné=(Joueur)lv_joueurs.getSelectionModel().getSelectedItem();
+		if(joueurSelectionné==null){
+			lb_info.setText("Veuillez selectionner un joueur");
+		}
+		else{
+			ModeleJoueur.supprimerJoueur(joueurSelectionné);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Succés");
+			alert.setContentText("Joueur Supprimé avec succés !");	
+			alert.showAndWait();
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
 	}

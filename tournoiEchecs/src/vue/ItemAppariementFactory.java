@@ -69,8 +69,18 @@ public class ItemAppariementFactory extends ListCell<Partie>{
         if (!empty && item != null) { 
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
             joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-            eloJoueurBlanc.setText(String.valueOf(item.getElojoueurBlanc()));
+            if(item.getElojoueurBlanc()!=-1){
+            	eloJoueurBlanc.setText(String.valueOf(item.getElojoueurBlanc()));
+            }
+            else{
+            	eloJoueurBlanc.setText("inconnu");
+            }
+            if(item.getElojoueurNoir()!=-1){
             eloJoueurNoir.setText(String.valueOf(item.getElojoueurNoir()));
+            }
+            else{
+            	eloJoueurNoir.setText("inconnu");
+            }
             setText(null); 
             setGraphic(content); 
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY); 

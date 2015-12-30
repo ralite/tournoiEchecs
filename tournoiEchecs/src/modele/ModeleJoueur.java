@@ -83,6 +83,10 @@ public class ModeleJoueur {
 			joueurAmodifier.setCategorie(categorie);
 			joueurAmodifier.setClub(club);
 		}
+		public static void supprimerJoueur(Joueur joueur) {
+			collectionJoueurs.remove(joueur);
+			
+		}
 
 
 

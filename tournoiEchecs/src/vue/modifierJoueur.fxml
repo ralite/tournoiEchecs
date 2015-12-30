@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -13,8 +14,9 @@
       <Label layoutX="320.0" layoutY="126.0" text="${lv_joueurs.selectionModel.selectedItem.numLicence}" />
       <Label layoutX="320.0" layoutY="175.0" text="${lv_joueurs.selectionModel.selectedItem.nomJoueur}" />
       <Label layoutX="320.0" layoutY="216.0" text="${lv_joueurs.selectionModel.selectedItem.prenomJoueur}" />
-      <Button layoutX="298.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionAnnuler" text="Annuler" />
-      <Button layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
+      <Button layoutX="233.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionAnnuler" text="Annuler" />
+      <Button layoutX="331.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionModifier" text="Modifier" />
       <Label fx:id="lb_info" layoutX="201.0" layoutY="285.0" prefHeight="27.0" prefWidth="277.0" textFill="#dd0505" />
+      <Button layoutX="433.0" layoutY="321.0" mnemonicParsing="false" onAction="#actionSupprimer" text="Supprimer" />
    </children>
 </AnchorPane>
