@@ -22,6 +22,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import metier.Joueur;
+import metier.Partie;
+import metier.Ronde;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleDepartage;
@@ -64,8 +66,8 @@ public class TournoiXML {
 			rootElement.appendChild(nbRondes);
 
 			Element cadenceJeu = doc.createElement("cadencejeu");
-			Integer j = (Integer)tournoi.getCadenceJeu();
-			cadenceJeu.appendChild(doc.createTextNode(j.toString()));
+			Integer i2 = (Integer)tournoi.getCadenceJeu();
+			cadenceJeu.appendChild(doc.createTextNode(i2.toString()));
 			rootElement.appendChild(cadenceJeu);
 
 			for(Departage dep : tournoi.getListeDepartages()) {
@@ -79,6 +81,51 @@ public class TournoiXML {
 				joueur.appendChild(doc.createTextNode(jou.getNumLicence()));
 				rootElement.appendChild(joueur);
 			}
+			
+			///////////
+			
+			/*int indiceRonde = 0;
+			
+			for(Ronde ron : tournoi.getListeRondes()) {
+				Element ronde = doc.createElement("ronde" + indiceRonde);
+				rootElement.appendChild(ronde);
+				
+				Element num = doc.createElement("num");
+				Integer i3 = (Integer)ron.getNumeroRonde();
+				num.appendChild(doc.createTextNode(i3.toString()));
+				ronde.appendChild(num);
+				
+				int indicePartie = 0;
+				
+				for(Partie par : ron.getListePartie()) {
+					Element partie = doc.createElement("partie" + indicePartie);
+					ronde.appendChild(partie);
+					
+					Element joueurBlanc = doc.createElement("joueurBlanc");
+					joueurBlanc.appendChild(doc.createTextNode(par.getNumLicenceJoueurBlanc()));
+					partie.appendChild(joueurBlanc);
+					
+					Element joueurNoir = doc.createElement("joueurNoir");
+					joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
+					partie.appendChild(joueurNoir);
+					
+					indicePartie++;
+				}
+				
+				int indiceJoueurAbs = 0;
+				
+				for(Joueur jouabs : ron.getListeJoueurAbs()) {
+					Element joueurAbs = doc.createElement("joueurAbs" + indiceJoueurAbs);
+					joueurAbs.appendChild(doc.createTextNode(jouabs.getNumLicence()));
+					ronde.appendChild(joueurAbs);
+					
+					indiceJoueurAbs++;
+				}
+				
+				indiceRonde++;
+			}*/
+			
+			//////////
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

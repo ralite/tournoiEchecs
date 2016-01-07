@@ -60,7 +60,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	TextField tf_cadenceJeu;
 
 	@FXML
-    private void actionFenetreJoueurs(Event e) {
+    private void actionValider(Event e) {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
@@ -69,9 +69,6 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.ajouterTournoi(tournoi);
 					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml");
-					
-					System.out.println("1" + ModeleTournoi.getFichierTournoi());
-					
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 				else{
@@ -82,9 +79,6 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
-					
-					System.out.println("2" + ModeleTournoi.getFichierTournoi());
-					
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 
@@ -92,7 +86,6 @@ public class ControleurFenetreTournoi implements Initializable {
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
 		}
 	}
 
@@ -165,7 +158,6 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	public void actionAnnuler(Event e) {
-		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
 		if(ModeleTournoi.getTournoi()!=null){
 			RecapTournoi rp = new RecapTournoi(Main.getPrimaryStage());
 			rp.show();
@@ -204,17 +196,15 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){
-            char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
             if(!Validation.estChiffre(leChampDeSaisie)){
             	leChampDeSaisie.setText(leChampDeSaisie.getText().replaceAll("[^0-9]",""));
             }
-       }
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		items =FXCollections.observableArrayList (
-				ModeleDepartage.getcollectionDepartages());
+		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
 		tf_cadenceJeu.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_cadenceJeu));

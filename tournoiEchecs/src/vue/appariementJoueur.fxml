@@ -32,6 +32,6 @@
       <Button layoutX="439.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionAjouterForfait" text="Forfait" />
       <Button layoutX="137.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionAjouterAbsent" text="Absent" />
       <Button layoutX="606.0" layoutY="543.0" mnemonicParsing="false" onAction="#actionAnnuler" prefHeight="39.0" prefWidth="147.0" text="Annuler" />
-      <Button layoutX="606.0" layoutY="591.0" mnemonicParsing="false" onAction="#actionLancerRonde" prefHeight="39.0" prefWidth="147.0" text="Lancer la ronde" />
+      <Button layoutX="606.0" layoutY="591.0" mnemonicParsing="false" onAction="#actionValider" prefHeight="39.0" prefWidth="147.0" text="Lancer la ronde" />
    </children>
 </AnchorPane>

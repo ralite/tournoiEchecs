@@ -1,8 +1,5 @@
 package modele;
 
-import java.io.File;
-import javafx.collections.ObservableList;
-import metier.Joueur;
 import metier.Tournoi;
 
 public class ModeleTournoi {

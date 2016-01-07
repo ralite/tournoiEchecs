@@ -7,6 +7,7 @@ public class Ronde {
 
 	private int numeroRonde;
 	private ObservableList<Partie> ListePartie;
+	private ObservableList<Joueur> ListeJoueurAbs;
 	
 	public Ronde(int numeroRonde) {
 		this.numeroRonde = numeroRonde;
@@ -27,6 +28,14 @@ public class Ronde {
 	
 	public void setListePartie(ObservableList<Partie> listePartie) {
 		ListePartie = listePartie;
+	}
+
+	public ObservableList<Joueur> getListeJoueurAbs() {
+		return ListeJoueurAbs;
+	}
+
+	public void setListeJoueurAbs(ObservableList<Joueur> listeJoueurAbs) {
+		ListeJoueurAbs = listeJoueurAbs;
 	}
 	
 }

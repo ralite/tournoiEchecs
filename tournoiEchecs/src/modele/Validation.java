@@ -11,33 +11,28 @@ import javafx.scene.control.TextField;
 
 public class Validation {
 
-	private static LocalDate dateActuelle = LocalDate.now();
-
 	public static boolean estEntierPos(TextField tx){
-		int r;
+		int resultat;
 		try{
-			r=Integer.parseInt(tx.getText());
-		}
-		catch(Exception e){
+			resultat=Integer.parseInt(tx.getText());
+		}catch(Exception e){
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
-		if(r>0){
+		if(resultat>0){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
-		}
-		else{
+		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
-
 	}
 
 	public static boolean estVide(TextField tx) {
 		if (tx.getText().trim().isEmpty()){
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return true;
-		}else {
+		}else{
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return false;
 		}
@@ -59,8 +54,7 @@ public class Validation {
 		if(tx.getText().trim().matches("^[^0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
-		}
-		else{
+		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
@@ -71,8 +65,7 @@ public class Validation {
 		if(tx.getText().trim().matches("^[a-zA-Z]*[0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
-		}
-		else{
+		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
@@ -81,23 +74,21 @@ public class Validation {
 
 	public static boolean estDate(DatePicker dp) {
 		SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
-		     try {
-		          format.parse(dp.getValue().toString());
-		          dp.setStyle("-fx-control-inner-background : white; ");
-		          return true;
-		     }
-		     catch(Exception e){
-		    	  dp.setStyle("-fx-control-inner-background : red; ");
-		          return false;
-		     }
+		try {
+			format.parse(dp.getValue().toString());
+			dp.setStyle("-fx-control-inner-background : white; ");
+			return true;
+		}catch(Exception e){
+			dp.setStyle("-fx-control-inner-background : red; ");
+			return false;
+		}
 	}
 
 	public static boolean estNomCompose(TextField tx) {
 		if(tx.getText().trim().matches("^[^0-9]*[-]?[^0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
-		}
-		else{
+		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
@@ -110,12 +101,12 @@ public class Validation {
 			d1.setStyle("-fx-control-inner-background : red; ");
 			d2.setStyle("-fx-control-inner-background : red; ");
 			return false;
-		}else {
+		}else{
 			if(!d1.getValue().isAfter(d2.getValue())){
 				d1.setStyle("-fx-control-inner-background : white; ");
 				d2.setStyle("-fx-control-inner-background : white; ");
 				return true;
-			}else {
+			}else{
 				d1.setStyle("-fx-control-inner-background : red; ");
 				d2.setStyle("-fx-control-inner-background : red; ");
 				return false;
@@ -139,15 +130,14 @@ public class Validation {
 		{
 			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
-		}else if(!Character.isLetter(tf.getText().charAt(0)))
-		{
+		}else if(!Character.isLetter(tf.getText().charAt(0))){
 			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
+		
 		try{
 			Integer.parseInt(tf.getText().substring(1, 5));
-		}catch(NumberFormatException e)
-		{
+		}catch(NumberFormatException e){
 			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
@@ -160,8 +150,7 @@ public class Validation {
 		if(lv.getItems().isEmpty()){
 			lv.setStyle("-fx-control-inner-background : red; ");
 			return false;
-		}
-		else {
+		}else {
 			lv.setStyle("-fx-control-inner-background : white; ");
 			return false;
 		}
@@ -171,25 +160,21 @@ public class Validation {
 		if(tx.getText().trim().matches("^[0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
-		}
-		else{
+		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
 	}
 
 	public static boolean recupValeursDate(DatePicker dp){
-
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		try{
 			LocalDate d = LocalDate.parse(dp.getEditor().getText().toString(),formatter);
 			dp.setValue(d);
 			return true;
-		}
-		catch(Exception e){
+		}catch(Exception e){
 			return false;
 		}
 	}
-
 
 }

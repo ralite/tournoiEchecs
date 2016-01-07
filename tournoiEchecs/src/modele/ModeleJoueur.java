@@ -8,15 +8,10 @@ import java.util.ArrayList;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 public class ModeleJoueur {
 
 		private static final ListProperty<Joueur> collectionJoueurs = new SimpleListProperty<>(FXCollections.observableArrayList());
-		public static final ListProperty<Joueur> collectionJoueursProperty() {return collectionJoueurs;}
-		public static final ObservableList<Joueur> getcollectionJoueurs() {return collectionJoueursProperty().get();}
-		public static final void setcollectionJoueurs(final ObservableList<Joueur> collectionJoueurs) {collectionJoueursProperty().set(collectionJoueurs);}
 
 		private static Joueur joueurAmodifier=null;
 
