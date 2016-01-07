@@ -44,6 +44,7 @@ public class ModeleJoueur {
 			}
 			return null;
 		}
+		
 		public static ArrayList<Joueur> rechercherNomJoueur(String nom) {
 			ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 			for (Joueur j : collectionJoueurs) {
