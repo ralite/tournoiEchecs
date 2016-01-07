@@ -3,10 +3,12 @@ package controleur;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import application.Main;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.Validation;
 import modele.xml.TournoiXML;
 import vue.RecapTournoi;
 import javafx.collections.FXCollections;
@@ -36,14 +38,13 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	private ListView<Joueur> lv_recherche;
 
 	@FXML
-	Button button_OK;
-
-
-	@FXML
 	TextField tf_rechercher;
 
 	@FXML
 	Label lb_info;
+	
+	@FXML
+	Button button_OK;
 
 
 	@FXML
@@ -59,7 +60,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 				resutatRecherche.addAll(joueurs);
 			}
 			else {
-				lb_info.setText("Aucun joueurs trouvés");
+				lb_info.setStyle("-fx-color : red; ");
+				lb_info.setText("Aucun joueur trouvé");
 			}
 		}
 		else{
@@ -71,8 +73,14 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void ajouterJoueur(Event e) {
 		Joueur joueurSelectionné =  (Joueur)lv_recherche.getSelectionModel().getSelectedItem();
 		if(joueurSelectionné!=null){
-			ajouterTrier(joueurInscrit, joueurSelectionné);
-			resutatRecherche.remove(joueurSelectionné);
+			if(listePersonne.getItems().contains(joueurSelectionné)){
+				lb_info.setText("Ce joueur est déjà inscrit");
+			}
+			else {
+				lb_info.setText("");
+				ajouterTrier(joueurInscrit, joueurSelectionné);
+				resutatRecherche.remove(joueurSelectionné);
+			}
 		}
 	}
 
@@ -103,12 +111,13 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-
+		lb_info.setText("");
 		if(ModeleTournoi.getJoueurs()!=null){
 			joueurInscrit.setAll(ModeleTournoi.getJoueurs());
 		}
 		listePersonne.setItems(joueurInscrit);
 		lv_recherche.setItems(resutatRecherche);
+		
 	}
 
 	void ajouterTrier(ObservableList<Joueur> data, Joueur j){

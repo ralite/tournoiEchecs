@@ -16,7 +16,7 @@ public class AjouterJoueurTournoi extends Stage{
 		super();
 		try {
 			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/ajouterJoueurTournoi.fxml"));
-			BorderPane root = leLoader.load();
+			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);
 			Scene scene = new Scene(root);

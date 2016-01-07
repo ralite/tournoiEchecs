@@ -4,9 +4,17 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.security.Key;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.jws.Oneway;
+
+import com.sun.javafx.scene.control.skin.ButtonSkin;
+
 import modele.ModeleDepartage;
 import application.Main;
 import javafx.collections.FXCollections;
@@ -58,7 +66,11 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	TextField tf_cadenceJeu;
 
-
+	@FXML
+	ComboBox<String> cb_cadences;
+	
+	@FXML
+	TextArea ta_messageAide ;
 
 	@FXML
     private void actionFenetreJoueurs(Event e) {
@@ -204,9 +216,38 @@ public class ControleurFenetreTournoi implements Initializable {
             }
        }
 	}
+	
+	public void affichageAideSurvolNomCadence() {
+		if(cb_cadences.isFocused()){
+			texteAideCadences();
+			ta_messageAide.setVisible(true);
+		}
+		else ta_messageAide.setVisible(false);
+	}
+	
+	public void texteAideCadences(){
+		switch (cb_cadences.getSelectionModel().getSelectedItem()){
+			case "Blitz" :
+				ta_messageAide.setText("Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
+				break;
+			case "Semi-rapide" :
+				ta_messageAide.setText("La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
+				break;
+			case "Cadence longue" : 
+				ta_messageAide.setText("Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
+				break;
+		}
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ObservableList<String> options = 
+			    FXCollections.observableArrayList(
+			        "Blitz",
+			        "Semi-rapide",
+			        "Cadence longue"
+			    );
+		cb_cadences.setItems(options);
 		items =FXCollections.observableArrayList (
 				ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
