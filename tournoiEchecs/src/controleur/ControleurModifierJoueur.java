@@ -8,6 +8,7 @@ import application.Main;
 import vue.CreerJoueur;
 import metier.Joueur;
 import modele.ModeleJoueur;
+import modele.xml.JoueurXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -79,12 +80,18 @@ public class ControleurModifierJoueur implements Initializable{
 			lb_info.setText("Veuillez selectionner un joueur");
 		}
 		else{
-			ModeleJoueur.supprimerJoueur(joueurSelectionné);
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Succés");
-			alert.setContentText("Joueur Supprimé avec succés !");
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Suppression joueur");
+			alert.setContentText("Voulez vous vraiment supprimer ce joueur ?\n(Attention ce joueur n'apparaîtra plus dans les tournois où il était inscrit !)");
 			alert.showAndWait();
-			((Node)e.getSource()).getScene().getWindow().hide();
+			if(alert.getResult().getText().equals("OK")){
+				ModeleJoueur.supprimerJoueur(joueurSelectionné);
+				JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+				((Node)e.getSource()).getScene().getWindow().hide();
+			}else{
+				data.clear();
+				tf_recherche.clear();
+			}
 		}
 	}
 
