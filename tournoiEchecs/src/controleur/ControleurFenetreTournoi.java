@@ -3,41 +3,31 @@ package controleur;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
-import java.awt.List;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
-
 import modele.ModeleDepartage;
-import modele.ModeleJoueur;
 import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import vue.AjouterJoueurTournoi;
 import vue.FenetreFileChooser;
 import vue.RecapTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
 import modele.Validation;
-import modele.xml.StockageXML;
+import modele.xml.TournoiXML;
 
 public class ControleurFenetreTournoi implements Initializable {
 
 	private ObservableList<Departage> items;
 	private ObservableList<Departage> itemsChoisis;
 
-	
+
 	@FXML
 	ListView<Departage> lv_listeDepartages;
 
@@ -68,8 +58,8 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	TextField tf_cadenceJeu;
 
-	
-	
+
+
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 		if (formulaireRempli()) {
@@ -79,7 +69,7 @@ public class ControleurFenetreTournoi implements Initializable {
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
 					ModeleTournoi.setFichierTournoi(FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage()));
-					StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),0);
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
 				}
 				else{
 					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
@@ -89,9 +79,9 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
-					StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
 				}
-				
+
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();

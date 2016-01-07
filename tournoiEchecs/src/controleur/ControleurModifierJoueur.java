@@ -1,13 +1,11 @@
 package controleur;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Main;
 import vue.CreerJoueur;
-import vue.ModifierJoueur;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import javafx.collections.FXCollections;
@@ -23,15 +21,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControleurModifierJoueur implements Initializable{
-	
+
 	private ObservableList<Joueur> data = FXCollections.observableArrayList();
-	
+
 	@FXML
 	ListView<Joueur> lv_joueurs;
-	
+
 	@FXML
 	TextField tf_recherche;
-	
+
 	@FXML
 	Label lb_info;
 
@@ -55,12 +53,12 @@ public class ControleurModifierJoueur implements Initializable{
 			data.add(j);
 		}
 	}
-	
+
 	@FXML
 	public void actionAnnuler(Event e){
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
+
 	@FXML
 	public void actionModifier(Event e){
 		ModeleJoueur.setJoueurAmofifier((Joueur)lv_joueurs.getSelectionModel().getSelectedItem());
@@ -73,7 +71,7 @@ public class ControleurModifierJoueur implements Initializable{
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
 	}
-	
+
 	@FXML
 	public void actionSupprimer(Event e){
 		Joueur joueurSelectionné=(Joueur)lv_joueurs.getSelectionModel().getSelectedItem();
@@ -84,12 +82,12 @@ public class ControleurModifierJoueur implements Initializable{
 			ModeleJoueur.supprimerJoueur(joueurSelectionné);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Succés");
-			alert.setContentText("Joueur Supprimé avec succés !");	
+			alert.setContentText("Joueur Supprimé avec succés !");
 			alert.showAndWait();
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lv_joueurs.setItems(data);

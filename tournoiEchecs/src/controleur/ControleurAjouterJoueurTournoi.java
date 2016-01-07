@@ -1,32 +1,14 @@
 package controleur;
 
-
-import java.awt.Color;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
 import application.Main;
 import metier.Joueur;
-import metier.Joueur;
-import metier.departage.Departage;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
-import modele.Validation;
-import modele.xml.StockageXML;
+import modele.xml.TournoiXML;
 import vue.RecapTournoi;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -34,16 +16,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	private ObservableList<Joueur> joueurInscrit = FXCollections.observableArrayList();
-	
+
 	private ObservableList<Joueur> resutatRecherche = FXCollections.observableArrayList();
 
 	@FXML
@@ -51,7 +31,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	private ListView<Joueur> listePersonne;
-	
+
 	@FXML
 	private ListView<Joueur> lv_recherche;
 
@@ -108,12 +88,12 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
+
 	@FXML
 	public void actionValider(Event e){
 		listePersonne.setItems(joueurInscrit);
 		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
-		StockageXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath(),1);
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();

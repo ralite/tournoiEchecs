@@ -1,24 +1,10 @@
 package application;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import metier.Joueur;
-import metier.Tournoi;
-import metier.departage.Buchholz;
-import metier.departage.Cumulatif;
-import metier.departage.Departage;
-import modele.ModeleJoueur;
-import modele.xml.StockageXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 

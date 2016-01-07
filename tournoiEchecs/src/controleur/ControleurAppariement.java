@@ -1,12 +1,10 @@
 package controleur;
 
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import metier.Joueur;
 import metier.Partie;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import vue.ItemAppariementFactory;
 import javafx.collections.FXCollections;
@@ -21,33 +19,33 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControleurAppariement implements Initializable {
-	
+
 	@FXML
 	private Label lb_joueurNoir;
-	
+
 	@FXML
 	private Label lb_joueurBlanc;
-	
+
 	@FXML
 	private ListView<Joueur> lv_joueurInscrit;
-	
+
 	@FXML
 	private ListView<Partie> lv_appariements;
-	
+
 	@FXML
 	private ListView<Joueur> lv_absent;
-	
+
 	@FXML
 	private ListView<Joueur> lv_forfait;
-	
+
 	private ObservableList<Partie> itemsParties;
-	
+
 	private ObservableList<Joueur> itemsJoueursInscrits;
-	
+
 	private ObservableList<Joueur> itemsJoueursAbsent;
-	
+
 	private ObservableList<Joueur> itemsJoueursForafait;
-	
+
 	private Joueur joueurBlanc=null;
 	private Joueur joueurNoir=null;
 
@@ -64,9 +62,9 @@ public class ControleurAppariement implements Initializable {
 		lv_appariements.setCellFactory(lv -> new ItemAppariementFactory());
 		lv_absent.setItems(itemsJoueursAbsent);
 		lv_forfait.setItems(itemsJoueursForafait);
-		
+
 	}
-	
+
 	@FXML
 	public void onClickNoir(){
 		joueurNoir=lv_joueurInscrit.getSelectionModel().getSelectedItem();
@@ -78,7 +76,7 @@ public class ControleurAppariement implements Initializable {
 			lb_joueurNoir.setText("");
 		}
 	}
-	
+
 	@FXML
 	public void onClickBlanc(){
 		joueurBlanc=lv_joueurInscrit.getSelectionModel().getSelectedItem();
@@ -89,7 +87,7 @@ public class ControleurAppariement implements Initializable {
 			joueurBlanc=null;
 			lb_joueurBlanc.setText("");
 		}
-		
+
 	}
 
 	@FXML
@@ -99,7 +97,7 @@ public class ControleurAppariement implements Initializable {
 		joueurBlanc=null;
 		joueurNoir=null;
 	}
-	
+
 	@FXML
 	public void actionAjouterAbsent(){
 		Joueur joueurSelectionné =  (Joueur)lv_joueurInscrit.getSelectionModel().getSelectedItem();
@@ -108,7 +106,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.remove(joueurSelectionné);
 		}
 	}
-	
+
 	@FXML
 	public void actionAjouterForfait(){
 		Joueur joueurSelectionné =  (Joueur)lv_joueurInscrit.getSelectionModel().getSelectedItem();
@@ -117,20 +115,20 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.remove(joueurSelectionné);
 		}
 	}
-	
+
 	@FXML
 	public void actionAnnuler(Event e){
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
+
 	@FXML
 	public void actionLancerRonde(){
 		if(itemsJoueursInscrits.size()>1){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Tout les joueurs ne sont pas apairer !");	
+			alert.setContentText("Tout les joueurs ne sont pas apairer !");
 			alert.showAndWait();
 		}
 	}
-	
+
 }

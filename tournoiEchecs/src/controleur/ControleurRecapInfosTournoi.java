@@ -1,14 +1,10 @@
 package controleur;
 
-import java.awt.Window;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import com.sun.media.jfxmedia.events.NewFrameEvent;
-
 import application.Main;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,72 +14,68 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import metier.Joueur;
-import metier.Tournoi;
 import metier.departage.Departage;
-import modele.ModeleDepartage;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
 import vue.CreationTournoi;
 
 public class ControleurRecapInfosTournoi implements Initializable {
-	
+
 	@FXML
 	Label lb_recapWarning;
-	
+
 	@FXML
 	Label label_recapNom;
-	
+
 	@FXML
 	Label label_recapLieu;
-	
+
 	@FXML
 	Label label_recapArbitre;
-	
+
 	@FXML
 	Label label_recapDateDeb;
-	
+
 	@FXML
 	Label label_recapDateFin;
-	
+
 	@FXML
 	Label label_recapNbRondes;
-	
+
 	@FXML
 	Button button_recapModifierTournoi;
 
 	@FXML
 	ListView<Joueur> lv_recapJoueursInscrits;
-	
+
 	@FXML
 	ListView<Departage> lv_recapDepartagesChoisis;
-	
+
 	@FXML
 	Label lb_recapCadenceDeJeu;
-	
+
 	private LocalDate dateActuelle =  LocalDate.now();
-	
+
 	public void recapGererJoueurs(Event e){
-	
+
 			AjouterJoueurTournoi ajt=new AjouterJoueurTournoi(Main.getPrimaryStage());
 			ajt.show();
 			((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
+
 	@FXML
 	public void fermerRecap(Event e){
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
-	
+
 	public void recapModifierTournoi(Event e){
 		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setHeaderText(null);
-			alert.setContentText("Impossible de modifier un tournoi en cours !");	
+			alert.setContentText("Impossible de modifier un tournoi en cours !");
 			alert.showAndWait();
 		}
 		else {
@@ -92,8 +84,8 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
 	}
-	
-	
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -107,7 +99,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		lv_recapJoueursInscrits.setItems(ModeleTournoi.getJoueurs());
 		lv_recapDepartagesChoisis.setItems(ModeleTournoi.getTournoi().getListeDepartages());
 	}
-	
+
 	@FXML
 	public void apparierJoueurs(){
 		AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());

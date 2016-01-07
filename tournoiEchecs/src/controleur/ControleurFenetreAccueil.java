@@ -1,9 +1,7 @@
 package controleur;
 
-import vue.AppariementJoueur;
 import vue.CreationTournoi;
 import vue.CreerJoueur;
-import vue.FenetreAccueil;
 import vue.FenetreFileChooser;
 import vue.ModifierJoueur;
 import vue.RecapTournoi;
@@ -12,19 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import metier.Joueur;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
-import modele.xml.StockageXML;
+import modele.xml.JoueurXML;
+import modele.xml.TournoiXML;
 import application.Main;
 
 public class ControleurFenetreAccueil implements Initializable{
@@ -66,7 +60,7 @@ public class ControleurFenetreAccueil implements Initializable{
     private void actionParcourirTournoi(Event e) {
     	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
-			ModeleTournoi.ajouterTournoi(StockageXML.readXMLTournoi(fileTournoi.getAbsolutePath()));
+			ModeleTournoi.ajouterTournoi(TournoiXML.readXMLTournoi(fileTournoi.getAbsolutePath()));
 			ModeleTournoi.setFichierTournoi(fileTournoi);
 			RecapTournoi recapT = new RecapTournoi(Main.getPrimaryStage());
 			recapT.show();
@@ -96,7 +90,7 @@ public class ControleurFenetreAccueil implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	ArrayList<Joueur> listJoueur = StockageXML.readXMLJoueur(StockageXML.joueurFilePath);
+    	ArrayList<Joueur> listJoueur = JoueurXML.readXMLJoueur(JoueurXML.joueurFilePath);
     	if(listJoueur != null){
 	    	for (Joueur joueur : listJoueur) {
 				ModeleJoueur.ajouterJoueur(joueur);

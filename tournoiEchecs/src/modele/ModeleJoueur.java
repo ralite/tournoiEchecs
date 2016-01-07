@@ -1,18 +1,14 @@
 package modele;
 
-
-
 import metier.Joueur;
 
 import java.time.LocalDate;
-import java.time.temporal.JulianFields;
 import java.util.ArrayList;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart.Data;
 
 
 public class ModeleJoueur {
@@ -85,7 +81,7 @@ public class ModeleJoueur {
 		}
 		public static void supprimerJoueur(Joueur joueur) {
 			collectionJoueurs.remove(joueur);
-			
+
 		}
 
 

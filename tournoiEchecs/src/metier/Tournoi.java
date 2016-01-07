@@ -1,16 +1,6 @@
 package metier;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-
-import java.util.Date;
-
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import metier.departage.Departage;
@@ -54,7 +44,7 @@ public class Tournoi {
 	public void setListeJoueurs(ObservableList<Joueur> liste) {
 		this.ListeJoueurs=liste;
 	}
-	
+
 	public void AddDepartages(Departage d) {
 		this.ListeDepartages.add(d);
 	}
@@ -126,7 +116,7 @@ public class Tournoi {
 	public void setCadenceJeu(int cadenceJeu) {
 		this.cadenceJeu = cadenceJeu;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="

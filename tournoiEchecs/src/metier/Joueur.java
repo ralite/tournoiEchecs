@@ -2,7 +2,6 @@ package metier;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 public class Joueur {
 	private String numLicence;
