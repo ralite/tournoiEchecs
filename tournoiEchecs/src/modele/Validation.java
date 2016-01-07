@@ -68,7 +68,7 @@ public class Validation {
 	}
 
 	public static boolean estChaineChiffree(TextField tx) {
-		if(tx.getText().trim().matches("^[0-9a-zA-Z]*$")){
+		if(tx.getText().trim().matches("^[a-zA-Z]*[0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}

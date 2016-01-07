@@ -3,6 +3,7 @@ package controleur;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
+import java.io.File;
 import java.net.URL;
 import java.security.Key;
 import java.time.LocalDate;
@@ -33,8 +34,8 @@ import modele.xml.TournoiXML;
 public class ControleurFenetreTournoi implements Initializable {
 
 	private ObservableList<Departage> items;
+	
 	private ObservableList<Departage> itemsChoisis;
-
 
 	@FXML
 	ListView<Departage> lv_listeDepartages;
@@ -72,6 +73,7 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	TextArea ta_messageAide ;
 
+
 	@FXML
     private void actionFenetreJoueurs(Event e) {
 		if (formulaireRempli()) {
@@ -80,8 +82,12 @@ public class ControleurFenetreTournoi implements Initializable {
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),Integer.valueOf(tf_cadenceJeu.getText()));
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
-					ModeleTournoi.setFichierTournoi(FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage()));
-					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
+					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
+					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml");
+					
+					System.out.println("1" + ModeleTournoi.getFichierTournoi());
+					
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 				else{
 					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
@@ -91,7 +97,10 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
-					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
+					
+					System.out.println("2" + ModeleTournoi.getFichierTournoi());
+					
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());

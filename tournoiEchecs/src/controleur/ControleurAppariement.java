@@ -47,6 +47,7 @@ public class ControleurAppariement implements Initializable {
 	private ObservableList<Joueur> itemsJoueursForafait;
 
 	private Joueur joueurBlanc=null;
+	
 	private Joueur joueurNoir=null;
 
 	@Override
@@ -57,7 +58,7 @@ public class ControleurAppariement implements Initializable {
 		itemsJoueursForafait = FXCollections.observableArrayList();
 		//itemsParties.addAll(new Partie(new Joueur("11", "jen", "prenom"), new Joueur("12", "jenlll", "pren;,nom")));
 		lv_appariements.setItems(itemsParties);
-		itemsJoueursInscrits.addAll(ModeleTournoi.getJoueurs());
+		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		lv_appariements.setCellFactory(lv -> new ItemAppariementFactory());
 		lv_absent.setItems(itemsJoueursAbsent);

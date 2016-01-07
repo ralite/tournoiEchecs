@@ -100,7 +100,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void actionValider(Event e){
 		listePersonne.setItems(joueurInscrit);
-		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
+		ModeleJoueur.ajouterJoueurs(listePersonne.getItems());
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
@@ -112,7 +112,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 		lb_info.setText("");
-		if(ModeleTournoi.getJoueurs()!=null){
+		if(ModeleJoueur.getJoueurs()!=null){
 			joueurInscrit.setAll(ModeleTournoi.getJoueurs());
 		}
 		listePersonne.setItems(joueurInscrit);

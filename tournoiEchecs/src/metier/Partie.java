@@ -1,15 +1,15 @@
 package metier;
 
 public class Partie {
-	private Joueur joueurBlanc;
 	
+	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
 
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
-		super();
 		this.joueurBlanc = joueurBlanc;
 		this.joueurNoir = joueurNoir;
 	}
+	
 	public String getNumLicenceJoueurBlanc(){
 		return joueurBlanc.getNumLicence();
 	}
@@ -20,7 +20,6 @@ public class Partie {
 	
 	public int getElojoueurBlanc(){
 		return joueurBlanc.getElo();
-		
 	}
 
 	public String getNumLicenceJoueurNoir(){
@@ -33,9 +32,6 @@ public class Partie {
 	
 	public int getElojoueurNoir(){
 		return joueurNoir.getElo();
-		
 	}
-	
-	
-	
+		
 }

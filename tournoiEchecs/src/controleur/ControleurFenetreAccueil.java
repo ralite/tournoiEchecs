@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import metier.Joueur;
+import metier.Tournoi;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,8 +62,9 @@ public class ControleurFenetreAccueil implements Initializable{
     private void actionParcourirTournoi(Event e) {
     	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
-			ModeleTournoi.ajouterTournoi(TournoiXML.readXMLTournoi(fileTournoi.getAbsolutePath()));
-			ModeleTournoi.setFichierTournoi(fileTournoi);
+			Tournoi t = TournoiXML.readXMLTournoi(fileTournoi.getPath());
+			ModeleTournoi.ajouterTournoi(t);
+			ModeleTournoi.setFichierTournoi(fileTournoi.getPath());
 			RecapTournoi recapT = new RecapTournoi(Main.getPrimaryStage());
 			recapT.show();
 		}
