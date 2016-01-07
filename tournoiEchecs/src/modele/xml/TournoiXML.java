@@ -84,7 +84,7 @@ public class TournoiXML {
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 			StreamResult result;
-			result = new StreamResult(new File(savePath + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml"));
+			result = new StreamResult(new File(savePath));
 			transformer.transform(source, result);
 			
 		} catch (ParserConfigurationException pce) {

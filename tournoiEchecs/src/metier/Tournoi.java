@@ -15,6 +15,7 @@ public class Tournoi {
 	private int NbRondes;
 	private ObservableList<Joueur> ListeJoueurs;
 	private ObservableList<Departage> ListeDepartages;
+	private ObservableList<Ronde> ListeRondes;
 	private int cadenceJeu;
 
 	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
@@ -27,12 +28,13 @@ public class Tournoi {
 		cadenceJeu=cadence;
 		ListeJoueurs = FXCollections.observableArrayList();
 		ListeDepartages = FXCollections.observableArrayList();
+		ListeRondes = FXCollections.observableArrayList();
 	}
 
 	public void AddJoueur(Joueur j) {
 		this.ListeJoueurs.add(j);
 	}
-
+	
 	public void RemoveJoueurs(Joueur j) {
 		this.ListeJoueurs.remove(j);
 	}
@@ -59,6 +61,14 @@ public class Tournoi {
 
 	public void setListeDepartages(ObservableList<Departage> liste) {
 		this.ListeDepartages=liste;
+	}
+	
+	public ObservableList<Ronde> getListeRondes() {
+		return ListeRondes;
+	}
+
+	public void setListeRondes(ObservableList<Ronde> listeRondes) {
+		ListeRondes = listeRondes;
 	}
 
 	public String getNom() {

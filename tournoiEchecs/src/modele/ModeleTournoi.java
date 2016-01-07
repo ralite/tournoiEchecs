@@ -6,8 +6,9 @@ import metier.Joueur;
 import metier.Tournoi;
 
 public class ModeleTournoi {
+	
 	private static Tournoi tournoi=null;
-	private static File fichierTournoi = null;
+	private static String fichierTournoi = null;
 
 	public static void ajouterTournoi(Tournoi t) {
 		tournoi=t;
@@ -17,23 +18,15 @@ public class ModeleTournoi {
 		tournoi=null;
 	}
 
-	public static void ajouterJoueurs(ObservableList<Joueur> joueurs){
-		tournoi.setListeJoueurs(joueurs);
-	}
-
 	public static Tournoi getTournoi() {
 		return tournoi;
 	}
 
-	public static ObservableList<Joueur> getJoueurs() {
-		return tournoi.getListeJoueurs();
+	public static String getFichierTournoi() {
+		return ModeleTournoi.fichierTournoi;
 	}
 
-	public static File getFichierTournoi() {
-		return fichierTournoi;
-	}
-
-	public static void setFichierTournoi(File fichierTournoi) {
+	public static void setFichierTournoi(String fichierTournoi) {
 		ModeleTournoi.fichierTournoi = fichierTournoi;
 	}
 }

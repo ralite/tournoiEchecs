@@ -38,13 +38,11 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	Button button_OK;
 
-
 	@FXML
 	TextField tf_rechercher;
 
 	@FXML
 	Label lb_info;
-
 
 	@FXML
 	public void actionChercher(){
@@ -78,8 +76,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	public void retirerJoueur(Event e) {
-		joueurInscrit.remove(
-                (Joueur)listePersonne.getSelectionModel().getSelectedItem());
+		joueurInscrit.remove((Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 
 	@FXML
@@ -92,8 +89,11 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void actionValider(Event e){
 		listePersonne.setItems(joueurInscrit);
-		ModeleTournoi.ajouterJoueurs(listePersonne.getItems());
-		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
+		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
+		
+		System.out.println("0" + ModeleTournoi.getFichierTournoi());
+		
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();
@@ -104,8 +104,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 
-		if(ModeleTournoi.getJoueurs()!=null){
-			joueurInscrit.setAll(ModeleTournoi.getJoueurs());
+		if(ModeleTournoi.getTournoi().getListeJoueurs() != null){
+			joueurInscrit.setAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		}
 		listePersonne.setItems(joueurInscrit);
 		lv_recherche.setItems(resutatRecherche);
