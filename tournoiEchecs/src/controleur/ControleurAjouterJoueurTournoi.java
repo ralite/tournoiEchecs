@@ -100,8 +100,8 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void actionValider(Event e){
 		listePersonne.setItems(joueurInscrit);
-		ModeleJoueur.ajouterJoueurs(listePersonne.getItems());
-		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi().getPath());
+		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();
@@ -109,11 +109,10 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-		lb_info.setText("");
-		if(ModeleJoueur.getJoueurs()!=null){
-			joueurInscrit.setAll(ModeleTournoi.getJoueurs());
+
+		if(ModeleTournoi.getTournoi().getListeJoueurs() != null){
+			joueurInscrit.setAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		}
 		listePersonne.setItems(joueurInscrit);
 		lv_recherche.setItems(resutatRecherche);
