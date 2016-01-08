@@ -2,6 +2,7 @@ package controleur;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,6 +109,7 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	Label lb_erreur;
 
+	HashMap<String, Integer> mapEloInitial = new HashMap<String, Integer>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
@@ -213,33 +215,8 @@ public class ControleurCreerJoueur implements Initializable {
 
 		        				if(rb_nouveau.isSelected())
 		        				{
-		        					int eloInitial = 1499;
-			     					switch(lb_categorie.getText())
-			     					{
-			     					case "Junior":
-			     						eloInitial-=100;
-			     						break;
-			     					case "Cadet":
-			     						eloInitial-=200;
-			     						break;
-			     					case "Minime":
-			     						eloInitial-=300;
-			     						break;
-			     					case "Benjamin":
-			     						eloInitial-=400;
-			     						break;
-			     					case "Pupille":
-			     						eloInitial-=500;
-			     						break;
-			     					case "Poussin":
-			     						eloInitial-=600;
-			     						break;
-			     					case "Petit Poussin":
-			     						eloInitial-=700;
-			     						break;
-			     					}
-
-			     					tf_classementElo.setText(String.valueOf(eloInitial));
+		        					int eloInitial = mapEloInitial.get(lb_categorie.getText());
+		        					tf_classementElo.setText(String.valueOf(eloInitial));
 		        				}else
 		        					tf_classementElo.setText("");
 		        			}else
@@ -422,7 +399,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 		            tf_classementElo.setDisable(true);
 
-		            if(lb_categorie.getText()=="")//car problème de vide pour les date picker
+		            if(lb_categorie.getText()=="Non assignée")//car problème de vide pour les date picker
 		            {
 		            	lb_erreurType.setText("Saisissez une date de naissance.");
 		            	dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
@@ -430,36 +407,18 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 		            	dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
 		            	lb_erreurType.setText("");
+
+		            	int eloInitial = mapEloInitial.get(lb_categorie.getText());
+		            	tf_classementElo.setText(String.valueOf(eloInitial));
 		            }
-
-		            int eloInitial = 1499;
-					switch(lb_categorie.getText())
-					{
-					case "Junior":
-						eloInitial-=100;
-						break;
-					case "Cadet":
-						eloInitial-=200;
-						break;
-					case "Minime":
-						eloInitial-=300;
-						break;
-					case "Benjamin":
-						eloInitial-=400;
-						break;
-					case "Pupille":
-						eloInitial-=500;
-						break;
-					case "Poussin":
-						eloInitial-=600;
-						break;
-					case "Petit Poussin":
-						eloInitial-=700;
-						break;
-					}
-
-					tf_classementElo.setText(String.valueOf(eloInitial));
+		        }else
+		        {
+			        tf_classementElo.setText("");
+			        tf_classementElo.setDisable(false);
+			        lb_erreurType.setText("");
+	            	dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
 		        }
+
 		    }
 		});
 
@@ -615,6 +574,18 @@ public class ControleurCreerJoueur implements Initializable {
 		rb_national.setSelected(false);
 		rb_fide.setSelected(false);
 		rb_nouveau.setSelected(false);
+
+
+		int eloInitial = 1499;
+		mapEloInitial.put("Vétéran", eloInitial);
+		mapEloInitial.put("Sénior", eloInitial);
+		mapEloInitial.put("Junior", eloInitial-100);
+		mapEloInitial.put("Cadet", eloInitial-200);
+		mapEloInitial.put("Minime", eloInitial-300);
+		mapEloInitial.put("Benjamin", eloInitial-400);
+		mapEloInitial.put("Pupille", eloInitial-500);
+		mapEloInitial.put("Poussin", eloInitial-600);
+		mapEloInitial.put("Petit Poussin", eloInitial-700);
 	}
 
 	private boolean formulaireCorrect()
@@ -693,33 +664,8 @@ public class ControleurCreerJoueur implements Initializable {
 
 				if(rb_nouveau.isSelected())
 				{
-					int eloInitial = 1499;
- 					switch(lb_categorie.getText())
- 					{
- 					case "Junior":
- 						eloInitial-=100;
- 						break;
- 					case "Cadet":
- 						eloInitial-=200;
- 						break;
- 					case "Minime":
- 						eloInitial-=300;
- 						break;
- 					case "Benjamin":
- 						eloInitial-=400;
- 						break;
- 					case "Pupille":
- 						eloInitial-=500;
- 						break;
- 					case "Poussin":
- 						eloInitial-=600;
- 						break;
- 					case "Petit Poussin":
- 						eloInitial-=700;
- 						break;
- 					}
-
- 					tf_classementElo.setText(String.valueOf(eloInitial));
+					int eloInitial = mapEloInitial.get(lb_categorie.getText());
+					tf_classementElo.setText(String.valueOf(eloInitial));
 				}
 			}else
 			{
@@ -844,7 +790,7 @@ public class ControleurCreerJoueur implements Initializable {
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
-		Validation.verifLongueurTexte(tf_ligue,4);
+		Validation.verifLongueurTexte(tf_ligue,3);
 		Validation.verifLongueurTexte(tf_club, 50);
 	}
 
