@@ -2,6 +2,7 @@ package controleur;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,6 +109,7 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	Label lb_erreur;
 
+	HashMap<String, Integer> mapEloInitial = new HashMap<String, Integer>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
@@ -460,6 +462,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 					tf_classementElo.setText(String.valueOf(eloInitial));
 		        }
+
 		    }
 		});
 
@@ -615,6 +618,18 @@ public class ControleurCreerJoueur implements Initializable {
 		rb_national.setSelected(false);
 		rb_fide.setSelected(false);
 		rb_nouveau.setSelected(false);
+
+
+		int eloInitial = 1499;
+		mapEloInitial.put("Vétéran", eloInitial);
+		mapEloInitial.put("Sénior", eloInitial);
+		mapEloInitial.put("Junior", eloInitial-100);
+		mapEloInitial.put("Cadet", eloInitial-200);
+		mapEloInitial.put("Minime", eloInitial-300);
+		mapEloInitial.put("Benjamin", eloInitial-400);
+		mapEloInitial.put("Pupille", eloInitial-500);
+		mapEloInitial.put("Poussin", eloInitial-600);
+		mapEloInitial.put("Petit Poussin", eloInitial-700);
 	}
 
 	private boolean formulaireCorrect()
@@ -844,7 +859,7 @@ public class ControleurCreerJoueur implements Initializable {
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
-		Validation.verifLongueurTexte(tf_ligue,4);
+		Validation.verifLongueurTexte(tf_ligue,3);
 		Validation.verifLongueurTexte(tf_club, 50);
 	}
 

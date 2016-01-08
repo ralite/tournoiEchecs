@@ -56,7 +56,6 @@ public class ControleurAppariement implements Initializable {
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
 		itemsJoueursForafait = FXCollections.observableArrayList();
-		//itemsParties.addAll(new Partie(new Joueur("11", "jen", "prenom"), new Joueur("12", "jenlll", "pren;,nom")));
 		lv_appariements.setItems(itemsParties);
 		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
@@ -88,7 +87,6 @@ public class ControleurAppariement implements Initializable {
 			joueurBlanc=null;
 			lb_joueurBlanc.setText("");
 		}
-
 	}
 
 	@FXML
@@ -123,7 +121,7 @@ public class ControleurAppariement implements Initializable {
 	}
 
 	@FXML
-	public void actionLancerRonde(){
+	public void actionValider(){
 		if(itemsJoueursInscrits.size()>1){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");

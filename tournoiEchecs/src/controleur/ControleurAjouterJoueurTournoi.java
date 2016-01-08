@@ -37,14 +37,17 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	private ListView<Joueur> lv_recherche;
 
+
+	@FXML
+	Button button_OK;
+
+
 	@FXML
 	TextField tf_rechercher;
 
 	@FXML
 	Label lb_info;
-	
-	@FXML
-	Button button_OK;
+
 
 
 	@FXML
@@ -86,8 +89,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	public void retirerJoueur(Event e) {
-		joueurInscrit.remove(
-                (Joueur)listePersonne.getSelectionModel().getSelectedItem());
+		joueurInscrit.remove((Joueur)listePersonne.getSelectionModel().getSelectedItem());
 	}
 
 	@FXML
@@ -100,7 +102,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@FXML
 	public void actionValider(Event e){
 		listePersonne.setItems(joueurInscrit);
-		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
+		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());		
+		System.out.println("0" + ModeleTournoi.getFichierTournoi());
+		
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
 		recap.show();

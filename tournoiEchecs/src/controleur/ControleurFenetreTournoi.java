@@ -36,7 +36,6 @@ public class ControleurFenetreTournoi implements Initializable {
 	private ObservableList<Departage> items;
 	
 	private ObservableList<Departage> itemsChoisis;
-
 	@FXML
 	ListView<Departage> lv_listeDepartages;
 
@@ -75,7 +74,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 
 	@FXML
-    private void actionFenetreJoueurs(Event e) {
+    private void actionValider(Event e) {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
@@ -107,7 +106,6 @@ public class ControleurFenetreTournoi implements Initializable {
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
 		}
 	}
 
@@ -180,7 +178,6 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	public void actionAnnuler(Event e) {
-		//if (showConfirm("Voulez-vous vraiment annuler l'opération ?", Main.getPrimaryStage()))
 		if(ModeleTournoi.getTournoi()!=null){
 			RecapTournoi rp = new RecapTournoi(Main.getPrimaryStage());
 			rp.show();
@@ -219,11 +216,10 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
 		if(newValue.intValue() > oldValue.intValue()){
-            char ch = leChampDeSaisie.getText().charAt(newValue.intValue()-1);
             if(!Validation.estChiffre(leChampDeSaisie)){
             	leChampDeSaisie.setText(leChampDeSaisie.getText().replaceAll("[^0-9]",""));
             }
-       }
+		}
 	}
 	
 	public void affichageAideSurvolNomCadence() {
@@ -257,8 +253,7 @@ public class ControleurFenetreTournoi implements Initializable {
 			        "Cadence longue"
 			    );
 		cb_cadences.setItems(options);
-		items =FXCollections.observableArrayList (
-				ModeleDepartage.getcollectionDepartages());
+		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
 		tf_cadenceJeu.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_cadenceJeu));

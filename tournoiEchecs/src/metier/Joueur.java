@@ -149,7 +149,7 @@ public class Joueur {
 		else if(age<20 && (age>18||age==18))
 			categorie = "Junior";
 		else if((age>20||age==20) && age<55)
-			categorie = "Senior";
+			categorie = "Sénior";
 		else if(age==55||age>55)
 			categorie="Vétéran";
 
