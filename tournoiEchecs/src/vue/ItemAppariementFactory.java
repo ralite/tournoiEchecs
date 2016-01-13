@@ -30,10 +30,10 @@ public class ItemAppariementFactory extends ListCell<Partie>{
 		 		joueurBlanc.setStyle("-fx-font-weight: bold;"); 
 		 		joueurNoir.setStyle("-fx-font-weight: bold;"); 
 
-		        GridPane.setConstraints(joueurNoir, 1, 0); 
-		        GridPane.setConstraints(eloJoueurNoir, 1, 1); 
-		        GridPane.setConstraints(joueurBlanc, 2, 0); 
-		        GridPane.setConstraints(eloJoueurBlanc, 2, 1); 
+		        GridPane.setConstraints(joueurBlanc, 1, 0); 
+		        GridPane.setConstraints(eloJoueurBlanc, 1, 1); 
+		        GridPane.setConstraints(joueurNoir, 2, 0); 
+		        GridPane.setConstraints(eloJoueurNoir, 2, 1); 
        
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true)); 
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true)); 
@@ -41,7 +41,7 @@ public class ItemAppariementFactory extends ListCell<Partie>{
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true)); 
 		        gridPane.setHgap(2); 
 		        gridPane.setVgap(2); 
-		        gridPane.getChildren().setAll(/*carIcon,*/ joueurNoir, joueurBlanc, eloJoueurNoir, eloJoueurBlanc); 
+		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir, eloJoueurBlanc, eloJoueurNoir); 
 		        AnchorPane.setTopAnchor(gridPane, 0d); 
 		        AnchorPane.setLeftAnchor(gridPane, 0d); 
 		        AnchorPane.setBottomAnchor(gridPane, 0d); 

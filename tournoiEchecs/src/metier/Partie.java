@@ -14,6 +14,14 @@ public class Partie {
 		return joueurBlanc.getNumLicence();
 	}
 	
+	public Joueur getJoueurBlanc(){
+		return joueurBlanc;
+	}
+	
+	public Joueur getJoueurNoir(){
+		return joueurNoir;
+	}
+	
 	public String getNomPrenomJoueurBlanc(){
 		return joueurBlanc.getNomJoueur()+" "+joueurBlanc.getPrenomJoueur();
 	}
@@ -32,6 +40,13 @@ public class Partie {
 	
 	public int getElojoueurNoir(){
 		return joueurNoir.getElo();
+	}
+
+	public boolean dejaRencontre(Joueur j1, Joueur j2) {
+		if((j1==joueurNoir && j2==joueurBlanc)||(j1==joueurBlanc && j2==joueurNoir)){
+			return true;
+		}
+		return false;
 	}
 		
 }

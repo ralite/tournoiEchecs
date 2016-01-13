@@ -17,6 +17,7 @@ public class Tournoi {
 	private ObservableList<Departage> ListeDepartages;
 	private ObservableList<Ronde> ListeRondes;
 	private int cadenceJeu;
+	private int rondeActuelle;
 
 	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
 		Nom = nom;
@@ -29,6 +30,11 @@ public class Tournoi {
 		ListeJoueurs = FXCollections.observableArrayList();
 		ListeDepartages = FXCollections.observableArrayList();
 		ListeRondes = FXCollections.observableArrayList();
+		for(int i=0;i<nbRondes;i++){
+			ListeRondes.add(new Ronde(i+1));
+		}
+		rondeActuelle=1;
+			
 	}
 
 	public void AddJoueur(Joueur j) {
@@ -62,15 +68,12 @@ public class Tournoi {
 	public void setListeDepartages(ObservableList<Departage> liste) {
 		this.ListeDepartages=liste;
 	}
-	
+/*	
 	public ObservableList<Ronde> getListeRondes() {
 		return ListeRondes;
 	}
 
-	public void setListeRondes(ObservableList<Ronde> listeRondes) {
-		ListeRondes = listeRondes;
-	}
-
+*/
 	public String getNom() {
 		return Nom;
 	}
@@ -114,6 +117,10 @@ public class Tournoi {
 	public int getNbRondes() {
 		return NbRondes;
 	}
+	
+	public int getRondeActuelle(){
+		return rondeActuelle;
+	}
 
 	public void setNbRondes(int nbRondes) {
 		NbRondes = nbRondes;
@@ -127,9 +134,35 @@ public class Tournoi {
 		this.cadenceJeu = cadenceJeu;
 	}
 
+	public void setPartiesRonde(ObservableList<Partie> listePartie){
+		ListeRondes.get(rondeActuelle).setListePartie(listePartie);
+	}
+
+	public void setAbsentRonde(ObservableList<Joueur> joueurs) {
+		
+		ListeRondes.get(rondeActuelle).setListeJoueurAbs(joueurs);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
 				+ Arbitre + ", NbRondes=" + NbRondes + ", CadenceJeu=" + cadenceJeu + "]";
 	}
+
+	public void setForfaitRonde(ObservableList<Joueur> JoueursForfait) {
+		ListeRondes.get(rondeActuelle).setListeJoueur(JoueursForfait);
+		
+	}
+	
+	public boolean dejaRencontre(Joueur j1, Joueur j2){
+		boolean dejaRencontre=false;
+		int i = 0;
+		while(!dejaRencontre && i<NbRondes){
+			dejaRencontre=ListeRondes.get(i).dejaRencontre(j1,j2);
+		}
+		return dejaRencontre;
+		
+	}
+
 }

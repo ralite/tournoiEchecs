@@ -8,6 +8,7 @@ public class Ronde {
 	private int numeroRonde;
 	private ObservableList<Partie> ListePartie;
 	private ObservableList<Joueur> ListeJoueurAbs;
+	private ObservableList<Joueur> ListeJoueurForfait;
 	
 	public Ronde(int numeroRonde) {
 		this.numeroRonde = numeroRonde;
@@ -36,6 +37,19 @@ public class Ronde {
 
 	public void setListeJoueurAbs(ObservableList<Joueur> listeJoueurAbs) {
 		ListeJoueurAbs = listeJoueurAbs;
+	}
+
+	public void setListeJoueur(ObservableList<Joueur> joueursForfait) {
+		ListeJoueurForfait = joueursForfait;
+	}
+
+	public boolean dejaRencontre(Joueur j1, Joueur j2) {
+		boolean dejaRencontre=false;
+		int i = 0;
+		while(!dejaRencontre && i<ListePartie.size()){
+			dejaRencontre=ListePartie.get(i).dejaRencontre(j1,j2);
+		}
+		return dejaRencontre;
 	}
 	
 }
