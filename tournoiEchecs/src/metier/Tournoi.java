@@ -149,7 +149,7 @@ public class Tournoi {
 	}
 
 	public void setForfaitRonde(ObservableList<Joueur> JoueursForfait) {
-		ListeRondes.get(rondeActuelle).setListeJoueur(JoueursForfait);
+		ListeRondes.get(rondeActuelle).setListeJoueurForfait(JoueursForfait);
 		
 	}
 	

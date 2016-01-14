@@ -81,24 +81,28 @@ public class TournoiXML {
 				rootElement.appendChild(joueur);
 			}
 			
-			///////////
+			Element rondes = doc.createElement("rondes");
+			rootElement.appendChild(rondes);
 			
 			int indiceRonde = 0;
 			
 			for(Ronde ron : tournoi.getListeRondes()) {
 				Element ronde = doc.createElement("ronde" + indiceRonde);
-				rootElement.appendChild(ronde);
+				rootElement.appendChild(rondes);
 				
 				Element num = doc.createElement("num");
 				Integer i3 = (Integer)ron.getNumeroRonde();
 				num.appendChild(doc.createTextNode(i3.toString()));
 				ronde.appendChild(num);
 				
+				Element parties = doc.createElement("parties");
+				rootElement.appendChild(ronde);
+				
 				int indicePartie = 0;
 				
 				for(Partie par : ron.getListePartie()) {
 					Element partie = doc.createElement("partie" + indicePartie);
-					ronde.appendChild(partie);
+					parties.appendChild(partie);
 					
 					Element joueurBlanc = doc.createElement("joueurBlanc");
 					joueurBlanc.appendChild(doc.createTextNode(par.getNumLicenceJoueurBlanc()));
@@ -111,30 +115,20 @@ public class TournoiXML {
 					indicePartie++;
 				}
 				
-				int indiceJoueurAbs = 0;
-				
 				for(Joueur jouabs : ron.getListeJoueurAbs()) {
-					Element joueurAbs = doc.createElement("joueurAbs" + indiceJoueurAbs);
+					Element joueurAbs = doc.createElement("joueurAbs");
 					joueurAbs.appendChild(doc.createTextNode(jouabs.getNumLicence()));
 					ronde.appendChild(joueurAbs);
-					
-					indiceJoueurAbs++;
 				}
 				
-				int indiceJoueurFor = 0;
-				
 				for(Joueur joufor : ron.getListeJoueurForfait()) {
-					Element joueurFor = doc.createElement("joueurFor" + indiceJoueurFor);
+					Element joueurFor = doc.createElement("joueurFor");
 					joueurFor.appendChild(doc.createTextNode(joufor.getNumLicence()));
 					ronde.appendChild(joueurFor);
-					
-					indiceJoueurFor++;
 				}
 				
 				indiceRonde++;
 			}
-			
-			//////////
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -162,6 +156,7 @@ public class TournoiXML {
 
 			boolean b1 = false;
 			boolean b2 = false;
+			boolean b3 = false;
 			
 			String nom = null;
 			String lieu = null;
@@ -173,6 +168,7 @@ public class TournoiXML {
 			ArrayList<String> listNomDepartage = new ArrayList<String>();
 			ArrayList<Departage> listDepartage = new ArrayList<Departage>();
 			ArrayList<String> listNumJoueur = new ArrayList<String>();
+			ArrayList<Ronde> listRonde = new ArrayList<Ronde>();
 
 			Element racine = doc.getDocumentElement();
 			NodeList racineNoeuds = racine.getChildNodes();
@@ -213,6 +209,30 @@ public class TournoiXML {
 						listNumJoueur.add(node.getTextContent());
 						b2 = true;
 					}
+					if(node.getNodeName() == "rondes"){
+						b3 = true;
+						Node rondes = racineNoeuds.item(i);
+						NodeList rondesNoeuds = rondes.getChildNodes();
+						int nbRondesNoeuds = rondesNoeuds.getLength();
+						
+						for (int i2 = 0; i2 < nbRondesNoeuds; i2++) {
+
+							int numRonde = 0;
+							
+							if (rondesNoeuds.item(i2).getNodeType() == Node.ELEMENT_NODE) {
+								Node ronde = racineNoeuds.item(i2);
+								
+								if(ronde.getNodeName() == "num"){
+									numRonde = Integer.parseInt(node.getTextContent());
+								}
+								
+								//////////// Parties,JoueursAbs,JoueursForfait ////////////
+							}
+							
+							Ronde r = new Ronde(numRonde);
+							listRonde.add(r);
+						}
+					}
 				}
 			}
 			
@@ -227,6 +247,13 @@ public class TournoiXML {
 			if(b2){
 				for (String numJoueur : listNumJoueur) {
 					returnTournoi.AddJoueur(ModeleJoueur.rechercherJoueur(numJoueur));
+				}
+			}
+			if(b3){
+				for (Ronde ronde1 : listRonde) {
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListePartie(ronde1.getListePartie());
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListeJoueurAbs(ronde1.getListeJoueurAbs());
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListeJoueurForfait(ronde1.getListeJoueurForfait());
 				}
 			}
 			
