@@ -33,7 +33,7 @@ public class Tournoi {
 		for(int i=0;i<nbRondes;i++){
 			ListeRondes.add(new Ronde(i+1));
 		}
-		rondeActuelle=1;
+		rondeActuelle=0;
 			
 	}
 
@@ -163,6 +163,18 @@ public class Tournoi {
 		}
 		return dejaRencontre;
 		
+	}
+
+	public ObservableList<Partie> getPartieRondeActuelle() {
+		return ListeRondes.get(rondeActuelle).getParties();
+	}
+
+	public ObservableList<Joueur> getJoueurAbsRondeActuelle() {
+		return ListeRondes.get(rondeActuelle).getListeJoueurAbs();
+	}
+
+	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
+		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
 	}
 
 }

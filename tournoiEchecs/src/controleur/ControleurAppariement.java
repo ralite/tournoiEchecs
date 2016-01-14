@@ -56,11 +56,24 @@ public class ControleurAppariement implements Initializable {
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
 		itemsJoueursForafait = FXCollections.observableArrayList();
+		if(ModeleTournoi.getTournoi().getPartieRondeActuelle()!=null){
+			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
+		}
 		lv_appariements.setItems(itemsParties);
+		
 		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		lv_appariements.setCellFactory(lv -> new ItemAppariementFactory());
+		
+		if(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle()!=null){
+			itemsJoueursAbsent.addAll(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle());
+			itemsJoueursInscrits.removeAll(itemsJoueursAbsent);
+		}
 		lv_absent.setItems(itemsJoueursAbsent);
+		if(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle()!=null){
+			itemsJoueursForafait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
+			itemsJoueursInscrits.removeAll(itemsJoueursForafait);
+		}
 		lv_forfait.setItems(itemsJoueursForafait);
 
 	}
@@ -99,11 +112,19 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void onClickAjouter(){
 		if( joueurBlanc != null && joueurNoir!=null){
-			itemsParties.add(new Partie(joueurBlanc, joueurNoir));
-			joueurBlanc=null;
-			joueurNoir=null;
-			lb_joueurBlanc.setText("");
-			lb_joueurNoir.setText("");
+			/*if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Erreur");
+				alert.setContentText("Tout les joueurs ne sont pas apairer !");
+				alert.showAndWait();
+			}
+			else{*/
+				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
+				joueurBlanc=null;
+				joueurNoir=null;
+				lb_joueurBlanc.setText("");
+				lb_joueurNoir.setText("");
+			//}
 		}
 	}
 	
@@ -148,9 +169,11 @@ public class ControleurAppariement implements Initializable {
 			alert.setContentText("Tout les joueurs ne sont pas apairer !");
 			alert.showAndWait();
 		}
-		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
-		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
-		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForafait);
+		else{
+			ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
+			ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
+			ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForafait);
+		}
 		
 	}
 	
