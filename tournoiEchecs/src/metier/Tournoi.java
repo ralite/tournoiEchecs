@@ -16,10 +16,10 @@ public class Tournoi {
 	private ObservableList<Joueur> ListeJoueurs;
 	private ObservableList<Departage> ListeDepartages;
 	private ObservableList<Ronde> ListeRondes;
-	private int cadenceJeu;
+	private String cadenceJeu;
 	private int rondeActuelle;
 
-	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
+	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, String cadence) {
 		Nom = nom;
 		Lieu = lieu;
 		DateDeb = dateDeb;
@@ -125,11 +125,11 @@ public class Tournoi {
 		NbRondes = nbRondes;
 	}
 
-	public int getCadenceJeu() {
+	public String getCadenceJeu() {
 		return cadenceJeu;
 	}
 
-	public void setCadenceJeu(int cadenceJeu) {
+	public void setCadenceJeu(String cadenceJeu) {
 		this.cadenceJeu = cadenceJeu;
 	}
 

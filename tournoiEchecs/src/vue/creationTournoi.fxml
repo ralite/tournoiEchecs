@@ -31,7 +31,6 @@
       <Label fx:id="lb_erreurDate" layoutX="433.0" layoutY="99.0" prefHeight="27.0" prefWidth="160.0" textFill="#e40606" />
       <Label fx:id="lb_cadenceJeu" layoutX="15.0" layoutY="333.0" text="Cadence voulue :" />
       <ComboBox fx:id="cb_cadences" layoutX="11.0" layoutY="355.0" onAction="#affichageAideSurvolNomCadence" prefHeight="25.0" prefWidth="128.0" />
-      <TextField fx:id="tf_cadenceJeu" layoutX="484.0" layoutY="138.0" prefHeight="25.0" prefWidth="22.0" />
       <TextArea fx:id="ta_messageAide" layoutX="151.0" layoutY="337.0" onInputMethodTextChanged="#affichageAideSurvolNomCadence" prefHeight="60.0" prefWidth="292.0" wrapText="true" />
    </children>
 </AnchorPane>

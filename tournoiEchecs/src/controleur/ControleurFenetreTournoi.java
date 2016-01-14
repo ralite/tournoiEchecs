@@ -64,9 +64,6 @@ public class ControleurFenetreTournoi implements Initializable {
 	Label lb_erreurDate;
 
 	@FXML
-	TextField tf_cadenceJeu;
-
-	@FXML
 	ComboBox<String> cb_cadences;
 	
 	@FXML
@@ -78,7 +75,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
-					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),Integer.valueOf(tf_cadenceJeu.getText()));
+					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
 					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
@@ -95,7 +92,7 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
-					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
+					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
 					
 					System.out.println("2" + ModeleTournoi.getFichierTournoi());
 					
@@ -141,8 +138,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		if(Validation.estVide(tf_arbitre))
 			res = false;
 		if(Validation.estVide(tf_nbRondes))
-			res = false;
-		if(Validation.estVide(tf_cadenceJeu))
 			res = false;
 		if(Validation.estVide(lv_listeDepartagesChoisis))
 			res = false;
@@ -211,7 +206,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		Validation.verifLongueurTexte(tf_lieuTournoi,50);
 		Validation.verifLongueurTexte(tf_arbitre,30);
 		Validation.verifLongueurTexte(tf_nbRondes,6);
-		Validation.verifLongueurTexte(tf_cadenceJeu, 4);
 	}
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
@@ -256,8 +250,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
-		tf_cadenceJeu.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_cadenceJeu));
-
+		
 		if(ModeleTournoi.getTournoi()!=null){
 			tf_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 			tf_lieuTournoi.setText(ModeleTournoi.getTournoi().getLieu());
@@ -267,8 +260,9 @@ public class ControleurFenetreTournoi implements Initializable {
 			tf_nbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 			itemsChoisis.addAll(ModeleTournoi.getTournoi().getListeDepartages());
 			items.removeAll(itemsChoisis);
-			tf_cadenceJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
-		}
+			cb_cadences.getSelectionModel().getSelectedItem();
+			}
+		
 		lv_listeDepartages.setItems(items);
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
 
