@@ -215,33 +215,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 		        				if(rb_nouveau.isSelected())
 		        				{
-		        					int eloInitial = 1499;
-			     					switch(lb_categorie.getText())
-			     					{
-			     					case "Junior":
-			     						eloInitial-=100;
-			     						break;
-			     					case "Cadet":
-			     						eloInitial-=200;
-			     						break;
-			     					case "Minime":
-			     						eloInitial-=300;
-			     						break;
-			     					case "Benjamin":
-			     						eloInitial-=400;
-			     						break;
-			     					case "Pupille":
-			     						eloInitial-=500;
-			     						break;
-			     					case "Poussin":
-			     						eloInitial-=600;
-			     						break;
-			     					case "Petit Poussin":
-			     						eloInitial-=700;
-			     						break;
-			     					}
-
-			     					tf_classementElo.setText(String.valueOf(eloInitial));
+		        					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
 		        				}else
 		        					tf_classementElo.setText("");
 		        			}else
@@ -352,38 +326,35 @@ public class ControleurCreerJoueur implements Initializable {
 		    {
 		        if (oldPropertyValue)
 		        {
-		        	if(!rb_nouveau.isSelected())
-		        	{
-			            if(!Validation.estVide(tf_classementElo))
-			            {
-		            		if(!Validation.estEntierPos(tf_classementElo))
-			        		{
-		            			lb_erreurElo.setText("");
-			        			if(Integer.parseInt(tf_classementElo.getText()) > 500 || Integer.parseInt(tf_classementElo.getText()) < 3000 )
-			        			{
-			        				lb_erreurElo.setText("");
-			        				tf_classementElo.setStyle("-fx-control-inner-background : white; ");
-			        			}else
-			        			{
-			        				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
-			        				tf_classementElo.setStyle("-fx-control-inner-background : red; ");
+		            if(!Validation.estVide(tf_classementElo))
+		            {
+	            		if(Validation.estEntierPos(tf_classementElo))
+		        		{
+	            			lb_erreurElo.setText("");
+		        			if(Integer.parseInt(tf_classementElo.getText()) > 499 && Integer.parseInt(tf_classementElo.getText()) < 3001 )
+		        			{
+		        				lb_erreurElo.setText("");
+		        				tf_classementElo.setStyle("-fx-control-inner-background : white; ");
+		        			}else
+		        			{
+		        				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
+		        				tf_classementElo.setStyle("-fx-control-inner-background : red; ");
 
-			        			}
-			        		}else
-			        		{
-			        			lb_erreurElo.setText("Saisissez un classement ELO valide.");
-			        		}
-			            }else{
-			            	lb_erreurElo.setText("Saississez le classement ELO du joueur.");
-			            }
+		        			}
+		        		}else
+		        		{
+		        			lb_erreurElo.setText("Saisissez un classement ELO valide.");
+		        		}
+		            }else{
+		            	lb_erreurElo.setText("Saississez le classement ELO du joueur.");
+		            }
 
-			            if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
-		            	{
-		            		lb_erreurType.setText("Sélectionnez un type d'ELO.");
-		            	}else{
-		            		lb_erreurType.setText("");
-		            	}
-		        	}
+		            if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
+	            	{
+	            		lb_erreurType.setText("Sélectionnez un type d'ELO.");
+	            	}else{
+	            		lb_erreurType.setText("");
+	            	}
 		        }
 		    }
 		});
@@ -393,11 +364,16 @@ public class ControleurCreerJoueur implements Initializable {
 		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
 		        if (isNowSelected)
 		        {
-		        	tf_classementElo.setText("");
 		        	lb_erreurType.setText("");
+		        	lb_erreurElo.setText("");
 		            rb_fide.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
+		            
+		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
+		            {
+		            	tf_classementElo.setText("");
+		            }
 		        }
 		    }
 		});
@@ -406,11 +382,16 @@ public class ControleurCreerJoueur implements Initializable {
 		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
 		        if (isNowSelected)
 		        {
-		        	tf_classementElo.setText("");
 		        	lb_erreurType.setText("");
+		        	lb_erreurElo.setText("");
 		            rb_national.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
+		            
+		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
+		            {
+		            	tf_classementElo.setText("");
+		            }
 		        }
 		    }
 		});
@@ -434,33 +415,13 @@ public class ControleurCreerJoueur implements Initializable {
 		            	lb_erreurType.setText("");
 		            }
 
-		            int eloInitial = 1499;
-					switch(lb_categorie.getText())
-					{
-					case "Junior":
-						eloInitial-=100;
-						break;
-					case "Cadet":
-						eloInitial-=200;
-						break;
-					case "Minime":
-						eloInitial-=300;
-						break;
-					case "Benjamin":
-						eloInitial-=400;
-						break;
-					case "Pupille":
-						eloInitial-=500;
-						break;
-					case "Poussin":
-						eloInitial-=600;
-						break;
-					case "Petit Poussin":
-						eloInitial-=700;
-						break;
-					}
-
-					tf_classementElo.setText(String.valueOf(eloInitial));
+ 					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
+ 					
+ 					if(Integer.parseInt(tf_classementElo.getText()) == -1)
+ 					{
+ 						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial.");
+ 						tf_classementElo.setText("Non assigné");
+ 					}
 		        }
 
 		    }
@@ -630,6 +591,7 @@ public class ControleurCreerJoueur implements Initializable {
 		mapEloInitial.put("Pupille", eloInitial-500);
 		mapEloInitial.put("Poussin", eloInitial-600);
 		mapEloInitial.put("Petit Poussin", eloInitial-700);
+		mapEloInitial.put("Non assignée", -1);
 	}
 
 	private boolean formulaireCorrect()
@@ -708,33 +670,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 				if(rb_nouveau.isSelected())
 				{
-					int eloInitial = 1499;
- 					switch(lb_categorie.getText())
- 					{
- 					case "Junior":
- 						eloInitial-=100;
- 						break;
- 					case "Cadet":
- 						eloInitial-=200;
- 						break;
- 					case "Minime":
- 						eloInitial-=300;
- 						break;
- 					case "Benjamin":
- 						eloInitial-=400;
- 						break;
- 					case "Pupille":
- 						eloInitial-=500;
- 						break;
- 					case "Poussin":
- 						eloInitial-=600;
- 						break;
- 					case "Petit Poussin":
- 						eloInitial-=700;
- 						break;
- 					}
-
- 					tf_classementElo.setText(String.valueOf(eloInitial));
+ 					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
 				}
 			}else
 			{

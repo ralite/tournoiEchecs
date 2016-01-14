@@ -114,7 +114,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
-
+		lb_info.setText("");
 		if(ModeleTournoi.getTournoi().getListeJoueurs() != null){
 			joueurInscrit.setAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		}

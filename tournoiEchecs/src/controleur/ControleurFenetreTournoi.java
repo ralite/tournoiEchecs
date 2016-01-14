@@ -66,6 +66,9 @@ public class ControleurFenetreTournoi implements Initializable {
 	@FXML
 	ComboBox<String> cb_cadences;
 	
+	HashMap<String, String> cadencesDefinitions=new HashMap<String,String>();
+	
+	
 	@FXML
 	TextArea ta_messageAide ;
 
@@ -210,7 +213,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 	
-	public void affichageAideSurvolNomCadence() {
+	public void affichageAideSelectionCadence() {
 		if(cb_cadences.isFocused()){
 			texteAideCadences();
 			ta_messageAide.setVisible(true);
@@ -219,27 +222,19 @@ public class ControleurFenetreTournoi implements Initializable {
 	}
 	
 	public void texteAideCadences(){
-		switch (cb_cadences.getSelectionModel().getSelectedItem()){
-			case "Blitz" :
-				ta_messageAide.setText("Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
-				break;
-			case "Semi-rapide" :
-				ta_messageAide.setText("La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
-				break;
-			case "Cadence longue" : 
-				ta_messageAide.setText("Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
-				break;
+			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
 		}
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		cadencesDefinitions.put("Blitz", "Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
+		cadencesDefinitions.put("Semi-rapide", "La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
+		cadencesDefinitions.put("Cadence longue", "Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
+			
 		ObservableList<String> options = 
-			    FXCollections.observableArrayList(
-			        "Blitz",
-			        "Semi-rapide",
-			        "Cadence longue"
+			    FXCollections.observableArrayList(cadencesDefinitions.keySet()
 			    );
+		
 		cb_cadences.setItems(options);
 		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
@@ -254,7 +249,8 @@ public class ControleurFenetreTournoi implements Initializable {
 			tf_nbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 			itemsChoisis.addAll(ModeleTournoi.getTournoi().getListeDepartages());
 			items.removeAll(itemsChoisis);
-			cb_cadences.getSelectionModel().getSelectedItem();
+			cb_cadences.setValue(ModeleTournoi.getTournoi().getCadenceJeu());
+			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
 			}
 		
 		lv_listeDepartages.setItems(items);
