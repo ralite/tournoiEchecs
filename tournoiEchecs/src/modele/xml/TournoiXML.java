@@ -84,7 +84,7 @@ public class TournoiXML {
 			
 			///////////
 			
-			/*int indiceRonde = 0;
+			int indiceRonde = 0;
 			
 			for(Ronde ron : tournoi.getListeRondes()) {
 				Element ronde = doc.createElement("ronde" + indiceRonde);
@@ -122,8 +122,18 @@ public class TournoiXML {
 					indiceJoueurAbs++;
 				}
 				
+				int indiceJoueurFor = 0;
+				
+				for(Joueur joufor : ron.getListeJoueurForfait()) {
+					Element joueurFor = doc.createElement("joueurFor" + indiceJoueurFor);
+					joueurFor.appendChild(doc.createTextNode(joufor.getNumLicence()));
+					ronde.appendChild(joueurFor);
+					
+					indiceJoueurFor++;
+				}
+				
 				indiceRonde++;
-			}*/
+			}
 			
 			//////////
 

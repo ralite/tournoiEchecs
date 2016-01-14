@@ -68,12 +68,11 @@ public class Tournoi {
 	public void setListeDepartages(ObservableList<Departage> liste) {
 		this.ListeDepartages=liste;
 	}
-/*	
+
 	public ObservableList<Ronde> getListeRondes() {
 		return ListeRondes;
 	}
 
-*/
 	public String getNom() {
 		return Nom;
 	}
@@ -142,7 +141,6 @@ public class Tournoi {
 		
 		ListeRondes.get(rondeActuelle).setListeJoueurAbs(joueurs);
 	}
-	
 	
 	@Override
 	public String toString() {
