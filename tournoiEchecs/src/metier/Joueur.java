@@ -16,6 +16,7 @@ public class Joueur {
 	private String federation;
 	private String categorie;
 	private String club;
+	private String couleurs;
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
 		super();
@@ -31,6 +32,7 @@ public class Joueur {
 		this.federation = federation;
 		this.categorie = categorie;
 		this.club = club;
+		this.couleurs="";
 	}
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur) {
@@ -170,4 +172,21 @@ public class Joueur {
 		return  numLicence + " " + nomJoueur
 				+ " " + prenomJoueur;
 	}
+	
+	public void joueBlanc(){
+		couleurs+="b/";
+	}
+	
+	public void joueNoir(){
+		couleurs+="n/";
+	}
+	
+	public void joueAbs(){
+		couleurs+="a/";
+	}
+	
+	public void joueForfait(){
+		couleurs+="f/";
+	}
+	
 }
