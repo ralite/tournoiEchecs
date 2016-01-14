@@ -216,6 +216,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        				if(rb_nouveau.isSelected())
 		        				{
 		        					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
+		        					lb_erreurElo.setText("");
 		        				}else
 		        					tf_classementElo.setText("");
 		        			}else
