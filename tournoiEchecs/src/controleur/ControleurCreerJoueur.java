@@ -365,6 +365,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        if (isNowSelected)
 		        {
 		        	lb_erreurType.setText("");
+		        	lb_erreurElo.setText("");
 		            rb_fide.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
@@ -382,6 +383,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        if (isNowSelected)
 		        {
 		        	lb_erreurType.setText("");
+		        	lb_erreurElo.setText("");
 		            rb_national.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
@@ -417,6 +419,7 @@ public class ControleurCreerJoueur implements Initializable {
  					
  					if(Integer.parseInt(tf_classementElo.getText()) == -1)
  					{
+ 						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial.");
  						tf_classementElo.setText("Non assigné");
  					}
 		        }
