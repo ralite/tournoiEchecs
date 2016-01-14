@@ -68,12 +68,11 @@ public class Tournoi {
 	public void setListeDepartages(ObservableList<Departage> liste) {
 		this.ListeDepartages=liste;
 	}
-/*	
+
 	public ObservableList<Ronde> getListeRondes() {
 		return ListeRondes;
 	}
 
-*/
 	public String getNom() {
 		return Nom;
 	}
@@ -143,7 +142,6 @@ public class Tournoi {
 		ListeRondes.get(rondeActuelle).setListeJoueurAbs(joueurs);
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Tournoi [Nom=" + Nom + ", Lieu=" + Lieu + ", DateDeb=" + DateDeb + ", DateFin=" + DateFin + ", Arbitre="
@@ -151,7 +149,7 @@ public class Tournoi {
 	}
 
 	public void setForfaitRonde(ObservableList<Joueur> JoueursForfait) {
-		ListeRondes.get(rondeActuelle).setListeJoueur(JoueursForfait);
+		ListeRondes.get(rondeActuelle).setListeJoueurForfait(JoueursForfait);
 		
 	}
 	

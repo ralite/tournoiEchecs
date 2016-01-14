@@ -83,9 +83,6 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.ajouterTournoi(tournoi);
 					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml");
-					
-					System.out.println("1" + ModeleTournoi.getFichierTournoi());
-					
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 				else{
@@ -96,9 +93,6 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
-					
-					System.out.println("2" + ModeleTournoi.getFichierTournoi());
-					
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				}
 
