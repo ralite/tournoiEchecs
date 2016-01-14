@@ -56,45 +56,86 @@ public class ControleurAppariement implements Initializable {
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
 		itemsJoueursForafait = FXCollections.observableArrayList();
+		if(ModeleTournoi.getTournoi().getPartieRondeActuelle()!=null){
+			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
+		}
 		lv_appariements.setItems(itemsParties);
+		
 		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		lv_appariements.setCellFactory(lv -> new ItemAppariementFactory());
+		
+		if(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle()!=null){
+			itemsJoueursAbsent.addAll(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle());
+			itemsJoueursInscrits.removeAll(itemsJoueursAbsent);
+		}
 		lv_absent.setItems(itemsJoueursAbsent);
+		if(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle()!=null){
+			itemsJoueursForafait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
+			itemsJoueursInscrits.removeAll(itemsJoueursForafait);
+		}
 		lv_forfait.setItems(itemsJoueursForafait);
 
 	}
 
 	@FXML
 	public void onClickNoir(){
-		joueurNoir=lv_joueurInscrit.getSelectionModel().getSelectedItem();
-		if(joueurNoir!=joueurBlanc){
-			lb_joueurNoir.setText(joueurNoir.toString());
-		}
-		else{
+		if(joueurNoir!=null){
+			itemsJoueursInscrits.add(joueurNoir);
 			joueurNoir=null;
 			lb_joueurNoir.setText("");
 		}
+		joueurNoir=lv_joueurInscrit.getSelectionModel().getSelectedItem();
+		if(joueurNoir!=null){
+			lb_joueurNoir.setText(joueurNoir.toString());
+			itemsJoueursInscrits.remove(joueurNoir);
+		}
+
 	}
 
 	@FXML
 	public void onClickBlanc(){
-		joueurBlanc=lv_joueurInscrit.getSelectionModel().getSelectedItem();
-		if(joueurNoir!=joueurBlanc){
-			lb_joueurBlanc.setText(joueurBlanc.toString());
-		}
-		else {
+		if(joueurBlanc!=null){
+			itemsJoueursInscrits.add(joueurBlanc);
 			joueurBlanc=null;
 			lb_joueurBlanc.setText("");
 		}
+		joueurBlanc=lv_joueurInscrit.getSelectionModel().getSelectedItem();
+		if(joueurBlanc != null){
+			lb_joueurBlanc.setText(joueurBlanc.toString());
+			itemsJoueursInscrits.remove(joueurBlanc);
+		}
+
+		
 	}
 
 	@FXML
 	public void onClickAjouter(){
-		itemsParties.add(new Partie(joueurBlanc, joueurNoir));
-		itemsJoueursInscrits.removeAll(joueurBlanc,joueurNoir);
-		joueurBlanc=null;
-		joueurNoir=null;
+		if( joueurBlanc != null && joueurNoir!=null){
+			/*if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Erreur");
+				alert.setContentText("Tout les joueurs ne sont pas apairer !");
+				alert.showAndWait();
+			}
+			else{*/
+				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
+				joueurBlanc=null;
+				joueurNoir=null;
+				lb_joueurBlanc.setText("");
+				lb_joueurNoir.setText("");
+			//}
+		}
+	}
+	
+	@FXML
+	public void actionRetirerPaire(){
+		Partie partieSelectionnée =  (Partie)lv_appariements.getSelectionModel().getSelectedItem();
+		if(partieSelectionnée!=null){
+			itemsJoueursInscrits.add(partieSelectionnée.getJoueurBlanc());
+			itemsJoueursInscrits.add(partieSelectionnée.getJoueurNoir());
+			itemsParties.remove(partieSelectionnée);
+		}
 	}
 
 	@FXML
@@ -128,6 +169,30 @@ public class ControleurAppariement implements Initializable {
 			alert.setContentText("Tout les joueurs ne sont pas apairer !");
 			alert.showAndWait();
 		}
+		else{
+			ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
+			ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
+			ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForafait);
+		}
+		
+	}
+	
+	@FXML
+	public void actionRetirerAbsent(){
+		Joueur joueurSelectionné =  (Joueur)lv_absent.getSelectionModel().getSelectedItem();
+		if(joueurSelectionné!=null){
+			itemsJoueursAbsent.remove(joueurSelectionné);
+			itemsJoueursInscrits.add(joueurSelectionné);
+		}
 	}
 
+	@FXML
+	public void actionRetirerForfait(){
+		Joueur joueurSelectionné =  (Joueur)lv_forfait.getSelectionModel().getSelectedItem();
+		if(joueurSelectionné!=null){
+			itemsJoueursForafait
+			.remove(joueurSelectionné);
+			itemsJoueursInscrits.add(joueurSelectionné);
+		}
+	}
 }

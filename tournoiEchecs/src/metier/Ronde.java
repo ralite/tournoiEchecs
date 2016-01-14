@@ -8,10 +8,10 @@ public class Ronde {
 	private int numeroRonde;
 	private ObservableList<Partie> ListePartie;
 	private ObservableList<Joueur> ListeJoueurAbs;
+	private ObservableList<Joueur> ListeJoueurForfait;
 	
 	public Ronde(int numeroRonde) {
 		this.numeroRonde = numeroRonde;
-		ListePartie = FXCollections.observableArrayList();
 	}
 	
 	public int getNumeroRonde() {
@@ -36,6 +36,31 @@ public class Ronde {
 
 	public void setListeJoueurAbs(ObservableList<Joueur> listeJoueurAbs) {
 		ListeJoueurAbs = listeJoueurAbs;
+	}
+
+	public void setListeJoueur(ObservableList<Joueur> joueursForfait) {
+		ListeJoueurForfait = joueursForfait;
+	}
+
+	public boolean dejaRencontre(Joueur j1, Joueur j2) {
+		boolean dejaRencontre=false;
+		int i = 0,size=0;
+		if(ListePartie!=null){
+			size=ListePartie.size();
+		}
+		while(!dejaRencontre && i<size){
+			dejaRencontre=ListePartie.get(i).dejaRencontre(j1,j2);
+		}
+		return dejaRencontre;
+	}
+
+	public ObservableList<Partie> getParties() {
+		return ListePartie;
+		
+	}
+
+	public ObservableList<Joueur> getListeJoueurForfait() {
+		return ListeJoueurForfait;
 	}
 	
 }
