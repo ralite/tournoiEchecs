@@ -50,6 +50,7 @@ public class Ronde {
 		}
 		while(!dejaRencontre && i<size){
 			dejaRencontre=ListePartie.get(i).dejaRencontre(j1,j2);
+			i++;
 		}
 		return dejaRencontre;
 	}

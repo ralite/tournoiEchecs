@@ -64,10 +64,10 @@ public class ControleurFenetreTournoi implements Initializable {
 	Label lb_erreurDate;
 
 	@FXML
-	TextField tf_cadenceJeu;
-
-	@FXML
 	ComboBox<String> cb_cadences;
+	
+	HashMap<String, String> cadencesDefinitions=new HashMap<String,String>();
+	
 	
 	@FXML
 	TextArea ta_messageAide ;
@@ -78,7 +78,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
 				if(ModeleTournoi.getTournoi()==null){
-					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),Integer.valueOf(tf_cadenceJeu.getText()));
+					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
 					tournoi.setListeDepartages(itemsChoisis);
 					ModeleTournoi.ajouterTournoi(tournoi);
 					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
@@ -95,7 +95,7 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
 					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
-					ModeleTournoi.getTournoi().setCadenceJeu(Integer.valueOf(tf_cadenceJeu.getText()));
+					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
 					
 					System.out.println("2" + ModeleTournoi.getFichierTournoi());
 					
@@ -141,8 +141,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		if(Validation.estVide(tf_arbitre))
 			res = false;
 		if(Validation.estVide(tf_nbRondes))
-			res = false;
-		if(Validation.estVide(tf_cadenceJeu))
 			res = false;
 		if(Validation.estVide(lv_listeDepartagesChoisis))
 			res = false;
@@ -211,7 +209,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		Validation.verifLongueurTexte(tf_lieuTournoi,50);
 		Validation.verifLongueurTexte(tf_arbitre,30);
 		Validation.verifLongueurTexte(tf_nbRondes,6);
-		Validation.verifLongueurTexte(tf_cadenceJeu, 4);
 	}
 
 	private void chiffresSeulement(Number oldValue, Number newValue, TextField leChampDeSaisie){
@@ -222,7 +219,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 	
-	public void affichageAideSurvolNomCadence() {
+	public void affichageAideSelectionCadence() {
 		if(cb_cadences.isFocused()){
 			texteAideCadences();
 			ta_messageAide.setVisible(true);
@@ -231,33 +228,24 @@ public class ControleurFenetreTournoi implements Initializable {
 	}
 	
 	public void texteAideCadences(){
-		switch (cb_cadences.getSelectionModel().getSelectedItem()){
-			case "Blitz" :
-				ta_messageAide.setText("Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
-				break;
-			case "Semi-rapide" :
-				ta_messageAide.setText("La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
-				break;
-			case "Cadence longue" : 
-				ta_messageAide.setText("Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
-				break;
+			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
 		}
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		cadencesDefinitions.put("Blitz", "Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
+		cadencesDefinitions.put("Semi-rapide", "La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
+		cadencesDefinitions.put("Cadence longue", "Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
+			
 		ObservableList<String> options = 
-			    FXCollections.observableArrayList(
-			        "Blitz",
-			        "Semi-rapide",
-			        "Cadence longue"
+			    FXCollections.observableArrayList(cadencesDefinitions.keySet()
 			    );
+		
 		cb_cadences.setItems(options);
 		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
-		tf_cadenceJeu.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_cadenceJeu));
-
+		
 		if(ModeleTournoi.getTournoi()!=null){
 			tf_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 			tf_lieuTournoi.setText(ModeleTournoi.getTournoi().getLieu());
@@ -267,8 +255,10 @@ public class ControleurFenetreTournoi implements Initializable {
 			tf_nbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 			itemsChoisis.addAll(ModeleTournoi.getTournoi().getListeDepartages());
 			items.removeAll(itemsChoisis);
-			tf_cadenceJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
-		}
+			cb_cadences.setValue(ModeleTournoi.getTournoi().getCadenceJeu());
+			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
+			}
+		
 		lv_listeDepartages.setItems(items);
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
 

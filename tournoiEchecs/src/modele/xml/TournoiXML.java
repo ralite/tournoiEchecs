@@ -66,8 +66,7 @@ public class TournoiXML {
 			rootElement.appendChild(nbRondes);
 
 			Element cadenceJeu = doc.createElement("cadencejeu");
-			Integer i2 = (Integer)tournoi.getCadenceJeu();
-			cadenceJeu.appendChild(doc.createTextNode(i2.toString()));
+			cadenceJeu.appendChild(doc.createTextNode(tournoi.getCadenceJeu()));
 			rootElement.appendChild(cadenceJeu);
 
 			for(Departage dep : tournoi.getListeDepartages()) {
@@ -160,7 +159,7 @@ public class TournoiXML {
 			LocalDate dateFin = null;
 			String arbitre = null;
 			int nbRondes = 0;
-			int cadenceJeu = 0;
+			String cadenceJeu = null;
 			ArrayList<String> listNomDepartage = new ArrayList<String>();
 			ArrayList<Departage> listDepartage = new ArrayList<Departage>();
 			ArrayList<String> listNumJoueur = new ArrayList<String>();
@@ -194,7 +193,7 @@ public class TournoiXML {
 						nbRondes = Integer.parseInt(node.getTextContent());
 					}
 					if(node.getNodeName() == "cadencejeu"){
-						cadenceJeu = Integer.parseInt(node.getTextContent());
+						cadenceJeu = node.getTextContent();
 					}
 					if(node.getNodeName() == "departage"){
 						listNomDepartage.add(node.getTextContent());

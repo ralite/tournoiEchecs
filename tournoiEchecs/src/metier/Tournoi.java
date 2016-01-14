@@ -16,10 +16,10 @@ public class Tournoi {
 	private ObservableList<Joueur> ListeJoueurs;
 	private ObservableList<Departage> ListeDepartages;
 	private ObservableList<Ronde> ListeRondes;
-	private int cadenceJeu;
+	private String cadenceJeu;
 	private int rondeActuelle;
 
-	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, int cadence) {
+	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, String cadence) {
 		Nom = nom;
 		Lieu = lieu;
 		DateDeb = dateDeb;
@@ -126,11 +126,11 @@ public class Tournoi {
 		NbRondes = nbRondes;
 	}
 
-	public int getCadenceJeu() {
+	public String getCadenceJeu() {
 		return cadenceJeu;
 	}
 
-	public void setCadenceJeu(int cadenceJeu) {
+	public void setCadenceJeu(String cadenceJeu) {
 		this.cadenceJeu = cadenceJeu;
 	}
 
@@ -160,6 +160,7 @@ public class Tournoi {
 		int i = 0;
 		while(!dejaRencontre && i<NbRondes){
 			dejaRencontre=ListeRondes.get(i).dejaRencontre(j1,j2);
+			i++;
 		}
 		return dejaRencontre;
 		
@@ -168,7 +169,14 @@ public class Tournoi {
 	public ObservableList<Partie> getPartieRondeActuelle() {
 		return ListeRondes.get(rondeActuelle).getParties();
 	}
-
+	public ObservableList<Joueur> getJoueursRondeActuelle() {
+		ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
+		for (Partie partie : ListeRondes.get(rondeActuelle).getParties()) {
+			joueurs.addAll(partie.getJoueurBlanc(),partie.getJoueurNoir());
+		}
+		return joueurs;
+	}
+	
 	public ObservableList<Joueur> getJoueurAbsRondeActuelle() {
 		return ListeRondes.get(rondeActuelle).getListeJoueurAbs();
 	}
@@ -176,5 +184,7 @@ public class Tournoi {
 	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
 		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
 	}
+
+
 
 }

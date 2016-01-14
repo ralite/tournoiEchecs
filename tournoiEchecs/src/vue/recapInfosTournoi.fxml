@@ -26,7 +26,6 @@
       <Label fx:id="lb_recapRondes" layoutX="414.0" layoutY="60.0" prefHeight="17.0" prefWidth="109.0" text="Nombre de rondes :" />
       <Label fx:id="lb_recapCadenceJeu" layoutX="414.0" layoutY="85.0" prefHeight="17.0" prefWidth="109.0" text="Cadence de jeu :" />
       <Label fx:id="lb_recapCadenceDeJeu" layoutX="526.0" layoutY="85.0" text="Label" />
-      <Label fx:id="lb_recapCadence" layoutX="561.0" layoutY="85.0" text="min(s)" />
       <Button layoutX="532.0" layoutY="430.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
    </children>
 </AnchorPane>
