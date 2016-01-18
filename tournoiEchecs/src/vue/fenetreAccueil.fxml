@@ -10,14 +10,14 @@
    <children>
       <Button fx:id="button_tournoiAccueil" layoutX="248.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#onClickTournoi" prefHeight="58.0" prefWidth="104.0" text="Tournoi" />
       <Button fx:id="button_joueurAccueil" layoutX="248.0" layoutY="196.0" mnemonicParsing="false" onMouseClicked="#onClickJoueur" prefHeight="58.0" prefWidth="104.0" text="Joueur" />
-      <Button fx:id="button_parcourirTournoi" layoutX="353.0" layoutY="158.0" mnemonicParsing="false" onAction="#actionParcourirTournoi" prefHeight="32.0" prefWidth="104.0" text="ouvrir tournoi..." visible="false" />
+      <Button fx:id="button_parcourirTournoi" layoutX="353.0" layoutY="158.0" mnemonicParsing="false" onAction="#actionParcourirTournoi" prefHeight="32.0" prefWidth="123.0" text="Ouvrir un tournoi" visible="false" />
       <Label fx:id="label_titre_accueil" alignment="CENTER" layoutX="119.0" layoutY="23.0" prefHeight="41.0" prefWidth="362.0" text="Tournoi d'Echecs" textAlignment="CENTER" textFill="#171717">
          <font>
             <Font name="Arial Black" size="31.0" />
          </font>
       </Label>
       <Button fx:id="button_quitterAccueil" layoutX="249.0" layoutY="312.0" mnemonicParsing="false" onAction="#actionFermer" prefHeight="58.0" prefWidth="104.0" text="Quitter" />
-      <Button fx:id="button_creerTournoi" layoutX="353.0" layoutY="126.0" mnemonicParsing="false" onAction="#actionCreerTournoi" prefHeight="32.0" prefWidth="104.0" text="Créer un tournoi" visible="false" />
+      <Button fx:id="button_creerTournoi" layoutX="353.0" layoutY="126.0" mnemonicParsing="false" onAction="#actionCreerTournoi" prefHeight="32.0" prefWidth="123.0" text="Créer un tournoi" visible="false" />
       <Button fx:id="button_creerJoueur" layoutX="353.0" layoutY="219.0" mnemonicParsing="false" onAction="#actionCreerJoueur" prefHeight="32.0" prefWidth="104.0" text="Créer un joueur" visible="false" />
       <Button fx:id="button_modifierJoueurAccueil" layoutX="353.0" layoutY="251.0" mnemonicParsing="false" onAction="#actionModifierJoueur" prefHeight="32.0" prefWidth="104.0" text="Modifier joueur" visible="false" />
    </children>

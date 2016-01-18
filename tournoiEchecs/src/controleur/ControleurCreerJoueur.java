@@ -251,7 +251,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        	{
 		        		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Masculin","Candidat Maître Masculin","Maître International Masculin", "Grand Maître International Masculin");
 		        	}else{
-		        		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Féminin","Candidat Maître Féminin", "Maître International Féminin", "Grand Maître International Feminin");
+		        		listeTitre = FXCollections.observableArrayList("Aucun titre","Maître FIDE Féminin","Maître FIDE Masculin","Candidat Maître Féminin","Candidat Maître Masculin", "Maître International Féminin","Maître International Masculin", "Grand Maître International Feminin", "Grand Maître International Masculin");
 		        	}
 	        		chbx_titre.setItems(listeTitre);
 	        		chbx_titre.setValue("Aucun titre");
@@ -370,7 +370,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_fide.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
-		            
+
 		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
 		            {
 		            	tf_classementElo.setText("");
@@ -388,13 +388,13 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_national.setSelected(false);
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
-		            
+
 		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
 		            {
 		            	tf_classementElo.setText("");
 		            }
 		        }
-		    }
+		      }
 		});
 		rb_nouveau.selectedProperty().addListener(new ChangeListener<Boolean>() {
 		    @Override
@@ -417,14 +417,13 @@ public class ControleurCreerJoueur implements Initializable {
 		            }
 
  					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
- 					
+
  					if(Integer.parseInt(tf_classementElo.getText()) == -1)
  					{
  						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial.");
  						tf_classementElo.setText("Non assigné");
  					}
 		        }
-
 		    }
 		});
 
@@ -703,15 +702,15 @@ public class ControleurCreerJoueur implements Initializable {
 				}else
 				{
 					lb_erreurElo.setText("");
-					if(Integer.parseInt(tf_classementElo.getText()) < 500 || Integer.parseInt(tf_classementElo.getText()) > 3000 )
+					if(Integer.parseInt(tf_classementElo.getText()) > 499 && Integer.parseInt(tf_classementElo.getText()) < 3001)
+					{
+						lb_erreurElo.setText("");
+						tf_classementElo.setStyle("-fx-control-inner-background : white; ");
+					}else
 					{
 						lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
 						tf_classementElo.setStyle("-fx-control-inner-background : red; ");
 						res = false;
-					}else
-					{
-						lb_erreurElo.setText("");
-						tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 					}
 				}
 			}
