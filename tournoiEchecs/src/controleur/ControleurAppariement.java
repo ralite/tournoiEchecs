@@ -164,7 +164,7 @@ public class ControleurAppariement implements Initializable {
 
 	@FXML
 	public void actionValider(){
-		if(itemsJoueursInscrits.size()>1){
+		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setContentText("Tout les joueurs ne sont pas apairer !");
