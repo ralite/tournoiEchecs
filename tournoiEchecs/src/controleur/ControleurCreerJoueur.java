@@ -795,7 +795,6 @@ public class ControleurCreerJoueur implements Initializable {
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
-		Validation.verifLongueurTexte(tf_ligue,3);
 		Validation.verifLongueurTexte(tf_club, 50);
 	}
 
