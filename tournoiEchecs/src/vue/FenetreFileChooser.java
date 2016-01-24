@@ -11,16 +11,21 @@ public class FenetreFileChooser {
 	private static File lastdir=null;
 	
 	public static File choisirTournoi(Window owner){
-		File fichierAouvrir;
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Choisissez un tournoi");
-		if(lastdir!= null){
-			fileChooser.setInitialDirectory(lastdir);
+			File fichierAouvrir;
+			try{
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Choisissez un tournoi");
+			if(lastdir!= null){
+				fileChooser.setInitialDirectory(lastdir);
+			}
+			fileChooser.getExtensionFilters().add(new ExtensionFilter("xml Files", "*.xml"));
+			fichierAouvrir=fileChooser.showOpenDialog(owner);
+			lastdir=fichierAouvrir.getParentFile();
+			return fichierAouvrir;
 		}
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("xml Files", "*.xml"));
-		fichierAouvrir=fileChooser.showOpenDialog(owner);
-		lastdir=fichierAouvrir.getParentFile();
-		return fichierAouvrir;
+		catch(Exception e){
+			return null;
+		}
 		
 	}
 	

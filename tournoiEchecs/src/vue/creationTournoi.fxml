@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurFenetreTournoi">
    <children>
       <TextField fx:id="tf_nomTournoi" layoutX="250.0" layoutY="14.0" onKeyPressed="#limiteTexte" prefHeight="25.0" prefWidth="309.0" />
       <TextField fx:id="tf_lieuTournoi" layoutX="250.0" layoutY="45.0" onKeyPressed="#limiteTexte" prefHeight="25.0" prefWidth="309.0" />
@@ -30,7 +30,7 @@
       <Label fx:id="label_departageChoisi" layoutX="400.0" layoutY="183.0" text="Departages choisis (3 minimum)" />
       <Label fx:id="lb_erreurDate" layoutX="433.0" layoutY="99.0" prefHeight="27.0" prefWidth="160.0" textFill="#e40606" />
       <Label fx:id="lb_cadenceJeu" layoutX="15.0" layoutY="333.0" text="Cadence voulue :" />
-      <ComboBox fx:id="cb_cadences" layoutX="11.0" layoutY="355.0" onAction="#affichageAideSelectionCadence" prefHeight="25.0" prefWidth="128.0" />
       <TextArea fx:id="ta_messageAide" layoutX="151.0" layoutY="337.0" onInputMethodTextChanged="#affichageAideSelectionCadence" prefHeight="60.0" prefWidth="292.0" wrapText="true" />
+      <ChoiceBox fx:id="cb_cadences" layoutX="8.0" layoutY="358.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -18,6 +18,8 @@ import com.sun.javafx.scene.control.skin.ButtonSkin;
 
 import modele.ModeleDepartage;
 import application.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -64,9 +66,9 @@ public class ControleurFenetreTournoi implements Initializable {
 	Label lb_erreurDate;
 
 	@FXML
-	ComboBox<String> cb_cadences;
+	ChoiceBox<String> cb_cadences;
 	
-	HashMap<String, String> cadencesDefinitions=new HashMap<String,String>();
+	HashMap<String, String> cadencesDefinitions;
 	
 	
 	@FXML
@@ -77,28 +79,39 @@ public class ControleurFenetreTournoi implements Initializable {
     private void actionValider(Event e) {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
-				if(ModeleTournoi.getTournoi()==null){
-					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
-					tournoi.setListeDepartages(itemsChoisis);
-					ModeleTournoi.ajouterTournoi(tournoi);
-					File file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
-					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + tournoi.getNom() + "_" + tournoi.getLieu() + "_" + tournoi.getDateDeb().toString() + ".xml");
-					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+				
+				File file = null;
+				if(ModeleTournoi.getFichierTournoi()==null){
+					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());					
 				}
-				else{
-					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
-					ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
-					ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
-					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
-					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
-					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
-					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
+				
+				if(file!=null){
+					if(ModeleTournoi.getTournoi()==null){
+						Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
+						tournoi.setListeDepartages(itemsChoisis);
+						ModeleTournoi.ajouterTournoi(tournoi);
+					}
+					else{
+						ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
+						ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
+						ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
+						ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
+						ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
+						ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
+						ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
+					}
+
+					
+					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
+				
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+					
+					RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+					rt.show();
+					((Node)e.getSource()).getScene().getWindow().hide();
 				}
 
-				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
-				rt.show();
-				((Node)e.getSource()).getScene().getWindow().hide();
+
 			}
 		}
 	}
@@ -227,6 +240,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		cadencesDefinitions=new HashMap<String,String>();
 		cadencesDefinitions.put("Blitz", "Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
 		cadencesDefinitions.put("Semi-rapide", "La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
 		cadencesDefinitions.put("Cadence longue", "Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
@@ -255,6 +269,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		
 		lv_listeDepartages.setItems(items);
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
+		
 
 	}
 

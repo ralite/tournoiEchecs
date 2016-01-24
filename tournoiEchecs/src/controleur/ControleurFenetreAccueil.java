@@ -42,6 +42,7 @@ public class ControleurFenetreAccueil implements Initializable{
     @FXML
     private void actionCreerTournoi() {
     	ModeleTournoi.nouveauTournoi();
+    	ModeleTournoi.setFichierTournoi(null);
     	CreationTournoi creationTournoi = new CreationTournoi(Main.getPrimaryStage());
 		creationTournoi.show();
     }
