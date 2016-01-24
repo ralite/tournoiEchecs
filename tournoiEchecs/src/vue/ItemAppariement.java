@@ -13,7 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
-public class ItemAppariementFactory extends ListCell<Partie>{
+public class ItemAppariement extends ListCell<Partie>{
 	
     private final GridPane gridPane = new GridPane(); 
  
@@ -25,7 +25,7 @@ public class ItemAppariementFactory extends ListCell<Partie>{
     
     private final AnchorPane content = new AnchorPane(); 
 
-	public ItemAppariementFactory() {
+	public ItemAppariement() {
 
 		 		joueurBlanc.setStyle("-fx-font-weight: bold;"); 
 		 		joueurNoir.setStyle("-fx-font-weight: bold;"); 

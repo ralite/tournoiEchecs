@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
-import vue.ItemAppariementFactory;
+import vue.ItemAppariement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -64,7 +64,7 @@ public class ControleurAppariement implements Initializable {
 		lv_appariements.setItems(itemsParties);
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		
-		lv_appariements.setCellFactory(lv -> new ItemAppariementFactory());
+		lv_appariements.setCellFactory(lv -> new ItemAppariement());
 		
 		if(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle()!=null){
 			itemsJoueursAbsent.addAll(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle());

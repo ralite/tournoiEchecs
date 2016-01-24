@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="599.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurSaisieResultat">
+   <children>
+      <ListView fx:id="lv_resultats" layoutX="14.0" layoutY="107.0" prefHeight="432.0" prefWidth="732.0" />
+      <Button layoutX="666.0" layoutY="546.0" mnemonicParsing="false" onAction="#validerSaisieResultat" text="Valider" />
+      <Button layoutX="433.0" layoutY="45.0" mnemonicParsing="false" onAction="#rechercherPartie" prefHeight="39.0" prefWidth="123.0" text="Rechercher" />
+      <TextField fx:id="tf_recherche" layoutX="77.0" layoutY="45.0" prefHeight="39.0" prefWidth="356.0" />
+      <Button layoutX="583.0" layoutY="45.0" mnemonicParsing="false" onAction="#toutesParties" prefHeight="39.0" prefWidth="163.0" text="Toutes les parties" />
+   </children>
+</AnchorPane>

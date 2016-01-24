@@ -133,9 +133,6 @@ public class Tournoi {
 		this.cadenceJeu = cadenceJeu;
 	}
 
-	public void setPartiesRonde(ObservableList<Partie> listePartie){
-		ListeRondes.get(rondeActuelle).setListePartie(listePartie);
-	}
 
 	public void setAbsentRonde(ObservableList<Joueur> joueurs) {
 		
@@ -167,6 +164,11 @@ public class Tournoi {
 	public ObservableList<Partie> getPartieRondeActuelle() {
 		return ListeRondes.get(rondeActuelle).getParties();
 	}
+	
+	public void setPartiesRonde(ObservableList<Partie> listePartie){
+		ListeRondes.get(rondeActuelle).setListePartie(listePartie);
+	}
+	
 	public ObservableList<Joueur> getJoueursRondeActuelle() {
 		ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
 		for (Partie partie : ListeRondes.get(rondeActuelle).getParties()) {

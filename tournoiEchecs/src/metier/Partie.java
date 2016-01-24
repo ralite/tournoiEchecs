@@ -4,6 +4,7 @@ public class Partie {
 	
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
+	private String resultat=null;
 
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
 		this.joueurBlanc = joueurBlanc;
@@ -47,6 +48,55 @@ public class Partie {
 			return true;
 		}
 		return false;
+	}
+
+	public void joueurNoirGagne() {
+		resultat="noirGagne";
+		
+	}
+
+	public void joueurBlancGagne() {
+		resultat="blancGagne";
+		
+	}
+
+	public void partieNulle() {
+		resultat="partieNulle";
+		
+	}
+
+	public void doubleForfait() {
+		resultat="doubleForfait";
+		
+	}
+
+	public void joueurBlancForfait() {
+		resultat="blancForfait";
+		
+	}
+
+	public void joueurNoirForfait() {
+		resultat="noirForfait";
+		
+	}
+	
+	public String getGagnant() {
+		return resultat;
+	}
+
+	public boolean rechercherPartie(String text) {
+		if (joueurBlanc.getNomJoueur().equalsIgnoreCase(text) 
+				|| joueurNoir.getNomJoueur().equalsIgnoreCase(text) 
+				|| joueurBlanc.getNumLicence().equals(text)
+				||joueurNoir.getNumLicence().equals(text)){
+			System.out.println("ici");
+			return true;
+			
+		}
+		else{
+			return false;
+		}
+		
 	}
 		
 }

@@ -2,6 +2,7 @@ package controleur;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -124,20 +125,17 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 	}
 
 	void ajouterTrier(ObservableList<Joueur> data, Joueur j){
-		int place=0;
-		int i=0;
-		if(data.size()!=0){
-			while( i<data.size() && data.get(i).getNomJoueur().compareTo(j.getNomJoueur())<0 ){
-				i++;
-			}
-		}
-		data.add(j);
-		place=i;
 
-		for(;i<data.size()-1;i++){
-			data.set(i+1, data.get(i));
-		}
-		data.set(place, j);
+		data.add(j);
+		FXCollections.sort(joueurInscrit, new Comparator<Joueur>() {
+
+			@Override
+			public int compare(Joueur j1, Joueur j2) {
+				return j1.getNumLicence().compareTo(j2.getNumLicence());
+			}
+
+		});
+
 
 	}
 

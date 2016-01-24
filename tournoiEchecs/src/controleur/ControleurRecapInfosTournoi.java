@@ -20,6 +20,7 @@ import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
 import vue.CreationTournoi;
+import vue.SaisieResultat;
 
 public class ControleurRecapInfosTournoi implements Initializable {
 
@@ -103,6 +104,12 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	public void apparierJoueurs(){
 		AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());
+		app.show();
+	}
+	
+	@FXML
+	public void saisirResultat(){
+		SaisieResultat app = new SaisieResultat(Main.getPrimaryStage());
 		app.show();
 	}
 
