@@ -406,18 +406,10 @@ public class ControleurCreerJoueur implements Initializable {
 		            tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 		            tf_classementElo.setDisable(true);
 
-		            if(lb_categorie.getText()=="")//car problème de vide pour les date picker
-		            {
-		            	lb_erreurType.setText("Saisissez une date de naissance.");
-		            	dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-		            }else
-		            {
-		            	dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-		            	lb_erreurType.setText("");
-		            }
-
+		            //affichage elo initial
  					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
 
+ 					//si date de naissance non-saisi
  					if(Integer.parseInt(tf_classementElo.getText()) == -1)
  					{
  						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial.");
@@ -538,7 +530,6 @@ public class ControleurCreerJoueur implements Initializable {
 			rb_fide.setSelected(true);
 		else if(typeElo.equalsIgnoreCase("Nouveau")){
 			rb_nouveau.setSelected(true);
-			tf_classementElo.setText("aucun");
 			tf_classementElo.setDisable(true);
 		}
 
@@ -759,7 +750,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}else
 		{
 			lb_erreurClub.setText("");
-			if(!Validation.estChaine(tf_club))
+			if(!Validation.estChaineChiffree(tf_club))
 			{
 				lb_erreurClub.setText("Saisissez un nom de club valide.");
 				res = false;
