@@ -25,9 +25,9 @@ import javafx.scene.control.TextField;
 
 public class ControleurAjouterJoueurTournoi implements Initializable {
 
-	private ObservableList<Joueur> joueurInscrit = FXCollections.observableArrayList();
+	private ObservableList<Joueur> joueurInscrit;
 
-	private ObservableList<Joueur> resutatRecherche = FXCollections.observableArrayList();
+	private ObservableList<Joueur> resutatRecherche;
 
 	@FXML
 	private Label lb_nomTournoi;
@@ -114,6 +114,9 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		joueurInscrit = FXCollections.observableArrayList();
+		 resutatRecherche = FXCollections.observableArrayList();
+		
 		lb_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 		lb_info.setText("");
 		if(ModeleTournoi.getTournoi().getListeJoueurs() != null){

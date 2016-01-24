@@ -17,6 +17,7 @@ public class Joueur {
 	private String categorie;
 	private String club;
 	private String couleurs;
+	private float score;
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
 		super();
@@ -33,6 +34,7 @@ public class Joueur {
 		this.categorie = categorie;
 		this.club = club;
 		this.couleurs="";
+		this.score=0;
 	}
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur) {
@@ -187,6 +189,16 @@ public class Joueur {
 	
 	public void joueForfait(){
 		couleurs+="f/";
+	}
+
+	public void gagne1Point() {
+		score+=1;
+		
+	}
+
+	public void gagneDemiPoint() {
+		score+=0.5;
+		
 	}
 	
 }

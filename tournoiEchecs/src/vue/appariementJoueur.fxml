@@ -32,9 +32,10 @@
       <Button layoutX="378.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionAjouterForfait" prefHeight="39.0" prefWidth="101.0" text="Forfait" />
       <Button layoutX="76.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionAjouterAbsent" prefHeight="39.0" prefWidth="101.0" text="Absent" />
       <Button layoutX="606.0" layoutY="543.0" mnemonicParsing="false" onAction="#actionAnnuler" prefHeight="39.0" prefWidth="147.0" text="Annuler" />
-      <Button layoutX="606.0" layoutY="591.0" mnemonicParsing="false" onAction="#actionValider" prefHeight="39.0" prefWidth="147.0" text="Lancer la ronde" />
+      <Button layoutX="606.0" layoutY="591.0" mnemonicParsing="false" onAction="#actionValider" prefHeight="39.0" prefWidth="147.0" text="Valider" />
       <Button layoutX="177.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionRetirerAbsent" prefHeight="39.0" prefWidth="101.0" text="Retirer" />
       <Button layoutX="479.0" layoutY="417.0" mnemonicParsing="false" onAction="#actionRetirerForfait" prefHeight="39.0" prefWidth="101.0" text="Retirer" />
       <Button layoutX="176.0" layoutY="313.0" mnemonicParsing="false" onAction="#actionRetirerPaire" prefHeight="39.0" prefWidth="138.0" text="Retirer" />
+      <Button layoutX="606.0" layoutY="636.0" mnemonicParsing="false" onAction="#actionLancerRonde" prefHeight="39.0" prefWidth="147.0" text="Lancer la ronde" />
    </children>
 </AnchorPane>

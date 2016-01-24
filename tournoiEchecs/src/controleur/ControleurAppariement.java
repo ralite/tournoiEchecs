@@ -44,7 +44,7 @@ public class ControleurAppariement implements Initializable {
 
 	private ObservableList<Joueur> itemsJoueursAbsent;
 
-	private ObservableList<Joueur> itemsJoueursForafait;
+	private ObservableList<Joueur> itemsJoueursForfait;
 
 	private Joueur joueurBlanc=null;
 	
@@ -55,7 +55,7 @@ public class ControleurAppariement implements Initializable {
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
-		itemsJoueursForafait = FXCollections.observableArrayList();
+		itemsJoueursForfait = FXCollections.observableArrayList();
 		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		if(ModeleTournoi.getTournoi().getPartieRondeActuelle()!=null){
 			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
@@ -72,10 +72,10 @@ public class ControleurAppariement implements Initializable {
 		}
 		lv_absent.setItems(itemsJoueursAbsent);
 		if(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle()!=null){
-			itemsJoueursForafait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
-			itemsJoueursInscrits.removeAll(itemsJoueursForafait);
+			itemsJoueursForfait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
+			itemsJoueursInscrits.removeAll(itemsJoueursForfait);
 		}
-		lv_forfait.setItems(itemsJoueursForafait);
+		lv_forfait.setItems(itemsJoueursForfait);
 
 	}
 
@@ -152,7 +152,7 @@ public class ControleurAppariement implements Initializable {
 	public void actionAjouterForfait(){
 		Joueur joueurSelectionné =  (Joueur)lv_joueurInscrit.getSelectionModel().getSelectedItem();
 		if(joueurSelectionné!=null){
-			itemsJoueursForafait.add(joueurSelectionné);
+			itemsJoueursForfait.add(joueurSelectionné);
 			itemsJoueursInscrits.remove(joueurSelectionné);
 		}
 	}
@@ -164,18 +164,46 @@ public class ControleurAppariement implements Initializable {
 
 	@FXML
 	public void actionValider(){
+		enregistrerApp();
+		
+	}
+	
+	@FXML
+	public void actionLancerRonde(){
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Erreur");
-			alert.setContentText("Tout les joueurs ne sont pas apairer !");
-			alert.showAndWait();
+			AfficherAlerte();
 		}
 		else{
-			ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
-			ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
-			ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForafait);
+			if(itemsJoueursInscrits.size()==1)
+				itemsJoueursInscrits.get(0).gagne1Point();
+			
+			for (Partie partie : itemsParties) {
+				partie.setCouleurJoueur();
+			}
+			for (Joueur joueur : itemsJoueursAbsent) {
+				joueur.joueAbs();
+			}
+			for (Joueur joueur : itemsJoueursForfait) {
+				joueur.joueForfait();
+			}
+			enregistrerApp();
 		}
 		
+	}
+
+	private void enregistrerApp() {
+		ModeleTournoi.getTournoi().getListeJoueurs().remove(itemsJoueursInscrits.get(0));
+		ModeleTournoi.getTournoi().getListeJoueurs().add(itemsJoueursInscrits.get(0));
+		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
+		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
+		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
+	}
+
+	private void AfficherAlerte() {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Erreur");
+		alert.setContentText("Tout les joueurs ne sont pas apairer !");
+		alert.showAndWait();
 	}
 	
 	@FXML
@@ -191,7 +219,7 @@ public class ControleurAppariement implements Initializable {
 	public void actionRetirerForfait(){
 		Joueur joueurSelectionné =  (Joueur)lv_forfait.getSelectionModel().getSelectedItem();
 		if(joueurSelectionné!=null){
-			itemsJoueursForafait
+			itemsJoueursForfait
 			.remove(joueurSelectionné);
 			itemsJoueursInscrits.add(joueurSelectionné);
 		}

@@ -43,6 +43,14 @@ public class ControleurSaisieResultat implements Initializable{
 	}
 	
 	@FXML
+	public void terminerSaisieResultat(){
+		for (Partie partie : itemRechercher) {
+			partie.setScore();
+		}
+		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
+	}
+	
+	@FXML
 	public void rechercherPartie(){
 		itemRechercher.clear();
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);

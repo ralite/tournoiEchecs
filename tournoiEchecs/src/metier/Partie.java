@@ -98,5 +98,27 @@ public class Partie {
 		}
 		
 	}
+
+	public void setCouleurJoueur() {
+		joueurBlanc.joueBlanc();
+		joueurNoir.joueNoir();
+		
+	}
+
+	public void setScore() {
+		switch (resultat) {
+		case "noirGagne": case"blancForfait":
+			joueurNoir.gagne1Point();
+			break;
+		case "blancGagne": case"noirForfait":
+			joueurBlanc.gagne1Point();
+			break;
+		case "partieNulle":
+			joueurBlanc.gagneDemiPoint();
+			break;
+
+		}
+		
+	}
 		
 }
