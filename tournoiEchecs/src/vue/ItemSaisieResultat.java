@@ -118,14 +118,14 @@ public class ItemSaisieResultat extends ListCell<Partie> {
         if (!empty && item != null) { 
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
             joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-            if(item.getElojoueurBlanc()!=-1){
-            	eloJoueurBlanc.setText(String.valueOf(item.getElojoueurBlanc()));
+            if(item.getScoreJoueurBlanc()!=-1){
+            	eloJoueurBlanc.setText(String.valueOf(item.getScoreJoueurBlanc()));
             }
             else{
             	eloJoueurBlanc.setText("inconnu");
             }
-            if(item.getElojoueurNoir()!=-1){
-            eloJoueurNoir.setText(String.valueOf(item.getElojoueurNoir()));
+            if(item.getScoreJoueurNoir()!=-1){
+            eloJoueurNoir.setText(String.valueOf(item.getScoreJoueurNoir()));
             }
             else{
             	eloJoueurNoir.setText("inconnu");
