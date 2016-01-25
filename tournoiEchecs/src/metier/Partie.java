@@ -27,8 +27,8 @@ public class Partie {
 		return joueurBlanc.getNomJoueur()+" "+joueurBlanc.getPrenomJoueur();
 	}
 	
-	public int getElojoueurBlanc(){
-		return joueurBlanc.getElo();
+	public float getScoreJoueurBlanc(){
+		return joueurBlanc.getScore();
 	}
 
 	public String getNumLicenceJoueurNoir(){
@@ -39,8 +39,8 @@ public class Partie {
 		return joueurNoir.getNomJoueur()+" "+joueurNoir.getPrenomJoueur();
 	}
 	
-	public int getElojoueurNoir(){
-		return joueurNoir.getElo();
+	public float getScoreJoueurNoir(){
+		return joueurNoir.getScore();
 	}
 
 	public boolean dejaRencontre(Joueur j1, Joueur j2) {

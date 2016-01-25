@@ -19,8 +19,8 @@ public class ItemAppariement extends ListCell<Partie>{
  
     private final Label joueurBlanc = new Label(); 
     private final Label joueurNoir = new Label(); 
-    private final Label eloJoueurBlanc = new Label(); 
-    private final Label eloJoueurNoir = new Label(); 
+    private final Label scoreBlanc = new Label(); 
+    private final Label scoreNoir = new Label();
     
     
     private final AnchorPane content = new AnchorPane(); 
@@ -31,9 +31,9 @@ public class ItemAppariement extends ListCell<Partie>{
 		 		joueurNoir.setStyle("-fx-font-weight: bold;"); 
 
 		        GridPane.setConstraints(joueurBlanc, 1, 0); 
-		        GridPane.setConstraints(eloJoueurBlanc, 1, 1); 
+		        GridPane.setConstraints(scoreBlanc, 1, 1); 
 		        GridPane.setConstraints(joueurNoir, 2, 0); 
-		        GridPane.setConstraints(eloJoueurNoir, 2, 1); 
+		        GridPane.setConstraints(scoreNoir, 2, 1); 
        
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true)); 
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true)); 
@@ -41,7 +41,7 @@ public class ItemAppariement extends ListCell<Partie>{
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true)); 
 		        gridPane.setHgap(2); 
 		        gridPane.setVgap(2); 
-		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir, eloJoueurBlanc, eloJoueurNoir); 
+		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir, scoreBlanc, scoreNoir); 
 		        AnchorPane.setTopAnchor(gridPane, 0d); 
 		        AnchorPane.setLeftAnchor(gridPane, 0d); 
 		        AnchorPane.setBottomAnchor(gridPane, 0d); 
@@ -59,17 +59,17 @@ public class ItemAppariement extends ListCell<Partie>{
         if (!empty && item != null) { 
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
             joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-            if(item.getElojoueurBlanc()!=-1){
-            	eloJoueurBlanc.setText(String.valueOf(item.getElojoueurBlanc()));
+            if(item.getScoreJoueurBlanc()!=-1){
+            	scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlanc()));
             }
             else{
-            	eloJoueurBlanc.setText("inconnu");
+            	scoreBlanc.setText("inconnu");
             }
-            if(item.getElojoueurNoir()!=-1){
-            eloJoueurNoir.setText(String.valueOf(item.getElojoueurNoir()));
+            if(item.getScoreJoueurNoir()!=-1){
+            scoreNoir.setText(String.valueOf(item.getScoreJoueurNoir()));
             }
             else{
-            	eloJoueurNoir.setText("inconnu");
+            	scoreNoir.setText("inconnu");
             }
             setText(null); 
             setGraphic(content); 

@@ -168,12 +168,17 @@ public class Joueur {
 	public void setClub(String club) {
 		this.club = club;
 	}
+	
+	public float getScore(){
+		return score;
+	}
 
 	@Override
 	public String toString() {
 		return  numLicence + " " + nomJoueur
-				+ " " + prenomJoueur;
+				+ " " + prenomJoueur + " " + elo + " | " + score + " pts";
 	}
+
 	
 	public void joueBlanc(){
 		couleurs+="b/";
@@ -199,6 +204,12 @@ public class Joueur {
 	public void gagneDemiPoint() {
 		score+=0.5;
 		
+	}
+
+	public String getCouleur() {
+		if(couleurs!=null)
+			return couleurs;
+		else return "";
 	}
 	
 }

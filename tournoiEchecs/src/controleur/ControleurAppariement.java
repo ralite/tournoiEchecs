@@ -15,8 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Callback;
 
 public class ControleurAppariement implements Initializable {
 
@@ -62,6 +64,25 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueursRondeActuelle());
 		}
 		lv_appariements.setItems(itemsParties);
+		lv_joueurInscrit.setCellFactory(new Callback<ListView<Joueur>, ListCell<Joueur>>() {
+
+		    @Override
+		    public ListCell<Joueur> call(ListView<Joueur> p) {
+		        return new ListCell<Joueur>() {
+
+		            @Override
+		            protected void updateItem(Joueur value, boolean empty) {
+		            	String text=null;
+		                super.updateItem(value, empty);
+		                if (!empty && value != null) { 
+		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+" | "+value.getScore()+" pts"+" | "+ value.getCouleur();
+				               
+		                }
+		                 setText(text);     
+		            }
+		        };
+		    
+		}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		
 		lv_appariements.setCellFactory(lv -> new ItemAppariement());
