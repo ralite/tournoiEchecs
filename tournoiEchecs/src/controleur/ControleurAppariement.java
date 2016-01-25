@@ -5,10 +5,8 @@ import java.util.ResourceBundle;
 
 import metier.Joueur;
 import metier.Partie;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.TournoiXML;
-import modele.xml.JoueurXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,9 +58,7 @@ public class ControleurAppariement implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println(ModeleTournoi.getTournoi().getListeJoueurs());
 		label_titreAppariementJoueurs.setText("Ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
-		System.out.println(ModeleTournoi.getTournoi());
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
@@ -195,7 +191,6 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void actionValider(){
 		enregistrerApp();
-
 	}
 
 	@FXML
@@ -221,15 +216,12 @@ public class ControleurAppariement implements Initializable {
 				for (Joueur joueur : itemsJoueursForfait) {
 					joueur.joueForfait();
 				}
-				enregistrerApp();
 				ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
+				enregistrerApp();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
-
 		}
-
 	}
 
 	private void enregistrerApp() {

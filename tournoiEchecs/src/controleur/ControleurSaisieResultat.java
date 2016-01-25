@@ -3,12 +3,9 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import vue.ItemAppariement;
 import vue.ItemSaisieResultat;
 import metier.Partie;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
-import modele.xml.JoueurXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;

@@ -9,7 +9,6 @@ import application.Main;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
-import modele.Validation;
 import modele.xml.TournoiXML;
 import vue.RecapTournoi;
 import javafx.collections.FXCollections;

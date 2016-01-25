@@ -2,9 +2,8 @@ package vue;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,7 +24,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
-import metier.Joueur;
 
 public class FenetreFileChooser {
 	private static File lastdir=null;
@@ -36,7 +34,7 @@ public class FenetreFileChooser {
 			try{
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Choisissez un tournoi");
-			if(lastdir!= null){
+			if(lastdir!= null && Files.isDirectory(Paths.get(lastdir.getAbsolutePath()))){
 				fileChooser.setInitialDirectory(lastdir);
 			}
 			fileChooser.getExtensionFilters().add(new ExtensionFilter("xml Files", "*.xml"));
@@ -55,7 +53,7 @@ public class FenetreFileChooser {
 		File dossierChoisi;
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Enregistrer le tournoi");
-		if(lastdir!= null){
+		if(lastdir!= null && Files.isDirectory(Paths.get(lastdir.getAbsolutePath()))){
 			directoryChooser.setInitialDirectory(lastdir);
 		}
 		dossierChoisi=directoryChooser.showDialog(owner);
