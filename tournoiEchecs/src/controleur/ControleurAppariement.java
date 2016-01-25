@@ -1,14 +1,13 @@
 package controleur;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import metier.Joueur;
 import metier.Partie;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.TournoiXML;
-import modele.xml.JoueurXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,9 +59,7 @@ public class ControleurAppariement implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println(ModeleTournoi.getTournoi().getListeJoueurs());
 		label_titreAppariementJoueurs.setText("Ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
-		System.out.println(ModeleTournoi.getTournoi());
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
@@ -93,6 +90,7 @@ public class ControleurAppariement implements Initializable {
 		    
 		}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
+		joueursTriesParPoints(itemsJoueursInscrits);
 
 		lv_appariements.setCellFactory(lv -> new ItemAppariement());
 
@@ -195,7 +193,6 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void actionValider(){
 		enregistrerApp();
-
 	}
 
 	@FXML
@@ -221,15 +218,12 @@ public class ControleurAppariement implements Initializable {
 				for (Joueur joueur : itemsJoueursForfait) {
 					joueur.joueForfait();
 				}
-				enregistrerApp();
 				ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
+				enregistrerApp();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
-
 		}
-
 	}
 
 	private void enregistrerApp() {
@@ -267,5 +261,21 @@ public class ControleurAppariement implements Initializable {
 			.remove(joueurSelectionné);
 			itemsJoueursInscrits.add(joueurSelectionné);
 		}
+	}
+	
+	void joueursTriesParPoints(ObservableList<Joueur> data){
+
+		FXCollections.sort(itemsJoueursInscrits, new Comparator<Joueur>() {
+
+			@Override
+			public int compare(Joueur j1, Joueur j2) {
+				if(j1.getScore()==j2.getScore()){
+					return Integer.compare(j2.getElo(),j1.getElo());
+				}
+				else
+					return Float.compare(j2.getScore(),j1.getScore());
+			}
+
+		});
 	}
 }
