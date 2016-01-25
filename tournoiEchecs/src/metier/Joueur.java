@@ -33,7 +33,7 @@ public class Joueur {
 		this.federation = federation;
 		this.categorie = categorie;
 		this.club = club;
-		this.couleurs="";
+		this.couleurs=null;
 		this.score=0;
 	}
 
@@ -176,24 +176,33 @@ public class Joueur {
 	@Override
 	public String toString() {
 		return  numLicence + " " + nomJoueur
-				+ " " + prenomJoueur + " " + elo + " | " + score + " pts";
+				+ " " + prenomJoueur + " " + elo;
 	}
 
 	
 	public void joueBlanc(){
-		couleurs+="b/";
+		if(couleurs==null){
+			couleurs="B";
+		}
+		else couleurs+="/B";
 	}
 	
 	public void joueNoir(){
-		couleurs+="n/";
+		if(couleurs==null)
+			couleurs="N";
+		else couleurs+="/N";
 	}
 	
 	public void joueAbs(){
-		couleurs+="a/";
+		if(couleurs==null)
+			couleurs="a";
+		else couleurs+="/a";
 	}
 	
 	public void joueForfait(){
-		couleurs+="f/";
+		if(couleurs==null)
+			couleurs="f";
+		else couleurs+="/f";
 	}
 
 	public void gagne1Point() {
@@ -208,7 +217,7 @@ public class Joueur {
 
 	public String getCouleur() {
 		if(couleurs!=null)
-			return couleurs;
+			return " | "+couleurs;
 		else return "";
 	}
 	

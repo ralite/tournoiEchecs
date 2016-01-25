@@ -11,12 +11,12 @@
 <AnchorPane prefHeight="704.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAppariement">
    <children>
       <ListView fx:id="lv_appariements" layoutX="481.0" layoutY="89.0" prefHeight="262.0" prefWidth="250.0" />
-      <Label alignment="CENTER" layoutX="580.0" layoutY="62.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
+      <Label alignment="CENTER" layoutX="606.0" layoutY="62.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="455.0" layoutY="62.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
+      <Label alignment="CENTER" layoutX="481.0" layoutY="62.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

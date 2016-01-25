@@ -33,10 +33,10 @@ public class ItemAppariement extends ListCell<Partie>{
 		        GridPane.setConstraints(joueurBlanc, 1, 0); 
 		        GridPane.setConstraints(scoreBlanc, 1, 1); 
 		        GridPane.setConstraints(joueurNoir, 2, 0); 
-		        GridPane.setConstraints(scoreNoir, 2, 1); 
+		        GridPane.setConstraints(scoreNoir, 2, 1);
        
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true)); 
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true)); 
+		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true)); 
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true)); 
 		        gridPane.setHgap(2); 
@@ -59,18 +59,8 @@ public class ItemAppariement extends ListCell<Partie>{
         if (!empty && item != null) { 
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
             joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-            if(item.getScoreJoueurBlanc()!=-1){
-            	scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlanc()));
-            }
-            else{
-            	scoreBlanc.setText("inconnu");
-            }
-            if(item.getScoreJoueurNoir()!=-1){
-            scoreNoir.setText(String.valueOf(item.getScoreJoueurNoir()));
-            }
-            else{
-            	scoreNoir.setText("inconnu");
-            }
+            scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlanc()+" pts\t"+String.valueOf(item.getJoueurBlanc().getElo())));
+            scoreNoir.setText(String.valueOf(item.getScoreJoueurNoir()+" pts\t"+String.valueOf(item.getJoueurNoir().getElo())));
             setText(null); 
             setGraphic(content); 
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY); 
