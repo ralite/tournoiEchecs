@@ -47,7 +47,7 @@ public class ControleurModifierJoueur implements Initializable{
 				data.addAll(joueurs);
 			}
 			else {
-				lb_info.setText("Aucun joueurs trouvés");
+				lb_info.setText("Aucun joueur trouvé");
 			}
 		}
 		else{
@@ -64,7 +64,7 @@ public class ControleurModifierJoueur implements Initializable{
 	public void actionModifier(Event e){
 		ModeleJoueur.setJoueurAmofifier((Joueur)lv_joueurs.getSelectionModel().getSelectedItem());
 		if(ModeleJoueur.getJoueurAmodifier()==null){
-			lb_info.setText("Veuillez selectionner un joueur");
+			lb_info.setText("Veuillez sélectionner un joueur");
 		}
 		else{
 			CreerJoueur cj = new CreerJoueur(Main.getPrimaryStage());
@@ -77,12 +77,12 @@ public class ControleurModifierJoueur implements Initializable{
 	public void actionSupprimer(Event e){
 		Joueur joueurSelectionné=(Joueur)lv_joueurs.getSelectionModel().getSelectedItem();
 		if(joueurSelectionné==null){
-			lb_info.setText("Veuillez selectionner un joueur");
+			lb_info.setText("Veuillez sélectionner un joueur");
 		}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Suppression joueur");
-			alert.setContentText("Voulez vous vraiment supprimer ce joueur ?\n(Attention ce joueur n'apparaîtra plus dans les tournois où il était inscrit !)");
+			alert.setContentText("Voulez-vous vraiment supprimer ce joueur ?\n( Attention ce joueur n'apparaîtra plus dans les tournois où il était inscrit !)");
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
 				ModeleJoueur.supprimerJoueur(joueurSelectionné);

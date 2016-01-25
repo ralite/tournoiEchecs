@@ -6,11 +6,15 @@ import java.util.ResourceBundle;
 import vue.ItemAppariement;
 import vue.ItemSaisieResultat;
 import metier.Partie;
+import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.xml.JoueurXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -18,15 +22,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControleurSaisieResultat implements Initializable{
-	
+
 	@FXML
 	private ListView<Partie> lv_resultats;
-	
+
 	@FXML
 	private TextField tf_recherche;
-	
+
 	private ObservableList<Partie> itemResultat;
-	
+
 	private ObservableList<Partie> itemRechercher;
 
 	@Override
@@ -35,7 +39,7 @@ public class ControleurSaisieResultat implements Initializable{
 		itemResultat.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 		lv_resultats.setItems(itemResultat);
 		lv_resultats.setCellFactory(lv -> new ItemSaisieResultat());
-		
+
 		itemRechercher = FXCollections.observableArrayList();
 	}
 
@@ -43,24 +47,35 @@ public class ControleurSaisieResultat implements Initializable{
 	public void validerSaisieResultat(){
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 	}
-	
+
 	@FXML
-	public void terminerSaisieResultat(){
+	public void terminerSaisieResultat(Event e){
 		if(!ToutePartieSaisie()){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Toute les partie ne sont pas saisies !");
+			alert.setContentText("Toutes les parties ne sont pas saisies !");
 			alert.showAndWait();
+		}else{
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Saisie terminée");
+			alert.setContentText("Voulez-vous vraiment mettre fin à la saisie de résultat de cette ronde?"
+					+ "\n( Attention, les résultats de cette ronde seront non-modifiables !)");
+			alert.showAndWait();
+			if(alert.getResult().getText().equals("OK")){
+				for (Partie partie : itemRechercher) {
+					partie.setScore();
+				}
+				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
+				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
+				ModeleTournoi.getTournoi().rondeSuivante();
+				ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
+				((Node)e.getSource()).getScene().getWindow().hide();
+			}
+
 		}
-		for (Partie partie : itemRechercher) {
-			partie.setScore();
-		}
-		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
-		ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
-		ModeleTournoi.getTournoi().rondeSuivante();
-		ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
+
 	}
-	
+
 	private boolean ToutePartieSaisie(){
 		int i=0;
 		boolean saisie=true;
@@ -70,9 +85,10 @@ public class ControleurSaisieResultat implements Initializable{
 			}
 			i++;
 		}
+
 		return saisie;
 	}
-	
+
 	@FXML
 	public void rechercherPartie(){
 		itemRechercher.clear();
@@ -83,7 +99,7 @@ public class ControleurSaisieResultat implements Initializable{
 		}
 		lv_resultats.setItems(itemRechercher);
 	}
-	
+
 	@FXML
 	public void toutesParties(){
 		lv_resultats.setItems(itemResultat);
