@@ -81,9 +81,14 @@ public class Partie {
 		
 	}
 	
-	public String getGagnant() {
+	public void resutatNonSaisi(){
+		resultat=null;
+	}
+	
+	public String getResultat() {
 		return resultat;
 	}
+	
 
 	public boolean rechercherPartie(String text) {
 		if (joueurBlanc.getNomJoueur().equalsIgnoreCase(text) 
@@ -122,8 +127,6 @@ public class Partie {
 		
 	}
 
-	public String getResultat() {
-		return resultat;
-	}
+	
 		
 }
