@@ -22,6 +22,7 @@ public class FenetreAccueil extends Stage {
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Tournoi d'Echecs 1.0");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

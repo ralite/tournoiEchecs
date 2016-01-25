@@ -20,6 +20,8 @@ public class CreationTournoi extends Stage{
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Creer un tournoi");
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

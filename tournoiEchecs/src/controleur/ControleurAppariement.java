@@ -23,6 +23,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 
 public class ControleurAppariement implements Initializable {
+	
+	@FXML
+	private Label label_titreAppariementJoueurs;
 
 	@FXML
 	private Label lb_joueurNoir;
@@ -57,6 +60,8 @@ public class ControleurAppariement implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println(ModeleTournoi.getTournoi().getListeJoueurs());
+		label_titreAppariementJoueurs.setText("Ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
+		System.out.println(ModeleTournoi.getTournoi());
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
