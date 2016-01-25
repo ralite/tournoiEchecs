@@ -22,6 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControleurSaisieResultat implements Initializable{
+	
+	@FXML
+	private Label label_titreSaisieResultats;
 
 	@FXML
 	private ListView<Partie> lv_resultats;
@@ -35,6 +38,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		label_titreSaisieResultats.setText("Résultats de la ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
 		itemResultat = FXCollections.observableArrayList();
 		itemResultat.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 		lv_resultats.setItems(itemResultat);

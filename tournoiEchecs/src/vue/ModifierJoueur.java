@@ -20,6 +20,7 @@ public class ModifierJoueur extends Stage {
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Modifier un joueur");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
