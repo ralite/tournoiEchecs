@@ -28,7 +28,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class FenetreFileChooser {
 	private static File lastdir=null;
 	public static String lastDirFilePath = "src\\ressource\\config.xml";
-	
+
 	public static File choisirTournoi(Window owner){
 			File fichierAouvrir;
 			try{
@@ -46,9 +46,9 @@ public class FenetreFileChooser {
 		catch(Exception e){
 			return null;
 		}
-		
+
 	}
-	
+
 	public static File EnregistrerTournoi(Window owner){
 		File dossierChoisi;
 		DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -61,7 +61,7 @@ public class FenetreFileChooser {
 		saveLastdir(lastDirFilePath);
 		return dossierChoisi;
 	}
-	
+
 	public static void saveLastdir(String savePath){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -70,7 +70,7 @@ public class FenetreFileChooser {
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("configurations");
 			doc.appendChild(rootElement);
-			
+
 			if(lastdir!= null) {
 				Element lastDir = doc.createElement("lastdir");
 				lastDir.appendChild(doc.createTextNode(lastdir.getAbsolutePath()));
@@ -89,7 +89,7 @@ public class FenetreFileChooser {
 			tfe.printStackTrace();
 		}
 	}
-	
+
 	public static void readLastdir(String filePath){
 		try {
 			File XMLFile = new File(filePath);
@@ -97,37 +97,37 @@ public class FenetreFileChooser {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(XMLFile);
 			doc.getDocumentElement().normalize();
-			
+
 			Element racine = doc.getDocumentElement();
 			NodeList racineNoeuds = racine.getChildNodes();
 			int nbRacineNoeuds = racineNoeuds.getLength();
-			String path = null;	
-			
+			String path = null;
+
 			for (int i = 0; i < nbRacineNoeuds; i++) {
 
 				if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
 
 					Node node = racineNoeuds.item(i);
-					
+
 					if(node.getNodeName() == "lastdir"){
 						path = node.getTextContent();
 					}
 				}
 			}
-			
+
 			if(path!=null){
 				File file = new File(path);
 				lastdir = file;
 			}
 
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (SAXException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }
