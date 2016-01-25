@@ -52,6 +52,7 @@ public class ControleurAppariement implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println(ModeleTournoi.getTournoi().getListeJoueurs());
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();

@@ -17,7 +17,7 @@ public class Tournoi {
 	private ObservableList<Departage> ListeDepartages;
 	private ObservableList<Ronde> ListeRondes;
 	private String cadenceJeu;
-	private Ronde rondeActuelle;
+	private int rondeActuelle;
 
 	public Tournoi(String nom, String lieu, LocalDate dateDeb, LocalDate dateFin, String arbitre, int nbRondes, String cadence) {
 		Nom = nom;
@@ -33,7 +33,7 @@ public class Tournoi {
 		for(int i=0;i<nbRondes;i++){
 			ListeRondes.add(new Ronde(i+1));
 		}
-		rondeActuelle=new Ronde(0);
+		rondeActuelle=0;
 			
 	}
 
@@ -118,13 +118,13 @@ public class Tournoi {
 	}
 	
 	public int getNumRondeActuelle(){
-		return rondeActuelle.getNumeroRonde();
-	}
-	
-	public Ronde getRondeActuelle(){
 		return rondeActuelle;
 	}
 
+	public Ronde getRondeActuelle(){
+		return ListeRondes.get(rondeActuelle);
+	}
+	
 	public void setNbRondes(int nbRondes) {
 		NbRondes = nbRondes;
 	}
@@ -140,7 +140,7 @@ public class Tournoi {
 
 	public void setAbsentRonde(ObservableList<Joueur> joueurs) {
 		
-		ListeRondes.get(rondeActuelle.getNumeroRonde()).setListeJoueurAbs(joueurs);
+		ListeRondes.get(rondeActuelle).setListeJoueurAbs(joueurs);
 	}
 	
 	@Override
@@ -150,7 +150,7 @@ public class Tournoi {
 	}
 
 	public void setForfaitRonde(ObservableList<Joueur> JoueursForfait) {
-		ListeRondes.get(rondeActuelle.getNumeroRonde()).setListeJoueurForfait(JoueursForfait);
+		ListeRondes.get(rondeActuelle).setListeJoueurForfait(JoueursForfait);
 		
 	}
 	
@@ -166,31 +166,31 @@ public class Tournoi {
 	}
 
 	public ObservableList<Partie> getPartieRondeActuelle() {
-		return ListeRondes.get(rondeActuelle.getNumeroRonde()).getParties();
+		return ListeRondes.get(rondeActuelle).getParties();
 	}
 	
 	public void setPartiesRonde(ObservableList<Partie> listePartie){
-		ListeRondes.get(rondeActuelle.getNumeroRonde()).setListePartie(listePartie);
+		ListeRondes.get(rondeActuelle).setListePartie(listePartie);
 	}
 	
 	public ObservableList<Joueur> getJoueursRondeActuelle() {
 		ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
-		for (Partie partie : ListeRondes.get(rondeActuelle.getNumeroRonde()).getParties()) {
+		for (Partie partie : ListeRondes.get(rondeActuelle).getParties()) {
 			joueurs.addAll(partie.getJoueurBlanc(),partie.getJoueurNoir());
 		}
 		return joueurs;
 	}
 	
 	public ObservableList<Joueur> getJoueurAbsRondeActuelle() {
-		return ListeRondes.get(rondeActuelle.getNumeroRonde()).getListeJoueurAbs();
+		return ListeRondes.get(rondeActuelle).getListeJoueurAbs();
 	}
 
 	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
-		return ListeRondes.get(rondeActuelle.getNumeroRonde()).getListeJoueurForfait();
+		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
 	}
 
 	public void rondeSuivante() {
-		rondeActuelle.rondeSuivante();
+		rondeActuelle++;
 		
 	}
 

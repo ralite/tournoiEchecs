@@ -85,10 +85,5 @@ public class Ronde {
 		return ListeJoueurForfait;
 	}
 
-	public void rondeSuivante() {
-		numeroRonde++;
-		app=false;
-		
-	}
 	
 }
