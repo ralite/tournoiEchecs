@@ -331,7 +331,6 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 	            		if(Validation.estEntierPos(tf_classementElo))
 		        		{
-	            			lb_erreurElo.setText("");
 		        			if(Integer.parseInt(tf_classementElo.getText()) > 499 && Integer.parseInt(tf_classementElo.getText()) < 3001 )
 		        			{
 		        				lb_erreurElo.setText("");
@@ -371,6 +370,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
 
+		            //retour de elo initial sans date de naissance
 		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
 		            {
 		            	tf_classementElo.setText("");
@@ -389,6 +389,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            rb_nouveau.setSelected(false);
 		            tf_classementElo.setDisable(false);
 
+		            //retour de elo initial sans date de naissance
 		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
 		            {
 		            	tf_classementElo.setText("");
@@ -400,9 +401,9 @@ public class ControleurCreerJoueur implements Initializable {
 		    @Override
 		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
 		        if (isNowSelected) {
-		        	lb_erreurElo.setText("");
 		            rb_national.setSelected(false);
 		            rb_fide.setSelected(false);
+		        	lb_erreurElo.setText("");
 		            tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 		            tf_classementElo.setDisable(true);
 
@@ -786,6 +787,8 @@ public class ControleurCreerJoueur implements Initializable {
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);
+		Validation.verifLongueurTexte(tf_classementElo,4);
+		Validation.verifLongueurTexte(tf_ligue,3);
 		Validation.verifLongueurTexte(tf_club, 50);
 	}
 
