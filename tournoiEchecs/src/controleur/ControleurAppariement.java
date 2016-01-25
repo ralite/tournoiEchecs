@@ -5,8 +5,10 @@ import java.util.ResourceBundle;
 
 import metier.Joueur;
 import metier.Partie;
+import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.TournoiXML;
+import modele.xml.JoueurXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,10 +18,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Callback;
 
 public class ControleurAppariement implements Initializable {
+	
+	@FXML
+	private Label label_titreAppariementJoueurs;
 
 	@FXML
 	private Label lb_joueurNoir;
@@ -48,11 +55,14 @@ public class ControleurAppariement implements Initializable {
 	private ObservableList<Joueur> itemsJoueursForfait;
 
 	private Joueur joueurBlanc=null;
-	
+
 	private Joueur joueurNoir=null;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println(ModeleTournoi.getTournoi().getListeJoueurs());
+		label_titreAppariementJoueurs.setText("Ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
+		System.out.println(ModeleTournoi.getTournoi());
 		itemsParties = FXCollections.observableArrayList();
 		itemsJoueursInscrits = FXCollections.observableArrayList();
 		itemsJoueursAbsent = FXCollections.observableArrayList();
@@ -63,10 +73,29 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueursRondeActuelle());
 		}
 		lv_appariements.setItems(itemsParties);
+		lv_joueurInscrit.setCellFactory(new Callback<ListView<Joueur>, ListCell<Joueur>>() {
+
+		    @Override
+		    public ListCell<Joueur> call(ListView<Joueur> p) {
+		        return new ListCell<Joueur>() {
+
+		            @Override
+		            protected void updateItem(Joueur value, boolean empty) {
+		            	String text=null;
+		                super.updateItem(value, empty);
+		                if (!empty && value != null) { 
+		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts "+ value.getCouleur();
+				               
+		                }
+		                 setText(text);     
+		            }
+		        };
+		    
+		}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
-		
+
 		lv_appariements.setCellFactory(lv -> new ItemAppariement());
-		
+
 		if(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle()!=null){
 			itemsJoueursAbsent.addAll(ModeleTournoi.getTournoi().getJoueurAbsRondeActuelle());
 			itemsJoueursInscrits.removeAll(itemsJoueursAbsent);
@@ -108,7 +137,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.remove(joueurBlanc);
 		}
 
-		
+
 	}
 
 	@FXML
@@ -117,7 +146,7 @@ public class ControleurAppariement implements Initializable {
 			if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Erreur");
-				alert.setContentText("Ces deux joueurs ont déjà joué ensemble !");
+				alert.setContentText("Ces deux joueurs ont déjà joués ensemble !");
 				alert.showAndWait();
 			}
 			else{
@@ -129,7 +158,7 @@ public class ControleurAppariement implements Initializable {
 			}
 		}
 	}
-	
+
 	@FXML
 	public void actionRetirerPaire(){
 		Partie partieSelectionnée =  (Partie)lv_appariements.getSelectionModel().getSelectedItem();
@@ -166,32 +195,41 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void actionValider(){
 		enregistrerApp();
-		
+
 	}
-	
+
 	@FXML
-	public void actionLancerRonde(){
+	public void actionLancerRonde(Event e){
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
 			AfficherAlerte();
 		}
 		else{
-			if(itemsJoueursInscrits.size()==1){
-				itemsJoueursInscrits.get(0).gagne1Point();
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Appariement terminé");
+			alert.setContentText("Voulez-vous vraiment lancer la ronde ?\n( Attention, il ne sera plus possible de modifier l'appariement !)");
+			alert.showAndWait();
+			if(alert.getResult().getText().equals("OK")){
+				if(itemsJoueursInscrits.size()==1)
+					itemsJoueursInscrits.get(0).gagne1Point();
+
+				for (Partie partie : itemsParties) {
+					partie.setCouleurJoueur();
+				}
+				for (Joueur joueur : itemsJoueursAbsent) {
+					joueur.joueAbs();
+				}
+				for (Joueur joueur : itemsJoueursForfait) {
+					joueur.joueForfait();
+				}
+				enregistrerApp();
+				ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
+				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
+				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-			for (Partie partie : itemsParties) {
-				partie.setCouleurJoueur();
-			}
-			for (Joueur joueur : itemsJoueursAbsent) {
-				joueur.joueAbs();
-			}
-			for (Joueur joueur : itemsJoueursForfait) {
-				joueur.joueForfait();
-			}
-			ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
-			ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
-			enregistrerApp();
+
+
 		}
-		
+
 	}
 
 	private void enregistrerApp() {

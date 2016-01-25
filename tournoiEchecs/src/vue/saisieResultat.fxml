@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="599.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurSaisieResultat">
+<AnchorPane prefHeight="599.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurSaisieResultat">
    <children>
-      <ListView fx:id="lv_resultats" layoutX="14.0" layoutY="107.0" prefHeight="432.0" prefWidth="732.0" />
-      <Button layoutX="556.0" layoutY="546.0" mnemonicParsing="false" onAction="#validerSaisieResultat" text="Valider" />
-      <Button layoutX="433.0" layoutY="45.0" mnemonicParsing="false" onAction="#rechercherPartie" prefHeight="39.0" prefWidth="123.0" text="Rechercher" />
-      <TextField fx:id="tf_recherche" layoutX="77.0" layoutY="45.0" prefHeight="39.0" prefWidth="356.0" />
-      <Button layoutX="583.0" layoutY="45.0" mnemonicParsing="false" onAction="#toutesParties" prefHeight="39.0" prefWidth="163.0" text="Toutes les parties" />
-      <Button layoutX="651.0" layoutY="546.0" mnemonicParsing="false" onAction="#terminerSaisieResultat" text="Terminer" />
+      <ListView fx:id="lv_resultats" layoutX="14.0" layoutY="114.0" prefHeight="432.0" prefWidth="732.0" />
+      <Button layoutX="557.0" layoutY="559.0" mnemonicParsing="false" onAction="#validerSaisieResultat" text="Valider" />
+      <Button layoutX="433.0" layoutY="57.0" mnemonicParsing="false" onAction="#rechercherPartie" prefHeight="39.0" prefWidth="123.0" text="Rechercher" />
+      <TextField fx:id="tf_recherche" layoutX="14.0" layoutY="57.0" prefHeight="39.0" prefWidth="417.0" />
+      <Button layoutX="584.0" layoutY="57.0" mnemonicParsing="false" onAction="#toutesParties" prefHeight="39.0" prefWidth="163.0" text="Toutes les parties" />
+      <Button layoutX="651.0" layoutY="559.0" mnemonicParsing="false" onAction="#terminerSaisieResultat" text="Terminer" />
+      <Label fx:id="label_titreSaisieResultats" layoutX="210.0" layoutY="7.0" prefHeight="32.0" prefWidth="345.0">
+         <font>
+            <Font name="Arial Bold" size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

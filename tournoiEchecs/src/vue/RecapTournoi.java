@@ -20,6 +20,7 @@ public class RecapTournoi extends Stage {
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Informations du tournoi");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

@@ -20,6 +20,7 @@ public class SaisieResultat extends Stage{
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Saisir les résultats");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

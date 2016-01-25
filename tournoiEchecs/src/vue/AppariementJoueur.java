@@ -20,6 +20,7 @@ public class AppariementJoueur extends Stage{
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Appariement des joueurs");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

@@ -33,7 +33,7 @@ public class Joueur {
 		this.federation = federation;
 		this.categorie = categorie;
 		this.club = club;
-		this.couleurs="";
+		this.couleurs=null;
 		this.score=0;
 	}
 
@@ -168,27 +168,41 @@ public class Joueur {
 	public void setClub(String club) {
 		this.club = club;
 	}
+	
+	public float getScore(){
+		return score;
+	}
 
 	@Override
 	public String toString() {
 		return  numLicence + " " + nomJoueur
-				+ " " + prenomJoueur;
+				+ " " + prenomJoueur + " " + elo;
 	}
+
 	
 	public void joueBlanc(){
-		couleurs+="b/";
+		if(couleurs==null){
+			couleurs="B";
+		}
+		else couleurs+="/B";
 	}
 	
 	public void joueNoir(){
-		couleurs+="n/";
+		if(couleurs==null)
+			couleurs="N";
+		else couleurs+="/N";
 	}
 	
 	public void joueAbs(){
-		couleurs+="a/";
+		if(couleurs==null)
+			couleurs="a";
+		else couleurs+="/a";
 	}
 	
 	public void joueForfait(){
-		couleurs+="f/";
+		if(couleurs==null)
+			couleurs="f";
+		else couleurs+="/f";
 	}
 
 	public void gagne1Point() {
@@ -199,6 +213,12 @@ public class Joueur {
 	public void gagneDemiPoint() {
 		score+=0.5;
 		
+	}
+
+	public String getCouleur() {
+		if(couleurs!=null)
+			return " | "+couleurs;
+		else return "";
 	}
 	
 }

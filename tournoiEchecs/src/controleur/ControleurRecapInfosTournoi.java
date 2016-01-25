@@ -103,7 +103,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void apparierJoueurs(){
-		if(ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
+		if(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setContentText("Veuillez préalablement saisir les résultats !");
@@ -114,13 +114,13 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			app.show();
 		}
 	}
-	
+
 	@FXML
 	public void saisirResultat(){
-		if(ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
+		if(!ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Veuillez préalablement appairer les joueurs !");
+			alert.setContentText("Veuillez préalablement apparier les joueurs !");
 			alert.showAndWait();
 		}
 		else{

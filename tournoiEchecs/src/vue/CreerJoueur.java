@@ -20,6 +20,7 @@ public class CreerJoueur extends Stage {
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Créer un joueur");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

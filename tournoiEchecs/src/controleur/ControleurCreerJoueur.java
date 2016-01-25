@@ -129,16 +129,16 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		    		if(Validation.estVide(tf_numLicence))
 		    		{
-		    			lb_erreurLicence.setText("Entrez le numéro de licence du joueur.");
+		    			lb_erreurLicence.setText("Entrez le numéro de licence du joueur");
 		    		}else
 		    		{
 		    			lb_erreurLicence.setText("");
 		    			if(!Validation.verifNumLicence(tf_numLicence))
 		    			{
-		    				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
+		    				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999");
 		    			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 		    			{
-	    					lb_erreurLicence.setText("Le numéro de licence existe déjà.");
+	    					lb_erreurLicence.setText("Le numéro de licence existe déjà");
 		    			}else{
 		    				lb_erreurLicence.setText("");
 		    			}
@@ -158,12 +158,12 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(!Validation.estNomCompose(tf_nom))
 			    		{
-			    			lb_erreurNom.setText("Saisissez un nom valide.");
+			    			lb_erreurNom.setText("Saisissez un nom valide");
 			    		}else{
 			    			lb_erreurNom.setText("");
 			    		}
 		            }else{
-		            	lb_erreurNom.setText("Entrez le nom du joueur.");
+		            	lb_erreurNom.setText("Entrez le nom du joueur");
 		            }
 		        }
 		    }
@@ -180,7 +180,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(!Validation.estNomCompose(tf_prenom))
 			    		{
-			    			lb_erreurPrenom.setText("Saisissez un prénom valide.");
+			    			lb_erreurPrenom.setText("Saisissez un prénom valide");
 			    		}else{
 			    			lb_erreurPrenom.setText("");
 			    		}
@@ -200,7 +200,6 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(Validation.recupValeursDate(dp_dateNaissance))
 		        	{
-		        		lb_erreurDate.setText("");
 		        		dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
 		        		if(Validation.estDate(dp_dateNaissance))
 		        		{
@@ -221,7 +220,7 @@ public class ControleurCreerJoueur implements Initializable {
 		        					tf_classementElo.setText("");
 		        			}else
 		        			{
-		        				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle.");
+		        				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle");
 				        		dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
 		        			}
 		        		}else
@@ -271,12 +270,12 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(!Validation.estChaine(tf_federation))
 			    		{
-			    			lb_erreurFederation.setText("Saisissez une fédération valide.");
+			    			lb_erreurFederation.setText("Saisissez une fédération valide");
 			    		}else{
 			    			lb_erreurFederation.setText("");
 			    		}
 		            }else{
-		            	lb_erreurFederation.setText("Entrez la fédération du joueur.");
+		            	lb_erreurFederation.setText("Entrez la fédération du joueur");
 		            }
 
 		        	//grisage de la ligue en cas de non-fr
@@ -314,7 +313,7 @@ public class ControleurCreerJoueur implements Initializable {
 							tf_ligue.setStyle("-fx-control-inner-background : white; ");
 						}
 		            }else{
-		            	lb_erreurLigue.setText("Entrez la ligue du joueur.");
+		            	lb_erreurLigue.setText("Entrez la ligue du joueur");
 		            }
 		        }
 		    }
@@ -337,21 +336,21 @@ public class ControleurCreerJoueur implements Initializable {
 		        				tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 		        			}else
 		        			{
-		        				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
+		        				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000");
 		        				tf_classementElo.setStyle("-fx-control-inner-background : red; ");
 
 		        			}
 		        		}else
 		        		{
-		        			lb_erreurElo.setText("Saisissez un classement ELO valide.");
+		        			lb_erreurElo.setText("Saisissez un classement ELO valide");
 		        		}
 		            }else{
-		            	lb_erreurElo.setText("Saississez le classement ELO du joueur.");
+		            	lb_erreurElo.setText("Saississez le classement ELO du joueur");
 		            }
 
 		            if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
 	            	{
-	            		lb_erreurType.setText("Sélectionnez un type d'ELO.");
+	            		lb_erreurType.setText("Sélectionnez un type d'ELO");
 	            	}else{
 	            		lb_erreurType.setText("");
 	            	}
@@ -413,7 +412,7 @@ public class ControleurCreerJoueur implements Initializable {
  					//si date de naissance non-saisi
  					if(Integer.parseInt(tf_classementElo.getText()) == -1)
  					{
- 						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial.");
+ 						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial");
  						tf_classementElo.setText("Non assigné");
  					}
 		        }
@@ -431,12 +430,12 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(!Validation.estChaineChiffree(tf_club))
 			    		{
-			    			lb_erreurClub.setText("Saisissez un club valide.");
+			    			lb_erreurClub.setText("Saisissez un club valide");
 			    		}else{
 			    			lb_erreurClub.setText("");
 			    		}
 		            }else{
-		            	lb_erreurClub.setText("Entrez le club du joueur.");
+		            	lb_erreurClub.setText("Entrez le club du joueur");
 		            }
 		        }
 		    }
@@ -594,18 +593,17 @@ public class ControleurCreerJoueur implements Initializable {
 		//numLicence
 		if(Validation.estVide(tf_numLicence))
 		{
-			lb_erreurLicence.setText("Entrez le numéro de licence du joueur.");
+			lb_erreurLicence.setText("Entrez le numéro de licence du joueur");
 			res = false;
 		}else
 		{
-			lb_erreurLicence.setText("");
 			if(!Validation.verifNumLicence(tf_numLicence))
 			{
-				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999.");
+				lb_erreurLicence.setText("Le numéro de licence n'est pas au format A99999");
 				res = false;
 			}else if(ModeleJoueur.getJoueurAmodifier()==null && ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 			{
-				lb_erreurLicence.setText("Le numéro de licence existe déjà.");
+				lb_erreurLicence.setText("Le numéro de licence existe déjà");
 				res = false;
 			}else{
 				lb_erreurLicence.setText("");
@@ -615,14 +613,13 @@ public class ControleurCreerJoueur implements Initializable {
 		//nom
 		if(Validation.estVide(tf_nom))
 		{
-			lb_erreurNom.setText("Entrez le nom du joueur.");
+			lb_erreurNom.setText("Entrez le nom du joueur");
 			res = false;
 		}else
 		{
-			lb_erreurNom.setText("");
 			if(!Validation.estNomCompose(tf_nom))
 			{
-				lb_erreurNom.setText("Saisissez un nom valide.");
+				lb_erreurNom.setText("Saisissez un nom valide");
 				res = false;
 			}else
 			{
@@ -633,14 +630,13 @@ public class ControleurCreerJoueur implements Initializable {
 		//prenom
 		if(Validation.estVide(tf_prenom))
 		{
-			lb_erreurPrenom.setText("Entrez le prénom du joueur.");
+			lb_erreurPrenom.setText("Entrez le prénom du joueur");
 			res = false;
 		}else
 		{
-			lb_erreurPrenom.setText("");
 			if(!Validation.estNomCompose(tf_prenom))
 			{
-				lb_erreurPrenom.setText("Saisissez un prénom valide.");
+				lb_erreurPrenom.setText("Saisissez un prénom valide");
 				res = false;
 			}else
 			{
@@ -652,7 +648,6 @@ public class ControleurCreerJoueur implements Initializable {
 		if(Validation.recupValeursDate(dp_dateNaissance))
 		{
 			dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-			lb_erreurDate.setText("");
 
 			if(Validation.verifDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
 			{
@@ -666,13 +661,13 @@ public class ControleurCreerJoueur implements Initializable {
 				}
 			}else
 			{
-				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle.");
+				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle");
 				res = false;
 			}
 		}else
 		{
 			dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-			lb_erreurDate.setText("Entrez une date de naissance valide.");
+			lb_erreurDate.setText("Entrez une date de naissance valide");
 			lb_erreurCategorie.setText("Entrez une date de naissance pour obtenir la catégorie du joueur");
 			lb_categorie.setText("Non assignée");
 			res=false;
@@ -689,18 +684,17 @@ public class ControleurCreerJoueur implements Initializable {
 				lb_erreurElo.setText("");
 				if(!Validation.estEntierPos(tf_classementElo))
 				{
-					lb_erreurElo.setText("Saisissez un classement ELO valide.");
+					lb_erreurElo.setText("Saisissez un classement ELO valide");
 					res = false;
 				}else
 				{
-					lb_erreurElo.setText("");
 					if(Integer.parseInt(tf_classementElo.getText()) > 499 && Integer.parseInt(tf_classementElo.getText()) < 3001)
 					{
 						lb_erreurElo.setText("");
 						tf_classementElo.setStyle("-fx-control-inner-background : white; ");
 					}else
 					{
-						lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000.");
+						lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000");
 						tf_classementElo.setStyle("-fx-control-inner-background : red; ");
 						res = false;
 					}
@@ -712,7 +706,7 @@ public class ControleurCreerJoueur implements Initializable {
 		//typeElo
 		if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
 		{
-			lb_erreurType.setText("Sélectionnez un type d'ELO.");
+			lb_erreurType.setText("Sélectionnez un type d'ELO");
 			res = false;
 		}else{
 			lb_erreurType.setText("");
@@ -726,11 +720,10 @@ public class ControleurCreerJoueur implements Initializable {
     	{
 			if(Validation.estVide(tf_ligue))
 			{
-				lb_erreurLigue.setText("Entrez la ligue du joueur.");
+				lb_erreurLigue.setText("Entrez la ligue du joueur");
 				res = false;
 			}else
 			{
-				lb_erreurLigue.setText("");
 	    		if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
 	    		{
 					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
@@ -746,14 +739,13 @@ public class ControleurCreerJoueur implements Initializable {
 		//club
 		if(Validation.estVide(tf_club))
 		{
-			lb_erreurClub.setText("Entrez le club du joueur.");
+			lb_erreurClub.setText("Entrez le club du joueur");
 			res = false;
 		}else
 		{
-			lb_erreurClub.setText("");
 			if(!Validation.estChaineChiffree(tf_club))
 			{
-				lb_erreurClub.setText("Saisissez un nom de club valide.");
+				lb_erreurClub.setText("Saisissez un nom de club valide");
 				res = false;
 			}else
 			{
@@ -764,14 +756,13 @@ public class ControleurCreerJoueur implements Initializable {
 		//fédération
 		if(Validation.estVide(tf_federation))
 		{
-			lb_erreurFederation.setText("Entrez la fédération du joueur.");
+			lb_erreurFederation.setText("Entrez la fédération du joueur");
 			res = false;
 		}else
 		{
-			lb_erreurFederation.setText("");
 			if(!Validation.estChaine(tf_federation))
 			{
-				lb_erreurFederation.setText("Saisissez un nom de fédération valide.");
+				lb_erreurFederation.setText("Saisissez un nom de fédération valide");
 				res = false;
 			}else
 			{
@@ -783,7 +774,7 @@ public class ControleurCreerJoueur implements Initializable {
 	}
 
 	@FXML
-	public void limiteTexte(){
+	public void limiteTexte(){//déclenché onKeyReleased des tf
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
 		Validation.verifLongueurTexte(tf_federation,30);

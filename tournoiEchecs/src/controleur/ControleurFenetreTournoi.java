@@ -36,7 +36,7 @@ import modele.xml.TournoiXML;
 public class ControleurFenetreTournoi implements Initializable {
 
 	private ObservableList<Departage> items;
-	
+
 	private ObservableList<Departage> itemsChoisis;
 	@FXML
 	ListView<Departage> lv_listeDepartages;
@@ -67,10 +67,10 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	ChoiceBox<String> cb_cadences;
-	
+
 	HashMap<String, String> cadencesDefinitions;
-	
-	
+
+
 	@FXML
 	TextArea ta_messageAide ;
 
@@ -79,36 +79,38 @@ public class ControleurFenetreTournoi implements Initializable {
     private void actionValider(Event e) {
 		if (formulaireRempli()) {
 			if (infosCorrectes()){
-				
+
 				File file = null;
 				if(ModeleTournoi.getFichierTournoi()==null){
-					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());					
-				}
-				
-				if(ModeleTournoi.getTournoi()==null){
-					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
-					tournoi.setListeDepartages(itemsChoisis);
-					ModeleTournoi.ajouterTournoi(tournoi);
-				}else{
-					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
-					ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
-					ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
-					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
-					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
-					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
-					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
+					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 				}
 				
 				if(file!=null){
+
+					if(ModeleTournoi.getTournoi()==null){
+						Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
+						tournoi.setListeDepartages(itemsChoisis);
+						ModeleTournoi.ajouterTournoi(tournoi);
+					}
+					else{
+						ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
+						ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
+						ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
+						ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
+						ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
+						ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
+						ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
+					}
+
+
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
-				}
-				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
-				
+					
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
 				rt.show();
 				((Node)e.getSource()).getScene().getWindow().hide();
-
-
+				}
 			}
 		}
 	}
@@ -118,12 +120,12 @@ public class ControleurFenetreTournoi implements Initializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		lb_erreurDate.setText("");
 		if(!Validation.recupValeursDate(dp_dateDeb)){
-			lb_erreurDate.setText("Remplir la date de debut");
+			lb_erreurDate.setText("Remplissez la date de debut");
 			res=false;
 		}
 
 		if(!Validation.recupValeursDate(dp_dateFin)){
-			lb_erreurDate.setText("Remplir la date de fin");
+			lb_erreurDate.setText("Remplissez la date de fin");
 			res=false;
 		}
 
@@ -165,7 +167,7 @@ public class ControleurFenetreTournoi implements Initializable {
 			res=false;
 			}
 			else if(!Validation.verifDate(dateActuelle, dp_dateFin)){
-				lb_erreurDate.setText("1 date actuelle < date de fin");
+				lb_erreurDate.setText("date actuelle < date de fin");
 				res=false;
 				}
 		if(!Validation.estNomCompose(tf_arbitre))
@@ -222,7 +224,7 @@ public class ControleurFenetreTournoi implements Initializable {
             }
 		}
 	}
-	
+
 	public void affichageAideSelectionCadence() {
 		if(cb_cadences.isFocused()){
 			texteAideCadences();
@@ -230,7 +232,7 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 		else ta_messageAide.setVisible(false);
 	}
-	
+
 	public void texteAideCadences(){
 			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
 		}
@@ -241,16 +243,16 @@ public class ControleurFenetreTournoi implements Initializable {
 		cadencesDefinitions.put("Blitz", "Les parties de blitz sont des parties rapides dont la cadence est inférieure à 15 minutes par joueur, et presque toujours, dans la pratique, de 5 minutes par joueur.");
 		cadencesDefinitions.put("Semi-rapide", "La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
 		cadencesDefinitions.put("Cadence longue", "Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
-			
-		ObservableList<String> options = 
+
+		ObservableList<String> options =
 			    FXCollections.observableArrayList(cadencesDefinitions.keySet()
 			    );
-		
+
 		cb_cadences.setItems(options);
 		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
-		
+
 		if(ModeleTournoi.getTournoi()!=null){
 			tf_nomTournoi.setText(ModeleTournoi.getTournoi().getNom());
 			tf_lieuTournoi.setText(ModeleTournoi.getTournoi().getLieu());
@@ -263,10 +265,10 @@ public class ControleurFenetreTournoi implements Initializable {
 			cb_cadences.setValue(ModeleTournoi.getTournoi().getCadenceJeu());
 			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
 			}
-		
+
 		lv_listeDepartages.setItems(items);
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
-		
+
 
 	}
 
