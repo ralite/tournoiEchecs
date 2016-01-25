@@ -7,6 +7,7 @@ import metier.Joueur;
 import metier.Partie;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.xml.TournoiXML;
 import modele.xml.JoueurXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
@@ -226,6 +227,7 @@ public class ControleurAppariement implements Initializable {
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 
+
 		}
 
 	}
@@ -238,15 +240,16 @@ public class ControleurAppariement implements Initializable {
 		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
 		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
 		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 	}
 
 	private void AfficherAlerte() {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Erreur");
-		alert.setContentText("Tout les joueurs ne sont pas appariés !");
+		alert.setContentText("Tout les joueurs ne sont pas apairer !");
 		alert.showAndWait();
 	}
-
+	
 	@FXML
 	public void actionRetirerAbsent(){
 		Joueur joueurSelectionné =  (Joueur)lv_absent.getSelectionModel().getSelectedItem();

@@ -122,75 +122,69 @@ public class JoueurXML {
 			int nbRacineNoeuds = racineNoeuds.getLength();
 
 			for (int i = 0; i < nbRacineNoeuds; i++) {
-
-				if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-
-					Node node = racineNoeuds.item(i);
-					NodeList joueurNoeuds = node.getChildNodes();
-					int nbJoueurNoeuds = joueurNoeuds.getLength();
+				
+				Node node = racineNoeuds.item(i);
+				NodeList joueurNoeuds = node.getChildNodes();
+				int nbJoueurNoeuds = joueurNoeuds.getLength();
+				
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				
+				String num = null;
+				String nom = null;
+				String prenom = null;
+				String sexe = null;
+				LocalDate dateNaissance = null;
+				String titre = null;
+				String ligue = null;
+				int elo = 0;
+				String typeElo = null;
+				String federation = null;
+				String categorie = null;
+				String club = null;
+				
+				for (int j = 0; j < nbJoueurNoeuds; j++) {
 					
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					Node sousNode = joueurNoeuds.item(j);
 					
-					String num = null;
-					String nom = null;
-					String prenom = null;
-					String sexe = null;
-					LocalDate dateNaissance = null;
-					String titre = null;
-					String ligue = null;
-					int elo = 0;
-					String typeElo = null;
-					String federation = null;
-					String categorie = null;
-					String club = null;
-					
-					for (int j = 0; j < nbJoueurNoeuds; j++) {
-
-						if (joueurNoeuds.item(j).getNodeType() == Node.ELEMENT_NODE) {
-							
-							Node sousNode = joueurNoeuds.item(j);
-							
-							if(sousNode.getNodeName() == "num"){
-								num = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "nom"){
-								nom = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "prenom"){
-								prenom = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "sexe"){
-								sexe = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "datenaissance"){
-								dateNaissance = LocalDate.parse(sousNode.getTextContent(), formatter);
-							}
-							if(sousNode.getNodeName() == "titre"){
-								titre = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "ligue"){
-								ligue = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "elo"){
-								elo = Integer.parseInt(sousNode.getTextContent());
-							}
-							if(sousNode.getNodeName() == "typeelo"){
-								typeElo = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "federation"){
-								federation = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "categorie"){
-								categorie = sousNode.getTextContent();
-							}
-							if(sousNode.getNodeName() == "club"){
-								club = sousNode.getTextContent();
-							}
-						}
+					if(sousNode.getNodeName() == "num"){
+						num = sousNode.getTextContent();
 					}
-					
-					listJoueur.add(new Joueur(num,nom,prenom,sexe,dateNaissance,titre,ligue,elo,typeElo,federation,categorie,club));
+					if(sousNode.getNodeName() == "nom"){
+						nom = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "prenom"){
+						prenom = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "sexe"){
+						sexe = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "datenaissance"){
+						dateNaissance = LocalDate.parse(sousNode.getTextContent(), formatter);
+					}
+					if(sousNode.getNodeName() == "titre"){
+						titre = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "ligue"){
+						ligue = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "elo"){
+						elo = Integer.parseInt(sousNode.getTextContent());
+					}
+					if(sousNode.getNodeName() == "typeelo"){
+						typeElo = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "federation"){
+						federation = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "categorie"){
+						categorie = sousNode.getTextContent();
+					}
+					if(sousNode.getNodeName() == "club"){
+						club = sousNode.getTextContent();
+					}
 				}
+				
+				listJoueur.add(new Joueur(num,nom,prenom,sexe,dateNaissance,titre,ligue,elo,typeElo,federation,categorie,club));
 			}
 
 			return listJoueur;

@@ -84,8 +84,9 @@ public class ControleurFenetreTournoi implements Initializable {
 				if(ModeleTournoi.getFichierTournoi()==null){
 					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 				}
-
+				
 				if(file!=null){
+
 					if(ModeleTournoi.getTournoi()==null){
 						Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
 						tournoi.setListeDepartages(itemsChoisis);
@@ -103,15 +104,13 @@ public class ControleurFenetreTournoi implements Initializable {
 
 
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
-
+					
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
-					RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
-					rt.show();
-					((Node)e.getSource()).getScene().getWindow().hide();
+				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+				rt.show();
+				((Node)e.getSource()).getScene().getWindow().hide();
 				}
-
-
 			}
 		}
 	}
