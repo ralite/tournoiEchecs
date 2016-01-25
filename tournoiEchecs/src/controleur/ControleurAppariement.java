@@ -1,6 +1,7 @@
 package controleur;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import metier.Joueur;
@@ -89,6 +90,7 @@ public class ControleurAppariement implements Initializable {
 		    
 		}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
+		joueursTriesParPoints(itemsJoueursInscrits);
 
 		lv_appariements.setCellFactory(lv -> new ItemAppariement());
 
@@ -259,5 +261,21 @@ public class ControleurAppariement implements Initializable {
 			.remove(joueurSelectionné);
 			itemsJoueursInscrits.add(joueurSelectionné);
 		}
+	}
+	
+	void joueursTriesParPoints(ObservableList<Joueur> data){
+
+		FXCollections.sort(itemsJoueursInscrits, new Comparator<Joueur>() {
+
+			@Override
+			public int compare(Joueur j1, Joueur j2) {
+				if(j1.getScore()==j2.getScore()){
+					return Integer.compare(j2.getElo(),j1.getElo());
+				}
+				else
+					return Float.compare(j2.getScore(),j1.getScore());
+			}
+
+		});
 	}
 }

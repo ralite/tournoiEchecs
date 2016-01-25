@@ -1,5 +1,6 @@
 package modele;
 
+import metier.Joueur;
 import metier.Tournoi;
 
 public class ModeleTournoi {
@@ -13,6 +14,7 @@ public class ModeleTournoi {
 
 	public static void nouveauTournoi(){
 		tournoi=null;
+		ModeleJoueur.initialiser();
 	}
 
 	public static Tournoi getTournoi() {

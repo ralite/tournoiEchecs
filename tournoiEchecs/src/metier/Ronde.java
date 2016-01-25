@@ -9,23 +9,23 @@ public class Ronde {
 	private ObservableList<Partie> ListePartie;
 	private ObservableList<Joueur> ListeJoueurAbs;
 	private ObservableList<Joueur> ListeJoueurForfait;
-	private boolean saisie= false;
-	private boolean app= true;
+	private boolean saisiePossible= false;
+	private boolean appariementPossible= true;
 	
 	public boolean isSaisie() {
-		return saisie;
+		return saisiePossible;
 	}
 
 	public void setSaisie(boolean saisie) {
-		this.saisie = saisie;
+		this.saisiePossible = saisie;
 	}
 
 	public boolean isApp() {
-		return app;
+		return appariementPossible;
 	}
 
 	public void setApp(boolean app) {
-		this.app = app;
+		this.appariementPossible = app;
 	}
 
 	public Ronde(int numeroRonde) {

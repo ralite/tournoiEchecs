@@ -220,5 +220,11 @@ public class Joueur {
 			return " | "+couleurs;
 		else return "";
 	}
+
+	public void initialiser() {
+		score=0;
+		couleurs=null;
+		
+	}
 	
 }
