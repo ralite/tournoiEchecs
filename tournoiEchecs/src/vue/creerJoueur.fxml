@@ -35,7 +35,7 @@
       <Label fx:id="lb_erreurLicence" layoutX="370.0" layoutY="29.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurSexe" layoutX="370.0" layoutY="149.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurDate" layoutX="370.0" layoutY="189.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurElo" contentDisplay="CENTER" layoutX="398.0" layoutY="294.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurElo" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="294.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurNom" layoutX="370.0" layoutY="69.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurPrenom" layoutX="370.0" layoutY="109.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurTitre" layoutX="370.0" layoutY="429.0" text="Label" textFill="RED" />
@@ -45,7 +45,7 @@
       <Label fx:id="lb_erreur" layoutX="572.0" layoutY="97.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurFederation" layoutX="370.0" layoutY="269.0" text="Label" textFill="RED" />
       <Label layoutX="35.0" layoutY="265.0" text="Fédération :" />
-      <Label fx:id="lb_erreurType" contentDisplay="CENTER" layoutX="423.0" layoutY="324.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_categorie" layoutX="183.0" layoutY="225.0" text="Label" />
+      <Label fx:id="lb_erreurType" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="324.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_categorie" alignment="CENTER" layoutX="183.0" layoutY="225.0" prefHeight="17.0" prefWidth="150.0" text="Label" />
    </children>
 </AnchorPane>
