@@ -80,6 +80,14 @@ public class ModeleJoueur {
 
 		}
 
+		public static void initialiser() {
+			for (Joueur joueur : collectionJoueurs) {
+				joueur.initialiser();
+			}
+			
+		}
+
+
 
 
 }

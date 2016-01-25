@@ -66,7 +66,7 @@ public class ControleurSaisieResultat implements Initializable{
 					+ "\n( Attention, les résultats de cette ronde seront non-modifiables !)");
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
-				for (Partie partie : itemRechercher) {
+				for (Partie partie : itemResultat) {
 					partie.setScore();
 				}
 				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
