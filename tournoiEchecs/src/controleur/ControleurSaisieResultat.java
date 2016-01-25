@@ -11,9 +11,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ControleurSaisieResultat implements Initializable{
 	
@@ -44,10 +46,30 @@ public class ControleurSaisieResultat implements Initializable{
 	
 	@FXML
 	public void terminerSaisieResultat(){
+		if(!ToutePartieSaisie()){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Erreur");
+			alert.setContentText("Toute les partie ne sont pas saisies !");
+			alert.showAndWait();
+		}
 		for (Partie partie : itemRechercher) {
 			partie.setScore();
 		}
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
+		ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
+		ModeleTournoi.getTournoi().rondeSuivante();
+	}
+	
+	private boolean ToutePartieSaisie(){
+		int i=0;
+		boolean saisie=true;
+		while (i<itemResultat.size() && saisie){
+			if(itemResultat.get(i).getResultat()==null){
+				saisie=false;
+			}
+			i++;
+		}
+		return saisie;
 	}
 	
 	@FXML

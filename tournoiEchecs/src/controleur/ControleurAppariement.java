@@ -187,13 +187,17 @@ public class ControleurAppariement implements Initializable {
 				joueur.joueForfait();
 			}
 			enregistrerApp();
+			ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
+			ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
 		}
 		
 	}
 
 	private void enregistrerApp() {
-		ModeleTournoi.getTournoi().getListeJoueurs().remove(itemsJoueursInscrits.get(0));
-		ModeleTournoi.getTournoi().getListeJoueurs().add(itemsJoueursInscrits.get(0));
+		if(itemsJoueursInscrits.size()==1){
+			ModeleTournoi.getTournoi().getListeJoueurs().remove(itemsJoueursInscrits.get(0));
+			ModeleTournoi.getTournoi().getListeJoueurs().add(itemsJoueursInscrits.get(0));
+		}
 		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
 		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
 		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
