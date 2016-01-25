@@ -81,55 +81,70 @@ public class TournoiXML {
 				rootElement.appendChild(joueur);
 			}
 			
-			Element rondes = doc.createElement("rondes");
-			rootElement.appendChild(rondes);
+			if(!tournoi.getListeRondes().isEmpty()){
 			
-			int indiceRonde = 0;
-			
-			for(Ronde ron : tournoi.getListeRondes()) {
-				Element ronde = doc.createElement("ronde" + indiceRonde);
+				Element rondes = doc.createElement("rondes");
 				rootElement.appendChild(rondes);
 				
-				Element num = doc.createElement("num");
-				Integer i3 = (Integer)ron.getNumeroRonde();
-				num.appendChild(doc.createTextNode(i3.toString()));
-				ronde.appendChild(num);
+				int indiceRonde = 0;
 				
-				Element parties = doc.createElement("parties");
-				rootElement.appendChild(ronde);
-				
-				int indicePartie = 0;
-				
-				for(Partie par : ron.getListePartie()) {
-					Element partie = doc.createElement("partie" + indicePartie);
-					parties.appendChild(partie);
+				for(Ronde ron : tournoi.getListeRondes()) {
+					Element ronde = doc.createElement("ronde" + indiceRonde);
+					rondes.appendChild(ronde);
 					
-					Element joueurBlanc = doc.createElement("joueurBlanc");
-					joueurBlanc.appendChild(doc.createTextNode(par.getNumLicenceJoueurBlanc()));
-					partie.appendChild(joueurBlanc);
+					Element num = doc.createElement("num");
+					Integer i3 = (Integer)ron.getNumeroRonde();
+					num.appendChild(doc.createTextNode(i3.toString()));
+					ronde.appendChild(num);
 					
-					Element joueurNoir = doc.createElement("joueurNoir");
-					joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
-					partie.appendChild(joueurNoir);
+					Element isapp = doc.createElement("isapp");
+					isapp.appendChild(doc.createTextNode(String.valueOf(ron.isApp())));
+					ronde.appendChild(isapp);
 					
-					indicePartie++;
+					Element isres = doc.createElement("isres");
+					isres.appendChild(doc.createTextNode(String.valueOf(ron.isSaisie())));
+					ronde.appendChild(isres);
+					
+					if(!ron.getListePartie().isEmpty()){
+					
+						Element parties = doc.createElement("parties");
+						ronde.appendChild(parties);
+						
+						int indicePartie = 0;
+						
+						for(Partie par : ron.getListePartie()) {
+							
+							Element partie = doc.createElement("partie" + indicePartie);
+							parties.appendChild(partie);
+							
+							Element joueurBlanc = doc.createElement("joueurBlanc");
+							joueurBlanc.appendChild(doc.createTextNode(par.getNumLicenceJoueurBlanc()));
+							partie.appendChild(joueurBlanc);
+							
+							Element joueurNoir = doc.createElement("joueurNoir");
+							joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
+							partie.appendChild(joueurNoir);
+							
+							indicePartie++;
+						}
+					}
+					
+					for(Joueur jouabs : ron.getListeJoueurAbs()) {
+						Element joueurAbs = doc.createElement("joueurAbs");
+						joueurAbs.appendChild(doc.createTextNode(jouabs.getNumLicence()));
+						ronde.appendChild(joueurAbs);
+					}
+					
+					for(Joueur joufor : ron.getListeJoueurForfait()) {
+						Element joueurFor = doc.createElement("joueurFor");
+						joueurFor.appendChild(doc.createTextNode(joufor.getNumLicence()));
+						ronde.appendChild(joueurFor);
+					}
+					
+					indiceRonde++;
 				}
-				
-				for(Joueur jouabs : ron.getListeJoueurAbs()) {
-					Element joueurAbs = doc.createElement("joueurAbs");
-					joueurAbs.appendChild(doc.createTextNode(jouabs.getNumLicence()));
-					ronde.appendChild(joueurAbs);
-				}
-				
-				for(Joueur joufor : ron.getListeJoueurForfait()) {
-					Element joueurFor = doc.createElement("joueurFor");
-					joueurFor.appendChild(doc.createTextNode(joufor.getNumLicence()));
-					ronde.appendChild(joueurFor);
-				}
-				
-				indiceRonde++;
 			}
-
+			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
@@ -176,62 +191,127 @@ public class TournoiXML {
 
 			for (int i = 0; i < nbRacineNoeuds; i++) {
 
-				if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				Node node = racineNoeuds.item(i);
 
-					Node node = racineNoeuds.item(i);
-
-					if(node.getNodeName() == "nom"){
-						nom = node.getTextContent();
-					}
-					if(node.getNodeName() == "lieu"){
-						lieu = node.getTextContent();
-					}
-					if(node.getNodeName() == "datedebut"){
-						dateDeb = LocalDate.parse(node.getTextContent(), formatter);
-					}
-					if(node.getNodeName() == "datefin"){
-						dateFin = LocalDate.parse(node.getTextContent(), formatter);
-					}
-					if(node.getNodeName() == "arbitre"){
-						arbitre = node.getTextContent();
-					}
-					if(node.getNodeName() == "nbrondes"){
-						nbRondes = Integer.parseInt(node.getTextContent());
-					}
-					if(node.getNodeName() == "cadencejeu"){
-						cadenceJeu = node.getTextContent();
-					}
-					if(node.getNodeName() == "departage"){
-						listNomDepartage.add(node.getTextContent());
-						b1 = true;
-					}
-					if(node.getNodeName() == "joueur"){
-						listNumJoueur.add(node.getTextContent());
-						b2 = true;
-					}
-					if(node.getNodeName() == "rondes"){
-						b3 = true;
-						Node rondes = racineNoeuds.item(i);
-						NodeList rondesNoeuds = rondes.getChildNodes();
-						int nbRondesNoeuds = rondesNoeuds.getLength();
+				if(node.getNodeName() == "nom"){
+					nom = node.getTextContent();
+				}
+				if(node.getNodeName() == "lieu"){
+					lieu = node.getTextContent();
+				}
+				if(node.getNodeName() == "datedebut"){
+					dateDeb = LocalDate.parse(node.getTextContent(), formatter);
+				}
+				if(node.getNodeName() == "datefin"){
+					dateFin = LocalDate.parse(node.getTextContent(), formatter);
+				}
+				if(node.getNodeName() == "arbitre"){
+					arbitre = node.getTextContent();
+				}
+				if(node.getNodeName() == "nbrondes"){
+					nbRondes = Integer.parseInt(node.getTextContent());
+				}
+				if(node.getNodeName() == "cadencejeu"){
+					cadenceJeu = node.getTextContent();
+				}
+				if(node.getNodeName() == "departage"){
+					listNomDepartage.add(node.getTextContent());
+					b1 = true;
+				}
+				if(node.getNodeName() == "joueur"){
+					listNumJoueur.add(node.getTextContent());
+					b2 = true;
+				}
+				if(node.getNodeName() == "rondes"){
+					b3 = true;
+					NodeList rondesNoeuds = node.getChildNodes();
+					int nbRondesNoeuds = rondesNoeuds.getLength();
+					
+					for (int i2 = 0; i2 < nbRondesNoeuds; i2++) {
 						
-						for (int i2 = 0; i2 < nbRondesNoeuds; i2++) {
-
-							int numRonde = 0;
+						Node nodeRonde = rondesNoeuds.item(i2);
+						NodeList rondeNoeuds = nodeRonde.getChildNodes();
+						int nbRondeNoeuds = rondeNoeuds.getLength();
+						
+						int numRonde = 0;
+						boolean isapp = false;
+						boolean isres = false;
+						ArrayList<String> listJoueurAbs = new ArrayList<String>();
+						ArrayList<String> listJoueurFor = new ArrayList<String>();
+						ArrayList<Partie> listPartie = new ArrayList<Partie>();
+						
+						for (int i3 = 0; i3 < nbRondeNoeuds; i3++) {
 							
-							if (rondesNoeuds.item(i2).getNodeType() == Node.ELEMENT_NODE) {
-								Node ronde = racineNoeuds.item(i2);
+							Node sousNodeRonde = rondeNoeuds.item(i3);
 								
-								if(ronde.getNodeName() == "num"){
-									numRonde = Integer.parseInt(node.getTextContent());
-								}
-								
-								//////////// Parties,JoueursAbs,JoueursForfait ////////////
+							if(sousNodeRonde.getNodeName() == "num"){
+								numRonde = Integer.parseInt(sousNodeRonde.getTextContent());
 							}
 							
-							Ronde r = new Ronde(numRonde);
-							listRonde.add(r);
+							if(sousNodeRonde.getNodeName() == "isapp"){
+								isapp = Boolean.getBoolean(sousNodeRonde.getTextContent());
+							}
+							
+							if(sousNodeRonde.getNodeName() == "isres"){
+								isres = Boolean.getBoolean(sousNodeRonde.getTextContent());
+							}
+							
+							if(sousNodeRonde.getNodeName() == "parties"){
+								
+								NodeList partiesNoeuds = sousNodeRonde.getChildNodes();
+								int nbpartiesNoeuds = partiesNoeuds.getLength();
+								
+								for (int i4 = 0; i4 < nbpartiesNoeuds; i4++) {
+									
+									Node nodePartie = partiesNoeuds.item(i4);
+									NodeList partieNoeuds = nodePartie.getChildNodes();
+									int nbPartieNoeuds = partieNoeuds.getLength();
+									
+									String joueurBlanc = null;
+									String joueurNoir = null;
+									
+									for (int i5 = 0; i5 < nbPartieNoeuds; i5++) {
+										
+										Node sousNodePartie = partieNoeuds.item(i5);
+										
+										if(sousNodePartie.getNodeName() == "joueurBlanc"){
+											joueurBlanc = sousNodePartie.getTextContent();
+										}
+										
+										if(sousNodePartie.getNodeName() == "joueurNoir"){
+											joueurNoir = sousNodePartie.getTextContent();
+										}
+									}
+									
+									Partie partie = new Partie(ModeleJoueur.rechercherJoueur(joueurBlanc), ModeleJoueur.rechercherJoueur(joueurNoir));
+									listPartie.add(partie);
+								}
+							}
+							
+							if(sousNodeRonde.getNodeName() == "joueurAbs"){
+								listJoueurAbs.add(sousNodeRonde.getTextContent());
+							}
+							
+							if(sousNodeRonde.getNodeName() == "joueurFor"){
+								listJoueurFor.add(sousNodeRonde.getTextContent());
+							}
 						}
+						
+						Ronde r = new Ronde(numRonde);
+						r.setApp(isapp);
+						r.setSaisie(isres);
+						
+						for (String numJoueur : listJoueurAbs) {
+							r.getListeJoueurAbs().add(ModeleJoueur.rechercherJoueur(numJoueur));
+						}
+						for (String numJoueur : listJoueurFor) {
+							r.getListeJoueurForfait().add(ModeleJoueur.rechercherJoueur(numJoueur));
+						}
+						for(Partie partie : listPartie){
+							r.getListePartie().add(partie);
+						}
+						
+						listRonde.add(r);
 					}
 				}
 			}
@@ -250,10 +330,10 @@ public class TournoiXML {
 				}
 			}
 			if(b3){
-				for (Ronde ronde1 : listRonde) {
-					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListePartie(ronde1.getListePartie());
-					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListeJoueurAbs(ronde1.getListeJoueurAbs());
-					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()).setListeJoueurForfait(ronde1.getListeJoueurForfait());
+				for (Ronde ronde1 : listRonde) { 
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListePartie(ronde1.getListePartie());
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListeJoueurAbs(ronde1.getListeJoueurAbs());
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListeJoueurForfait(ronde1.getListeJoueurForfait());
 				}
 			}
 			

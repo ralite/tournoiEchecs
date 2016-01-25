@@ -61,6 +61,7 @@ public class ControleurFenetreAccueil implements Initializable{
 
     @FXML
     private void actionParcourirTournoi(Event e) {
+    	ModeleTournoi.nouveauTournoi();
     	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
 		if (fileTournoi != null) {
 			Tournoi t = TournoiXML.readXMLTournoi(fileTournoi.getPath());
@@ -94,6 +95,7 @@ public class ControleurFenetreAccueil implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	FenetreFileChooser.readLastdir(FenetreFileChooser.lastDirFilePath);
     	ArrayList<Joueur> listJoueur = JoueurXML.readXMLJoueur(JoueurXML.joueurFilePath);
     	if(listJoueur != null){
 	    	for (Joueur joueur : listJoueur) {
