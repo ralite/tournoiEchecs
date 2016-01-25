@@ -126,6 +126,9 @@ public class Tournoi {
 	}
 	
 	public void setNbRondes(int nbRondes) {
+		for(int i=NbRondes;i<nbRondes;i++){
+			ListeRondes.add(new Ronde(i+1));
+		}
 		NbRondes = nbRondes;
 	}
 

@@ -9,8 +9,8 @@ public class Ronde {
 	private ObservableList<Partie> ListePartie;
 	private ObservableList<Joueur> ListeJoueurAbs;
 	private ObservableList<Joueur> ListeJoueurForfait;
-	private boolean saisie= true;
-	private boolean app= false;
+	private boolean saisie= false;
+	private boolean app= true;
 	
 	public boolean isSaisie() {
 		return saisie;

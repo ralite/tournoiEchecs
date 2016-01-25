@@ -56,9 +56,9 @@ public class ControleurSaisieResultat implements Initializable{
 			partie.setScore();
 		}
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
-		ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
+		ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
 		ModeleTournoi.getTournoi().rondeSuivante();
-		ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
+		ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
 	}
 	
 	private boolean ToutePartieSaisie(){

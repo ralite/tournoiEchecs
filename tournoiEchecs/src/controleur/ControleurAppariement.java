@@ -209,8 +209,8 @@ public class ControleurAppariement implements Initializable {
 				joueur.joueForfait();
 			}
 			enregistrerApp();
-			ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
-			ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
+			ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
+			ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);
 		}
 		
 	}
