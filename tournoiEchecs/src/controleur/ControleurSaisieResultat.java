@@ -50,7 +50,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	@FXML
 	public void terminerSaisieResultat(Event e){
-		if(!ToutePartieSaisie()){
+		if(!toutesPartiesSaisies()){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setContentText("Toutes les parties ne sont pas saisies !");
@@ -76,7 +76,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	}
 
-	private boolean ToutePartieSaisie(){
+	private boolean toutesPartiesSaisies(){
 		int i=0;
 		boolean saisie=true;
 		while (i<itemResultat.size() && saisie){
