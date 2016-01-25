@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
+import modele.xml.TournoiXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -174,9 +175,9 @@ public class ControleurAppariement implements Initializable {
 			AfficherAlerte();
 		}
 		else{
-			if(itemsJoueursInscrits.size()==1)
+			if(itemsJoueursInscrits.size()==1){
 				itemsJoueursInscrits.get(0).gagne1Point();
-			
+			}
 			for (Partie partie : itemsParties) {
 				partie.setCouleurJoueur();
 			}
@@ -186,9 +187,9 @@ public class ControleurAppariement implements Initializable {
 			for (Joueur joueur : itemsJoueursForfait) {
 				joueur.joueForfait();
 			}
-			enregistrerApp();
 			ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
 			ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
+			enregistrerApp();
 		}
 		
 	}
@@ -201,6 +202,7 @@ public class ControleurAppariement implements Initializable {
 		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
 		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
 		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 	}
 
 	private void AfficherAlerte() {

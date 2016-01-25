@@ -85,31 +85,28 @@ public class ControleurFenetreTournoi implements Initializable {
 					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());					
 				}
 				
-				if(file!=null){
-					if(ModeleTournoi.getTournoi()==null){
-						Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
-						tournoi.setListeDepartages(itemsChoisis);
-						ModeleTournoi.ajouterTournoi(tournoi);
-					}
-					else{
-						ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
-						ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
-						ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
-						ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
-						ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
-						ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
-						ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
-					}
-
-					
-					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
-				
-					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
-					
-					RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
-					rt.show();
-					((Node)e.getSource()).getScene().getWindow().hide();
+				if(ModeleTournoi.getTournoi()==null){
+					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
+					tournoi.setListeDepartages(itemsChoisis);
+					ModeleTournoi.ajouterTournoi(tournoi);
+				}else{
+					ModeleTournoi.getTournoi().setNom(tf_nomTournoi.getText());
+					ModeleTournoi.getTournoi().setLieu(tf_lieuTournoi.getText());
+					ModeleTournoi.getTournoi().setDateDeb(dp_dateDeb.getValue());
+					ModeleTournoi.getTournoi().setDateFin(dp_dateFin.getValue());
+					ModeleTournoi.getTournoi().setArbitre(tf_arbitre.getText());
+					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
+					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
 				}
+				
+				if(file!=null){
+					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
+				}
+				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+				
+				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+				rt.show();
+				((Node)e.getSource()).getScene().getWindow().hide();
 
 
 			}

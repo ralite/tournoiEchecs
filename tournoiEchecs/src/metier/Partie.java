@@ -90,7 +90,6 @@ public class Partie {
 				|| joueurNoir.getNomJoueur().equalsIgnoreCase(text) 
 				|| joueurBlanc.getNumLicence().equals(text)
 				||joueurNoir.getNumLicence().equals(text)){
-			System.out.println("ici");
 			return true;
 			
 		}
