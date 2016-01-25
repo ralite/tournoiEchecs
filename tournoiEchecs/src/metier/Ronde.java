@@ -9,7 +9,25 @@ public class Ronde {
 	private ObservableList<Partie> ListePartie;
 	private ObservableList<Joueur> ListeJoueurAbs;
 	private ObservableList<Joueur> ListeJoueurForfait;
+	private boolean saisie= true;
+	private boolean app= false;
 	
+	public boolean isSaisie() {
+		return saisie;
+	}
+
+	public void setSaisie(boolean saisie) {
+		this.saisie = saisie;
+	}
+
+	public boolean isApp() {
+		return app;
+	}
+
+	public void setApp(boolean app) {
+		this.app = app;
+	}
+
 	public Ronde(int numeroRonde) {
 		this.numeroRonde = numeroRonde;
 		ListePartie = FXCollections.observableArrayList();
@@ -66,5 +84,6 @@ public class Ronde {
 	public ObservableList<Joueur> getListeJoueurForfait() {
 		return ListeJoueurForfait;
 	}
+
 	
 }

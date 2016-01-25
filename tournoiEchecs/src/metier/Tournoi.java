@@ -117,10 +117,14 @@ public class Tournoi {
 		return NbRondes;
 	}
 	
-	public int getRondeActuelle(){
+	public int getNumRondeActuelle(){
 		return rondeActuelle;
 	}
 
+	public Ronde getRondeActuelle(){
+		return ListeRondes.get(rondeActuelle);
+	}
+	
 	public void setNbRondes(int nbRondes) {
 		NbRondes = nbRondes;
 	}
@@ -183,6 +187,11 @@ public class Tournoi {
 
 	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
 		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
+	}
+
+	public void rondeSuivante() {
+		rondeActuelle++;
+		
 	}
 
 

@@ -6,6 +6,7 @@ public class Partie {
 	private Joueur joueurNoir;
 	private String resultat=null;
 
+
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
 		this.joueurBlanc = joueurBlanc;
 		this.joueurNoir = joueurNoir;
@@ -119,6 +120,10 @@ public class Partie {
 
 		}
 		
+	}
+
+	public String getResultat() {
+		return resultat;
 	}
 		
 }

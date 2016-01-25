@@ -62,7 +62,7 @@ public class Validation {
 	}
 
 	public static boolean estChaineChiffree(TextField tx) {
-		if(tx.getText().trim().matches("^[a-zA-Z]*[0-9]*$")){
+		if(tx.getText().trim().matches("^[a-zA-Z]+\\s*[0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
 			return true;
 		}else{
@@ -119,10 +119,9 @@ public class Validation {
 
 	public static void verifLongueurTexte(TextField tf, int longeur){
 		int longueurMax=longeur;
-		if(tf.getText().length()>=longueurMax){
-            tf.setText(tf.getText().substring(0, longueurMax-1));
+		if(tf.getText().length()>longueurMax){
+            tf.deleteText(longueurMax, tf.getText().length());
 		}
-		tf.positionCaret(tf.getText().length());;
 	}
 
 	public static boolean verifNumLicence(TextField tf){
@@ -134,7 +133,7 @@ public class Validation {
 			tf.setStyle("-fx-control-inner-background : red; ");
 			return false;
 		}
-		
+
 		try{
 			Integer.parseInt(tf.getText().substring(1, 5));
 		}catch(NumberFormatException e){
