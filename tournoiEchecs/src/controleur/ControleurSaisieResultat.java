@@ -68,8 +68,13 @@ public class ControleurSaisieResultat implements Initializable{
 				}
 				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
-				ModeleTournoi.getTournoi().rondeSuivante();
-				ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
+				if(ModeleTournoi.getTournoi().getNumRondeActuelle()+1<ModeleTournoi.getTournoi().getNbRondes()){
+					ModeleTournoi.getTournoi().rondeSuivante();
+					ModeleTournoi.getTournoi().getRondeActuelle().setApp(true);
+				}
+				else{
+					ModeleTournoi.getTournoi().tournoiFini();
+				}
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 

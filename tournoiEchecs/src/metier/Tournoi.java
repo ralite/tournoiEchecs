@@ -197,6 +197,11 @@ public class Tournoi {
 		
 	}
 
+	public void tournoiFini() {
+		rondeActuelle=-1;
+		
+	}
+
 
 
 }

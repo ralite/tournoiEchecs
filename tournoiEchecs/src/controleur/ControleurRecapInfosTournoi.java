@@ -103,15 +103,23 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void apparierJoueurs(){
-		if(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Veuillez préalablement saisir les résultats !");
+			alert.setContentText("Tournoi Fini !");
 			alert.showAndWait();
 		}
 		else{
-			AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());
-			app.show();
+			if(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Erreur");
+				alert.setContentText("Veuillez préalablement saisir les résultats !");
+				alert.showAndWait();
+			}
+			else{
+				AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());
+				app.show();
+			}
 		}
 	}
 
