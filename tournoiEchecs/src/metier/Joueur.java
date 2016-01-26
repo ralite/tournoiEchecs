@@ -226,5 +226,15 @@ public class Joueur {
 		couleurs=null;
 		
 	}
+
+	public void setScore(float s) {
+		score=s;
+		
+	}
+
+	public void setCouleur(String couleurJoueur) {
+		couleurs=couleurJoueur;
+		
+	}
 	
 }

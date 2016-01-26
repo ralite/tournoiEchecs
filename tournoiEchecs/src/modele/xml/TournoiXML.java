@@ -77,7 +77,19 @@ public class TournoiXML {
 
 			for(Joueur jou : tournoi.getListeJoueurs()) {
 				Element joueur = doc.createElement("joueur");
-				joueur.appendChild(doc.createTextNode(jou.getNumLicence()));
+				
+				Element numLicence = doc.createElement("numLicence");
+				numLicence.appendChild(doc.createTextNode(jou.getNumLicence()));
+				joueur.appendChild(numLicence);
+				
+				Element couleurJoueur = doc.createElement("couleurJoueur");
+				couleurJoueur.appendChild(doc.createTextNode(jou.getCouleur()));
+				joueur.appendChild(couleurJoueur);
+				
+				Element scoreJoueur = doc.createElement("scoreJoueur");
+				scoreJoueur.appendChild(doc.createTextNode(String.valueOf(jou.getScore())));
+				joueur.appendChild(scoreJoueur);
+				
 				rootElement.appendChild(joueur);
 			}
 			
@@ -182,7 +194,7 @@ public class TournoiXML {
 			String cadenceJeu = null;
 			ArrayList<String> listNomDepartage = new ArrayList<String>();
 			ArrayList<Departage> listDepartage = new ArrayList<Departage>();
-			ArrayList<String> listNumJoueur = new ArrayList<String>();
+			ArrayList<Joueur> listNumJoueur = new ArrayList<Joueur>();
 			ArrayList<Ronde> listRonde = new ArrayList<Ronde>();
 
 			Element racine = doc.getDocumentElement();
@@ -219,8 +231,42 @@ public class TournoiXML {
 					b1 = true;
 				}
 				if(node.getNodeName() == "joueur"){
-					listNumJoueur.add(node.getTextContent());
-					b2 = true;
+					NodeList joueursNoeuds = node.getChildNodes();
+					int nbjoueursNoeuds = joueursNoeuds.getLength();
+					System.out.println(nbjoueursNoeuds);
+					for (int i1 = 0; i1 < nbjoueursNoeuds; i1++) {
+						
+						
+						String numLicence= new String();
+						String couleurJoueur= new String();
+						Float scoreJoueur=(float) 0;
+						
+							
+						Node sousNodeJoueur = joueursNoeuds.item(i1);
+								
+						if(sousNodeJoueur.getNodeName() == "numLicence"){
+							numLicence = sousNodeJoueur.getTextContent();
+						}
+						
+						if(sousNodeJoueur.getNodeName() == "couleurJoueur"){
+							couleurJoueur = sousNodeJoueur.getTextContent();
+						}
+							
+						if(sousNodeJoueur.getNodeName() == "scoreJoueur"){
+							scoreJoueur = Float.parseFloat(sousNodeJoueur.getTextContent());
+						}
+
+						Joueur j = ModeleJoueur.rechercherJoueur(numLicence);
+						System.out.println(numLicence);
+						if(j!=null){
+							j.setScore(scoreJoueur);
+							if(couleurJoueur.equalsIgnoreCase(""))
+								couleurJoueur=null;
+							j.setCouleur(couleurJoueur);
+							listNumJoueur.add(j);
+						}
+						b2 = true;
+					}
 				}
 				if(node.getNodeName() == "rondes"){
 					b3 = true;
@@ -325,8 +371,8 @@ public class TournoiXML {
 				}
 			}
 			if(b2){
-				for (String numJoueur : listNumJoueur) {
-					returnTournoi.AddJoueur(ModeleJoueur.rechercherJoueur(numJoueur));
+				for (Joueur joueur : listNumJoueur) {
+					returnTournoi.AddJoueur(joueur);
 				}
 			}
 			if(b3){
