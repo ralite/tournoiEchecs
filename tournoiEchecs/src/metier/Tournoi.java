@@ -202,6 +202,11 @@ public class Tournoi {
 		
 	}
 
+	public void setRondeActuelle(int rondeActuelle2) {
+		rondeActuelle=rondeActuelle2;
+		
+	}
+
 
 
 }

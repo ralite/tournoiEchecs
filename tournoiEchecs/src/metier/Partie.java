@@ -126,6 +126,11 @@ public class Partie {
 		
 	}
 
+	public void setResultat(String resultat2) {
+		resultat=resultat2;
+		
+	}
+
 	
 		
 }

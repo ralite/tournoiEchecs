@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import vue.ItemSaisieResultat;
 import metier.Partie;
 import modele.ModeleTournoi;
+import modele.xml.TournoiXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -47,6 +48,7 @@ public class ControleurSaisieResultat implements Initializable{
 	@FXML
 	public void validerSaisieResultat(){
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
+		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 	}
 
 	@FXML
@@ -75,6 +77,7 @@ public class ControleurSaisieResultat implements Initializable{
 				else{
 					ModeleTournoi.getTournoi().tournoiFini();
 				}
+				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 

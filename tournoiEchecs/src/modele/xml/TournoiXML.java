@@ -68,6 +68,10 @@ public class TournoiXML {
 			Element cadenceJeu = doc.createElement("cadencejeu");
 			cadenceJeu.appendChild(doc.createTextNode(tournoi.getCadenceJeu()));
 			rootElement.appendChild(cadenceJeu);
+			
+			Element rondeActuelle = doc.createElement("rondeActuelle");
+			rondeActuelle.appendChild(doc.createTextNode(String.valueOf(tournoi.getNumRondeActuelle())));
+			rootElement.appendChild(rondeActuelle);
 
 			for(Departage dep : tournoi.getListeDepartages()) {
 				Element departage = doc.createElement("departage");
@@ -137,6 +141,10 @@ public class TournoiXML {
 							joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
 							partie.appendChild(joueurNoir);
 							
+							Element resultat = doc.createElement("resultat");
+							resultat.appendChild(doc.createTextNode(par.getResultat()));
+							partie.appendChild(resultat);
+							
 							indicePartie++;
 						}
 					}
@@ -192,9 +200,10 @@ public class TournoiXML {
 			String arbitre = null;
 			int nbRondes = 0;
 			String cadenceJeu = null;
+			int rondeActuelle=0;
 			ArrayList<String> listNomDepartage = new ArrayList<String>();
 			ArrayList<Departage> listDepartage = new ArrayList<Departage>();
-			ArrayList<Joueur> listNumJoueur = new ArrayList<Joueur>();
+			ArrayList<Joueur> listJoueur = new ArrayList<Joueur>();
 			ArrayList<Ronde> listRonde = new ArrayList<Ronde>();
 
 			Element racine = doc.getDocumentElement();
@@ -226,22 +235,25 @@ public class TournoiXML {
 				if(node.getNodeName() == "cadencejeu"){
 					cadenceJeu = node.getTextContent();
 				}
+				if(node.getNodeName() == "rondeActuelle"){
+					rondeActuelle = Integer.parseInt(node.getTextContent());
+				}
 				if(node.getNodeName() == "departage"){
 					listNomDepartage.add(node.getTextContent());
 					b1 = true;
 				}
 				if(node.getNodeName() == "joueur"){
+					b2 = true;
 					NodeList joueursNoeuds = node.getChildNodes();
 					int nbjoueursNoeuds = joueursNoeuds.getLength();
-					System.out.println(nbjoueursNoeuds);
+					
+					String numLicence= new String();
+					String couleurJoueur= new String();
+					float scoreJoueur=0.0f;
+					
 					for (int i1 = 0; i1 < nbjoueursNoeuds; i1++) {
 						
-						
-						String numLicence= new String();
-						String couleurJoueur= new String();
-						Float scoreJoueur=(float) 0;
-						
-							
+											
 						Node sousNodeJoueur = joueursNoeuds.item(i1);
 								
 						if(sousNodeJoueur.getNodeName() == "numLicence"){
@@ -255,17 +267,15 @@ public class TournoiXML {
 						if(sousNodeJoueur.getNodeName() == "scoreJoueur"){
 							scoreJoueur = Float.parseFloat(sousNodeJoueur.getTextContent());
 						}
-
-						Joueur j = ModeleJoueur.rechercherJoueur(numLicence);
-						System.out.println(numLicence);
-						if(j!=null){
-							j.setScore(scoreJoueur);
-							if(couleurJoueur.equalsIgnoreCase(""))
-								couleurJoueur=null;
-							j.setCouleur(couleurJoueur);
-							listNumJoueur.add(j);
-						}
-						b2 = true;
+												
+					}
+					Joueur j = ModeleJoueur.rechercherJoueur(numLicence);
+					if(j!=null){
+						j.setScore(scoreJoueur);
+						if(couleurJoueur.equalsIgnoreCase(""))
+							couleurJoueur=null;
+						j.setCouleur(couleurJoueur);
+						listJoueur.add(j);
 					}
 				}
 				if(node.getNodeName() == "rondes"){
@@ -295,11 +305,11 @@ public class TournoiXML {
 							}
 							
 							if(sousNodeRonde.getNodeName() == "isapp"){
-								isapp = Boolean.getBoolean(sousNodeRonde.getTextContent());
+								isapp = Boolean.parseBoolean(sousNodeRonde.getTextContent());
 							}
 							
 							if(sousNodeRonde.getNodeName() == "isres"){
-								isres = Boolean.getBoolean(sousNodeRonde.getTextContent());
+								isres = Boolean.parseBoolean(sousNodeRonde.getTextContent());
 							}
 							
 							if(sousNodeRonde.getNodeName() == "parties"){
@@ -315,6 +325,7 @@ public class TournoiXML {
 									
 									String joueurBlanc = null;
 									String joueurNoir = null;
+									String resultat = null;
 									
 									for (int i5 = 0; i5 < nbPartieNoeuds; i5++) {
 										
@@ -327,9 +338,17 @@ public class TournoiXML {
 										if(sousNodePartie.getNodeName() == "joueurNoir"){
 											joueurNoir = sousNodePartie.getTextContent();
 										}
+										
+										if(sousNodePartie.getNodeName() == "resultat"){
+											resultat = sousNodePartie.getTextContent();
+											if(resultat.equalsIgnoreCase("")){
+												resultat=null;
+											}
+										}
 									}
 									
 									Partie partie = new Partie(ModeleJoueur.rechercherJoueur(joueurBlanc), ModeleJoueur.rechercherJoueur(joueurNoir));
+									partie.setResultat(resultat);
 									listPartie.add(partie);
 								}
 							}
@@ -363,7 +382,7 @@ public class TournoiXML {
 			}
 			
 			Tournoi returnTournoi = new Tournoi(nom, lieu, dateDeb, dateFin, arbitre, nbRondes, cadenceJeu);
-			
+			returnTournoi.setRondeActuelle(rondeActuelle);
 			if(b1){
 				listDepartage = ModeleDepartage.factoryDepartage(listNomDepartage);
 				for (Departage departage : listDepartage) {
@@ -371,7 +390,7 @@ public class TournoiXML {
 				}
 			}
 			if(b2){
-				for (Joueur joueur : listNumJoueur) {
+				for (Joueur joueur : listJoueur) {
 					returnTournoi.AddJoueur(joueur);
 				}
 			}
@@ -380,6 +399,8 @@ public class TournoiXML {
 					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListePartie(ronde1.getListePartie());
 					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListeJoueurAbs(ronde1.getListeJoueurAbs());
 					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setListeJoueurForfait(ronde1.getListeJoueurForfait());
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setApp(ronde1.isApp());		
+					returnTournoi.getListeRondes().get(ronde1.getNumeroRonde()-1).setSaisie(ronde1.isSaisie());				
 				}
 			}
 			
