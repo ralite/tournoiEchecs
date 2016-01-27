@@ -65,8 +65,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	TextArea ta_messageAide ;
-
-
+	
 	@FXML
     private void actionValider(Event e) {
 		if (formulaireRempli()) {
@@ -260,5 +259,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 
 	}
+	
+	
 
 }
