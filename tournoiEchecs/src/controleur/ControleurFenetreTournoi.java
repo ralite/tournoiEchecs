@@ -65,7 +65,8 @@ public class ControleurFenetreTournoi implements Initializable {
 
 	@FXML
 	TextArea ta_messageAide ;
-	
+
+
 	@FXML
     private void actionValider(Event e) {
 		if (formulaireRempli()) {
@@ -75,7 +76,7 @@ public class ControleurFenetreTournoi implements Initializable {
 				if(ModeleTournoi.getFichierTournoi()==null){
 					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
 				}
-				
+
 				if(ModeleTournoi.getTournoi()==null){
 					Tournoi tournoi = new Tournoi(tf_nomTournoi.getText(),tf_lieuTournoi.getText(),dp_dateDeb.getValue(),dp_dateFin.getValue(),tf_arbitre.getText(),Integer.valueOf(tf_nbRondes.getText()),cb_cadences.getSelectionModel().getSelectedItem());
 					tournoi.setListeDepartages(itemsChoisis);
@@ -90,10 +91,10 @@ public class ControleurFenetreTournoi implements Initializable {
 					ModeleTournoi.getTournoi().setNbRondes(Integer.valueOf(tf_nbRondes.getText()));
 					ModeleTournoi.getTournoi().setCadenceJeu(cb_cadences.getSelectionModel().getSelectedItem());
 				}
-				
+
 				if(file!=null){
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
-				}					
+				}
 				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
 				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
@@ -138,6 +139,10 @@ public class ControleurFenetreTournoi implements Initializable {
 			res = false;
 		if(Validation.estVide(lv_listeDepartagesChoisis))
 			res = false;
+		if(cb_cadences.getSelectionModel().getSelectedItem()==null){
+			ta_messageAide.setStyle("-fx-control-inner-background : red; ");
+			res=false;
+		}
 		return res;
 	}
 
@@ -259,7 +264,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 
 	}
-	
-	
+
+
 
 }
