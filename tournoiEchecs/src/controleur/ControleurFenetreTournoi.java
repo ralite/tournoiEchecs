@@ -95,11 +95,14 @@ public class ControleurFenetreTournoi implements Initializable {
 				if(file!=null){
 					ModeleTournoi.setFichierTournoi(file.getPath() + "\\tournoi_" + ModeleTournoi.getTournoi().getNom() + "_" + ModeleTournoi.getTournoi().getLieu() + "_" + ModeleTournoi.getTournoi().getDateDeb().toString() + ".xml");
 				}
-				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
-				RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
-				rt.show();
-				((Node)e.getSource()).getScene().getWindow().hide();
+				if(ModeleTournoi.getFichierTournoi()!=null){
+					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+
+					RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+					rt.show();
+					((Node)e.getSource()).getScene().getWindow().hide();
+				}
 			}
 		}
 	}
