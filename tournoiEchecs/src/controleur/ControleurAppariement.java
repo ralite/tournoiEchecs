@@ -78,11 +78,10 @@ public class ControleurAppariement implements Initializable {
 
 		            @Override
 		            protected void updateItem(Joueur value, boolean empty) {
-		            	String text=null;
+		            	String text = "";
 		                super.updateItem(value, empty);
 		                if (!empty && value != null) {
 		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts "+ value.getCouleur();
-
 		                }
 		                setText(text);
 		            }
@@ -275,7 +274,6 @@ public class ControleurAppariement implements Initializable {
 				else
 					return Float.compare(j2.getScore(),j1.getScore());
 			}
-
 		});
 	}
 }

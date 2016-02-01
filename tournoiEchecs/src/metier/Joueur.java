@@ -33,8 +33,8 @@ public class Joueur {
 		this.federation = federation;
 		this.categorie = categorie;
 		this.club = club;
-		this.couleurs=null;
-		this.score=0;
+		this.couleurs = "";
+		this.score = 0;
 	}
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur) {
@@ -177,52 +177,49 @@ public class Joueur {
 		return  numLicence + " " + nomJoueur
 				+ " " + prenomJoueur + " " + elo;
 	}
-
 	
 	public void joueBlanc(){
-		if(couleurs==null){
+		if(couleurs.isEmpty()){
 			couleurs="B";
 		}
 		else couleurs+="/B";
 	}
 	
 	public void joueNoir(){
-		if(couleurs==null)
+		if(couleurs.isEmpty())
 			couleurs="N";
 		else couleurs+="/N";
 	}
 	
 	public void joueAbs(){
-		if(couleurs==null)
+		if(couleurs.isEmpty())
 			couleurs="a";
 		else couleurs+="/a";
 	}
 	
 	public void joueForfait(){
-		if(couleurs==null)
+		if(couleurs.isEmpty())
 			couleurs="f";
 		else couleurs+="/f";
 	}
 
 	public void gagne1Point() {
 		score+=1;
-		
 	}
 
 	public void gagneDemiPoint() {
 		score+=0.5;
-		
 	}
 
 	public String getCouleur() {
-		if(couleurs!=null)
+		if(!couleurs.isEmpty())
 			return " | "+couleurs;
 		else return "";
 	}
 	
 	public void initialiser() {
 		score=0;
-		couleurs=null;
+		couleurs="";
 	}
 
 	public void setScore(float s) {
@@ -234,10 +231,9 @@ public class Joueur {
 	}
 
 	public void setExempt() {
-		if(couleurs==null)
+		if(couleurs.isEmpty())
 			couleurs="X";
 		else couleurs+="/X";
-		
 	}
 	
 }

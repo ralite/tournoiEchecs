@@ -94,7 +94,7 @@ public class TournoiXML {
 					numLicence.appendChild(doc.createTextNode(jou.getNumLicence()));
 					joueur.appendChild(numLicence);
 					
-					if(jou.getCouleur() == null){
+					if(!jou.getCouleur().isEmpty()){
 						Element couleurJoueur = doc.createElement("couleurJoueur");
 						couleurJoueur.appendChild(doc.createTextNode(jou.getCouleur()));
 						joueur.appendChild(couleurJoueur);
@@ -152,7 +152,7 @@ public class TournoiXML {
 							joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
 							partie.appendChild(joueurNoir);
 							
-							if(par.getResultat() != null){
+							if(!par.getResultat().isEmpty()){
 								Element resultat = doc.createElement("resultat");
 								resultat.appendChild(doc.createTextNode(par.getResultat()));
 								partie.appendChild(resultat);
@@ -265,8 +265,8 @@ public class TournoiXML {
 						NodeList joueurNoeuds = nodeJoueur.getChildNodes();
 						int nbJoueurNoeuds = joueurNoeuds.getLength();
 						
-						String numLicence = null;
-						String couleurJoueur = null;
+						String numLicence = "";
+						String couleurJoueur = "";
 						float scoreJoueur = 0.0f;
 						
 						for (int i11 = 0; i11 < nbJoueurNoeuds; i11++) {
@@ -338,9 +338,9 @@ public class TournoiXML {
 									NodeList partieNoeuds = nodePartie.getChildNodes();
 									int nbPartieNoeuds = partieNoeuds.getLength();
 									
-									String joueurBlanc = null;
-									String joueurNoir = null;
-									String resultat = null;
+									String joueurBlanc = "";
+									String joueurNoir = "";
+									String resultat = "";
 									
 									for (int i5 = 0; i5 < nbPartieNoeuds; i5++) {
 										
@@ -356,8 +356,8 @@ public class TournoiXML {
 										
 										if(sousNodePartie.getNodeName() == "resultat"){
 											resultat = sousNodePartie.getTextContent();
-											if(resultat.equalsIgnoreCase("")){
-												resultat=null;
+											if(resultat.isEmpty()){
+												resultat="";
 											}
 										}
 									}
