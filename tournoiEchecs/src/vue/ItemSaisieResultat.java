@@ -40,11 +40,11 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 
 	public ItemSaisieResultat() {
 
-				lb_blancForfait.setText("Blancs Forfait");
-				lb_blancGagne.setText("Blancs Gagne");
-				lb_doubleForfait.setText("Doubles Forfait");
-				lb_noirForfait.setText("Noirs Forfait");
-				lb_noirGagne.setText("Noirs Gagne");
+				lb_blancForfait.setText("Blancs Forfaits");
+				lb_blancGagne.setText("Blancs Gagnent");
+				lb_doubleForfait.setText("Double Forfait");
+				lb_noirForfait.setText("Noirs Forfaits");
+				lb_noirGagne.setText("Noirs Gagnent");
 				lb_partieNull.setText("Partie Nulle");
 
 		 		joueurBlanc.setStyle("-fx-font-weight: bold;");
