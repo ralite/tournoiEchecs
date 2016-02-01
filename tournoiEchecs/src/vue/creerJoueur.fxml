@@ -12,40 +12,40 @@
       <Label layoutX="35.0" layoutY="105.0" text="Prénom :" />
       <Label layoutX="35.0" layoutY="145.0" text="Sexe :" />
       <Label layoutX="35.0" layoutY="185.0" text="Date de naissance :" />
-      <Label layoutX="35.0" layoutY="425.0" text="Titre :" />
-      <Label layoutX="35.0" layoutY="345.0" text="Ligue :" />
-      <Label layoutX="35.0" layoutY="305.0" text="Classement ELO :" />
       <Label layoutX="35.0" layoutY="225.0" text="Catégorie :" />
-      <Label layoutX="35.0" layoutY="385.0" text="Club :" />
+      <Label layoutX="35.0" layoutY="265.0" text="Classement ELO :" />
+      <Label layoutX="35.0" layoutY="305.0" text="Titre :" />
+      <Label layoutX="35.0" layoutY="345.0" text="Fédération :" />
+      <Label layoutX="35.0" layoutY="385.0" text="Ligue :" />
+      <Label layoutX="35.0" layoutY="425.0" text="Club :" />
       <TextField fx:id="tf_numLicence" layoutX="183.0" layoutY="25.0" onKeyReleased="#limiteTexte" />
       <TextField fx:id="tf_nom" layoutX="183.0" layoutY="65.0" onKeyReleased="#limiteTexte" />
       <TextField fx:id="tf_prenom" layoutX="183.0" layoutY="105.0" onKeyReleased="#limiteTexte" />
       <ChoiceBox fx:id="chbx_sexe" layoutX="183.0" layoutY="145.0" prefWidth="150.0" />
       <DatePicker fx:id="dp_dateNaissance" layoutX="183.0" layoutY="185.0" />
-      <TextField fx:id="tf_federation" layoutX="183.0" layoutY="265.0" onKeyReleased="#limiteTexte" />
-      <TextField fx:id="tf_classementElo" layoutX="183.0" layoutY="305.0" onKeyReleased="#limiteTexte" />
-      <RadioButton fx:id="rb_national" layoutX="357.0" layoutY="309.0" mnemonicParsing="false" text="National" />
-      <RadioButton fx:id="rb_fide" layoutX="457.0" layoutY="309.0" mnemonicParsing="false" text="FIDE" />
-      <RadioButton fx:id="rb_nouveau" layoutX="557.0" layoutY="309.0" mnemonicParsing="false" text="Nouveau" />
-      <TextField fx:id="tf_ligue" layoutX="183.0" layoutY="345.0" onKeyReleased="#limiteTexte" />
-      <TextField fx:id="tf_club" layoutX="183.0" layoutY="385.0" onKeyReleased="#limiteTexte" />
-      <ChoiceBox fx:id="chbx_titre" layoutX="182.0" layoutY="425.0" prefWidth="150.0" />
+      <Label fx:id="lb_categorie" alignment="CENTER" layoutX="183.0" layoutY="225.0" prefHeight="17.0" prefWidth="150.0" text="Label" />
+      <TextField fx:id="tf_classementElo" layoutX="183.0" layoutY="265.0" onKeyReleased="#limiteTexte" />
+	  <RadioButton fx:id="rb_national" layoutX="356.0" layoutY="269.0" mnemonicParsing="false" text="National" />
+      <RadioButton fx:id="rb_fide" layoutX="468.0" layoutY="269.0" mnemonicParsing="false" text="FIDE" />
+      <RadioButton fx:id="rb_nouveau" layoutX="552.0" layoutY="269.0" mnemonicParsing="false" text="Nouveau" />
+      <ChoiceBox fx:id="chbx_titre" layoutX="182.0" layoutY="305.0" prefWidth="150.0" />
+      <TextField fx:id="tf_federation" layoutX="183.0" layoutY="345.0" onKeyReleased="#limiteTexte" />
+      <TextField fx:id="tf_ligue" layoutX="183.0" layoutY="385.0" onKeyReleased="#limiteTexte" />
+      <TextField fx:id="tf_club" layoutX="183.0" layoutY="425.0" onKeyReleased="#limiteTexte" />
       <Button layoutX="562.0" layoutY="477.0" mnemonicParsing="false" onAction="#onClick_Creer" text="Valider" />
       <Button layoutX="642.0" layoutY="477.0" mnemonicParsing="false" onAction="#onClick_Quitter" text="Quitter" />
       <Label fx:id="lb_erreurLicence" layoutX="370.0" layoutY="29.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurSexe" layoutX="370.0" layoutY="149.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurDate" layoutX="370.0" layoutY="189.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurElo" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="294.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurElo" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="254.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurNom" layoutX="370.0" layoutY="69.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurPrenom" layoutX="370.0" layoutY="109.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurTitre" layoutX="370.0" layoutY="429.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurLigue" layoutX="370.0" layoutY="349.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurTitre" layoutX="370.0" layoutY="305.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurLigue" layoutX="370.0" layoutY="385.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreurCategorie" layoutX="370.0" layoutY="225.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurClub" layoutX="370.0" layoutY="389.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurClub" layoutX="370.0" layoutY="425.0" text="Label" textFill="RED" />
       <Label fx:id="lb_erreur" layoutX="572.0" layoutY="97.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_erreurFederation" layoutX="370.0" layoutY="269.0" text="Label" textFill="RED" />
-      <Label layoutX="35.0" layoutY="265.0" text="Fédération :" />
-      <Label fx:id="lb_erreurType" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="324.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
-      <Label fx:id="lb_categorie" alignment="CENTER" layoutX="183.0" layoutY="225.0" prefHeight="17.0" prefWidth="150.0" text="Label" />
+      <Label fx:id="lb_erreurFederation" layoutX="370.0" layoutY="345.0" text="Label" textFill="RED" />
+      <Label fx:id="lb_erreurType" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="284.0" prefHeight="17.0" prefWidth="269.0" text="Label" textFill="RED" />
    </children>
 </AnchorPane>
