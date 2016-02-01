@@ -79,24 +79,35 @@ public class TournoiXML {
 				rootElement.appendChild(departage);
 			}
 
-			for(Joueur jou : tournoi.getListeJoueurs()) {
-				Element joueur = doc.createElement("joueur");
-				
-				Element numLicence = doc.createElement("numLicence");
-				numLicence.appendChild(doc.createTextNode(jou.getNumLicence()));
-				joueur.appendChild(numLicence);
-				
-				Element couleurJoueur = doc.createElement("couleurJoueur");
-				couleurJoueur.appendChild(doc.createTextNode(jou.getCouleur()));
-				joueur.appendChild(couleurJoueur);
-				
-				Element scoreJoueur = doc.createElement("scoreJoueur");
-				scoreJoueur.appendChild(doc.createTextNode(String.valueOf(jou.getScore())));
-				joueur.appendChild(scoreJoueur);
-				
-				rootElement.appendChild(joueur);
-			}
+			if(!tournoi.getListeJoueurs().isEmpty()){
 			
+				Element joueurs = doc.createElement("joueurs");
+				rootElement.appendChild(joueurs);
+				
+				int indiceJoueur = 0;
+				
+				for(Joueur jou : tournoi.getListeJoueurs()) {
+					Element joueur = doc.createElement("joueur" + indiceJoueur);
+					joueurs.appendChild(joueur);
+					
+					Element numLicence = doc.createElement("numLicence");
+					numLicence.appendChild(doc.createTextNode(jou.getNumLicence()));
+					joueur.appendChild(numLicence);
+					
+					if(jou.getCouleur() == null){
+						Element couleurJoueur = doc.createElement("couleurJoueur");
+						couleurJoueur.appendChild(doc.createTextNode(jou.getCouleur()));
+						joueur.appendChild(couleurJoueur);
+					}
+					
+					Element scoreJoueur = doc.createElement("scoreJoueur");
+					scoreJoueur.appendChild(doc.createTextNode(String.valueOf(jou.getScore())));
+					joueur.appendChild(scoreJoueur);
+					
+					indiceJoueur++;
+				}
+			}
+				
 			if(!tournoi.getListeRondes().isEmpty()){
 			
 				Element rondes = doc.createElement("rondes");
@@ -141,9 +152,11 @@ public class TournoiXML {
 							joueurNoir.appendChild(doc.createTextNode(par.getNumLicenceJoueurNoir()));
 							partie.appendChild(joueurNoir);
 							
-							Element resultat = doc.createElement("resultat");
-							resultat.appendChild(doc.createTextNode(par.getResultat()));
-							partie.appendChild(resultat);
+							if(par.getResultat() != null){
+								Element resultat = doc.createElement("resultat");
+								resultat.appendChild(doc.createTextNode(par.getResultat()));
+								partie.appendChild(resultat);
+							}
 							
 							indicePartie++;
 						}
@@ -168,8 +181,7 @@ public class TournoiXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result;
-			result = new StreamResult(new File(savePath));
+			StreamResult result = new StreamResult(new File(savePath));
 			transformer.transform(source, result);
 			
 		} catch (ParserConfigurationException pce) {
@@ -242,40 +254,43 @@ public class TournoiXML {
 					listNomDepartage.add(node.getTextContent());
 					b1 = true;
 				}
-				if(node.getNodeName() == "joueur"){
+				if(node.getNodeName() == "joueurs"){
 					b2 = true;
 					NodeList joueursNoeuds = node.getChildNodes();
 					int nbjoueursNoeuds = joueursNoeuds.getLength();
 					
-					String numLicence= new String();
-					String couleurJoueur= new String();
-					float scoreJoueur=0.0f;
-					
 					for (int i1 = 0; i1 < nbjoueursNoeuds; i1++) {
-						
-											
-						Node sousNodeJoueur = joueursNoeuds.item(i1);
-								
-						if(sousNodeJoueur.getNodeName() == "numLicence"){
-							numLicence = sousNodeJoueur.getTextContent();
-						}
-						
-						if(sousNodeJoueur.getNodeName() == "couleurJoueur"){
-							couleurJoueur = sousNodeJoueur.getTextContent();
-						}
 							
-						if(sousNodeJoueur.getNodeName() == "scoreJoueur"){
-							scoreJoueur = Float.parseFloat(sousNodeJoueur.getTextContent());
+						Node nodeJoueur = joueursNoeuds.item(i1);
+						NodeList joueurNoeuds = nodeJoueur.getChildNodes();
+						int nbJoueurNoeuds = joueurNoeuds.getLength();
+						
+						String numLicence = null;
+						String couleurJoueur = null;
+						float scoreJoueur = 0.0f;
+						
+						for (int i11 = 0; i11 < nbJoueurNoeuds; i11++) {
+						 
+							Node sousNodeJoueur = joueurNoeuds.item(i11);
+									
+							if(sousNodeJoueur.getNodeName() == "numLicence"){
+								numLicence = sousNodeJoueur.getTextContent();
+							}
+							
+							if(sousNodeJoueur.getNodeName() == "couleurJoueur"){
+								couleurJoueur = sousNodeJoueur.getTextContent();
+							}
+								
+							if(sousNodeJoueur.getNodeName() == "scoreJoueur"){
+								scoreJoueur = Float.parseFloat(sousNodeJoueur.getTextContent());
+							}
 						}
-												
-					}
-					Joueur j = ModeleJoueur.rechercherJoueur(numLicence);
-					if(j!=null){
-						j.setScore(scoreJoueur);
-						if(couleurJoueur.equalsIgnoreCase(""))
-							couleurJoueur=null;
-						j.setCouleur(couleurJoueur);
-						listJoueur.add(j);
+						Joueur j = ModeleJoueur.rechercherJoueur(numLicence);
+						if(j!=null){
+							j.setScore(scoreJoueur);
+							j.setCouleur(couleurJoueur);
+							listJoueur.add(j);
+						}
 					}
 				}
 				if(node.getNodeName() == "rondes"){
