@@ -396,6 +396,14 @@ public class ControleurCreerJoueur implements Initializable {
 		        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
 		        		lb_erreurLigue.setText("");
 		        	}
+		            
+		            //passage sans saisie
+		            if(tf_federation.getText().isEmpty())
+		            {
+		            	tf_ligue.setDisable(false);
+		        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
+		        		lb_erreurLigue.setText("");
+		            }
 		        }
 		    }
 		});
