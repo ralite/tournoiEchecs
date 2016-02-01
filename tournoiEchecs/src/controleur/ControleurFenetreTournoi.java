@@ -146,6 +146,9 @@ public class ControleurFenetreTournoi implements Initializable {
 			ta_messageAide.setStyle("-fx-control-inner-background : red; ");
 			res=false;
 		}
+		else {
+			ta_messageAide.setStyle("-fx-control-inner-background : white; ");
+		}
 		return res;
 	}
 
