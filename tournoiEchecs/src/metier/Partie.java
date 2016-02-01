@@ -4,7 +4,7 @@ public class Partie {
 	
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
-	private String resultat=null;
+	private String resultat = "";
 
 
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
@@ -82,7 +82,7 @@ public class Partie {
 	}
 	
 	public void resutatNonSaisi(){
-		resultat=null;
+		resultat="";
 	}
 	
 	public String getResultat() {
@@ -96,9 +96,7 @@ public class Partie {
 				|| joueurBlanc.getNumLicence().equals(text)
 				||joueurNoir.getNumLicence().equals(text)){
 			return true;
-			
-		}
-		else{
+		}else{
 			return false;
 		}
 		
@@ -120,17 +118,12 @@ public class Partie {
 			break;
 		case "partieNulle":
 			joueurBlanc.gagneDemiPoint();
+			joueurNoir.gagneDemiPoint();
 			break;
-
 		}
-		
 	}
 
 	public void setResultat(String resultat2) {
-		resultat=resultat2;
-		
-	}
-
-	
-		
+		resultat=resultat2;	
+	}	
 }

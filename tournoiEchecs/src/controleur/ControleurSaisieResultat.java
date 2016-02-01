@@ -68,7 +68,7 @@ public class ControleurSaisieResultat implements Initializable{
 				for (Partie partie : itemResultat) {
 					partie.setScore();
 				}
-				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
+				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat); 
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
 				if(ModeleTournoi.getTournoi().getNumRondeActuelle()+1<ModeleTournoi.getTournoi().getNbRondes()){
 					ModeleTournoi.getTournoi().rondeSuivante();

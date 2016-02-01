@@ -1,6 +1,5 @@
 package modele;
 
-import metier.Joueur;
 import metier.Tournoi;
 
 public class ModeleTournoi {

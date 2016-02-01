@@ -84,6 +84,4 @@ public class Ronde {
 	public ObservableList<Joueur> getListeJoueurForfait() {
 		return ListeJoueurForfait;
 	}
-
-	
 }
