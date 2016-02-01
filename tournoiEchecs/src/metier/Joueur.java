@@ -213,7 +213,7 @@ public class Joueur {
 
 	public String getCouleur() {
 		if(!couleurs.isEmpty())
-			return " | "+couleurs;
+			return couleurs;
 		else return "";
 	}
 	
