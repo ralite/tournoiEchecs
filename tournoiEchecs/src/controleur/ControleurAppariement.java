@@ -84,7 +84,7 @@ public class ControleurAppariement implements Initializable {
 		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts "+ value.getCouleur();
 
 		                }
-		                 setText(text);
+		                setText(text);
 		            }
 		        };
 
@@ -134,8 +134,6 @@ public class ControleurAppariement implements Initializable {
 			lb_joueurBlanc.setText(joueurBlanc.toString());
 			itemsJoueursInscrits.remove(joueurBlanc);
 		}
-
-
 	}
 
 	@FXML

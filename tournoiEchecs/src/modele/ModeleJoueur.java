@@ -77,14 +77,12 @@ public class ModeleJoueur {
 		}
 		public static void supprimerJoueur(Joueur joueur) {
 			collectionJoueurs.remove(joueur);
-
 		}
 
 		public static void initialiser() {
 			for (Joueur joueur : collectionJoueurs) {
 				joueur.initialiser();
 			}
-			
 		}
 
 

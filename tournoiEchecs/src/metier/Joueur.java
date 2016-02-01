@@ -158,7 +158,6 @@ public class Joueur {
 			categorie="Vétéran";
 
 		return categorie;
-
 	}
 
 	public String getClub() {
@@ -220,22 +219,18 @@ public class Joueur {
 			return " | "+couleurs;
 		else return "";
 	}
-
+	
 	public void initialiser() {
-		//score=0;
+		score=0;
 		couleurs=null;
-		
 	}
 
 	public void setScore(float s) {
-		System.out.println("ici");
 		score=s;
-		
 	}
 
 	public void setCouleur(String couleurJoueur) {
 		couleurs=couleurJoueur;
-		
 	}
 	
 }
