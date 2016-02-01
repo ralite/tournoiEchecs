@@ -200,7 +200,7 @@ public class ControleurAppariement implements Initializable {
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
 			AfficherAlerte();
 		}
-		else if(itemsJoueursInscrits.get(0).getCouleur().contains("X")){
+		else if(itemsJoueursInscrits.size()>1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
 				Alert alert1 = new Alert(AlertType.CONFIRMATION);
 				alert1.setTitle("Erreur");
 				alert1.setContentText("Le joueur a déjà été exempt une fois");
