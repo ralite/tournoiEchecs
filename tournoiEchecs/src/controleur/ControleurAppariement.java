@@ -82,7 +82,7 @@ public class ControleurAppariement implements Initializable {
 		                super.updateItem(value, empty);
 		                if (!empty && value != null) {
 		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts ";
-		                	if(value.getCouleur().isEmpty()){
+		                	if(!value.getCouleur().isEmpty()){
 		                		text+="|"+ value.getCouleur();
 		                	}
 		                }
