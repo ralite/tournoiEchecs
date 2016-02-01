@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import javax.swing.JButton;
-
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -161,6 +159,12 @@ public class ControleurAppariement implements Initializable {
 	
 	@FXML
 	public void onClickAjouter(){
+		if(joueurBlanc == null || joueurNoir==null){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Erreur");
+			alert.setContentText("Selectionnez deux joueurs à apparier !");
+			alert.showAndWait();
+		}
 		if( joueurBlanc != null && joueurNoir!=null){
 			if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
 				Alert alert = new Alert(AlertType.WARNING);

@@ -30,7 +30,7 @@
       <Label fx:id="label_departageChoisi" layoutX="410.0" layoutY="183.0" text="Departages choisis (3 minimum)" />
       <Label fx:id="lb_erreurDate" layoutX="433.0" layoutY="99.0" prefHeight="27.0" prefWidth="160.0" textFill="#e40606" />
       <Label fx:id="lb_cadenceJeu" layoutX="38.0" layoutY="341.0" text="Cadence voulue :" />
-      <TextArea fx:id="ta_messageAide" layoutX="167.0" layoutY="329.0" onInputMethodTextChanged="#affichageAideSelectionCadence" prefHeight="60.0" prefWidth="292.0" wrapText="true" />
-      <ChoiceBox fx:id="cb_cadences" layoutX="8.0" layoutY="358.0" onMouseClicked="#affichageAideSelectionCadence" prefWidth="150.0" />
+      <TextArea fx:id="ta_messageAide" layoutX="167.0" layoutY="329.0" prefHeight="60.0" prefWidth="292.0" wrapText="true" />
+      <ChoiceBox fx:id="cb_cadences" layoutX="8.0" layoutY="358.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
