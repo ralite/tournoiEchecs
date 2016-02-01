@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import javax.swing.JButton;
+
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -138,6 +140,25 @@ public class ControleurAppariement implements Initializable {
 		}
 	}
 
+	@FXML
+	public void onClickEchanger(){
+		Joueur tmp= joueurBlanc;
+		joueurBlanc=joueurNoir;
+		if(joueurBlanc != null){
+			lb_joueurBlanc.setText(joueurBlanc.toString());
+		}
+		else {
+			lb_joueurBlanc.setText("");
+		}
+		joueurNoir=tmp;
+		if(joueurNoir != null){
+			lb_joueurNoir.setText(joueurNoir.toString());
+		}
+		else {
+			lb_joueurNoir.setText("");
+		}
+	}
+	
 	@FXML
 	public void onClickAjouter(){
 		if( joueurBlanc != null && joueurNoir!=null){
