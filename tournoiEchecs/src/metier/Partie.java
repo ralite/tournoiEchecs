@@ -120,6 +120,7 @@ public class Partie {
 			break;
 		case "partieNulle":
 			joueurBlanc.gagneDemiPoint();
+			joueurNoir.gagneDemiPoint();
 			break;
 
 		}

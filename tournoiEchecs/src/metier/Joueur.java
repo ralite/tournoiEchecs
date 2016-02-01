@@ -222,7 +222,7 @@ public class Joueur {
 	}
 
 	public void initialiser() {
-		//score=0;
+		score=0;
 		couleurs=null;
 		
 	}

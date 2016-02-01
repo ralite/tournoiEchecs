@@ -1,7 +1,10 @@
 package controleur;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -89,12 +92,13 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		label_recapNom.setText(ModeleTournoi.getTournoi().getNom());
 		label_recapLieu.setText(ModeleTournoi.getTournoi().getLieu());
 		label_recapArbitre.setText(ModeleTournoi.getTournoi().getArbitre());
-		label_recapDateDeb.setText(String.valueOf(ModeleTournoi.getTournoi().getDateDeb()));
-		label_recapDateFin.setText(String.valueOf(ModeleTournoi.getTournoi().getDateFin()));
+		label_recapDateDeb.setText(formatter.format(ModeleTournoi.getTournoi().getDateDeb()));
+		label_recapDateFin.setText(formatter.format(ModeleTournoi.getTournoi().getDateFin()));
 		label_recapNbRondes.setText(String.valueOf(ModeleTournoi.getTournoi().getNbRondes()));
 		lb_recapCadenceDeJeu.setText(String.valueOf(ModeleTournoi.getTournoi().getCadenceJeu()));
 		lv_recapJoueursInscrits.setItems(ModeleTournoi.getTournoi().getListeJoueurs());
@@ -125,7 +129,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void saisirResultat(){
-		if(!ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1 || !ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setContentText("Veuillez préalablement apparier les joueurs !");
