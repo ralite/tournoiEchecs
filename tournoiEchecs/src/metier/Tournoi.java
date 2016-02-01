@@ -142,7 +142,6 @@ public class Tournoi {
 
 
 	public void setAbsentRonde(ObservableList<Joueur> joueurs) {
-		
 		ListeRondes.get(rondeActuelle).setListeJoueurAbs(joueurs);
 	}
 	
@@ -194,19 +193,13 @@ public class Tournoi {
 
 	public void rondeSuivante() {
 		rondeActuelle++;
-		
 	}
 
 	public void tournoiFini() {
 		rondeActuelle=-1;
-		
 	}
 
 	public void setRondeActuelle(int rondeActuelle2) {
 		rondeActuelle=rondeActuelle2;
-		
 	}
-
-
-
 }

@@ -134,10 +134,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 			public int compare(Joueur j1, Joueur j2) {
 				return j1.getNumLicence().compareTo(j2.getNumLicence());
 			}
-
 		});
-
-
 	}
 
 }

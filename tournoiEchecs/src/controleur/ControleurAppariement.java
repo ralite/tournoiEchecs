@@ -78,11 +78,13 @@ public class ControleurAppariement implements Initializable {
 
 		            @Override
 		            protected void updateItem(Joueur value, boolean empty) {
-		            	String text=null;
+		            	String text = "";
 		                super.updateItem(value, empty);
 		                if (!empty && value != null) {
-		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts "+ value.getCouleur();
-
+		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts ";
+		                	if(value.getCouleur().isEmpty()){
+		                		text+="|"+ value.getCouleur();
+		                	}
 		                }
 		                setText(text);
 		            }
@@ -198,6 +200,12 @@ public class ControleurAppariement implements Initializable {
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
 			AfficherAlerte();
 		}
+		else if(itemsJoueursInscrits.size()>1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
+				Alert alert1 = new Alert(AlertType.CONFIRMATION);
+				alert1.setTitle("Erreur");
+				alert1.setContentText("Le joueur a déjà été exempt une fois");
+				alert1.showAndWait();
+			}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Appariement terminé");
@@ -240,7 +248,7 @@ public class ControleurAppariement implements Initializable {
 	private void AfficherAlerte() {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Erreur");
-		alert.setContentText("Tout les joueurs ne sont pas appariés !");
+		alert.setContentText("Tous les joueurs ne sont pas appariés !");
 		alert.showAndWait();
 	}
 
@@ -275,7 +283,6 @@ public class ControleurAppariement implements Initializable {
 				else
 					return Float.compare(j2.getScore(),j1.getScore());
 			}
-
 		});
 	}
 }
