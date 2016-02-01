@@ -237,5 +237,12 @@ public class Joueur {
 		couleurs=couleurJoueur;
 		
 	}
+
+	public void setExempt() {
+		if(couleurs==null)
+			couleurs="X";
+		else couleurs+="/X";
+		
+	}
 	
 }

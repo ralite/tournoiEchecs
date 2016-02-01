@@ -93,7 +93,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		
 		label_recapNom.setText(ModeleTournoi.getTournoi().getNom());
 		label_recapLieu.setText(ModeleTournoi.getTournoi().getLieu());
 		label_recapArbitre.setText(ModeleTournoi.getTournoi().getArbitre());

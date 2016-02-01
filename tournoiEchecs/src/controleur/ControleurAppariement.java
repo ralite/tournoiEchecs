@@ -206,8 +206,10 @@ public class ControleurAppariement implements Initializable {
 			alert.setContentText("Voulez-vous vraiment lancer la ronde ?\n( Attention, il ne sera plus possible de modifier l'appariement !)");
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
-				if(itemsJoueursInscrits.size()==1)
+				if(itemsJoueursInscrits.size()==1){
 					itemsJoueursInscrits.get(0).gagne1Point();
+					itemsJoueursInscrits.get(0).setExempt();
+				}
 
 				for (Partie partie : itemsParties) {
 					partie.setCouleurJoueur();
