@@ -23,7 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 
 public class ControleurAppariement implements Initializable {
-	
+
 	@FXML
 	private Label label_titreAppariementJoueurs;
 
@@ -80,14 +80,14 @@ public class ControleurAppariement implements Initializable {
 		            protected void updateItem(Joueur value, boolean empty) {
 		            	String text=null;
 		                super.updateItem(value, empty);
-		                if (!empty && value != null) { 
+		                if (!empty && value != null) {
 		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts "+ value.getCouleur();
-				               
+
 		                }
-		                 setText(text);     
+		                 setText(text);
 		            }
 		        };
-		    
+
 		}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		joueursTriesParPoints(itemsJoueursInscrits);
@@ -240,10 +240,10 @@ public class ControleurAppariement implements Initializable {
 	private void AfficherAlerte() {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Erreur");
-		alert.setContentText("Tout les joueurs ne sont pas apairer !");
+		alert.setContentText("Tout les joueurs ne sont pas appariés !");
 		alert.showAndWait();
 	}
-	
+
 	@FXML
 	public void actionRetirerAbsent(){
 		Joueur joueurSelectionné =  (Joueur)lv_absent.getSelectionModel().getSelectedItem();
@@ -262,7 +262,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.add(joueurSelectionné);
 		}
 	}
-	
+
 	void joueursTriesParPoints(ObservableList<Joueur> data){
 
 		FXCollections.sort(itemsJoueursInscrits, new Comparator<Joueur>() {
