@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import javax.swing.JButton;
-
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -169,10 +167,8 @@ public class ControleurAppariement implements Initializable {
 		}
 		if( joueurBlanc != null && joueurNoir!=null){
 			if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Erreur");
-				alert.setContentText("Ces deux joueurs ont déjà joués ensemble !");
-				alert.showAndWait();
+				AfficherAlerte("Ces deux joueurs ont déjà joués ensemble !");
+
 			}
 			else{
 				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
@@ -225,13 +221,10 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void actionLancerRonde(Event e){
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
-			AfficherAlerte();
+			AfficherAlerte("Tous les joueurs ne sont pas appariés !");
 		}
 		else if(itemsJoueursInscrits.size()>1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
-				Alert alert1 = new Alert(AlertType.CONFIRMATION);
-				alert1.setTitle("Erreur");
-				alert1.setContentText("Le joueur a déjà été exempt une fois");
-				alert1.showAndWait();
+				AfficherAlerte("Le joueur a déjà été exempt une fois");
 			}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -272,10 +265,10 @@ public class ControleurAppariement implements Initializable {
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 	}
 
-	private void AfficherAlerte() {
+	private void AfficherAlerte(String s) {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Erreur");
-		alert.setContentText("Tous les joueurs ne sont pas appariés !");
+		alert.setContentText(s);
 		alert.showAndWait();
 	}
 

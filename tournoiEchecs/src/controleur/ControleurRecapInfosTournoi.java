@@ -104,18 +104,17 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void apparierJoueurs(){
-		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Erreur");
-			alert.setContentText("Tournoi Fini !");
-			alert.showAndWait();
+		if(ModeleTournoi.getTournoi().getListeJoueurs().size()<2){
+			AfficherAlerte("Nombre de joueurs insuffisant");
+
+		}
+		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
+			AfficherAlerte("Tournoi Fini !");
+
 		}
 		else{
 			if(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Erreur");
-				alert.setContentText("Veuillez préalablement saisir les résultats !");
-				alert.showAndWait();
+				AfficherAlerte("Veuillez préalablement saisir les résultats !");
 			}
 			else{
 				AppariementJoueur app = new AppariementJoueur(Main.getPrimaryStage());
@@ -127,15 +126,19 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	public void saisirResultat(){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1 || !ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Erreur");
-			alert.setContentText("Veuillez préalablement apparier les joueurs !");
-			alert.showAndWait();
+			AfficherAlerte("Veuillez préalablement apparier les joueurs !");
 		}
 		else{
 			SaisieResultat app = new SaisieResultat(Main.getPrimaryStage());
 			app.show();
 		}
+	}
+	
+	private void AfficherAlerte(String s) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Erreur");
+		alert.setContentText(s);
+		alert.showAndWait();
 	}
 
 }
