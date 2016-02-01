@@ -198,10 +198,8 @@ public class ControleurFenetreTournoi implements Initializable {
 	public void actionEnleverDepartage(){
 		Departage dep=(Departage)lv_listeDepartagesChoisis.getSelectionModel().getSelectedItem();
 		if(dep!=null){
-		itemsChoisis.remove(dep);
-		items.add(dep);
-		}
-		else {
+			itemsChoisis.remove(dep);
+			items.add(dep);
 		}
 	}
 
@@ -221,18 +219,6 @@ public class ControleurFenetreTournoi implements Initializable {
 		}
 	}
 
-	public void affichageAideSelectionCadence() {
-		if(cb_cadences.isFocused()){
-			texteAideCadences();
-			ta_messageAide.setVisible(true);
-		}
-		else ta_messageAide.setVisible(false);
-	}
-
-	public void texteAideCadences(){
-			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
-		}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		cadencesDefinitions=new HashMap<String,String>();
@@ -240,11 +226,13 @@ public class ControleurFenetreTournoi implements Initializable {
 		cadencesDefinitions.put("Semi-rapide", "La cadence semi-rapide est une cadence intermédiaire. Les parties semi-rapides sont les parties qui créditent les joueurs de 15 minutes chacun au minimum, et 60 minutes chacun au maximum, ou l’équivalent en cadence « Fischer ».");
 		cadencesDefinitions.put("Cadence longue", "Les parties longues ou « parties sérieuses » sont les parties qui créditent les joueurs de plus de 60 minutes chacun, ou l’équivalent en cadence « Fischer ».");
 
-		ObservableList<String> options =
-			    FXCollections.observableArrayList(cadencesDefinitions.keySet()
-			    );
+		ObservableList<String> options = FXCollections.observableArrayList(cadencesDefinitions.keySet());
 
 		cb_cadences.setItems(options);
+		cb_cadences.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
+			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
+		});
+		
 		items =FXCollections.observableArrayList (ModeleDepartage.getcollectionDepartages());
 		itemsChoisis =FXCollections.observableArrayList ();
 		tf_nbRondes.lengthProperty().addListener((observable,oldValue,newValue)->chiffresSeulement(oldValue,newValue,tf_nbRondes));
@@ -260,14 +248,9 @@ public class ControleurFenetreTournoi implements Initializable {
 			items.removeAll(itemsChoisis);
 			cb_cadences.setValue(ModeleTournoi.getTournoi().getCadenceJeu());
 			ta_messageAide.setText(cadencesDefinitions.get(cb_cadences.getSelectionModel().getSelectedItem()));
-			}
+		}
 
 		lv_listeDepartages.setItems(items);
 		lv_listeDepartagesChoisis.setItems(itemsChoisis);
-
-
 	}
-
-
-
 }
