@@ -122,6 +122,7 @@ public class Tournoi {
 	}
 
 	public Ronde getRondeActuelle(){
+		System.out.println(rondeActuelle);
 		return ListeRondes.get(rondeActuelle);
 	}
 	
@@ -201,5 +202,13 @@ public class Tournoi {
 
 	public void setRondeActuelle(int rondeActuelle2) {
 		rondeActuelle=rondeActuelle2;
+	}
+
+	public ObservableList<Partie> getPartieRonde(int numRonde) {
+		return ListeRondes.get(numRonde).getListePartie();
+	}
+
+	public Ronde getRonde(int numRonde) {
+		return ListeRondes.get(numRonde);
 	}
 }

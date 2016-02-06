@@ -9,11 +9,11 @@ import javafx.collections.ObservableList;
 import metier.departage.Buchholz;
 import metier.departage.Cumulatif;
 import metier.departage.Departage;
-import metier.departage.Departage3;
+import metier.departage.PerfElo;
 
 public class ModeleDepartage {
 
-	private static final ListProperty<Departage> collectionDepartages = new SimpleListProperty<>(FXCollections.observableArrayList(new Cumulatif(), new Buchholz(), new Departage3()));
+	private static final ListProperty<Departage> collectionDepartages = new SimpleListProperty<>(FXCollections.observableArrayList(new Cumulatif(), new Buchholz(), new PerfElo()));
 	
 	public static final ObservableList<Departage> getcollectionDepartages() {
 		return collectionDepartages;
@@ -36,8 +36,8 @@ public class ModeleDepartage {
 				list2.add(new Cumulatif());
 			}
 
-			if(departage.equalsIgnoreCase("departage3")){
-				list2.add(new Departage3());
+			if(departage.equalsIgnoreCase("perfElo")){
+				list2.add(new PerfElo());
 			}
 		}
 

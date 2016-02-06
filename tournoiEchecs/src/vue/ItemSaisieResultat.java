@@ -77,8 +77,7 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 		        gridPane.getColumnConstraints().add(new ColumnConstraints());
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true));
-		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true));
-		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true));
+		       
 		        gridPane.setHgap(3);
 		        gridPane.setVgap(8);
 		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir, eloJoueurBlanc, eloJoueurNoir,blancGagne,noirGagne,blancForfait,noirForfait,partieNull,doubleForfait
