@@ -236,4 +236,9 @@ public class Joueur {
 		else couleurs+="/X";
 	}
 	
+	public String getCouleurRonde(int i){
+		String[] res= couleurs.split("/");
+		return res[i];
+	}
+	
 }
