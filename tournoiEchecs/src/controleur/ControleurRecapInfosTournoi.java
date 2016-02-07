@@ -20,6 +20,7 @@ import metier.departage.Departage;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
+import vue.ClassementFinal;
 import vue.ClassementRonde;
 import vue.CreationTournoi;
 import vue.SaisieResultat;
@@ -141,9 +142,15 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			AfficherAlerte("Aucune ronde terminée");
 		}
 		else{
-			ClassementRonde app = new ClassementRonde(Main.getPrimaryStage());
-			app.show();
+			ClassementRonde cl = new ClassementRonde(Main.getPrimaryStage());
+			cl.show();
 		}
+	}
+	
+	@FXML
+	public void classementFinal(){
+		ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
+		cl.show();
 	}
 	
 	private void AfficherAlerte(String s) {

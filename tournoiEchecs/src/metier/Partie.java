@@ -8,6 +8,18 @@ public class Partie {
 	
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
+	private float scoreBlanc;
+	private float scoreNoir;
+	
+	
+	public float getScoreJoueurBlancPartie() {
+		return scoreBlanc;
+	}
+
+	public float getScorejoueurNoirPartie() {
+		return scoreNoir;
+	}
+
 	private String resultat = "";
 	private int classement;
 
@@ -126,6 +138,8 @@ public class Partie {
 			joueurNoir.gagneDemiPoint();
 			break;
 		}
+		scoreBlanc=joueurBlanc.getScore();
+		scoreNoir=joueurNoir.getScore();
 	}
 
 	public void setResultat(String resultat2) {
