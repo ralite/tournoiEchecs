@@ -157,6 +157,14 @@ public class TournoiXML {
 								resultat.appendChild(doc.createTextNode(par.getResultat()));
 								partie.appendChild(resultat);
 							}
+
+							Element scoreBlanc = doc.createElement("scoreBlanc");
+							scoreBlanc.appendChild(doc.createTextNode(String.valueOf(par.getScoreJoueurBlancPartie())));
+							partie.appendChild(scoreBlanc);
+							
+							Element scoreNoir = doc.createElement("scoreNoir");
+							scoreNoir.appendChild(doc.createTextNode(String.valueOf(par.getScorejoueurNoirPartie())));
+							partie.appendChild(scoreNoir);
 							
 							indicePartie++;
 						}
@@ -341,6 +349,8 @@ public class TournoiXML {
 									String joueurBlanc = "";
 									String joueurNoir = "";
 									String resultat = "";
+									float scoreBlanc=0.0f;;
+									float scoreNoir=0.0f;;
 									
 									for (int i5 = 0; i5 < nbPartieNoeuds; i5++) {
 										
@@ -360,10 +370,20 @@ public class TournoiXML {
 												resultat="";
 											}
 										}
+										
+										if(sousNodePartie.getNodeName() == "scoreBlanc"){
+											scoreBlanc = Float.parseFloat(sousNodePartie.getTextContent());
+										}
+										
+										if(sousNodePartie.getNodeName() == "scoreNoir"){
+											scoreNoir = Float.parseFloat(sousNodePartie.getTextContent());
+										}
 									}
 									
 									Partie partie = new Partie(ModeleJoueur.rechercherJoueur(joueurBlanc), ModeleJoueur.rechercherJoueur(joueurNoir));
 									partie.setResultat(resultat);
+									partie.setScorejoueurBlancPartie(scoreBlanc);
+									partie.setScorejoueurNoirPartie(scoreNoir);
 									listPartie.add(partie);
 								}
 							}

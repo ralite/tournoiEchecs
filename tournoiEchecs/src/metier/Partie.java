@@ -163,5 +163,15 @@ public class Partie {
 	public void setClassement(int i) {
 		classement=i;
 		
+	}
+
+	public void setScorejoueurBlancPartie(float scoreBlanc) {
+		this.scoreBlanc=scoreBlanc;
+		
 	}	
+	
+	public void setScorejoueurNoirPartie(float scoreNoir) {
+		this.scoreNoir=scoreNoir;
+		
+	}
 }

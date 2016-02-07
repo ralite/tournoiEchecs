@@ -55,13 +55,6 @@ public class ControleurClassementRonde implements Initializable{
 		if(numRonde==0)
 			bt_prec.setDisable(true);
 		chargeItems();
-		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
-			if(j.getCouleurRonde(numRonde).equals("X")){
-				Partie p = new Partie(j,null);
-				p.setResultat("EXEMPT");
-				itemsPartie.add(p);
-			}
-		}
 		lv_classement.setItems(itemsPartie);
 		lv_classement.setCellFactory(lv -> new ItemClassementRonde());
 		
@@ -79,6 +72,14 @@ public class ControleurClassementRonde implements Initializable{
 				return p1.compareTo(p2);
 			}
 		});
+		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
+			if(j.getCouleurRonde(numRonde).equals("X")){
+				Partie p = new Partie(j,null);
+				p.setResultat("EXEMPT");
+				p.setScorejoueurBlancPartie(j.getScore());
+				itemsPartie.add(p);
+			}
+		}
 		for(int i=0;i<itemsPartie.size();i++){
 			itemsPartie.get(i).setClassement(i+1);
 		}
