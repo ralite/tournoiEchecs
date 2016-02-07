@@ -1,5 +1,7 @@
 package metier.departage;
 
+import metier.Joueur;
+
 public abstract class Departage {
 	private String nom;
 
@@ -28,6 +30,6 @@ public abstract class Departage {
 		return nom;
 	}
 	
-	public abstract float calculDepartage();
+	public abstract float calculDepartage(Joueur j);
 	
 }

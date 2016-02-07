@@ -174,4 +174,11 @@ public class Partie {
 		this.scoreNoir=scoreNoir;
 		
 	}
+
+	public boolean joueurEstDansPartie(Joueur j) {
+		if(j==joueurBlanc || j==joueurNoir)
+			return true;
+		else
+			return false;
+	}
 }
