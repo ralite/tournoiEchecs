@@ -47,7 +47,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 		        GridPane.setConstraints(trs, 9, 0);
 		        GridPane.setConstraints(perfs, 10, 0);
        
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(10, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
+		        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(5, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(200, Region.USE_COMPUTED_SIZE, 200, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(50, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
@@ -55,9 +55,11 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(100, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(50, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(200, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(10, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(10, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
-		       
+		        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
+		        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
+		        gridPane.getColumnConstraints().add(new ColumnConstraints(30, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.RIGHT, true));
+			       
+		        
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true));
 	
 		        gridPane.setHgap(2);
@@ -78,7 +80,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         setText(null); 
         setContentDisplay(ContentDisplay.LEFT); 
         if (!empty && item != null) { 
-        	PI.setText("1");
+        	PI.setText(String.valueOf(item.getClassement()));
         	titre.setText("j");
         	joueur.setText(item.getNomJoueur()+" "+item.getPrenomJoueur());
         	elo.setText(String.valueOf(item.getElo()));
@@ -87,8 +89,8 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         	ligue.setText(item.getLigue());
         	club.setText(item.getClub());
         	score.setText(String.valueOf(item.getScore()));
-        	trs.setText("?");
-        	perfs.setText("?");
+        	trs.setText("30,5");
+        	perfs.setText("4000");
         	
             setText(null); 
             setGraphic(content); 
