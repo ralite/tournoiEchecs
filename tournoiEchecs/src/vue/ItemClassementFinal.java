@@ -81,7 +81,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         setContentDisplay(ContentDisplay.LEFT); 
         if (!empty && item != null) { 
         	PI.setText(String.valueOf(item.getClassement()));
-        	titre.setText("j");
+        	titre.setText("m");
         	joueur.setText(item.getNomJoueur()+" "+item.getPrenomJoueur());
         	elo.setText(String.valueOf(item.getElo()));
         	categorie.setText(item.getCategorie());
