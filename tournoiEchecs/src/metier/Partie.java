@@ -1,10 +1,27 @@
 package metier;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Partie {
 	
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
+	private float scoreBlanc;
+	private float scoreNoir;
+	
+	
+	public float getScoreJoueurBlancPartie() {
+		return scoreBlanc;
+	}
+
+	public float getScorejoueurNoirPartie() {
+		return scoreNoir;
+	}
+
 	private String resultat = "";
+	private int classement;
 
 
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
@@ -121,9 +138,30 @@ public class Partie {
 			joueurNoir.gagneDemiPoint();
 			break;
 		}
+		scoreBlanc=joueurBlanc.getScore();
+		scoreNoir=joueurNoir.getScore();
 	}
 
 	public void setResultat(String resultat2) {
 		resultat=resultat2;	
+	}
+
+	public int compareTo(Partie p2) {
+		List<Integer> res=new ArrayList<>();
+		res.add(Float.compare(joueurBlanc.getScore(),p2.joueurBlanc.getScore()));
+		res.add(Float.compare(joueurBlanc.getScore(),p2.joueurNoir.getScore()));
+		res.add(Float.compare(joueurNoir.getScore(),p2.joueurBlanc.getScore()));
+		res.add(Float.compare(joueurNoir.getScore(),p2.joueurNoir.getScore()));
+		
+		return Collections.min(res) ;
+	}
+
+	public int getClassement() {
+		return classement;
+	}
+
+	public void setClassement(int i) {
+		classement=i;
+		
 	}	
 }

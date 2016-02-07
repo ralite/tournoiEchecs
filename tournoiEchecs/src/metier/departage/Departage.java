@@ -28,4 +28,6 @@ public abstract class Departage {
 		return nom;
 	}
 	
+	public abstract float calculDepartage();
+	
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
    <children>
       <Label fx:id="label_recapNom" layoutX="79.0" layoutY="7.0" prefHeight="17.0" prefWidth="303.0" text="label" />
       <Label fx:id="label_recapLieu" layoutX="79.0" layoutY="46.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
@@ -31,5 +31,7 @@
       <Label layoutX="26.0" layoutY="7.0" text="Nom :" />
       <Label layoutX="26.0" layoutY="46.0" text="Lieu :" />
       <Label layoutX="26.0" layoutY="85.0" text="Arbitre :" />
+      <Button layoutX="115.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementRondes" prefHeight="25.0" prefWidth="202.0" text="Classement des rondes" />
+      <Button layoutX="369.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementFinal" text="Classement final" />
    </children>
 </AnchorPane>

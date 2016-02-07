@@ -1,9 +1,9 @@
 package metier.departage;
 
-public class Cumulatif extends Departage {
-
-	public Cumulatif() {
-		super("Cumulatif");
+public class PerfElo extends Departage {
+	
+	public PerfElo(){
+		super("Departage3");
 	}
 
 	@Override
@@ -11,7 +11,5 @@ public class Cumulatif extends Departage {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-
 
 }
