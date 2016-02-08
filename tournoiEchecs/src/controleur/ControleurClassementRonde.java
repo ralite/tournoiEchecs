@@ -100,6 +100,4 @@ public class ControleurClassementRonde implements Initializable{
 		if(numRonde==numRondeMax)
 			bt_suiv.setDisable(true);
 	}
-	
-
 }

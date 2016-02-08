@@ -170,7 +170,7 @@ public class Tournoi {
 	}
 
 	public ObservableList<Partie> getPartieRondeActuelle() {
-		return ListeRondes.get(rondeActuelle).getParties();
+		return ListeRondes.get(rondeActuelle).getListePartie();
 	}
 	
 	public void setPartiesRonde(ObservableList<Partie> listePartie){
@@ -179,7 +179,7 @@ public class Tournoi {
 	
 	public ObservableList<Joueur> getJoueursRondeActuelle() {
 		ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
-		for (Partie partie : ListeRondes.get(rondeActuelle).getParties()) {
+		for (Partie partie : ListeRondes.get(rondeActuelle).getListePartie()) {
 			joueurs.addAll(partie.getJoueurBlanc(),partie.getJoueurNoir());
 		}
 		return joueurs;

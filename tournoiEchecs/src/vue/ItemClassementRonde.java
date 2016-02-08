@@ -30,9 +30,8 @@ public class ItemClassementRonde extends ListCell<Partie> {
     private final Label scoreNoir = new Label(); 
     
     private final AnchorPane content = new AnchorPane();
-    private Map<String,String> mapResultat = new HashMap();
-    private Map<String,String> mapTypeElo = new HashMap();
-
+    private Map<String,String> mapResultat = new HashMap<String, String>();
+    private Map<String,String> mapTypeElo = new HashMap<String, String>();
 
 	public ItemClassementRonde() {
 		
