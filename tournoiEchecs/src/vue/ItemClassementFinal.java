@@ -1,7 +1,6 @@
 package vue;
 
 import metier.Joueur;
-import metier.Partie;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.ContentDisplay;

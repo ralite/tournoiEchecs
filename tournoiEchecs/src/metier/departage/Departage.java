@@ -15,18 +15,15 @@ public abstract class Departage {
 	
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if(obj!=null){
 			return toString().equals(obj.toString());
-		}
-		else{
+		}else{
 			return false;
 		}
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nom;
 	}
 	

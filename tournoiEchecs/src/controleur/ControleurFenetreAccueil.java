@@ -21,6 +21,7 @@ import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.JoueurXML;
 import modele.xml.TournoiXML;
+import application.Lastdir;
 import application.Main;
 
 public class ControleurFenetreAccueil implements Initializable{
@@ -95,13 +96,12 @@ public class ControleurFenetreAccueil implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	FenetreFileChooser.readLastdir(FenetreFileChooser.lastDirFilePath);
+    	Lastdir.readLastdir(Lastdir.lastDirFilePath);
     	ArrayList<Joueur> listJoueur = JoueurXML.readXMLJoueur(JoueurXML.joueurFilePath);
     	if(listJoueur != null){
 	    	for (Joueur joueur : listJoueur) {
 				ModeleJoueur.ajouterJoueur(joueur);
 			}
     	}
-
     }
 }

@@ -2,7 +2,6 @@ package metier.departage;
 
 import metier.Joueur;
 import metier.Partie;
-import metier.Ronde;
 import modele.ModeleTournoi;
 
 public class Cumulatif extends Departage {
@@ -28,7 +27,4 @@ public class Cumulatif extends Departage {
 		}
 		return cumul;
 	}
-	
-
-
 }

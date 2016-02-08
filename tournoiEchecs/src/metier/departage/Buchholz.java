@@ -27,7 +27,4 @@ public class Buchholz extends Departage{
 		}
 		return som;
 	}
-	
-
-
 }

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import application.Validation;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,7 +23,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import metier.Joueur;
 import modele.ModeleJoueur;
-import modele.Validation;
 import modele.xml.JoueurXML;
 
 public class ControleurCreerJoueur implements Initializable {
