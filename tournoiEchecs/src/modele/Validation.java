@@ -84,6 +84,17 @@ public class Validation {
 		}
 	}
 
+	public static boolean recupValeursDate(DatePicker dp){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		try{
+			LocalDate d = LocalDate.parse(dp.getEditor().getText().toString(),formatter);
+			dp.setValue(d);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+
 	public static boolean estNomCompose(TextField tx) {
 		if(tx.getText().trim().matches("^[^0-9]*[-]?[^0-9]*$")){
 			tx.setStyle("-fx-control-inner-background : white; ");
@@ -96,7 +107,8 @@ public class Validation {
 	}
 
 
-	public static boolean verifDate(DatePicker d1, DatePicker d2) {
+	public static boolean compareDate(DatePicker d1, DatePicker d2) {
+		/*true si d1 est antérieur à d2*/
 		if(d1==null || d2 ==null || !estDate(d1) || !estDate(d2)){
 			d1.setStyle("-fx-control-inner-background : red; ");
 			d2.setStyle("-fx-control-inner-background : red; ");
@@ -161,17 +173,6 @@ public class Validation {
 			return true;
 		}else{
 			tx.setStyle("-fx-control-inner-background : red; ");
-			return false;
-		}
-	}
-
-	public static boolean recupValeursDate(DatePicker dp){
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		try{
-			LocalDate d = LocalDate.parse(dp.getEditor().getText().toString(),formatter);
-			dp.setValue(d);
-			return true;
-		}catch(Exception e){
 			return false;
 		}
 	}
