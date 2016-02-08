@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
-public class ContoleurClassementFinal implements Initializable {
+public class ControleurClassementFinal implements Initializable {
 	
 	@FXML
 	ListView<Joueur> lv_classement;
@@ -27,12 +27,25 @@ public class ContoleurClassementFinal implements Initializable {
 		itemsJoueur.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_classement.setItems(itemsJoueur);
 		lv_classement.setCellFactory(lv->new ItemClassementFinal());
+		ModeleTournoi.getTournoi().calculerDepartagesJoueurs();
 		FXCollections.sort(itemsJoueur, new Comparator<Joueur>() {
 
 			@Override
 			public int compare(Joueur j1, Joueur j2) {
-				//a modifier on fonction des departage
-				return Float.compare(j2.getScore(),j1.getScore());
+				int res=0;
+				if(j2.getScore()!=j1.getScore()){
+					return Float.compare(j2.getScore(),j1.getScore());
+				}
+				else {
+					for (int i = 0; i < ModeleTournoi.getTournoi().getListeDepartages().size(); i++) {
+						res=Float.compare(j2.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString()),j1.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString()));
+						if(res==0){
+							i++;
+						}
+						else return res;
+					}
+				}
+				return res;
 			}
 		});
 		for(int i=0;i<itemsJoueur.size();i++){

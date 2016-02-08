@@ -147,13 +147,20 @@ public class Partie {
 	}
 
 	public int compareTo(Partie p2) {
-		List<Integer> res=new ArrayList<>();
-		res.add(Float.compare(joueurBlanc.getScore(),p2.joueurBlanc.getScore()));
-		res.add(Float.compare(joueurBlanc.getScore(),p2.joueurNoir.getScore()));
-		res.add(Float.compare(joueurNoir.getScore(),p2.joueurBlanc.getScore()));
-		res.add(Float.compare(joueurNoir.getScore(),p2.joueurNoir.getScore()));
-		
-		return Collections.min(res) ;
+		int res;
+		float m1,m2;
+		if(getScoreJoueurBlancPartie()>getScorejoueurNoirPartie())
+			m1=getScoreJoueurBlancPartie();
+		else {
+			m1=getScorejoueurNoirPartie();
+		}
+		if(p2.getScoreJoueurBlancPartie()>p2.getScorejoueurNoirPartie())
+			m2=p2.getScoreJoueurBlancPartie();
+		else {
+			m2=p2.getScorejoueurNoirPartie();
+		}
+		res=Float.compare(m1, m2);
+		return res ;
 	}
 
 	public int getClassement() {

@@ -2,16 +2,13 @@ package controleur;
 
 import java.net.URL;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import vue.ItemAppariement;
 import vue.ItemClassementRonde;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,14 +59,14 @@ public class ControleurClassementRonde implements Initializable{
 	
 	private void chargeItems(){
 		itemsPartie.clear();
-		lb_titre.setText("Résultat de la ronde "+String.valueOf(numRonde+1));
+		lb_titre.setText("Résultats de la ronde "+String.valueOf(numRonde+1));
 		itemsPartie.addAll(ModeleTournoi.getTournoi().getPartieRonde(numRonde));
 		FXCollections.sort(itemsPartie, new Comparator<Partie>() {
 
 			@Override
 			public int compare(Partie p1, Partie p2) {
 				
-				return p1.compareTo(p2);
+				return p2.compareTo(p1);
 			}
 		});
 		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {

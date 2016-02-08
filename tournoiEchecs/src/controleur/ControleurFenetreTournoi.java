@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import modele.ModeleDepartage;
 import application.Main;
+import application.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -22,7 +23,6 @@ import vue.RecapTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
-import modele.Validation;
 import modele.xml.TournoiXML;
 
 public class ControleurFenetreTournoi implements Initializable {
@@ -145,6 +145,9 @@ public class ControleurFenetreTournoi implements Initializable {
 		if(cb_cadences.getSelectionModel().getSelectedItem()==null){
 			ta_messageAide.setStyle("-fx-control-inner-background : red; ");
 			res=false;
+		}
+		else {
+			ta_messageAide.setStyle("-fx-control-inner-background : white; ");
 		}
 		return res;
 	}
