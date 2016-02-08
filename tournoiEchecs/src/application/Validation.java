@@ -96,7 +96,7 @@ public class Validation {
 	}
 
 
-	public static boolean verifDate(DatePicker d1, DatePicker d2) {
+	public static boolean compareDate(DatePicker d1, DatePicker d2) {
 		if(d1==null || d2 ==null || !estDate(d1) || !estDate(d2)){
 			d1.setStyle("-fx-control-inner-background : red; ");
 			d2.setStyle("-fx-control-inner-background : red; ");

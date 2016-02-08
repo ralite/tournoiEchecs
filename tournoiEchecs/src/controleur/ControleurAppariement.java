@@ -156,7 +156,7 @@ public class ControleurAppariement implements Initializable {
 			lb_joueurNoir.setText("");
 		}
 	}
-	
+
 	@FXML
 	public void onClickAjouter(){
 		if(joueurBlanc == null || joueurNoir==null){
@@ -229,7 +229,7 @@ public class ControleurAppariement implements Initializable {
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Appariement terminé");
-			alert.setContentText("Voulez-vous vraiment lancer la ronde ?\n( Attention, il ne sera plus possible de modifier l'appariement !)");
+			alert.setContentText("Voulez-vous vraiment lancer la ronde ?\n(Attention, il ne sera plus possible de modifier l'appariement !)");
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
 				if(itemsJoueursInscrits.size()==1){

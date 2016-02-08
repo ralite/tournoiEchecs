@@ -49,6 +49,12 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	TextField tf_classementElo;
 
+	HashMap<String, Integer> mapEloInitial = new HashMap<String, Integer>();
+
+	@FXML
+	ChoiceBox<String> chbx_type;
+	private ObservableList<String> listeType = FXCollections.observableArrayList("National","FIDE","Nouveau");
+
 	@FXML
 	RadioButton rb_national;
 
@@ -110,8 +116,6 @@ public class ControleurCreerJoueur implements Initializable {
 	@FXML
 	Label lb_erreur;
 
-	HashMap<String, Integer> mapEloInitial = new HashMap<String, Integer>();
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
@@ -121,6 +125,7 @@ public class ControleurCreerJoueur implements Initializable {
 			chargerFormulaire();
 		}
 
+		/*----------NUMERO DE LICENCE----------*/
 		tf_numLicence.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -140,14 +145,17 @@ public class ControleurCreerJoueur implements Initializable {
 		    			}else if(ModeleJoueur.rechercherJoueur(tf_numLicence.getText().toString()) != null)
 		    			{
 	    					lb_erreurLicence.setText("Le numéro de licence existe déjà");
+	    					tf_numLicence.setStyle("-fx-control-inner-background : red; ");
 		    			}else{
 		    				lb_erreurLicence.setText("");
+		    				tf_numLicence.setStyle("-fx-control-inner-background :white; ");
 		    			}
 		    		}
 		        }
 		    }
 		});
 
+		/*----------NOM----------*/
 		tf_nom.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -170,6 +178,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
+		/*----------PRENOM----------*/
 		tf_prenom.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -192,6 +201,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
+		/*----------SEXE----------*/
 		chbx_sexe.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -215,6 +225,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
+		/*----------DATE DE NAISSANCE----------*/
 		dp_dateNaissance.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -224,45 +235,42 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(Validation.recupValeursDate(dp_dateNaissance))
 		        	{
-		        		dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-		        		if(Validation.estDate(dp_dateNaissance))
-		        		{
-		        			lb_erreurDate.setText("");
+	        			if(Validation.compareDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
+	        			{
 			        		dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-		        			if(Validation.verifDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
-		        			{
-				        		dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
-		        				lb_erreurDate.setText("");
-		        				lb_erreurCategorie.setText("");
-		        				lb_categorie.setText(Joueur.getCategorieCalculee(dp_dateNaissance.getValue()));
+	        				lb_erreurDate.setText("");
+	        				lb_erreurCategorie.setText("");
+	        				lb_categorie.setText(Joueur.getCategorieCalculee(dp_dateNaissance.getValue()));
 
-		        				if(rb_nouveau.isSelected())
-		        				{
-		        					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
-		        					lb_erreurElo.setText("");
-		        				}else
-		        					tf_classementElo.setText("");
-		        			}else
-		        			{
-		        				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle");
-				        		dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-		        			}
-		        		}else
-		        		{
-		        			lb_erreurDate.setText("Saisissez une date au format JJ/MM/AAAA.");
+	        				//nouveau elo pré-selectionné
+	        				if(chbx_type.getValue()=="Nouveau")
+	        				{
+	        					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
+	        					lb_erreurElo.setText("");
+	        				}else
+	        					tf_classementElo.setText("");
+
+	        			}else //date supérieure à aujourd'hui
+	        			{
+	        				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle");
 			        		dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-		        		}
-		        	}else
-		        	{
+	        			}
+			        }else //date pas valide
+			        {
 		        		lb_erreurDate.setText("Entrez une date de naissance valide.");
 		        		dp_dateNaissance.setStyle("-fx-control-inner-background : red; ");
-		        		lb_erreurCategorie.setText("Entrez une date de naissance pour obtenir la catégorie du joueur");
+			        }
+
+			        if(lb_erreurDate.getText()!="")
+			        {
+			        	lb_erreurCategorie.setText("Entrez une date de naissance pour obtenir la catégorie du joueur");
 		        		lb_categorie.setText("Non assignée");
-		        	}
+			        }
 		        }
 		    }
 		});
 
+		/*----------CLASSEMEMENT ELO----------*/
 		tf_classementElo.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -282,88 +290,56 @@ public class ControleurCreerJoueur implements Initializable {
 		        			{
 		        				lb_erreurElo.setText("Saisissez un classement ELO entre 500 et 3000");
 		        				tf_classementElo.setStyle("-fx-control-inner-background : red; ");
-
 		        			}
-		        		}else
+		        		}else //pas entier positif
 		        		{
 		        			lb_erreurElo.setText("Saisissez un classement ELO valide");
 		        		}
-		            }else{
+		            }else //vide
+		            {
 		            	lb_erreurElo.setText("Saississez le classement ELO du joueur");
 		            }
-
-		            if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
-	            	{
-	            		lb_erreurType.setText("Sélectionnez un type d'ELO");
-	            	}else{
-	            		lb_erreurType.setText("");
-	            	}
 		        }
 		    }
 		});
 
-		rb_national.selectedProperty().addListener(new ChangeListener<Boolean>() {
+		/*----------TYPE D'ELO----------*/
+		chbx_type.focusedProperty().addListener(new ChangeListener<Boolean>()
+		{
 		    @Override
-		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-		        if(isNowSelected)
+		    public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+		    {
+		        if (oldPropertyValue)
 		        {
-		        	lb_erreurType.setText("");
-		            rb_fide.setSelected(wasPreviouslySelected);
-		            rb_nouveau.setSelected(wasPreviouslySelected);
-		            tf_classementElo.setDisable(false);//retour elo intial
+		        	if(chbx_type.getValue() == "Nouveau")
+		        	{
+		                tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));//affichage elo initial
+		                tf_classementElo.setDisable(true);
+		                //si ancien mauvais elo pré-saisi
+		                tf_classementElo.setStyle("-fx-control-inner-background : white; ");
+		                lb_erreurElo.setText("");
 
-		            //retour de elo initial sans date de naissance
-		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
-		            {
-		            	tf_classementElo.setText("");
-		            	lb_erreurElo.setText("");
-		            }
+	    				//si date de naissance non-saisie
+	    				if(Integer.parseInt(tf_classementElo.getText()) == -1)
+	    				{
+	    					lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial");
+	    					tf_classementElo.setText("Non assigné");
+	    				}
+		        	}else{
+		                tf_classementElo.setDisable(false);
+
+		                //si elo initial pré-sélectionné
+		                if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
+		                {
+		                	tf_classementElo.setText("");
+		                	lb_erreurElo.setText("");
+		                }
+		        	}
 		        }
 		    }
 		});
 
-		rb_fide.selectedProperty().addListener(new ChangeListener<Boolean>() {
-		    @Override
-		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-		        if(isNowSelected)
-		        {
-		        	lb_erreurType.setText("");
-		            rb_national.setSelected(wasPreviouslySelected);
-		            rb_nouveau.setSelected(wasPreviouslySelected);
-		            tf_classementElo.setDisable(false);//retour elo initial
-
-		            //retour de elo initial sans date de naissance
-		            if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
-		            {
-		            	lb_erreurElo.setText("");
-		            	tf_classementElo.setText("");
-		            }
-		        }
-		      }
-		});
-
-		rb_nouveau.selectedProperty().addListener(new ChangeListener<Boolean>() {
-		    @Override
-		    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-		        if(isNowSelected) {
-		            rb_national.setSelected(wasPreviouslySelected);
-		            rb_fide.setSelected(wasPreviouslySelected);
-		            tf_classementElo.setDisable(true);
-
-		            tf_classementElo.setStyle("-fx-control-inner-background : white; ");//si ancien mauvais elo saisi
-
-		            tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));//affichage elo initial
-
- 					//si date de naissance non-saisie
- 					if(Integer.parseInt(tf_classementElo.getText()) == -1)
- 					{
- 						lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial");
- 						tf_classementElo.setText("Non assigné");
- 					}
-		        }
-		    }
-		});
-
+		/*----------FEDERATION----------*/
 		tf_federation.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -374,42 +350,34 @@ public class ControleurCreerJoueur implements Initializable {
 		        	//validation fédération
 		        	if(!Validation.estVide(tf_federation))
 		            {
-			    		if(!Validation.estChaine(tf_federation))
+			    		if(Validation.estChaine(tf_federation))
 			    		{
-			    			lb_erreurFederation.setText("Saisissez une fédération valide");
-			    		}else{
 			    			lb_erreurFederation.setText("");
+			    			//si ligue fr
+				            if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
+			            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
+			            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
+			            		|| tf_federation.getText().equalsIgnoreCase("France"))
+				        	{
+				        		tf_ligue.setDisable(false); //permettre la saisie
+				        	}else{
+				        		//interdire la saisie
+				        		tf_ligue.setDisable(true);
+				        		tf_ligue.clear();
+				        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
+				        		lb_erreurLigue.setText("");
+				        	}
+			    		}else{
+			    			lb_erreurFederation.setText("Saisissez une fédération valide");
 			    		}
 		            }else{
 		            	lb_erreurFederation.setText("Entrez la fédération du joueur");
-		            }
-
-		        	//grisage de la ligue en cas de non-fr
-		            if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
-	            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-	            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
-	            		|| tf_federation.getText().equalsIgnoreCase("France"))
-		        	{
-		            	//si ligue vide, message erreur
-		        		tf_ligue.setDisable(false);
-		        	}else{
-		        		tf_ligue.setDisable(true);
-		        		tf_ligue.clear();
-		        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
-		        		lb_erreurLigue.setText("");
-		        	}
-
-		            //passage sans saisie
-		            if(tf_federation.getText().isEmpty())
-		            {
-		            	tf_ligue.setDisable(false);
-		        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
-		        		lb_erreurLigue.setText("");
 		            }
 		        }
 		    }
 		});
 
+		/*----------LIGUE----------*/
 		tf_ligue.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -440,6 +408,7 @@ public class ControleurCreerJoueur implements Initializable {
 		    }
 		});
 
+		/*----------CLUB----------*/
 		tf_club.focusedProperty().addListener(new ChangeListener<Boolean>()
 		{
 		    @Override
@@ -548,11 +517,11 @@ public class ControleurCreerJoueur implements Initializable {
 		chbx_titre.setValue(ModeleJoueur.getJoueurAmodifier().getTitre());
 		String typeElo=ModeleJoueur.getJoueurAmodifier().getTypeElo();
 		if(typeElo.equalsIgnoreCase("National"))
-			rb_national.setSelected(true);
+			chbx_type.setValue("National");
 		else if(typeElo.equalsIgnoreCase("FIDE"))
-			rb_fide.setSelected(true);
+			chbx_type.setValue("FIDE");
 		else if(typeElo.equalsIgnoreCase("Nouveau")){
-			rb_nouveau.setSelected(true);
+			chbx_type.setValue("Nouveau");
 			tf_classementElo.setDisable(true);
 		}
 
@@ -572,11 +541,11 @@ public class ControleurCreerJoueur implements Initializable {
 		lb_erreurType.setText("");
 		lb_erreurClub.setText("");
 		lb_erreurFederation.setText("");
-		lb_erreur.setText("");
 		lb_categorie.setText("Non assignée");
 
 		chbx_sexe.setItems(listeSexe);
 		chbx_sexe.setValue("Homme");
+
 		listeTitre = FXCollections.observableArrayList("Aucun titre","Candidat Maître Masculin","Maître FIDE Masculin",
 				"Maître International Masculin", "Grand Maître International Masculin");
 		chbx_titre.setItems(listeTitre);
@@ -587,15 +556,8 @@ public class ControleurCreerJoueur implements Initializable {
 		tf_prenom.clear();
 		dp_dateNaissance.setValue(null);
 		tf_ligue.clear();
+
 		tf_classementElo.clear();
-		tf_federation.clear();
-		tf_club.clear();
-
-		rb_national.setSelected(false);
-		rb_fide.setSelected(false);
-		rb_nouveau.setSelected(false);
-
-
 		int eloInitial = 1499;
 		mapEloInitial.put("Vétéran", eloInitial);
 		mapEloInitial.put("Sénior", eloInitial);
@@ -607,6 +569,12 @@ public class ControleurCreerJoueur implements Initializable {
 		mapEloInitial.put("Poussin", eloInitial-600);
 		mapEloInitial.put("Petit Poussin", eloInitial-700);
 		mapEloInitial.put("Non assignée", -1);
+
+		chbx_type.setItems(listeType);
+		chbx_type.setValue("National");
+
+		tf_federation.clear();
+		tf_club.clear();
 	}
 
 	private boolean formulaireCorrect()
@@ -614,7 +582,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 		boolean res = true;
 
-		//numLicence
+		/*----------NUMERO DE LICENCE----------*/
 		if(Validation.estVide(tf_numLicence))
 		{
 			lb_erreurLicence.setText("Entrez le numéro de licence du joueur");
@@ -634,7 +602,7 @@ public class ControleurCreerJoueur implements Initializable {
 			}
 		}
 
-		//nom
+		/*----------NOM----------*/
 		if(Validation.estVide(tf_nom))
 		{
 			lb_erreurNom.setText("Entrez le nom du joueur");
@@ -651,7 +619,7 @@ public class ControleurCreerJoueur implements Initializable {
 			}
 		}
 
-		//prenom
+		/*----------PRENOM----------*/
 		if(Validation.estVide(tf_prenom))
 		{
 			lb_erreurPrenom.setText("Entrez le prénom du joueur");
@@ -668,21 +636,19 @@ public class ControleurCreerJoueur implements Initializable {
 			}
 		}
 
-		//date
+		/*----------DATE DE NAISSANCE----------*/
 		if(Validation.recupValeursDate(dp_dateNaissance))
 		{
 			dp_dateNaissance.setStyle("-fx-control-inner-background : white; ");
 
-			if(Validation.verifDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
+			if(Validation.compareDate(dp_dateNaissance,new DatePicker(LocalDate.now())))
 			{
 				lb_erreurCategorie.setText("");
 				lb_erreurDate.setText("");
 				lb_categorie.setText(Joueur.getCategorieCalculee(dp_dateNaissance.getValue()));
 
-				if(rb_nouveau.isSelected())
-				{
+				if(chbx_type.getValue() == "Nouveau")
  					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
-				}
 			}else
 			{
 				lb_erreurDate.setText("Saisissez une date inférieure à la date actuelle");
@@ -697,53 +663,12 @@ public class ControleurCreerJoueur implements Initializable {
 			res=false;
 		}
 
-		//fédération
-		if(Validation.estVide(tf_federation))
-		{
-			lb_erreurFederation.setText("Entrez la fédération du joueur");
-			res = false;
-		}else
-		{
-			if(!Validation.estChaine(tf_federation))
-			{
-				lb_erreurFederation.setText("Saisissez un nom de fédération valide");
-				res = false;
-			}else
-			{
-				lb_erreurFederation.setText("");
-			}
-		}
-
-		//ligue
-		if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
-				|| tf_federation.getText().equalsIgnoreCase("Française") || tf_federation.getText().equalsIgnoreCase("Français")
-				|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
-				|| tf_federation.getText().equalsIgnoreCase("France"))
-		{
-			if(Validation.estVide(tf_ligue))
-			{
-				lb_erreurLigue.setText("Entrez la ligue du joueur");
-				res = false;
-			}else
-			{
-				if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
-				{
-					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
-					tf_ligue.setStyle("-fx-control-inner-background : red; ");
-					res =false;
-				}else{
-					lb_erreurLigue.setText("");
-					tf_ligue.setStyle("-fx-control-inner-background : white; ");
-				}
-			}
-		}
-
-		//classementElo
-		if(!rb_nouveau.isSelected())
+		/*----------CLASSEMENT ELO----------*/
+		if(chbx_type.getValue() != "Nouveau")
 		{
 			if(Validation.estVide(tf_classementElo))
 			{
-				lb_erreurElo.setText("Sélectionnez le classement ELO du joueur.");
+				lb_erreurElo.setText("Entrez le classement ELO du joueur");
 				res = false;
 			}else{
 				if(!Validation.estEntierPos(tf_classementElo))
@@ -766,16 +691,50 @@ public class ControleurCreerJoueur implements Initializable {
 			}
 		}
 
-		//typeElo
-		if((!rb_national.isSelected() && !rb_fide.isSelected() && !rb_nouveau.isSelected()))
+		/*----------FEDERATION----------*/
+		if(Validation.estVide(tf_federation))
 		{
-			lb_erreurType.setText("Sélectionnez un type d'ELO");
+			lb_erreurFederation.setText("Entrez la fédération du joueur");
 			res = false;
-		}else{
-			lb_erreurType.setText("");
+		}else
+		{
+			if(!Validation.estChaine(tf_federation))
+			{
+				lb_erreurFederation.setText("Saisissez un nom de fédération valide");
+				res = false;
+			}else
+			{
+				lb_erreurFederation.setText("");
+			}
 		}
 
-		//club
+		/*----------LIGUE----------*/
+
+		//à ne tester que si federation fr
+		if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
+				|| tf_federation.getText().equalsIgnoreCase("Française") || tf_federation.getText().equalsIgnoreCase("Français")
+				|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
+				|| tf_federation.getText().equalsIgnoreCase("France") || tf_federation.getText().isEmpty())
+		{
+			if(Validation.estVide(tf_ligue))
+			{
+				lb_erreurLigue.setText("Entrez la ligue du joueur");
+				res = false;
+			}else
+			{
+				if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
+				{
+					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
+					tf_ligue.setStyle("-fx-control-inner-background : red; ");
+					res =false;
+				}else{
+					lb_erreurLigue.setText("");
+					tf_ligue.setStyle("-fx-control-inner-background : white; ");
+				}
+			}
+		}
+
+		/*----------CLUB----------*/
 		if(Validation.estVide(tf_club))
 		{
 			lb_erreurClub.setText("Entrez le club du joueur");
@@ -798,10 +757,11 @@ public class ControleurCreerJoueur implements Initializable {
 
 	@FXML
 	public void limiteTexte(){//déclenché onKeyReleased des tf
+		Validation.verifLongueurTexte(tf_numLicence, 6);
 		Validation.verifLongueurTexte(tf_nom,30);
 		Validation.verifLongueurTexte(tf_prenom,30);
-		Validation.verifLongueurTexte(tf_federation,30);
 		Validation.verifLongueurTexte(tf_classementElo,4);
+		Validation.verifLongueurTexte(tf_federation,30);
 		Validation.verifLongueurTexte(tf_ligue,3);
 		Validation.verifLongueurTexte(tf_club, 30);
 	}

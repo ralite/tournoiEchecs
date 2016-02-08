@@ -157,15 +157,15 @@ public class ControleurFenetreTournoi implements Initializable {
 		boolean res = true;
 		DatePicker dateActuelle = new DatePicker(LocalDate.now());
 		lb_erreurDate.setText("");
-		if(!Validation.verifDate(dp_dateDeb,dp_dateFin)){
+		if(!Validation.compareDate(dp_dateDeb,dp_dateFin)){
 			lb_erreurDate.setText("Verifiez les dates");
 			res = false;
 		}
-		else if(!Validation.verifDate(dateActuelle, dp_dateDeb)){
+		else if(!Validation.compareDate(dateActuelle, dp_dateDeb)){
 			lb_erreurDate.setText("date actuelle < date de début");
 			res=false;
 			}
-			else if(!Validation.verifDate(dateActuelle, dp_dateFin)){
+			else if(!Validation.compareDate(dateActuelle, dp_dateFin)){
 				lb_erreurDate.setText("date actuelle < date de fin");
 				res=false;
 				}
