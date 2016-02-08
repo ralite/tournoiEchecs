@@ -93,7 +93,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         	score.setText(String.valueOf(item.getScore()));
         	cumulatif.setText(String.valueOf(item.getPointsDepartage("Cumulatif")));
         	trs.setText(String.valueOf(item.getPointsDepartage("Buchholz")));
-        	perfs.setText(String.valueOf(item.getPointsDepartage("PerfElo")));
+        	perfs.setText(String.valueOf((int)item.getPointsDepartage("PerfElo")));
         	
             setText(null); 
             setGraphic(content); 
