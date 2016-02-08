@@ -149,8 +149,13 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	
 	@FXML
 	public void classementFinal(){
-		ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
-		cl.show();
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
+			AfficherAlerte("Aucune ronde terminée");
+		}
+		else{
+			ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
+			cl.show();
+		}
 	}
 	
 	private void AfficherAlerte(String s) {
