@@ -13,7 +13,10 @@ public class Buchholz extends Departage{
 	@Override
 	public float calculDepartage(Joueur j) {
 		float som=0;
-		for(int i=0;i<ModeleTournoi.getTournoi().getNumRondeActuelle();i++){
+		int numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle();
+		if(numRonde==-1)
+			numRonde=ModeleTournoi.getTournoi().getNbRondes();
+		for(int i=0;i<numRonde;i++){
 			for (Partie partie : ModeleTournoi.getTournoi().getPartieRonde(i)) {
 				if(partie.joueurEstDansPartie(j)){
 					if(j==partie.getJoueurBlanc()){

@@ -15,8 +15,10 @@ public class PerfElo extends Departage {
 		float moyElo=0;
 		float bonusMalus; 
 		int nbPartie=0;
-		//changer la condition du for
-		for(int i=0;i<ModeleTournoi.getTournoi().getNumRondeActuelle();i++){
+		int numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle();
+		if(numRonde==-1)
+			numRonde=ModeleTournoi.getTournoi().getNbRondes();
+		for(int i=0;i<numRonde;i++){
 			for (Partie partie : ModeleTournoi.getTournoi().getPartieRonde(i)) {
 				if(partie.joueurEstDansPartie(j)){
 					nbPartie++;
