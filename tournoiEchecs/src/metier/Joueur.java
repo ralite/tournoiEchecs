@@ -2,6 +2,8 @@ package metier;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Joueur {
 	private String numLicence;
@@ -19,9 +21,10 @@ public class Joueur {
 	private String couleurs;
 	private float score;
 	private int classement;
+	private Map<String, Float> mapDepartages;
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
-		super();
+		mapDepartages=new HashMap<String, Float>();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
 		this.prenomJoueur = prenomJoueur;
@@ -249,6 +252,15 @@ public class Joueur {
 
 	public int getClassement() {
 		return classement;
+	}
+
+	public void setPointsDepartage(String nomDepartage, Float pointsDepartage) {
+		mapDepartages.put(nomDepartage, pointsDepartage);
+	}
+
+	public float getPointsDepartage(String nomDepartage) {
+		
+		return mapDepartages.get(nomDepartage);
 	}
 	
 }

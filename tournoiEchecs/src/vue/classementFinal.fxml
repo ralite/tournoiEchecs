@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane fx:controller="controleur.ContoleurClassementFinal" prefHeight="461.0" prefWidth="833.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane fx:controller="controleur.ControleurClassementFinal" prefHeight="461.0" prefWidth="833.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
    <children>
       <ListView fx:id="lv_classement" layoutY="97.0" prefHeight="365.0" prefWidth="833.0" />
    </children>

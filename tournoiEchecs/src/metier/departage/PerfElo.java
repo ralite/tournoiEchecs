@@ -7,7 +7,7 @@ import modele.ModeleTournoi;
 public class PerfElo extends Departage {
 	
 	public PerfElo(){
-		super("Departage3");
+		super("PerfElo");
 	}
 
 	@Override

@@ -213,5 +213,15 @@ public class Tournoi {
 	public Ronde getRonde(int numRonde) {
 		return ListeRondes.get(numRonde);
 	}
+	
+	public void calculerDepartagesJoueurs(){
+		Float pointsDepartage=0.f;
+		for (Departage departage : ListeDepartages) {
+			for (Joueur joueur : ListeJoueurs) {
+				pointsDepartage=departage.calculDepartage(joueur);
+				joueur.setPointsDepartage(departage.toString(),pointsDepartage);
+			}
+		}
+	}
 
 }

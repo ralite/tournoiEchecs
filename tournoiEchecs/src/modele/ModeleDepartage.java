@@ -25,7 +25,6 @@ public class ModeleDepartage {
 
 	public static ArrayList<Departage> factoryDepartage(ArrayList<String> list){
 		ArrayList<Departage> list2 = new ArrayList<Departage>();
-
 		for (String departage : list) {
 
 			if(departage.equalsIgnoreCase("buchholz")){
