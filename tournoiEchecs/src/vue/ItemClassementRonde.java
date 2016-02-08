@@ -72,13 +72,14 @@ public class ItemClassementRonde extends ListCell<Partie> {
         	ech.setText(String.valueOf(item.getClassement())+"\t");
         	scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlancPartie()));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
-            joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-     
-            scoreNoir.setText(String.valueOf(item.getScorejoueurNoirPartie()));
-            
-            resultat.setText(item.getResultat());
             eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo()));
-            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+"\t");
+            resultat.setText(item.getResultat());
+           
+	        if(item.getJoueurNoir()!=null){
+	            joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
+	            scoreNoir.setText(String.valueOf(item.getScorejoueurNoirPartie())); 
+	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+"\t");
+            }
             setText(null); 
             setGraphic(content); 
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY); 

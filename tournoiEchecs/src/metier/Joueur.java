@@ -18,6 +18,7 @@ public class Joueur {
 	private String club;
 	private String couleurs;
 	private float score;
+	private int classement;
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
 		super();
@@ -234,6 +235,20 @@ public class Joueur {
 		if(couleurs.isEmpty())
 			couleurs="X";
 		else couleurs+="/X";
+	}
+	
+	public String getCouleurRonde(int i){
+		String[] res= couleurs.split("/");
+		return res[i];
+	}
+
+	public void setClassement(int i) {
+		classement=i;
+		
+	}
+
+	public int getClassement() {
+		return classement;
 	}
 	
 }

@@ -2,6 +2,7 @@ package controleur;
 
 import java.net.URL;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import vue.ItemAppariement;
@@ -37,7 +38,6 @@ public class ControleurClassementRonde implements Initializable{
 	private int numRonde;
 	private int numRondeMax;
 
-	//penser a faire apparaitre les joueur EXEMPT
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -72,6 +72,14 @@ public class ControleurClassementRonde implements Initializable{
 				return p1.compareTo(p2);
 			}
 		});
+		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
+			if(j.getCouleurRonde(numRonde).equals("X")){
+				Partie p = new Partie(j,null);
+				p.setResultat("EXEMPT");
+				p.setScorejoueurBlancPartie(j.getScore());
+				itemsPartie.add(p);
+			}
+		}
 		for(int i=0;i<itemsPartie.size();i++){
 			itemsPartie.get(i).setClassement(i+1);
 		}
