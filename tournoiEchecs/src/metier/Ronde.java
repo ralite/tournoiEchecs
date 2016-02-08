@@ -76,11 +76,6 @@ public class Ronde {
 		return dejaRencontre;
 	}
 
-	public ObservableList<Partie> getParties() {
-		return ListePartie;
-		
-	}
-
 	public ObservableList<Joueur> getListeJoueurForfait() {
 		return ListeJoueurForfait;
 	}
