@@ -26,12 +26,12 @@
       <Label fx:id="lb_recapRondes" layoutX="414.0" layoutY="60.0" prefHeight="17.0" prefWidth="109.0" text="Nombre de rondes :" />
       <Label fx:id="lb_recapCadenceJeu" layoutX="414.0" layoutY="85.0" prefHeight="17.0" prefWidth="109.0" text="Cadence de jeu :" />
       <Label fx:id="lb_recapCadenceDeJeu" layoutX="526.0" layoutY="85.0" text="Label" />
-      <Button layoutX="532.0" layoutY="430.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
+      <Button layoutX="534.0" layoutY="491.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
       <Button layoutX="347.0" layoutY="430.0" mnemonicParsing="false" onAction="#saisirResultat" text="Saisir les résultats" />
       <Label layoutX="26.0" layoutY="7.0" text="Nom :" />
       <Label layoutX="26.0" layoutY="46.0" text="Lieu :" />
       <Label layoutX="26.0" layoutY="85.0" text="Arbitre :" />
       <Button layoutX="115.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementRondes" prefHeight="25.0" prefWidth="202.0" text="Classement des rondes" />
-      <Button layoutX="369.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementFinal" text="Classement final" />
+      <Button layoutX="347.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementFinal" prefHeight="25.0" prefWidth="109.0" text="Classement final" />
    </children>
 </AnchorPane>
