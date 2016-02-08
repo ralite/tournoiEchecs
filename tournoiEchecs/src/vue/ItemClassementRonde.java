@@ -1,5 +1,8 @@
 package vue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import metier.Partie;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -26,10 +29,23 @@ public class ItemClassementRonde extends ListCell<Partie> {
     private final Label eloNoir = new Label();
     private final Label scoreNoir = new Label(); 
     
-    private final AnchorPane content = new AnchorPane(); 
+    private final AnchorPane content = new AnchorPane();
+    private Map<String,String> mapResultat = new HashMap();
+    private Map<String,String> mapTypeElo = new HashMap();
 
 
 	public ItemClassementRonde() {
+		
+				mapResultat.put("blancGagne", "1-0");
+				mapResultat.put("noirGagne", "0-1");
+				mapResultat.put("partieNulle", "X-X");
+				mapResultat.put("blancForfait", "F-1");
+				mapResultat.put("noirForfait", "1-F");
+				mapResultat.put("EXEMPT", "1-F");
+				
+				mapTypeElo.put("National","N");
+				mapTypeElo.put("FIDE","F");
+				mapTypeElo.put("Nouveau","E");
 				
 		        GridPane.setConstraints(ech, 0, 0); 
 		        GridPane.setConstraints(scoreBlanc, 1, 0); 
@@ -72,14 +88,17 @@ public class ItemClassementRonde extends ListCell<Partie> {
         	ech.setText(String.valueOf(item.getClassement())+"\t");
         	scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlancPartie()));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
-            eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo()));
-            resultat.setText(item.getResultat());
+            eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo())+" "+mapTypeElo.get(item.getJoueurBlanc().getTypeElo()));
+            resultat.setText(mapResultat.get(item.getResultat()));
            
 	        if(item.getJoueurNoir()!=null){
 	            joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
 	            scoreNoir.setText(String.valueOf(item.getScorejoueurNoirPartie())); 
-	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+"\t");
+	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+" "+mapTypeElo.get(item.getJoueurNoir().getTypeElo())+"\t");
             }
+	        else{
+	        	joueurNoir.setText(item.getResultat()); 
+	        }
             setText(null); 
             setGraphic(content); 
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY); 
