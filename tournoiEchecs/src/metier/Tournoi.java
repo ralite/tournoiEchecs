@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListCell;
 import metier.departage.Departage;
 
 public class Tournoi {

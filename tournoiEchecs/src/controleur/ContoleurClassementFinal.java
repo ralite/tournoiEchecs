@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import vue.ItemClassementFinal;
 import metier.Joueur;
-import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

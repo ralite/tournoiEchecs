@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class Main extends Application {
 
 	private static Stage fenetrePrincipale = null;
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

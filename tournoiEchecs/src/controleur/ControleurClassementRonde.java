@@ -2,16 +2,13 @@ package controleur;
 
 import java.net.URL;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import vue.ItemAppariement;
 import vue.ItemClassementRonde;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
