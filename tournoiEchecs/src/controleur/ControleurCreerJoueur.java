@@ -56,15 +56,6 @@ public class ControleurCreerJoueur implements Initializable {
 	private ObservableList<String> listeType = FXCollections.observableArrayList("National","FIDE","Nouveau");
 
 	@FXML
-	RadioButton rb_national;
-
-	@FXML
-	RadioButton rb_fide;
-
-	@FXML
-	RadioButton rb_nouveau;
-
-	@FXML
 	ChoiceBox<String> chbx_titre;
 	private ObservableList<String> listeTitre;
 
