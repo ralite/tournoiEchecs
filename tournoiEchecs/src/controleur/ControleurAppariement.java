@@ -171,6 +171,7 @@ public class ControleurAppariement implements Initializable {
 
 			}
 			else{
+				
 				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
 				joueurBlanc=null;
 				joueurNoir=null;
@@ -186,6 +187,7 @@ public class ControleurAppariement implements Initializable {
 		if(partieSelectionnée!=null){
 			itemsJoueursInscrits.add(partieSelectionnée.getJoueurBlanc());
 			itemsJoueursInscrits.add(partieSelectionnée.getJoueurNoir());
+			joueursTriesParPoints(itemsJoueursInscrits);
 			itemsParties.remove(partieSelectionnée);
 		}
 	}
@@ -278,6 +280,7 @@ public class ControleurAppariement implements Initializable {
 		if(joueurSelectionné!=null){
 			itemsJoueursAbsent.remove(joueurSelectionné);
 			itemsJoueursInscrits.add(joueurSelectionné);
+			joueursTriesParPoints(itemsJoueursInscrits);
 		}
 	}
 
@@ -288,6 +291,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursForfait
 			.remove(joueurSelectionné);
 			itemsJoueursInscrits.add(joueurSelectionné);
+			joueursTriesParPoints(itemsJoueursInscrits);
 		}
 	}
 
