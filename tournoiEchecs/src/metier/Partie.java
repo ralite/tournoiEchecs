@@ -184,4 +184,35 @@ public class Partie {
 		else
 			return false;
 	}
+
+	public String getAffichageGa(Joueur joueur, int i) {
+		String resAff="";
+		if(joueur==joueurBlanc){
+			if(resultat.equals("blancGagne")|| resultat.equals("noirForfait")){
+				resAff+="+";
+			}
+			else if(resultat.equals("partieNulle")){
+					resAff+="=";
+				}
+				else{
+					resAff+="-";
+				}
+			resAff+=" "+joueurNoir.getClassement();
+			resAff+=joueurBlanc.getCouleurRonde(i);
+		}
+		else {
+			if(resultat.equals("noirGagne")|| resultat.equals("blancForfait")){
+				resAff+="+";
+			}
+			else if(resultat.equals("partieNulle")){
+					resAff+="=";
+				}
+				else{
+					resAff+="-";
+				}
+			resAff+=" "+joueurBlanc.getClassement();
+			resAff+=joueurNoir.getCouleurRonde(i);
+		}
+		return resAff;
+	}
 }

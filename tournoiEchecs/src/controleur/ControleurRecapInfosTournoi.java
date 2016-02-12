@@ -23,6 +23,7 @@ import vue.AppariementJoueur;
 import vue.ClassementFinal;
 import vue.ClassementRonde;
 import vue.CreationTournoi;
+import vue.GrilleAmericaine;
 import vue.SaisieResultat;
 
 public class ControleurRecapInfosTournoi implements Initializable {
@@ -155,6 +156,17 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		else{
 			ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
 			cl.show();
+		}
+	}
+	
+	@FXML
+	public void grilleAmericaine(){
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
+			AfficherAlerte("Aucune ronde terminée");
+		}
+		else{
+			GrilleAmericaine ga = new GrilleAmericaine(Main.getPrimaryStage());
+			ga.show();
 		}
 	}
 	

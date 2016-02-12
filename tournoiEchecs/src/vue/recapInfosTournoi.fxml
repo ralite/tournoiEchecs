@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
    <children>
       <Label fx:id="label_recapNom" layoutX="79.0" layoutY="7.0" prefHeight="17.0" prefWidth="303.0" text="label" />
       <Label fx:id="label_recapLieu" layoutX="79.0" layoutY="46.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
@@ -33,5 +33,6 @@
       <Label layoutX="26.0" layoutY="85.0" text="Arbitre :" />
       <Button layoutX="115.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementRondes" prefHeight="25.0" prefWidth="202.0" text="Classement des rondes" />
       <Button layoutX="347.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementFinal" prefHeight="25.0" prefWidth="109.0" text="Classement final" />
+      <Button layoutX="352.0" layoutY="540.0" mnemonicParsing="false" onAction="#grilleAmericaine" text="Grille americaine" />
    </children>
 </AnchorPane>
