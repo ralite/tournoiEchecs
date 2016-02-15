@@ -43,6 +43,19 @@ public class TestDepartages {
 		t.getRonde(1).getListePartie().get(1).setScore();
 		
 	}
+	
+	private void testClassementRonde3() {
+		//ronde 3
+		
+		t.getRonde(1).getListePartie().add(new Partie(j1,j4));
+		t.getRonde(1).getListePartie().add(new Partie(j2,j3));
+		t.getRonde(1).setApp(true);
+		t.getRonde(1).getListePartie().get(0).setResultat("blancForfait");
+		t.getRonde(1).getListePartie().get(0).setScore();
+		t.getRonde(1).getListePartie().get(1).setResultat("noirForfait");
+		t.getRonde(1).getListePartie().get(1).setScore();
+		
+	}
 
 	private void testClassementRonde1() {
 		t = new Tournoi("test", "ici", LocalDate.parse("2016-05-02"), LocalDate.parse("2016-05-10"), "moi", 5, "Blitz");
@@ -178,6 +191,24 @@ public class TestDepartages {
 		assertTrue("3er assert",b);
 	}
 	
+	@Test
+	public void testDepartagejoueur4PerfEloRonde3() {
+		t.setRondeActuelle(3);
+		testClassementRonde2();
+		testClassementRonde3();
+		t.calculerDepartagesJoueurs();
+		boolean b = j4.getPointsDepartage("PerfElo") == 2038;
+		assertTrue("3er assert",b);
+	}
 	
+	@Test
+	public void testDepartagejoueur3PerfEloRonde3() {
+		t.setRondeActuelle(3);
+		testClassementRonde2();
+		testClassementRonde3();
+		t.calculerDepartagesJoueurs();
+		boolean b = j3.getPointsDepartage("PerfElo") == 725;
+		assertTrue("3er assert",b);
+	}
 	
 }
