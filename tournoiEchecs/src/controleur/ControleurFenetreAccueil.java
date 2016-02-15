@@ -63,7 +63,7 @@ public class ControleurFenetreAccueil implements Initializable{
     @FXML
     private void actionParcourirTournoi(Event e) {
     	ModeleTournoi.nouveauTournoi();
-    	fileTournoi = FenetreFileChooser.choisirTournoi(Main.getPrimaryStage());
+    	fileTournoi = FenetreFileChooser.choisirDir(Main.getPrimaryStage());
 		if (fileTournoi != null) {
 			Tournoi t = TournoiXML.readXMLTournoi(fileTournoi.getPath());
 			ModeleTournoi.ajouterTournoi(t);

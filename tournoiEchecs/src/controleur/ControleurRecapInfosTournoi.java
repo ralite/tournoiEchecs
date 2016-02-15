@@ -1,9 +1,17 @@
 package controleur;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import application.Main;
 import javafx.event.Event;
@@ -23,6 +31,7 @@ import vue.AppariementJoueur;
 import vue.ClassementFinal;
 import vue.ClassementRonde;
 import vue.CreationTournoi;
+import vue.FenetreFileChooser;
 import vue.GrilleAmericaine;
 import vue.SaisieResultat;
 
@@ -177,4 +186,34 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		alert.showAndWait();
 	}
 
+	@FXML
+	public void actionImprimer(Event e){
+		File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
+		if (file != null) {
+			try {
+				String str = file.getAbsolutePath() + "/ListeJoueur_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
+				Document document = new Document();
+		      	PdfWriter.getInstance(document, new FileOutputStream(str));
+		      	document.open();
+		      	// polices
+		      	Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
+		      	
+		      	// lignes
+		      	Paragraph titre1 = new Paragraph(ModeleTournoi.getTournoi().getNom(), catFont);
+		      	titre1.setAlignment(Element.ALIGN_CENTER);
+		      	document.add(titre1);
+		      	
+		      	Paragraph titre2 = new Paragraph("Liste des participants", catFont);
+		      	titre2.setAlignment(Element.ALIGN_CENTER);
+		      	document.add(titre2);
+		        
+		        
+		        document.newPage();
+		      	document.close();
+		    }catch (Exception ex) {
+		    	ex.printStackTrace();
+		    }
+		}
+	}
+	
 }
