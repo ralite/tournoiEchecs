@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import application.Affichage;
 import application.Main;
 import vue.FenetreFileChooser;
 import vue.ItemClassementFinal;
@@ -152,7 +153,7 @@ public class ControleurClassementFinal implements Initializable {
 
 		        for(int i=0;i<nbDepartages;i++)
 		        {
-		        	c1 = new PdfPCell(new Phrase(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString()));
+		        	c1 = new PdfPCell(new Phrase(Affichage.mapDepartages.get(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString())));
 			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			        table.addCell(c1);
 		        }
@@ -160,11 +161,16 @@ public class ControleurClassementFinal implements Initializable {
 		        table.setHeaderRows(1);
 
 		        //Affichage du classement
+		        for(int j=0;j<12;j++)
+		        {
+		        	table.addCell(Integer.toString(j));
+		        }
+
 
 
 		      	//      gerer dynamiquement avec nbDepartages
-		      	float[] tailleColonne = new float[] {10f, 3f, 55f,10f,10f,10f,10f,55f,10f,10f,10f,10f};
-	            //table.setWidths(tailleColonne);
+		      	float[] tailleColonne = new float[] {7f,5f,35f,15f,13f,15f,15f,25f,10f,10f,10f,12f};
+	            table.setWidths(tailleColonne);
 
 		        document.add(table);
 		      	document.close();
