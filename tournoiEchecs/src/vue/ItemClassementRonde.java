@@ -76,7 +76,7 @@ public class ItemClassementRonde extends ListCell<Partie> {
         if (!empty && item != null) { 
         	//calcul du score precedent la partie du joueur blanc
         	float scorePrecBlanc=item.getScoreJoueurBlancPartie();
-        	if(item.getResultat().equals("blancGagne")){
+        	if(item.getResultat().equals("blancGagne")||item.getResultat().equals("EXEMPT")){
         		scorePrecBlanc+=-1;
         	}
         	if(item.getResultat().equals("partieNulle")){
