@@ -200,29 +200,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		if (file != null) {
 			try {
 
-				mapTitre.put("Maître FIDE Masculin", "f");
-		        mapTitre.put("Maître FIDE Féminin", "f");
-		        mapTitre.put("Maître International Masculin", "m");
-		        mapTitre.put("Maître International Féminin", "m");
-		        mapTitre.put("Grand Maître International Masculin", "g");
-		        mapTitre.put("Grand Maître International Féminin", "g");
-		        mapTitre.put("Candidat Maître Masculin", " ");
-		        mapTitre.put("Candidat Maître Féminin", " ");
-		        mapTitre.put("Aucun titre", " ");
-
-		        mapCategorie.put("Vétéran", "Vet");
-		        mapCategorie.put("Sénior", "Sen");
-		        mapCategorie.put("Junior", "Jun");
-		        mapCategorie.put("Cadet", "Cad");
-		        mapCategorie.put("Minime", "Min");
-		        mapCategorie.put("Benjamin", "Ben");
-		        mapCategorie.put("Pupille", "Pup");
-		        mapCategorie.put("Poussin", "Pou");
-		        mapCategorie.put("Petit Poussin", "Ppo");
-
-		        mapSexe.put("Homme", "M");
-		        mapSexe.put("Femme", "F");
-
 				String str = file.getAbsolutePath() + "/ListeJoueur_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
 				Document document = new Document();
 		      	PdfWriter.getInstance(document, new FileOutputStream(str));
