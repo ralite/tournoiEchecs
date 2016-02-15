@@ -460,13 +460,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 			String categorie = lb_categorie.getText();
 
-			String typeElo="";
-			if(chbx_type.getValue()=="National")
-				typeElo="National";
-			else if(chbx_type.getValue()=="FIDE")
-				typeElo="FIDE";
-			else if(chbx_type.getValue()=="Nouveau")
-				typeElo="Nouveau";
+			String typeElo = chbx_type.getValue();
 
 			String federation = tf_federation.getText().substring(0,1).toUpperCase().concat(tf_federation.getText().substring(1).toLowerCase());
 
