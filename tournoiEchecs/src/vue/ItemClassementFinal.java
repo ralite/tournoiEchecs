@@ -39,6 +39,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
     private final Map<String,String> mapTitre = new HashMap<String,String>();
     private final Map<String,String> mapSexe = new HashMap<String,String>();
     private final Map<String,String> mapCategorie = new HashMap<String,String>();
+    private final Map<String,String> mapTypeElo = new HashMap<String,String>();
 
 
 	public ItemClassementFinal(){
@@ -100,7 +101,11 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 	        mapCategorie.put("Pupille", "Pup");
 	        mapCategorie.put("Poussin", "Pou");
 	        mapCategorie.put("Petit Poussin", "Ppo");
-
+	        
+	        mapTypeElo.put("FIDE", "F");
+	        mapTypeElo.put("National", "N");
+	        mapTypeElo.put("Nouveau", "E");
+	        
 	        mapSexe.put("Homme", "M");
 	        mapSexe.put("Femme", "F");
 	}
@@ -115,7 +120,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         	PI.setText(String.valueOf(item.getClassement()));
         	titre.setText(mapTitre.get(item.getTitre()));
         	joueur.setText(item.getNomJoueur()+" "+item.getPrenomJoueur());
-        	elo.setText(String.valueOf(item.getElo()));
+        	elo.setText(String.valueOf(item.getElo())+mapTypeElo.get(item.getTypeElo()));
         	categorie.setText(mapCategorie.get(item.getCategorie())+mapSexe.get(item.getSexe()));
         	federation.setText(item.getFederation());
         	ligue.setText(item.getLigue());
