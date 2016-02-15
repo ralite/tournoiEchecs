@@ -84,15 +84,31 @@ public class ItemClassementRonde extends ListCell<Partie> {
         setText(null); 
         setContentDisplay(ContentDisplay.LEFT); 
         if (!empty && item != null) { 
+        	//calcul du score precedent la partie du joueur blanc
+        	float scorePrecBlanc=item.getScoreJoueurBlancPartie();
+        	if(item.getResultat().equals("blancGagne")){
+        		scorePrecBlanc+=-1;
+        	}
+        	if(item.getResultat().equals("partieNulle")){
+        		scorePrecBlanc+=-0.5;
+        	}
         	ech.setText(String.valueOf(item.getClassement())+"\t");
-        	scoreBlanc.setText(String.valueOf(item.getScoreJoueurBlancPartie()));
+        	scoreBlanc.setText(String.valueOf(scorePrecBlanc));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
             eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo())+" "+mapTypeElo.get(item.getJoueurBlanc().getTypeElo()));
             resultat.setText(mapResultat.get(item.getResultat()));
            
 	        if(item.getJoueurNoir()!=null){
+	        	//calcul du score precedent la partie du joueur noir
+	        	float scorePrecNoir=item.getScorejoueurNoirPartie();
+	        	if(item.getResultat().equals("noirGagne")){
+	        		scorePrecNoir+=-1;
+	        	}
+	        	if(item.getResultat().equals("partieNulle")){
+	        		scorePrecNoir+=-0.5;
+	        	}
 	            joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
-	            scoreNoir.setText(String.valueOf(item.getScorejoueurNoirPartie())); 
+	            scoreNoir.setText(String.valueOf(scorePrecNoir)); 
 	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+" "+mapTypeElo.get(item.getJoueurNoir().getTypeElo())+"\t");
             }
 	        else{
