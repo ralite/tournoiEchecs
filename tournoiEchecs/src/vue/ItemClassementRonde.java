@@ -3,6 +3,7 @@ package vue;
 import java.util.HashMap;
 import java.util.Map;
 
+import application.Affichage;
 import metier.Partie;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -30,21 +31,8 @@ public class ItemClassementRonde extends ListCell<Partie> {
     private final Label scoreNoir = new Label(); 
     
     private final AnchorPane content = new AnchorPane();
-    private Map<String,String> mapResultat = new HashMap<String, String>();
-    private Map<String,String> mapTypeElo = new HashMap<String, String>();
 
 	public ItemClassementRonde() {
-		
-				mapResultat.put("blancGagne", "1-0");
-				mapResultat.put("noirGagne", "0-1");
-				mapResultat.put("partieNulle", "X-X");
-				mapResultat.put("blancForfait", "F-1");
-				mapResultat.put("noirForfait", "1-F");
-				mapResultat.put("EXEMPT", "1-F");
-				
-				mapTypeElo.put("National","N");
-				mapTypeElo.put("FIDE","F");
-				mapTypeElo.put("Nouveau","E");
 				
 		        GridPane.setConstraints(ech, 0, 0); 
 		        GridPane.setConstraints(scoreBlanc, 1, 0); 
@@ -73,7 +61,9 @@ public class ItemClassementRonde extends ListCell<Partie> {
 		        AnchorPane.setLeftAnchor(gridPane, 0d); 
 		        AnchorPane.setBottomAnchor(gridPane, 0d); 
 		        AnchorPane.setRightAnchor(gridPane, 0d); 
-		        content.getChildren().add(gridPane); 
+		        content.getChildren().add(gridPane);
+		        
+		        Affichage.chargerMapsGrilleAEtClassements();
 	        
 	}
 	
@@ -95,8 +85,8 @@ public class ItemClassementRonde extends ListCell<Partie> {
         	ech.setText(String.valueOf(item.getClassement())+"\t");
         	scoreBlanc.setText(String.valueOf(scorePrecBlanc));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc()); 
-            eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo())+" "+mapTypeElo.get(item.getJoueurBlanc().getTypeElo()));
-            resultat.setText(mapResultat.get(item.getResultat()));
+            eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo())+" "+Affichage.mapTypeElo.get(item.getJoueurBlanc().getTypeElo()));
+            resultat.setText(Affichage.mapResultat.get(item.getResultat()));
            
 	        if(item.getJoueurNoir()!=null){
 	        	//calcul du score precedent la partie du joueur noir
@@ -109,7 +99,7 @@ public class ItemClassementRonde extends ListCell<Partie> {
 	        	}
 	            joueurNoir.setText(item.getNomPrenomJoueurNoir()); 
 	            scoreNoir.setText(String.valueOf(scorePrecNoir)); 
-	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+" "+mapTypeElo.get(item.getJoueurNoir().getTypeElo())+"\t");
+	            eloNoir.setText(String.valueOf(item.getJoueurNoir().getElo())+" "+Affichage.mapTypeElo.get(item.getJoueurNoir().getTypeElo())+"\t");
             }
 	        else{
 	        	joueurNoir.setText(item.getResultat()); 
