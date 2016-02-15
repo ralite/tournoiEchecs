@@ -92,7 +92,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	}
 
 	public void recapModifierTournoi(Event e){
-		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb())) {
+		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb()) || ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setHeaderText(null);

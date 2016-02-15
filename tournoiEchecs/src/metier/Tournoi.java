@@ -123,7 +123,6 @@ public class Tournoi {
 	}
 
 	public Ronde getRondeActuelle(){
-		System.out.println(rondeActuelle);
 		return ListeRondes.get(rondeActuelle);
 	}
 	
