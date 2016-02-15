@@ -343,7 +343,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			      		{
 			      			table.addCell(String.valueOf(i));
 			      			table.addCell(j.getNomJoueur()+" "+j.getPrenomJoueur());
-			      			table.addCell("Exempt");
+			      			table.addCell("EXEMPT");
 			      		}
 			      	}
 

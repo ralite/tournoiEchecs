@@ -220,14 +220,20 @@ public class ControleurClassementRonde implements Initializable{
 					i++;
 				}
 		        
-		      //Affichage exempt
-		      	for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
+		        //Affichage exempt
+		        for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
 		      	{
-		      		if(j.getCouleurRonde(ModeleTournoi.getTournoi().getNumRondeActuelle()).equals("X"))
+		      		if(j.getCouleurRonde(numRonde).equals("X"))
 		      		{
 		      			table.addCell(String.valueOf(i));
+		      			float scorePrec=j.getScore() - 1;
+			        	table.addCell(Float.toString(scorePrec));
 		      			table.addCell(j.getNomJoueur()+" "+j.getPrenomJoueur());
-		      			table.addCell("Exempt");
+		      			table.addCell(j.getElo() + " " + Affichage.mapTypeElo.get(j.getTypeElo()));
+		      			table.addCell("1-F");
+		      			table.addCell("EXEMPT");
+		      			table.addCell("");
+		      			table.addCell("");
 		      		}
 		      	}
 		        
