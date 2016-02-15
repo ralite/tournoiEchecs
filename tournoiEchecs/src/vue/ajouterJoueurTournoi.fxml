@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAjouterJoueurTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAjouterJoueurTournoi">
    <children>
       <ListView fx:id="listePersonne" layoutX="38.0" layoutY="93.0" prefHeight="285.0" prefWidth="223.0" />
       <Label fx:id="lb_nomTournoi" alignment="CENTER" layoutX="207.0" layoutY="14.0" prefHeight="25.0" prefWidth="291.0" text="Label">
