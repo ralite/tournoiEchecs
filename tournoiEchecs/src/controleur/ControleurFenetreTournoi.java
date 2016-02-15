@@ -74,7 +74,7 @@ public class ControleurFenetreTournoi implements Initializable {
 
 				File file = null;
 				if(ModeleTournoi.getFichierTournoi()==null){
-					file = FenetreFileChooser.EnregistrerTournoi(Main.getPrimaryStage());
+					file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
 				}
 
 				if(ModeleTournoi.getTournoi()==null){

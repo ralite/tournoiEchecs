@@ -142,7 +142,7 @@ public class Partie {
 		resultat=resultat2;	
 	}
 
-	public int compareTo(Partie p2) {
+	/*public int compareTo(Partie p2) {
 		int res;
 		float m1,m2;
 		if(getScoreJoueurBlancPartie()>getScorejoueurNoirPartie())
@@ -157,7 +157,7 @@ public class Partie {
 		}
 		res=Float.compare(m1, m2);
 		return res ;
-	}
+	}*/
 
 	public int getClassement() {
 		return classement;

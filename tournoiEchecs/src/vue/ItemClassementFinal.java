@@ -90,7 +90,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 	        mapTitre.put("Candidat Maître Masculin", " ");
 	        mapTitre.put("Candidat Maître Féminin", " ");
 	        mapTitre.put("Aucun titre", " ");
-	        
+
 	        mapCategorie.put("Vétéran", "Vet");
 	        mapCategorie.put("Sénior", "Sen");
 	        mapCategorie.put("Junior", "Jun");
@@ -99,8 +99,8 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 	        mapCategorie.put("Benjamin", "Ben");
 	        mapCategorie.put("Pupille", "Pup");
 	        mapCategorie.put("Poussin", "Pou");
-	        mapCategorie.put("Petit Poussin", "Pet");
-	        
+	        mapCategorie.put("Petit Poussin", "Ppo");
+
 	        mapSexe.put("Homme", "M");
 	        mapSexe.put("Femme", "F");
 	}

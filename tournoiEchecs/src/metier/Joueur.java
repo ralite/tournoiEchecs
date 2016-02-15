@@ -242,7 +242,12 @@ public class Joueur {
 	
 	public String getCouleurRonde(int i){
 		String[] res= couleurs.split("/");
-		return res[i];
+		try{
+			return res[i];
+		}
+		catch(Exception e){
+			return "";
+		}
 	}
 
 	public void setClassement(int i) {

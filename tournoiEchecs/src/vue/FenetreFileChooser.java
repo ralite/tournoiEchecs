@@ -12,7 +12,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FenetreFileChooser {
 
-	public static File choisirTournoi(Window owner){
+	public static File choisirDir(Window owner){
 			File fichierAouvrir;
 			try{
 			FileChooser fileChooser = new FileChooser();
@@ -32,7 +32,7 @@ public class FenetreFileChooser {
 
 	}
 
-	public static File EnregistrerTournoi(Window owner){
+	public static File EnregistrerDir(Window owner){
 		File dossierChoisi;
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Enregistrer le tournoi");
