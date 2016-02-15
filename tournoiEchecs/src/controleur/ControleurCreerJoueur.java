@@ -234,7 +234,7 @@ public class ControleurCreerJoueur implements Initializable {
 	        				lb_categorie.setText(Joueur.getCategorieCalculee(dp_dateNaissance.getValue()));
 
 	        				//nouveau elo pré-selectionné
-	        				if(chbx_type.getValue()=="Nouveau")
+	        				if(chbx_type.getValue().equals("Nouveau"))
 	        				{
 	        					tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));
 	        					lb_erreurElo.setText("");
@@ -342,20 +342,6 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(Validation.estChaine(tf_federation))
 			    		{
-			    			/*//si ligue fr
-				            if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
-			            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-			            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
-			            		|| tf_federation.getText().equalsIgnoreCase("France"))
-				        	{
-				        		tf_ligue.setDisable(false); //permettre la saisie
-				        	}else{
-				        		//interdire la saisie
-				        		tf_ligue.setDisable(true);
-				        		tf_ligue.clear();
-				        		tf_ligue.setStyle("-fx-control-inner-background : white; ");
-				        		lb_erreurLigue.setText("");
-				        	}*/
 			    			if(!tf_federation.getText().equalsIgnoreCase("Francaise") && !tf_federation.getText().equalsIgnoreCase("Francais")
 				            		&& !tf_federation.getText().equalsIgnoreCase("Française")&& !tf_federation.getText().equalsIgnoreCase("Français")
 				            		&& !tf_federation.getText().equalsIgnoreCase("Fr") && !tf_federation.getText().equalsIgnoreCase("Fra")
@@ -416,12 +402,6 @@ public class ControleurCreerJoueur implements Initializable {
 		        {
 		        	if(!Validation.estVide(tf_club))
 		            {
-			    		/*if(!Validation.estChaineChiffree(tf_club))
-			    		{
-			    			lb_erreurClub.setText("Saisissez un club valide");
-			    		}else{
-			    			lb_erreurClub.setText("");
-			    		}*/
 		        		lb_erreurClub.setText("");
 		            }else{
 		            	lb_erreurClub.setText("Entrez le club du joueur");
@@ -466,12 +446,7 @@ public class ControleurCreerJoueur implements Initializable {
 
 			String ligue = tf_ligue.getText().toUpperCase();
 
-			int elo ;
-			try{
-				elo=Integer.parseInt(tf_classementElo.getText());
-			}catch(Exception ex){
-				elo=-1;
-			}
+			int elo =Integer.parseInt(tf_classementElo.getText());
 
 			String club = tf_club.getText().substring(0,1).toUpperCase().concat(tf_club.getText().substring(1).toLowerCase());
 
