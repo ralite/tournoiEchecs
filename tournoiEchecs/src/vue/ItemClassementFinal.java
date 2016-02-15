@@ -5,6 +5,7 @@ import metier.Joueur;
 import java.util.HashMap;
 import java.util.Map;
 
+import application.Affichage;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.ContentDisplay;
@@ -35,10 +36,6 @@ public class ItemClassementFinal extends ListCell<Joueur>{
     private final Label perfs = new Label();
 
     private final AnchorPane content = new AnchorPane();
-
-    private final Map<String,String> mapTitre = new HashMap<String,String>();
-    private final Map<String,String> mapSexe = new HashMap<String,String>();
-    private final Map<String,String> mapCategorie = new HashMap<String,String>();
 
 
 	public ItemClassementFinal(){
@@ -81,28 +78,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
 	        AnchorPane.setRightAnchor(gridPane, 0d);
 	        content.getChildren().add(gridPane);
 
-	        mapTitre.put("Maître FIDE Masculin", "f");
-	        mapTitre.put("Maître FIDE Féminin", "f");
-	        mapTitre.put("Maître International Masculin", "m");
-	        mapTitre.put("Maître International Féminin", "m");
-	        mapTitre.put("Grand Maître International Masculin", "g");
-	        mapTitre.put("Grand Maître International Féminin", "g");
-	        mapTitre.put("Candidat Maître Masculin", " ");
-	        mapTitre.put("Candidat Maître Féminin", " ");
-	        mapTitre.put("Aucun titre", " ");
-
-	        mapCategorie.put("Vétéran", "Vet");
-	        mapCategorie.put("Sénior", "Sen");
-	        mapCategorie.put("Junior", "Jun");
-	        mapCategorie.put("Cadet", "Cad");
-	        mapCategorie.put("Minime", "Min");
-	        mapCategorie.put("Benjamin", "Ben");
-	        mapCategorie.put("Pupille", "Pup");
-	        mapCategorie.put("Poussin", "Pou");
-	        mapCategorie.put("Petit Poussin", "Ppo");
-
-	        mapSexe.put("Homme", "M");
-	        mapSexe.put("Femme", "F");
+	        Affichage.chargerMapsGrilleAEtClassements();
 	}
 
 	@Override
@@ -113,10 +89,10 @@ public class ItemClassementFinal extends ListCell<Joueur>{
         setContentDisplay(ContentDisplay.LEFT);
         if (!empty && item != null) {
         	PI.setText(String.valueOf(item.getClassement()));
-        	titre.setText(mapTitre.get(item.getTitre()));
+        	titre.setText(Affichage.mapTitre.get(item.getTitre()));
         	joueur.setText(item.getNomJoueur()+" "+item.getPrenomJoueur());
-        	elo.setText(String.valueOf(item.getElo()));
-        	categorie.setText(mapCategorie.get(item.getCategorie())+mapSexe.get(item.getSexe()));
+        	elo.setText(String.valueOf(item.getElo())+Affichage.mapTypeElo.get(item.getTypeElo()));
+        	categorie.setText(Affichage.mapCategorie.get(item.getCategorie())+Affichage.mapSexe.get(item.getSexe()));
         	federation.setText(item.getFederation());
         	ligue.setText(item.getLigue());
         	club.setText(item.getClub());

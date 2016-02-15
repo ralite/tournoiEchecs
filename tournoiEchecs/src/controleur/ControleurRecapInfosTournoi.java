@@ -16,11 +16,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import application.Affichage;
 import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -34,7 +32,6 @@ import javafx.scene.control.Alert.AlertType;
 import metier.Joueur;
 import metier.Partie;
 import metier.departage.Departage;
-import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
@@ -112,6 +109,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		Affichage.chargerMapsGrilleAEtClassements();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		label_recapNom.setText(ModeleTournoi.getTournoi().getNom());
 		label_recapLieu.setText(ModeleTournoi.getTournoi().getLieu());
@@ -201,9 +199,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
 		if (file != null) {
 			try {
-				final Map<String,String> mapTitre = new HashMap<String,String>();
-				final Map<String,String> mapSexe = new HashMap<String,String>();
-				final Map<String,String> mapCategorie = new HashMap<String,String>();
 
 				mapTitre.put("Maître FIDE Masculin", "f");
 		        mapTitre.put("Maître FIDE Féminin", "f");
@@ -243,8 +238,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		      	Paragraph titre2 = new Paragraph("Liste des participants", catFont);
 		      	titre2.setAlignment(Element.ALIGN_CENTER);
 		      	document.add(titre2);
-
-
 
 		      	document.add(new Paragraph(" "));
 		      	document.add(new Paragraph(" "));
@@ -288,10 +281,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		        int i = 1;
 		        for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
 					table.addCell(Integer.toString(i));
-					table.addCell(mapTitre.get(j.getTitre()) + " " + j.getNomJoueur() + " " + j.getPrenomJoueur());
-					//Ajouter le type ELO
-					table.addCell(Integer.toString(j.getElo()));
-					table.addCell(mapCategorie.get(j.getCategorie())+mapSexe.get(j.getSexe()));
+					table.addCell(Affichage.mapTitre.get(j.getTitre()) + " " + j.getNomJoueur() + " " + j.getPrenomJoueur());
+					table.addCell(Integer.toString(j.getElo()) + " " + Affichage.mapTypeElo.get(j.getTypeElo()));
+					table.addCell(Affichage.mapCategorie.get(j.getCategorie())+Affichage.mapSexe.get(j.getSexe()));
 					table.addCell(j.getFederation());
 					table.addCell(j.getLigue());
 					table.addCell(j.getClub());
