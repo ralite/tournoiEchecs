@@ -199,7 +199,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
 		if (file != null) {
 			try {
-				
+
 				String str = file.getAbsolutePath() + "/ListeJoueur_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
 				Document document = new Document();
 		      	PdfWriter.getInstance(document, new FileOutputStream(str));
@@ -215,28 +215,28 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		      	Paragraph titre2 = new Paragraph("Liste des participants", catFont);
 		      	titre2.setAlignment(Element.ALIGN_CENTER);
 		      	document.add(titre2);
-		        
+
 		      	document.add(new Paragraph(" "));
 		      	document.add(new Paragraph(" "));
-		      	
+
 		      	//table
 		      	PdfPTable table = new PdfPTable(7);
-		      	
+
 		      	float[] columnWidths = new float[] {5f, 40f, 10f, 10f, 15f, 10f, 25f};
 	            table.setWidths(columnWidths);
-		      	
+
 		      	PdfPCell c1 = new PdfPCell(new Phrase("Nr"));
 		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c1);
-		        
+
 		        PdfPCell c2 = new PdfPCell(new Phrase("Nom"));
 		        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c2);
-		        
+
 		        PdfPCell c3 = new PdfPCell(new Phrase("Elo"));
 		        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c3);
-		        
+
 		        PdfPCell c4 = new PdfPCell(new Phrase("Cat."));
 		        c4.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c4);
@@ -244,17 +244,17 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		        PdfPCell c5 = new PdfPCell(new Phrase("Fede"));
 		        c5.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c5);
-		        
+
 		        PdfPCell c6 = new PdfPCell(new Phrase("Ligue"));
 		        c6.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c6);
-		        
+
 		        PdfPCell c7 = new PdfPCell(new Phrase("Club"));
 		        c7.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c7);
-		        
+
 		        table.setHeaderRows(1);
-		        
+
 		        int i = 1;
 		        for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
 					table.addCell(Integer.toString(i));
@@ -266,9 +266,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 					table.addCell(j.getClub());
 					i++;
 				}
-		        
+
 		        document.add(table);
-		        
+
 		      	document.close();
 		    }catch (Exception ex) {
 		    	ex.printStackTrace();
@@ -287,7 +287,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
 			if (file != null) {
 				try {
-					String str = file.getAbsolutePath() + "/Appariement_Ronde " + ModeleTournoi.getTournoi().getNumRondeActuelle()+1 + ".pdf";
+					int nbRondeActuelle = ModeleTournoi.getTournoi().getNumRondeActuelle()+1;
+					String str = file.getAbsolutePath() + "/AppariementRonde" + nbRondeActuelle	+"_"+
+							ModeleTournoi.getTournoi().getNom() + ".pdf";
 					Document document = new Document();
 			      	PdfWriter.getInstance(document, new FileOutputStream(str));
 			      	document.open();
@@ -301,7 +303,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			      	nomTournoi.setAlignment(Element.ALIGN_CENTER);
 			      	document.add(nomTournoi);
 
-			      	Paragraph numRonde = new Paragraph("Ronde numéro "+ModeleTournoi.getTournoi().getNumRondeActuelle()+1, titreFont);
+			      	Paragraph numRonde = new Paragraph("Ronde numéro "+nbRondeActuelle, titreFont);
 			      	numRonde.setAlignment(Element.ALIGN_CENTER);
 			      	document.add(numRonde);
 
@@ -335,7 +337,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 			      		i++;
 			      	}
-			      	
+
 			      	//Affichage exempt
 			      	for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
 			      	{
@@ -357,7 +359,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			    }
 			}
 		}
-		
+
 	}
 
 }

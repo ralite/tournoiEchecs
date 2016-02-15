@@ -342,6 +342,7 @@ public class ControleurCreerJoueur implements Initializable {
 		            {
 			    		if(Validation.estChaine(tf_federation))
 			    		{
+			    			//si ligue non-saisie avec fr pré-saisie
 			    			if(!tf_federation.getText().equalsIgnoreCase("Francaise") && !tf_federation.getText().equalsIgnoreCase("Francais")
 				            		&& !tf_federation.getText().equalsIgnoreCase("Française")&& !tf_federation.getText().equalsIgnoreCase("Français")
 				            		&& !tf_federation.getText().equalsIgnoreCase("Fr") && !tf_federation.getText().equalsIgnoreCase("Fra")
@@ -676,39 +677,33 @@ public class ControleurCreerJoueur implements Initializable {
 
 		/*----------LIGUE----------*/
 
-		//à ne tester que si federation fr
-		/*if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
-			            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-			            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
-			            		|| tf_federation.getText().equalsIgnoreCase("France"))
-		{*/
-			if(Validation.estVide(tf_ligue))
+
+		if(Validation.estVide(tf_ligue))
+		{
+			if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
+            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
+            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
+            		|| tf_federation.getText().equalsIgnoreCase("France") || tf_federation.getText().isEmpty())
 			{
-				if(tf_federation.getText().equalsIgnoreCase("Francaise") || tf_federation.getText().equalsIgnoreCase("Francais")
-	            		|| tf_federation.getText().equalsIgnoreCase("Française")|| tf_federation.getText().equalsIgnoreCase("Français")
-	            		|| tf_federation.getText().equalsIgnoreCase("Fr") || tf_federation.getText().equalsIgnoreCase("Fra")
-	            		|| tf_federation.getText().equalsIgnoreCase("France") || tf_federation.getText().isEmpty())
-				{
-					lb_erreurLigue.setText("Entrez la ligue du joueur");
-					res = false;
-				}else
-				{
-					lb_erreurLigue.setText("");
-					tf_ligue.setStyle("-fx-control-inner-background : white; ");
-				}
+				lb_erreurLigue.setText("Entrez la ligue du joueur");
+				res = false;
 			}else
 			{
-				if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
-				{
-					lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
-					tf_ligue.setStyle("-fx-control-inner-background : red; ");
-					res =false;
-				}else{
-					lb_erreurLigue.setText("");
-					tf_ligue.setStyle("-fx-control-inner-background : white; ");
-				}
+				lb_erreurLigue.setText("");
+				tf_ligue.setStyle("-fx-control-inner-background : white; ");
 			}
-		//}
+		}else
+		{
+			if(!Validation.estChaine(tf_ligue) || tf_ligue.getText().length()!=3)
+			{
+				lb_erreurLigue.setText("Saisissez une ligue valide sous la forme 'AAA'");
+				tf_ligue.setStyle("-fx-control-inner-background : red; ");
+				res =false;
+			}else{
+				lb_erreurLigue.setText("");
+				tf_ligue.setStyle("-fx-control-inner-background : white; ");
+			}
+		}
 
 		/*----------CLUB----------*/
 		if(Validation.estVide(tf_club))
@@ -717,14 +712,6 @@ public class ControleurCreerJoueur implements Initializable {
 			res = false;
 		}else
 		{
-			/*if(!Validation.estChaineChiffree(tf_club))
-			{
-				lb_erreurClub.setText("Saisissez un nom de club valide");
-				res = false;
-			}else
-			{
-				lb_erreurClub.setText("");
-			}*/
 			lb_erreurClub.setText("");
 		}
 
