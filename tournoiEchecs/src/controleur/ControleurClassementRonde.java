@@ -125,7 +125,9 @@ public class ControleurClassementRonde implements Initializable{
 			try {
 				Affichage.chargerMapsGrilleAEtClassements();
 				
-				String str = file.getAbsolutePath() + "/ClassementRonde" + numRonde+1 + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
+				int nb = numRonde + 1;
+				
+				String str = file.getAbsolutePath() + "/ClassementRonde" + nb + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
 				Document document = new Document();
 		      	PdfWriter.getInstance(document, new FileOutputStream(str));
 		      	document.open();
@@ -137,7 +139,7 @@ public class ControleurClassementRonde implements Initializable{
 		      	titre1.setAlignment(Element.ALIGN_CENTER);
 		      	document.add(titre1);
 
-		      	Paragraph titre2 = new Paragraph("Résultats de la ronde " + numRonde+1, catFont);
+		      	Paragraph titre2 = new Paragraph("Résultats de la ronde " + nb, catFont);
 		      	titre2.setAlignment(Element.ALIGN_CENTER);
 		      	document.add(titre2);
 		        
@@ -217,6 +219,17 @@ public class ControleurClassementRonde implements Initializable{
 		        	
 					i++;
 				}
+		        
+		      //Affichage exempt
+		      	for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
+		      	{
+		      		if(j.getCouleurRonde(ModeleTournoi.getTournoi().getNumRondeActuelle()).equals("X"))
+		      		{
+		      			table.addCell(String.valueOf(i));
+		      			table.addCell(j.getNomJoueur()+" "+j.getPrenomJoueur());
+		      			table.addCell("Exempt");
+		      		}
+		      	}
 		        
 		        document.add(table);
 		        
