@@ -113,6 +113,7 @@ public class ControleurAppariement implements Initializable {
 	public void onClickNoir(){
 		if(joueurNoir!=null){
 			itemsJoueursInscrits.add(joueurNoir);
+			joueursTriesParPoints(itemsJoueursInscrits);
 			joueurNoir=null;
 			lb_joueurNoir.setText("");
 		}
@@ -120,7 +121,9 @@ public class ControleurAppariement implements Initializable {
 		if(joueurNoir!=null){
 			lb_joueurNoir.setText(joueurNoir.toString());
 			itemsJoueursInscrits.remove(joueurNoir);
+			lv_joueurInscrit.getSelectionModel().clearSelection();
 		}
+		
 
 	}
 
@@ -128,6 +131,7 @@ public class ControleurAppariement implements Initializable {
 	public void onClickBlanc(){
 		if(joueurBlanc!=null){
 			itemsJoueursInscrits.add(joueurBlanc);
+			joueursTriesParPoints(itemsJoueursInscrits);
 			joueurBlanc=null;
 			lb_joueurBlanc.setText("");
 		}
@@ -135,6 +139,7 @@ public class ControleurAppariement implements Initializable {
 		if(joueurBlanc != null){
 			lb_joueurBlanc.setText(joueurBlanc.toString());
 			itemsJoueursInscrits.remove(joueurBlanc);
+			lv_joueurInscrit.getSelectionModel().clearSelection();
 		}
 	}
 
@@ -225,7 +230,7 @@ public class ControleurAppariement implements Initializable {
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
 			AfficherAlerte("Tous les joueurs ne sont pas appariés !");
 		}
-		else if(itemsJoueursInscrits.size()>1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
+		else if(itemsJoueursInscrits.size()==1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
 				AfficherAlerte("Le joueur a déjà été exempt une fois");
 			}
 		else{
