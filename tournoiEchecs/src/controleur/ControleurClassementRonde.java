@@ -34,30 +34,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class ControleurClassementRonde implements Initializable{
-	
+
 	@FXML
 	ListView<Partie> lv_classement;
-	
+
 	ObservableList<Partie> itemsPartie;
-	
+
 	@FXML
 	Label lb_titre;
-	
+
 	@FXML
 	Button bt_suiv;
-	
+
 	@FXML
 	Button bt_prec;
-	
+
 	private int numRonde;
 	private int numRondeMax;
 
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bt_suiv.setDisable(true);
 		itemsPartie=FXCollections.observableArrayList();
-		
+
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
 			numRonde=ModeleTournoi.getTournoi().getNbRondes()-1;
 		}
@@ -71,9 +71,9 @@ public class ControleurClassementRonde implements Initializable{
 		chargeItems();
 		lv_classement.setItems(itemsPartie);
 		lv_classement.setCellFactory(lv -> new ItemClassementRonde());
-		
+
 	}
-	
+
 	private void chargeItems(){
 		itemsPartie.clear();
 		lb_titre.setText("Résultats de la ronde "+String.valueOf(numRonde+1));
@@ -82,7 +82,7 @@ public class ControleurClassementRonde implements Initializable{
 
 			@Override
 			public int compare(Partie p1, Partie p2) {
-				
+
 				return p2.compareTo(p1);
 			}
 		});*/
@@ -98,7 +98,7 @@ public class ControleurClassementRonde implements Initializable{
 			itemsPartie.get(i).setClassement(i+1);
 		}
 	}
-	
+
 	@FXML
 	public void rondePrecedante(){
 		bt_suiv.setDisable(false);
@@ -106,9 +106,9 @@ public class ControleurClassementRonde implements Initializable{
 		chargeItems();
 		if(numRonde==0)
 			bt_prec.setDisable(true);
-		
+
 	}
-	
+
 	@FXML
 	public void rondeSuivante(){
 		bt_prec.setDisable(false);
@@ -117,17 +117,17 @@ public class ControleurClassementRonde implements Initializable{
 		if(numRonde==numRondeMax)
 			bt_suiv.setDisable(true);
 	}
-	
+
 	@FXML
 	public void actionImprimer(Event e){
 		File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
 		if (file != null) {
 			try {
 				Affichage.chargerMapsGrilleAEtClassements();
-				
+
 				int nb = numRonde + 1;
-				
-				String str = file.getAbsolutePath() + "/ClassementRonde" + nb + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
+
+				String str = file.getAbsolutePath() + "/ResultatsRonde" + nb + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
 				Document document = new Document();
 		      	PdfWriter.getInstance(document, new FileOutputStream(str));
 		      	document.open();
@@ -142,28 +142,28 @@ public class ControleurClassementRonde implements Initializable{
 		      	Paragraph titre2 = new Paragraph("Résultats de la ronde " + nb, catFont);
 		      	titre2.setAlignment(Element.ALIGN_CENTER);
 		      	document.add(titre2);
-		        
+
 		      	document.add(new Paragraph(" "));
 		      	document.add(new Paragraph(" "));
-		      	
+
 		      	//table
 		      	PdfPTable table = new PdfPTable(8);
-		      	
+
 		      	float[] columnWidths = new float[] {13f, 10f, 55f, 20f, 13f, 55f, 20f, 10f};
 	            table.setWidths(columnWidths);
-		      	
+
 		      	PdfPCell c1 = new PdfPCell(new Phrase("Ech"));
 		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c1);
-		        
+
 		        PdfPCell c2 = new PdfPCell(new Phrase("Pts"));
 		        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c2);
-		        
+
 		        PdfPCell c3 = new PdfPCell(new Phrase("Blanc"));
 		        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c3);
-		        
+
 		        PdfPCell c4 = new PdfPCell(new Phrase(""));
 		        c4.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c4);
@@ -171,21 +171,21 @@ public class ControleurClassementRonde implements Initializable{
 		        PdfPCell c5 = new PdfPCell(new Phrase("Res"));
 		        c5.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c5);
-		        
+
 		        PdfPCell c6 = new PdfPCell(new Phrase("Noir"));
 		        c6.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c6);
-		        
+
 		        PdfPCell c7 = new PdfPCell(new Phrase(""));
 		        c7.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c7);
-		        
+
 		        PdfPCell c8 = new PdfPCell(new Phrase("Pts"));
 		        c8.setHorizontalAlignment(Element.ALIGN_CENTER);
 		        table.addCell(c8);
-		        
+
 		        table.setHeaderRows(1);
-		        
+
 		        int i = 1;
 		        for (Partie p : ModeleTournoi.getTournoi().getRonde(numRonde).getListePartie()) {
 					table.addCell(Integer.toString(i));
@@ -201,10 +201,10 @@ public class ControleurClassementRonde implements Initializable{
 		        	table.addCell(Float.toString(scorePrecBlanc));
 		        	table.addCell(p.getNomPrenomJoueurBlanc());
 		        	table.addCell(Integer.toString(p.getJoueurBlanc().getElo()) + " " + Affichage.mapTypeElo.get(p.getJoueurBlanc().getTypeElo()));
-		        	
+
 		        	//Resultat
 		        	table.addCell(Affichage.mapResultat.get(p.getResultat()));
-		        	
+
 		        	//Joueur Noir
 		        	table.addCell(p.getNomPrenomJoueurNoir());
 		        	table.addCell(Integer.toString(p.getJoueurNoir().getElo()) + " " + Affichage.mapTypeElo.get(p.getJoueurNoir().getTypeElo()));
@@ -216,10 +216,10 @@ public class ControleurClassementRonde implements Initializable{
 		        		scorePrecNoir+=-0.5;
 		        	}
 		        	table.addCell(Float.toString(scorePrecNoir));
-		        	
+
 					i++;
 				}
-		        
+
 		        //Affichage exempt
 		        for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
 		      	{
@@ -236,9 +236,9 @@ public class ControleurClassementRonde implements Initializable{
 		      			table.addCell("");
 		      		}
 		      	}
-		        
+
 		        document.add(table);
-		        
+
 		      	document.close();
 		    }catch (Exception ex) {
 		    	ex.printStackTrace();

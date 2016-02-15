@@ -16,7 +16,7 @@
       <Label layoutX="446.0" layoutY="123.0" text="Fede" AnchorPane.leftAnchor="446.0" AnchorPane.rightAnchor="506.0" />
       <Label layoutX="576.0" layoutY="123.0" text="Ligue" AnchorPane.leftAnchor="576.0" AnchorPane.rightAnchor="371.0" />
       <Label layoutX="653.0" layoutY="123.0" text="Club" AnchorPane.leftAnchor="653.0" AnchorPane.rightAnchor="301.0" />
-      <Label layoutX="904.0" layoutY="123.0" text="Cu" AnchorPane.leftAnchor="911.0" AnchorPane.rightAnchor="58.0" />
+      <Label layoutX="904.0" layoutY="123.0" text="Cu." AnchorPane.leftAnchor="911.0" AnchorPane.rightAnchor="58.0" />
       <Label layoutX="932.0" layoutY="123.0" text="Tr." AnchorPane.leftAnchor="936.0" AnchorPane.rightAnchor="35.0" />
       <Label layoutX="958.0" layoutY="123.0" text="Perf" AnchorPane.leftAnchor="958.0" AnchorPane.rightAnchor="1.0" />
       <Label layoutX="874.0" layoutY="123.0" text="Pts" AnchorPane.leftAnchor="882.0" AnchorPane.rightAnchor="85.0" />
@@ -30,5 +30,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Button layoutX="868.0" layoutY="31.0" mnemonicParsing="false" onAction="#actionImprimer" text="Imprimer" />
    </children>
 </AnchorPane>
