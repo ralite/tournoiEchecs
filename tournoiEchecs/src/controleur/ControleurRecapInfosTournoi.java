@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
@@ -270,6 +271,8 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		        document.add(table);
 
 		      	document.close();
+		      	Desktop desk = Desktop.getDesktop();
+		      	desk.open(new File(str));
 		    }catch (Exception ex) {
 		    	ex.printStackTrace();
 		    }
