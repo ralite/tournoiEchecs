@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minWidth="-Infinity" prefHeight="530.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAppariement">
+<AnchorPane minWidth="-Infinity" prefHeight="530.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAppariement">
    <children>
       <ListView fx:id="lv_appariements" layoutX="477.0" layoutY="44.0" prefHeight="258.0" prefWidth="250.0" />
       <Label alignment="CENTER" layoutX="602.0" layoutY="17.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
@@ -43,5 +43,6 @@
          </font>
       </Label>
       <Button layoutX="330.0" layoutY="114.0" mnemonicParsing="false" onAction="#onClickEchanger" prefHeight="0.0" prefWidth="88.0" text="Echanger" wrapText="true" />
+      <Button layoutX="310.0" layoutY="388.0" mnemonicParsing="false" onAction="#calculAppAutomatique" text="Automatique" />
    </children>
 </AnchorPane>

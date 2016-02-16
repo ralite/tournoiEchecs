@@ -299,6 +299,11 @@ public class ControleurAppariement implements Initializable {
 			joueursTriesParPoints(itemsJoueursInscrits);
 		}
 	}
+	
+	@FXML
+	public void calculAppAutomatique(){
+		AppariementAutomatique.calculAppariementAuto(itemsJoueursInscrits, itemsParties);
+	}
 
 	void joueursTriesParPoints(ObservableList<Joueur> data){
 
