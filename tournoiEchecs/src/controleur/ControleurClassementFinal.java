@@ -160,16 +160,48 @@ public class ControleurClassementFinal implements Initializable {
 
 		        table.setHeaderRows(1);
 
-		        //Affichage du classement
-		        for(int j=0;j<12;j++)
-		        {
-		        	table.addCell(Integer.toString(j));
-		        }
+		        int i=1;
+		        for (Joueur j : itemsJoueur) {
+		        	//PI
+					table.addCell(Integer.toString(i));
+
+					//Titre
+					table.addCell(Affichage.mapTitre.get(j.getTitre()));
+
+					//NomPrenom
+					table.addCell(j.getNomJoueur()+" "+j.getPrenomJoueur());
+
+					//ELO+Type
+					table.addCell(Integer.toString(j.getElo()) + " " + Affichage.mapTypeElo.get(j.getTypeElo()));
+
+					//Categorie+Sexe
+					table.addCell(Affichage.mapCategorie.get(j.getCategorie()) + Affichage.mapSexe.get(j.getSexe()));
+
+					//Federation
+					table.addCell(j.getFederation());
+
+					//Ligue
+					table.addCell(j.getLigue());
+
+					//Club
+					table.addCell(j.getClub());
+
+					//Pts
+					table.addCell(Float.toString(j.getScore()));
+
+					//Departages
+					for(int k=0;k<nbDepartages;k++)
+			        {
+				        table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
+			        }
+
+					i++;
+				}
 
 
 
 		      	//      gerer dynamiquement avec nbDepartages
-		      	float[] tailleColonne = new float[] {7f,5f,35f,15f,13f,15f,15f,25f,10f,10f,10f,12f};
+		      	float[] tailleColonne = new float[] {7f,4f,30f,19f,17f,15f,15f,25f,10f,10f,10f,19f};
 	            table.setWidths(tailleColonne);
 
 		        document.add(table);
