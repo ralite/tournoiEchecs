@@ -11,7 +11,9 @@ public abstract class Pdf {
 	public static void affiherPdf(String str){
       	Desktop desk = Desktop.getDesktop();
       	try {
-			desk.open(new File(str));
+      		File f = new File(str);
+			desk.open(f);
+			f.deleteOnExit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
