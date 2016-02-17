@@ -19,22 +19,25 @@ public class AppariementAutomatique {
 
 	private static void calculAppariement(ObservableList<Joueur> joueurs,ObservableList<Partie> parties) {
 		int i=0;
-		int numrondePrec = ModeleTournoi.getTournoi().getNumRondeActuelle()-1;
 		while(joueurs.size()>1){
 			int k = i+1;
-			while (ModeleTournoi.getTournoi().dejaRencontre(joueurs.get(i), joueurs.get(k)) && k<joueurs.size()){
+			while (k<joueurs.size()&& ModeleTournoi.getTournoi().dejaRencontre(joueurs.get(i), joueurs.get(k))){
 				k++;
+				if(k==joueurs.size()){
+					k+=-1;
+					Partie p = parties.get(parties.size()-1);
+					parties.remove(p);
+					parties.add(new Partie(p.getJoueurBlanc(),joueurs.get(i)));
+					joueurs.remove(i);
+					joueurs.add(i, p.getJoueurNoir());
+					break;
+					
+				}
 			}
-			if(joueurs.get(i).getCouleurRonde(numrondePrec).equals("B")&&joueurs.get(i).getCouleurRonde(numrondePrec-1).equals("B"))
-				parties.add(new Partie(joueurs.get(k), joueurs.get(i)));
-			else if(joueurs.get(i).getCouleurRonde(numrondePrec).equals("N")&&joueurs.get(i).getCouleurRonde(numrondePrec-1).equals("N"))
-					parties.add(new Partie(joueurs.get(i), joueurs.get(k)));
-				else if(joueurs.get(k).getCouleurRonde(numrondePrec).equals("B")&&joueurs.get(k).getCouleurRonde(numrondePrec-1).equals("B"))
-						parties.add(new Partie(joueurs.get(i), joueurs.get(k)));
-					else if(joueurs.get(k).getCouleurRonde(numrondePrec).equals("N")&&joueurs.get(k).getCouleurRonde(numrondePrec-1).equals("N"))
-							parties.add(new Partie(joueurs.get(k), joueurs.get(i)));
-						 else
-							 parties.add(new Partie(joueurs.get(i), joueurs.get(k)));
+			if(nbFoisJoueurJoueBlanc(joueurs.get(i))<nbFoisJoueurJoueBlanc(joueurs.get(k)))
+				parties.add(new Partie(joueurs.get(i),joueurs.get(k)));	
+			else
+				parties.add(new Partie(joueurs.get(k),joueurs.get(i)));	
 			joueurs.removeAll(joueurs.get(i),joueurs.get(k));
 			
 			
@@ -75,6 +78,16 @@ public class AppariementAutomatique {
 		}
 		setJoueurExempt(joueurs,parties);
 		
+	}
+	
+	private static int nbFoisJoueurJoueBlanc(Joueur j){
+	  	int compteur = 0;        
+	  	String str =j.getCouleur();
+	  	for (int i = 0; i < str.length(); i++) 
+	    if (str.charAt(i) == 'B') 
+	    	System.out.println(str.charAt(i));
+	       compteur++;                         
+	  	return compteur; 
 	}
 	
 	

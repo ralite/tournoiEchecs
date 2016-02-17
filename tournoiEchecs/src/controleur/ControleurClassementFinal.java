@@ -19,18 +19,16 @@ import application.Affichage;
 import application.Main;
 import vue.FenetreFileChooser;
 import vue.ItemClassementFinal;
+import vue.pdf.PdfClassement;
 import metier.Joueur;
-import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
 
 public class ControleurClassementFinal implements Initializable {
 
@@ -206,6 +204,7 @@ public class ControleurClassementFinal implements Initializable {
 		    	ex.printStackTrace();
 		    }
 		}//else ficher ok
+		PdfClassement.creerPDF(itemsJoueur);
 	}
 
 }

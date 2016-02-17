@@ -42,6 +42,8 @@ import vue.CreationTournoi;
 import vue.FenetreFileChooser;
 import vue.GrilleAmericaine;
 import vue.SaisieResultat;
+import vue.pdf.PdfAppariement;
+import vue.pdf.PdfListeParticipant;
 
 public class ControleurRecapInfosTournoi implements Initializable {
 
@@ -81,10 +83,15 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	private LocalDate dateActuelle =  LocalDate.now();
 
 	public void recapGererJoueurs(Event e){
-
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())){
+			AfficherAlerte("Tournoi déjé commencé");
+		}
+		else {
 			AjouterJoueurTournoi ajt=new AjouterJoueurTournoi(Main.getPrimaryStage());
 			ajt.show();
 			((Node)e.getSource()).getScene().getWindow().hide();
+		}
+			
 	}
 
 	@FXML
@@ -197,86 +204,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void actionImprimerListeParticipants(Event e){
-		File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
-		if (file != null) {
-			try {
-
-				String str = file.getAbsolutePath() + "/ListeJoueur_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
-				Document document = new Document();
-		      	PdfWriter.getInstance(document, new FileOutputStream(str));
-		      	document.open();
-		      	// polices
-		      	Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 13,Font.BOLD);
-
-		      	// lignes
-		      	Paragraph titre1 = new Paragraph(ModeleTournoi.getTournoi().getNom(), catFont);
-		      	titre1.setAlignment(Element.ALIGN_CENTER);
-		      	document.add(titre1);
-
-		      	Paragraph titre2 = new Paragraph("Liste des participants", catFont);
-		      	titre2.setAlignment(Element.ALIGN_CENTER);
-		      	document.add(titre2);
-
-		      	document.add(new Paragraph(" "));
-		      	document.add(new Paragraph(" "));
-
-		      	//table
-		      	PdfPTable table = new PdfPTable(7);
-
-		      	float[] columnWidths = new float[] {5f, 40f, 10f, 10f, 15f, 10f, 25f};
-	            table.setWidths(columnWidths);
-
-		      	PdfPCell c1 = new PdfPCell(new Phrase("Nr"));
-		        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c1);
-
-		        PdfPCell c2 = new PdfPCell(new Phrase("Nom"));
-		        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c2);
-
-		        PdfPCell c3 = new PdfPCell(new Phrase("Elo"));
-		        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c3);
-
-		        PdfPCell c4 = new PdfPCell(new Phrase("Cat."));
-		        c4.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c4);
-
-		        PdfPCell c5 = new PdfPCell(new Phrase("Fede"));
-		        c5.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c5);
-
-		        PdfPCell c6 = new PdfPCell(new Phrase("Ligue"));
-		        c6.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c6);
-
-		        PdfPCell c7 = new PdfPCell(new Phrase("Club"));
-		        c7.setHorizontalAlignment(Element.ALIGN_CENTER);
-		        table.addCell(c7);
-
-		        table.setHeaderRows(1);
-
-		        int i = 1;
-		        for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
-					table.addCell(Integer.toString(i));
-					table.addCell(Affichage.mapTitre.get(j.getTitre()) + " " + j.getNomJoueur() + " " + j.getPrenomJoueur());
-					table.addCell(Integer.toString(j.getElo()) + " " + Affichage.mapTypeElo.get(j.getTypeElo()));
-					table.addCell(Affichage.mapCategorie.get(j.getCategorie())+Affichage.mapSexe.get(j.getSexe()));
-					table.addCell(j.getFederation());
-					table.addCell(j.getLigue());
-					table.addCell(j.getClub());
-					i++;
-				}
-
-		        document.add(table);
-
-		      	document.close();
-		      	Desktop desk = Desktop.getDesktop();
-		      	desk.open(new File(str));
-		    }catch (Exception ex) {
-		    	ex.printStackTrace();
-		    }
-		}
+		PdfListeParticipant.creerPDF();
 	}
 
 	@FXML
@@ -287,80 +215,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			AfficherAlerte("Veuillez préalablement apparier les joueurs !");
 		}else
 		{
-			File file = FenetreFileChooser.EnregistrerDir(Main.getPrimaryStage());
-			if (file != null) {
-				try {
-					int nbRondeActuelle = ModeleTournoi.getTournoi().getNumRondeActuelle()+1;
-					String str = file.getAbsolutePath() + "/AppariementRonde" + nbRondeActuelle	+"_"+
-							ModeleTournoi.getTournoi().getNom() + ".pdf";
-					Document document = new Document();
-			      	PdfWriter.getInstance(document, new FileOutputStream(str));
-			      	document.open();
-
-			      	// polices
-			      	Font titreFont = new Font(Font.FontFamily.TIMES_ROMAN, 13,Font.BOLD);
-			      	Font textFont = new Font(Font.FontFamily.TIMES_ROMAN, 13,Font.NORMAL);
-
-			      	// en-tete
-			      	Paragraph nomTournoi = new Paragraph(ModeleTournoi.getTournoi().getNom(), titreFont);
-			      	nomTournoi.setAlignment(Element.ALIGN_CENTER);
-			      	document.add(nomTournoi);
-
-			      	Paragraph numRonde = new Paragraph("Ronde numéro "+nbRondeActuelle, titreFont);
-			      	numRonde.setAlignment(Element.ALIGN_CENTER);
-			      	document.add(numRonde);
-
-			      	Paragraph espace = new Paragraph(" ", titreFont);
-			      	document.add(espace);
-
-			      	//tables
-			      	PdfPTable table = new PdfPTable(3);
-
-			        PdfPCell c1 = new PdfPCell(new Phrase("Table"));
-			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-			        table.addCell(c1);
-
-			        c1 = new PdfPCell(new Phrase("Joueur BLANC"));
-			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-			        table.addCell(c1);
-
-			        c1 = new PdfPCell(new Phrase("Joueur NOIR"));
-			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-			        table.addCell(c1);
-
-			        table.setHeaderRows(1);
-
-			        //Affichage des appariements
-			        int i=1;
-			      	for(Partie partie : ModeleTournoi.getTournoi().getPartieRondeActuelle())
-			      	{
-			      		table.addCell(String.valueOf(i));
-			      		table.addCell(partie.getNomPrenomJoueurBlanc());
-			      		table.addCell(partie.getNomPrenomJoueurNoir());
-
-			      		i++;
-			      	}
-
-			      	//Affichage exempt
-			      	for(Joueur j : ModeleTournoi.getTournoi().getListeJoueurs())
-			      	{
-			      		if(j.getCouleurRonde(ModeleTournoi.getTournoi().getNumRondeActuelle()).equals("X"))
-			      		{
-			      			table.addCell(String.valueOf(i));
-			      			table.addCell(j.getNomJoueur()+" "+j.getPrenomJoueur());
-			      			table.addCell("EXEMPT");
-			      		}
-			      	}
-
-			      	float[] tailleColonne = new float[] {7f, 30f, 30f,};
-		            table.setWidths(tailleColonne);
-
-			        document.add(table);
-			      	document.close();
-			    }catch (Exception ex) {
-			    	ex.printStackTrace();
-			    }
-			}
+			PdfAppariement.creerPDF();
 		}
 
 	}
