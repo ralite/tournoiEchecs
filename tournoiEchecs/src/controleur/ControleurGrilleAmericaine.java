@@ -5,10 +5,12 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import vue.ItemGrilleAmericaine;
+import vue.pdf.PdfGrilleAmericaine;
 import metier.Joueur;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -63,6 +65,12 @@ public class ControleurGrilleAmericaine implements Initializable {
 			itemsJoueur.get(i).setClassement(i+1);
 		}
 
+	}
+
+	@FXML
+	public void actionImprimer(Event e)
+	{
+		PdfGrilleAmericaine.creerPDF(itemsJoueur);
 	}
 
 }
