@@ -4,6 +4,8 @@ import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class AppariementAutomatique {
 	public static void calculAppariementAuto(ObservableList<Joueur> joueurs, ObservableList<Partie> parties){
@@ -15,30 +17,32 @@ public class AppariementAutomatique {
 
 	private static void calculAppariement(ObservableList<Joueur> joueurs,ObservableList<Partie> parties) {
 		int i=0;
+		boolean appImpossible=false;
 		while(joueurs.size()>1){
 			int k = i+1;
-			while (k<joueurs.size()&& ModeleTournoi.getTournoi().dejaRencontre(joueurs.get(i), joueurs.get(k))){
+			while (k<joueurs.size()&& ModeleTournoi.getTournoi().dejaRencontre(joueurs.get(i), joueurs.get(k))||!appImpossible){
 				k++;
 				if(k==joueurs.size()){
 					k+=-1;
-					Partie p = parties.get(parties.size()-1);
-					parties.remove(p);
-					parties.add(new Partie(p.getJoueurBlanc(),joueurs.get(i)));
-					joueurs.remove(i);
-					joueurs.add(i, p.getJoueurNoir());
-					break;
+					appImpossible=true;
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Erreur");
+					alert.setContentText("Vueillez appairer les joueurs à la main s'il vous plait !");
+					alert.showAndWait();
 
 				}
 			}
-			if(nbFoisJoueurJoueBlanc(joueurs.get(i))<nbFoisJoueurJoueBlanc(joueurs.get(k)))
-				parties.add(new Partie(joueurs.get(i),joueurs.get(k)));
-			else
-				parties.add(new Partie(joueurs.get(k),joueurs.get(i)));
-			joueurs.removeAll(joueurs.get(i),joueurs.get(k));
-
+			if(!appImpossible){
+				if(nbFoisJoueurJoueBlanc(joueurs.get(i))<nbFoisJoueurJoueBlanc(joueurs.get(k)))
+					parties.add(new Partie(joueurs.get(i),joueurs.get(k)));
+				else
+					parties.add(new Partie(joueurs.get(k),joueurs.get(i)));
+				joueurs.removeAll(joueurs.get(i),joueurs.get(k));
+			}
 
 		}
-		setJoueurExempt(joueurs,parties);
+		if(!appImpossible)
+			setJoueurExempt(joueurs,parties);
 
 	}
 
@@ -77,13 +81,13 @@ public class AppariementAutomatique {
 	}
 
 	private static int nbFoisJoueurJoueBlanc(Joueur j){
-	  	int compteur = 0;
-	  	String str =j.getCouleur();
-	  	for (int i = 0; i < str.length(); i++)
-	    if (str.charAt(i) == 'B')
-	    	System.out.println(str.charAt(i));
-	       compteur++;
-	  	return compteur;
+		int compteur = 0;
+		String str =j.getCouleur();
+		for (int i = 0; i < str.length(); i++)
+			if (str.charAt(i) == 'B')
+				System.out.println(str.charAt(i));
+		compteur++;
+		return compteur;
 	}
 
 
