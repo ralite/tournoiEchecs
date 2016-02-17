@@ -43,7 +43,7 @@ public class PdfClassement extends Pdf{
 			//tables
 			//gerer dynamiquement avec nbRonde
 			PdfPTable table = new PdfPTable(12);
-
+			
 			PdfPCell c1 = new PdfPCell(new Phrase("PI"));
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
