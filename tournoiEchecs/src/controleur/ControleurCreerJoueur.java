@@ -294,39 +294,31 @@ public class ControleurCreerJoueur implements Initializable {
 		});
 
 		/*----------TYPE D'ELO----------*/
-		chbx_type.focusedProperty().addListener(new ChangeListener<Boolean>()
-		{
-		    @Override
-		    public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-		    {
-		        if (oldPropertyValue)
-		        {
-		        	if(chbx_type.getValue() == "Nouveau")
-		        	{
-		                tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));//affichage elo initial
-		                tf_classementElo.setDisable(true);
-		                //si ancien mauvais elo pré-saisi
-		                tf_classementElo.setStyle("-fx-control-inner-background : white; ");
-		                lb_erreurElo.setText("");
+		chbx_type.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
+			if(chbx_type.getValue().equals("Nouveau"))
+        	{
+                tf_classementElo.setText(String.valueOf(mapEloInitial.get(lb_categorie.getText())));//affichage elo initial
+                tf_classementElo.setDisable(true);
+                //si ancien mauvais elo pré-saisi
+                tf_classementElo.setStyle("-fx-control-inner-background : white; ");
+                lb_erreurElo.setText("");
 
-	    				//si date de naissance non-saisie
-	    				if(Integer.parseInt(tf_classementElo.getText()) == -1)
-	    				{
-	    					lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial");
-	    					tf_classementElo.setText("Non assigné");
-	    				}
-		        	}else{
-		                tf_classementElo.setDisable(false);
+				//si date de naissance non-saisie
+				if(Integer.parseInt(tf_classementElo.getText()) == -1)
+				{
+					lb_erreurElo.setText("Saisissez une date de naissance pour un ELO initial");
+					tf_classementElo.setText("Non assigné");
+				}
+        	}else{
+                tf_classementElo.setDisable(false);
 
-		                //si elo initial pré-sélectionné
-		                if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
-		                {
-		                	tf_classementElo.setText("");
-		                	lb_erreurElo.setText("");
-		                }
-		        	}
-		        }
-		    }
+                //si elo initial pré-sélectionné
+                if(tf_classementElo.getText().equalsIgnoreCase("Non assigné"))
+                {
+                	tf_classementElo.setText("");
+                	lb_erreurElo.setText("");
+                }
+        	}
 		});
 
 		/*----------FEDERATION----------*/
@@ -630,7 +622,7 @@ public class ControleurCreerJoueur implements Initializable {
 		}
 
 		/*----------CLASSEMENT ELO----------*/
-		if(chbx_type.getValue() != "Nouveau")
+		if(!chbx_type.getValue().equals("Nouveau"))
 		{
 			if(Validation.estVide(tf_classementElo))
 			{
