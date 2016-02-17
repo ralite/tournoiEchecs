@@ -21,7 +21,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfClassement extends Pdf{
 	public static void creerPDF(ObservableList<Joueur> itemsJoueur) {
-
 		try {
 			int nbDepartages = ModeleTournoi.getTournoi().getListeDepartages().size();
 			String str = "ClassementFinal" + "_"+ ModeleTournoi.getTournoi().getNom() + ".pdf";
@@ -98,6 +97,7 @@ public class PdfClassement extends Pdf{
 			for (Joueur j : itemsJoueur) {
 				//PI
 				table.addCell(Integer.toString(i));
+				i++;
 
 				//Titre
 				table.addCell(Affichage.mapTitre.get(j.getTitre()));
@@ -128,14 +128,9 @@ public class PdfClassement extends Pdf{
 				{
 					table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
 				}
-
-				i++;
 			}
 
-
-
-			//      gerer dynamiquement avec nbDepartages
-			float[] tailleColonne = new float[] {7f,4f,30f,19f,17f,15f,15f,25f,10f,10f,10f,19f};
+			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,15f,15f,25f,10f,10f,10f,19f};
 			table.setWidths(tailleColonne);
 
 			document.add(table);
@@ -144,6 +139,6 @@ public class PdfClassement extends Pdf{
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}//else ficher ok
+	}
 
 }
