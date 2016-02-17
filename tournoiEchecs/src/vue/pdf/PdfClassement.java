@@ -19,7 +19,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class PdfClassement extends Pdf{
 	public static void creerPDF(ObservableList<Joueur> itemsJoueur) {
 		try {
-			int nbDepartages = ModeleTournoi.getTournoi().getListeDepartages().size();
+			int i;
 			String str = "ClassementFinal" + "_"+ ModeleTournoi.getTournoi().getNom() + ".pdf";
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(str));
@@ -81,7 +81,7 @@ public class PdfClassement extends Pdf{
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
-			for(int i=0;i<nbDepartages;i++)
+			for(i=0;i<3;i++)
 			{
 				c1 = new PdfPCell(new Phrase(Affichage.mapDepartages.get(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString())));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -90,11 +90,11 @@ public class PdfClassement extends Pdf{
 
 			table.setHeaderRows(1);
 
-			int i=1;
+			int pi=1;
 			for (Joueur j : itemsJoueur) {
 				//PI
-				table.addCell(Integer.toString(i));
-				i++;
+				table.addCell(Integer.toString(pi));
+				pi++;
 
 				//Titre
 				table.addCell(Affichage.mapTitre.get(j.getTitre()));
@@ -121,18 +121,19 @@ public class PdfClassement extends Pdf{
 				table.addCell(Float.toString(j.getScore()));
 
 				//Departages
-				for(int k=0;k<nbDepartages;k++)
+				for(i=0;i<3;i++)
 				{
 					//afficher le réel du departage si c'est la perfELO
-					if(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString().equalsIgnoreCase("perfElo"))
-						table.addCell(String.valueOf((int)j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
+					if(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString().equalsIgnoreCase("perfElo"))
+						table.addCell(String.valueOf((int)j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString())));
 					else
-						table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
+						table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(i).toString())));
 				}
 			}
 
 			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,10f,10f,14f};
 			table.setWidths(tailleColonne);
+			table.setTotalWidth(300);
 
 			document.add(table);
 			document.close();
