@@ -123,11 +123,15 @@ public class PdfClassement extends Pdf{
 				//Departages
 				for(int k=0;k<nbDepartages;k++)
 				{
-					table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
+					//afficher le réel du departage si c'est la perfELO
+					if(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString().equalsIgnoreCase("perfElo"))
+						table.addCell(String.valueOf((int)j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
+					else
+						table.addCell(String.valueOf(j.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(k).toString())));
 				}
 			}
 
-			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,15f,15f,25f,10f,10f,10f,19f};
+			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,10f,10f,14f};
 			table.setWidths(tailleColonne);
 
 			document.add(table);
