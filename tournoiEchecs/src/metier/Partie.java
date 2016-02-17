@@ -1,13 +1,13 @@
 package metier;
 
 public class Partie {
-	
+
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
 	private float scoreBlanc;
 	private float scoreNoir;
-	
-	
+
+
 	public float getScoreJoueurBlancPartie() {
 		return scoreBlanc;
 	}
@@ -24,23 +24,23 @@ public class Partie {
 		this.joueurBlanc = joueurBlanc;
 		this.joueurNoir = joueurNoir;
 	}
-	
+
 	public String getNumLicenceJoueurBlanc(){
 		return joueurBlanc.getNumLicence();
 	}
-	
+
 	public Joueur getJoueurBlanc(){
 		return joueurBlanc;
 	}
-	
+
 	public Joueur getJoueurNoir(){
 		return joueurNoir;
 	}
-	
+
 	public String getNomPrenomJoueurBlanc(){
 		return joueurBlanc.getNomJoueur()+" "+joueurBlanc.getPrenomJoueur();
 	}
-	
+
 	public float getScoreJoueurBlanc(){
 		return joueurBlanc.getScore();
 	}
@@ -48,11 +48,11 @@ public class Partie {
 	public String getNumLicenceJoueurNoir(){
 		return joueurNoir.getNumLicence();
 	}
-	
+
 	public String getNomPrenomJoueurNoir(){
 		return joueurNoir.getNomJoueur()+" "+joueurNoir.getPrenomJoueur();
 	}
-	
+
 	public float getScoreJoueurNoir(){
 		return joueurNoir.getScore();
 	}
@@ -66,59 +66,59 @@ public class Partie {
 
 	public void joueurNoirGagne() {
 		resultat="noirGagne";
-		
+
 	}
 
 	public void joueurBlancGagne() {
 		resultat="blancGagne";
-		
+
 	}
 
 	public void partieNulle() {
 		resultat="partieNulle";
-		
+
 	}
 
 	public void doubleForfait() {
 		resultat="doubleForfait";
-		
+
 	}
 
 	public void joueurBlancForfait() {
 		resultat="blancForfait";
-		
+
 	}
 
 	public void joueurNoirForfait() {
 		resultat="noirForfait";
-		
+
 	}
-	
+
 	public void resutatNonSaisi(){
 		resultat="";
 	}
-	
+
 	public String getResultat() {
 		return resultat;
 	}
-	
+
 
 	public boolean rechercherPartie(String text) {
-		if (joueurBlanc.getNomJoueur().equalsIgnoreCase(text) 
-				|| joueurNoir.getNomJoueur().equalsIgnoreCase(text) 
+		if (joueurBlanc.getNomJoueur().equalsIgnoreCase(text)
+				|| joueurNoir.getNomJoueur().equalsIgnoreCase(text)
 				|| joueurBlanc.getNumLicence().equals(text)
 				||joueurNoir.getNumLicence().equals(text)){
 			return true;
 		}else{
 			return false;
 		}
-		
+
 	}
 
 	public void setCouleurJoueur() {
 		joueurBlanc.joueBlanc();
 		joueurNoir.joueNoir();
-		
+
 	}
 
 	public void setScore() {
@@ -139,7 +139,7 @@ public class Partie {
 	}
 
 	public void setResultat(String resultat2) {
-		resultat=resultat2;	
+		resultat=resultat2;
 	}
 
 	/*public int compareTo(Partie p2) {
@@ -165,17 +165,17 @@ public class Partie {
 
 	public void setClassement(int i) {
 		classement=i;
-		
+
 	}
 
 	public void setScorejoueurBlancPartie(float scoreBlanc) {
 		this.scoreBlanc=scoreBlanc;
-		
-	}	
-	
+
+	}
+
 	public void setScorejoueurNoirPartie(float scoreNoir) {
 		this.scoreNoir=scoreNoir;
-		
+
 	}
 
 	public boolean joueurEstDansPartie(Joueur j) {
