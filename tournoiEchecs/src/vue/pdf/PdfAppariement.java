@@ -1,13 +1,10 @@
 package vue.pdf;
 
-import java.io.File;
 import java.io.FileOutputStream;
 
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
-import vue.FenetreFileChooser;
-import application.Main;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -30,7 +27,6 @@ public class PdfAppariement extends Pdf{
 
 			// polices
 			Font titreFont = new Font(Font.FontFamily.TIMES_ROMAN, 13,Font.BOLD);
-			Font textFont = new Font(Font.FontFamily.TIMES_ROMAN, 13,Font.NORMAL);
 
 			// en-tete
 			Paragraph nomTournoi = new Paragraph(ModeleTournoi.getTournoi().getNom(), titreFont);

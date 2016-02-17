@@ -1,14 +1,11 @@
 package vue.pdf;
 
-import java.io.File;
 import java.io.FileOutputStream;
 
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
-import vue.FenetreFileChooser;
 import application.Affichage;
-import application.Main;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;

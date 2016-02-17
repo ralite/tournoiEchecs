@@ -4,10 +4,8 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import vue.ItemClassementFinal;
 import vue.ItemGrilleAmericaine;
 import metier.Joueur;
-import metier.Partie;
 import modele.ModeleTournoi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,16 +15,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class ControleurGrilleAmericaine implements Initializable {
-	
+
 	@FXML
 	ListView<Joueur> lv_classement;
-	
+
 	@FXML
 	Label lb_titre;
-	
+
 	@FXML
 	Label lb_classement;
-	
+
 	ObservableList<Joueur> itemsJoueur;
 
 	@Override
@@ -64,7 +62,7 @@ public class ControleurGrilleAmericaine implements Initializable {
 		for(int i=0;i<itemsJoueur.size();i++){
 			itemsJoueur.get(i).setClassement(i+1);
 		}
-		
+
 	}
 
 }

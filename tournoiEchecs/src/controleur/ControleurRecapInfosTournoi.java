@@ -1,23 +1,11 @@
 package controleur;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 
 import application.Affichage;
 import application.Main;
@@ -31,7 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import metier.Joueur;
-import metier.Partie;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
@@ -39,7 +26,6 @@ import vue.AppariementJoueur;
 import vue.ClassementFinal;
 import vue.ClassementRonde;
 import vue.CreationTournoi;
-import vue.FenetreFileChooser;
 import vue.GrilleAmericaine;
 import vue.SaisieResultat;
 import vue.pdf.PdfAppariement;
@@ -91,7 +77,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			ajt.show();
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
-			
+
 	}
 
 	@FXML

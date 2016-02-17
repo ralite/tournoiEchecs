@@ -1,10 +1,6 @@
 package vue;
 
 import metier.Joueur;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import application.Affichage;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

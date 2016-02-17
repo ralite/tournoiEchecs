@@ -2,13 +2,9 @@ package vue;
 
 import metier.Joueur;
 import metier.Partie;
-import metier.Ronde;
 import modele.ModeleTournoi;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import application.Affichage;
 import javafx.geometry.HPos;
@@ -41,7 +37,7 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
     private final Label perfs = new Label();
 
     private final AnchorPane content = new AnchorPane();
-    
+
     private int numRonde;
 
 
@@ -50,7 +46,7 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
 			if(numRonde==-1){
 				numRonde=ModeleTournoi.getTournoi().getNbRondes();
 			}
-		
+
 	        GridPane.setConstraints(PI, 0, 0);
 	        GridPane.setConstraints(titre, 1, 0);
 	        GridPane.setConstraints(joueur, 2, 0);

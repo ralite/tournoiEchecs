@@ -1,9 +1,5 @@
 package controleur;
 
-import java.rmi.Remote;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -31,19 +27,19 @@ public class AppariementAutomatique {
 					joueurs.remove(i);
 					joueurs.add(i, p.getJoueurNoir());
 					break;
-					
+
 				}
 			}
 			if(nbFoisJoueurJoueBlanc(joueurs.get(i))<nbFoisJoueurJoueBlanc(joueurs.get(k)))
-				parties.add(new Partie(joueurs.get(i),joueurs.get(k)));	
+				parties.add(new Partie(joueurs.get(i),joueurs.get(k)));
 			else
-				parties.add(new Partie(joueurs.get(k),joueurs.get(i)));	
+				parties.add(new Partie(joueurs.get(k),joueurs.get(i)));
 			joueurs.removeAll(joueurs.get(i),joueurs.get(k));
-			
-			
+
+
 		}
 		setJoueurExempt(joueurs,parties);
-		
+
 	}
 
 	private static void setJoueurExempt(ObservableList<Joueur> joueurs, ObservableList<Partie> parties) {
@@ -53,7 +49,7 @@ public class AppariementAutomatique {
 				Partie p = parties.get(parties.size()-1);
 				parties.remove(p);
 				if(p.getJoueurBlanc().getScore()<p.getJoueurNoir().getScore()){
-					parties.add(new Partie(joueurExempt, p.getJoueurNoir()));					
+					parties.add(new Partie(joueurExempt, p.getJoueurNoir()));
 				}
 				else{
 					parties.add(new Partie(p.getJoueurBlanc(), joueurExempt));
@@ -77,18 +73,18 @@ public class AppariementAutomatique {
 			i++;
 		}
 		setJoueurExempt(joueurs,parties);
-		
+
 	}
-	
+
 	private static int nbFoisJoueurJoueBlanc(Joueur j){
-	  	int compteur = 0;        
+	  	int compteur = 0;
 	  	String str =j.getCouleur();
-	  	for (int i = 0; i < str.length(); i++) 
-	    if (str.charAt(i) == 'B') 
+	  	for (int i = 0; i < str.length(); i++)
+	    if (str.charAt(i) == 'B')
 	    	System.out.println(str.charAt(i));
-	       compteur++;                         
-	  	return compteur; 
+	       compteur++;
+	  	return compteur;
 	}
-	
-	
+
+
 }
