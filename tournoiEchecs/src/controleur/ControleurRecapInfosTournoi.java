@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import application.Affichage;
 import application.Main;
 import javafx.event.Event;
@@ -21,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.MenuItem;
 import metier.Joueur;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
@@ -72,7 +74,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	private LocalDate dateActuelle =  LocalDate.now();
 
 	public void recapGererJoueurs(Event e){
-		if(ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())){
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
+			AfficherAlerte("Le tournoi est fini !");
+		}else if(ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())){
 			AfficherAlerte("Tournoi déjà commencé !");
 		}
 		else {
@@ -89,7 +93,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	}
 
 	public void recapModifierTournoi(Event e){
-		if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb()) || ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())) {
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
+			AfficherAlerte("Le tournoi est fini !");
+		}else if(dateActuelle.isAfter(ModeleTournoi.getTournoi().getDateDeb()) || ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setHeaderText(null);
@@ -127,7 +133,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		}
 		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
 			AfficherAlerte("Le tournoi est fini !");
-
 		}
 		else{
 			if(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()){
@@ -142,7 +147,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	@FXML
 	public void saisirResultat(){
-		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1 || !ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
+		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
+			AfficherAlerte("Le tournoi est fini !");
+		}else if(!ModeleTournoi.getTournoi().getRondeActuelle().isSaisie()){
 			AfficherAlerte("Veuillez préalablement apparier les joueurs !");
 		}
 		else{
@@ -177,6 +184,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	public void grilleAmericaine(){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
 			AfficherAlerte("Aucune ronde terminée");
+		}
+		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()!=-1) {
+			AfficherAlerte("Le tournoi n'est pas terminé !");
 		}
 		else{
 			GrilleAmericaine ga = new GrilleAmericaine(Main.getPrimaryStage());

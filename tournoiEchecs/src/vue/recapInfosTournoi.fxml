@@ -38,14 +38,14 @@
                 <MenuItem mnemonicParsing="false" onAction="#classementRondes" text="Résultats rondes" />
                   <MenuItem mnemonicParsing="false" onAction="#classementFinal" text="Classement actuel" />
                   <MenuItem mnemonicParsing="false" onAction="#grilleAmericaine" text="Grille américaine" />
+                  <Menu mnemonicParsing="false" text="Afficher en PDF">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#actionImprimerListeParticipants" text="La liste des joueurs inscrits" />
+                        <MenuItem mnemonicParsing="false" onAction="#actionImprimerAppariement" text="Les appariements" />
+                    </items>
+                  </Menu>
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Exporter en PDF">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Imprimer la liste des joueurs" />
-                  <MenuItem mnemonicParsing="false" onAction="#actionImprimerAppariement" text="Imprimer les appariements" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Gérer le tournoi">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#recapModifierTournoi" text="Modifier le tournoi" />

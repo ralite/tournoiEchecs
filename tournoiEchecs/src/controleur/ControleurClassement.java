@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import vue.ItemClassement;
+import vue.ItemHeaderCL;
 import vue.pdf.PdfClassement;
 import metier.Joueur;
 import modele.ModeleTournoi;
@@ -19,6 +20,9 @@ import javafx.scene.control.ListView;
 public class ControleurClassement implements Initializable {
 
 	@FXML
+	ListView<String> lv_header;
+	
+	@FXML
 	ListView<Joueur> lv_classement;
 
 	@FXML
@@ -28,6 +32,7 @@ public class ControleurClassement implements Initializable {
 	Label lb_classement;
 
 	ObservableList<Joueur> itemsJoueur;
+	ObservableList<String> itemsHeader;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -36,6 +41,13 @@ public class ControleurClassement implements Initializable {
 			numRonde=ModeleTournoi.getTournoi().getNbRondes();
 		lb_titre.setText(ModeleTournoi.getTournoi().getNom());
 		lb_classement.setText("Classement après la ronde "+numRonde);
+		
+		itemsHeader=FXCollections.observableArrayList();
+		itemsHeader.add("header");
+		lv_header.setStyle("-fx-control-inner-background : grey; ");
+		lv_header.setItems(itemsHeader);
+		lv_header.setCellFactory(lvheader->new ItemHeaderCL());
+		
 		itemsJoueur=FXCollections.observableArrayList();
 		itemsJoueur.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_classement.setItems(itemsJoueur);
