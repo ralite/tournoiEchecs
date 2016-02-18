@@ -42,6 +42,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="690.0" layoutY="31.0" mnemonicParsing="false" onAction="#actionImprimer" text="Afficher le PDF" />
+      <Button layoutX="605.0" layoutY="29.0" mnemonicParsing="false" onAction="#actionImprimer" text="Afficher le PDF" AnchorPane.rightAnchor="134.0" />
+      <Button layoutX="51.0" layoutY="29.0" mnemonicParsing="false" onAction="#actionQuitter" text="Quitter" AnchorPane.leftAnchor="134.0" />
    </children>
 </AnchorPane>

@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
@@ -83,6 +84,11 @@ public class ControleurClassement implements Initializable {
 	public void actionImprimer(Event e)
 	{
 		PdfClassement.creerPDF(itemsJoueur);
+	}
+	
+	@FXML
+	public void actionQuitter(Event e){
+		((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 }
