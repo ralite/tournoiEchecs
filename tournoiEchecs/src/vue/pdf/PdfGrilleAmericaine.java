@@ -128,7 +128,10 @@ public class PdfGrilleAmericaine extends Pdf {
 				{
 					for(Partie partie :ModeleTournoi.getTournoi().getRonde(i).getListePartie()){
 		        		if(partie.joueurEstDansPartie(j)){
-		        			table.addCell(partie.getAffichageGa(j,i));
+		        			if(partie.getAffichageGa(j, i)==null)
+		        				table.addCell(" ");
+		        			else
+		        				table.addCell(partie.getAffichageGa(j,i));
 		        		}
 		        	}
 				}
