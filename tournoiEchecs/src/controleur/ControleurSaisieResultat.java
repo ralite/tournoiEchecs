@@ -60,7 +60,13 @@ public class ControleurSaisieResultat implements Initializable{
 		lv_parties.setCellFactory(lv -> new ItemAppariement());
 		lv_resultats.setItems(itemResultat);
 		lv_resultats.setCellFactory(lv -> new ItemSaisieResultat());
-		itemRechercher = FXCollections.observableArrayList();;
+		itemRechercher = FXCollections.observableArrayList();
+		for (Partie partie : itemPartie) {
+			if(!partie.getResultat().equals("")){
+				itemResultat.add(partie);
+				itemPartie.remove(partie);
+			}
+		}
 	}
 
 	@FXML
