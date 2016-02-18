@@ -3,6 +3,8 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import vue.ItemAppariement;
+import vue.ItemResultatsRonde;
 import vue.ItemSaisieResultat;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -14,8 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
@@ -28,22 +33,74 @@ public class ControleurSaisieResultat implements Initializable{
 	private ListView<Partie> lv_resultats;
 
 	@FXML
+	private ListView<Partie> lv_parties;
+
+	@FXML
 	private TextField tf_recherche;
+
+	@FXML
+	private ChoiceBox<String> cb_res;
+
 
 	private ObservableList<Partie> itemResultat;
 
 	private ObservableList<Partie> itemRechercher;
 
+	private ObservableList<Partie> itemPartie;
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		cb_res.setItems(FXCollections.observableArrayList("Blancs gagnent","Noirs gagnent","Partie nulle","Blancs forfaits","Noirs Forfaits","Double forfait"));
 		label_titreSaisieResultats.setText("Résultats de la ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
 		itemResultat = FXCollections.observableArrayList();
-		itemResultat.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
+		itemPartie = FXCollections.observableArrayList();
+		itemPartie.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
+		lv_parties.setItems(itemPartie);
+		lv_parties.setCellFactory(lv -> new ItemAppariement());
 		lv_resultats.setItems(itemResultat);
 		lv_resultats.setCellFactory(lv -> new ItemSaisieResultat());
-
-		itemRechercher = FXCollections.observableArrayList();
+		itemRechercher = FXCollections.observableArrayList();;
 	}
+
+	@FXML
+	private void validerResultat(){
+		Partie p =lv_parties.getSelectionModel().getSelectedItem();
+		String res = cb_res.getValue();
+		if(res==null || p==null){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Veuillez selectionner une partie et un resultat !");
+			alert.showAndWait();
+		}
+		else{
+			switch (res) {
+			case "Blancs gagnent":
+				p.joueurBlancGagne();
+				break;
+			case "Noirs gagnent":
+				p.joueurNoirGagne();
+				break;
+			case "Partie nulle":
+				p.partieNulle();
+				break;
+			case "Blancs forfaits":
+				p.joueurBlancForfait();
+				break;
+			case "Noirs forfaits":
+				p.joueurNoirForfait();
+				break;
+			case "Double forfait":
+				p.doubleForfait();
+				break;
+			}
+			itemResultat.add(p);
+			itemPartie.remove(p);
+			if(itemRechercher.contains(p)){
+				itemRechercher.remove(p);
+			}
+		}
+	}
+
 
 	@FXML
 	public void validerSaisieResultat(Event e){
@@ -59,7 +116,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	@FXML
 	public void terminerSaisieResultat(Event e){
-		if(!toutesPartiesSaisies()){
+		if(itemPartie.size()>0){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
 			alert.setContentText("Toutes les parties ne sont pas saisies !");
@@ -91,32 +148,29 @@ public class ControleurSaisieResultat implements Initializable{
 
 	}
 
-	private boolean toutesPartiesSaisies(){
-		int i=0;
-		boolean saisie=true;
-		while (i<itemResultat.size() && saisie){
-			if(itemResultat.get(i).getResultat()==null){
-				saisie=false;
-			}
-			i++;
+	@FXML
+	public void retirerPartie(){
+		Partie p =lv_resultats.getSelectionModel().getSelectedItem();
+		if(p!=null){
+			itemResultat.remove(p);
+			itemPartie.add(p);
 		}
-
-		return saisie;
 	}
+
 
 	@FXML
 	public void rechercherPartie(){
 		itemRechercher.clear();
-		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
-		for (Partie partie :itemResultat) {
+		for (Partie partie :itemPartie) {
 			if(partie.rechercherPartie(tf_recherche.getText().toString()))
 				itemRechercher.add(partie);
 		}
-		lv_resultats.setItems(itemRechercher);
+		lv_parties.setItems(itemRechercher);
 	}
 
 	@FXML
 	public void toutesParties(){
-		lv_resultats.setItems(itemResultat);
+		lv_parties.setItems(itemPartie);
 	}
+
 }
