@@ -89,7 +89,7 @@ public class PdfListeParticipant extends Pdf{
 		document.add(table);
 
 		document.close();
-		affiherPdf(str);
+		afficherPdf(str);
 		}
 		catch(Exception e){
 			e.printStackTrace();

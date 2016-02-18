@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public abstract class Pdf {
 
-	public static void affiherPdf(String str){
+	public static void afficherPdf(String str){
       	Desktop desk = Desktop.getDesktop();
       	try {
       		File f = new File(str);
