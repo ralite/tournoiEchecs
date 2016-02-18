@@ -19,7 +19,7 @@
       <Label fx:id="button_recapDeaprtages" layoutX="416.0" layoutY="155.0" text="Départages du tournoi" />
       <Button fx:id="button_recapGererJoueurs" layoutX="26.0" layoutY="405.0" mnemonicParsing="false" onAction="#recapGererJoueurs" prefHeight="25.0" prefWidth="202.0" text="Gérer les joueurs inscrits" />
       <Button layoutX="27.0" layoutY="444.0" mnemonicParsing="false" onAction="#apparierJoueurs" prefHeight="25.0" prefWidth="202.0" text="Apparier les joueurs" />
-      <Button fx:id="button_recapModifierTournoi" layoutX="391.0" layoutY="405.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="170.0" text="Modifier tournoi" />
+      <Button fx:id="button_recapModifierTournoi" layoutX="391.0" layoutY="405.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="170.0" text="Modifier le tournoi" />
       <Label fx:id="lb_recapWarning" layoutX="359.0" layoutY="431.0" prefHeight="17.0" prefWidth="225.0" />
       <Label fx:id="lb_recapDebTournoi" layoutX="393.0" layoutY="37.0" prefHeight="17.0" prefWidth="109.0" text="Début du tournoi :" />
       <Label fx:id="lb_recapFinTournoi" layoutX="393.0" layoutY="60.0" prefHeight="17.0" prefWidth="109.0" text="Fin du tournoi :" />
@@ -33,15 +33,7 @@
       <Label layoutX="26.0" layoutY="116.0" text="Arbitre :" />
       <MenuBar layoutX="1.0" prefHeight="25.0" prefWidth="600.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Gérer Tournoi">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#recapModifierTournoi" text="Modifier tournoi" />
-                  <MenuItem mnemonicParsing="false" onAction="#recapGererJoueurs" text="Gérer les joueurs" />
-                  <MenuItem mnemonicParsing="false" onAction="#apparierJoueurs" text="Apparier les joueurs" />
-                  <MenuItem mnemonicParsing="false" onAction="#saisirResultat" text="Saisir résultats" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Afficher résultats">
+            <Menu mnemonicParsing="false" text="Afficher les résultats">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#classementRondes" text="Résultats rondes" />
                   <MenuItem mnemonicParsing="false" onAction="#classementFinal" text="Classement actuel" />
@@ -50,8 +42,16 @@
             </Menu>
           <Menu mnemonicParsing="false" text="Exporter en PDF">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Imprimer liste joueurs" onAction="#actionImprimerListeParticipants" />
-                  <MenuItem mnemonicParsing="false" onAction="#actionImprimerAppariement" text="Imprimer appariements" />
+                  <MenuItem mnemonicParsing="false" text="Imprimer la liste des joueurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#actionImprimerAppariement" text="Imprimer les appariements" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Gérer le tournoi">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#recapModifierTournoi" text="Modifier le tournoi" />
+                  <MenuItem mnemonicParsing="false" onAction="#recapGererJoueurs" text="Gérer les joueurs inscrits" />
+                  <MenuItem mnemonicParsing="false" onAction="#apparierJoueurs" text="Apparier les joueurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#saisirResultat" text="Saisir les résultats" />
             </items>
           </Menu>
         </menus>
