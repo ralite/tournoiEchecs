@@ -14,7 +14,7 @@ public class ResultatsRonde extends Stage{
 	public ResultatsRonde(Window window) {
 		super();
 		try {
-			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classementRonde.fxml"));
+			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/resultatsRonde.fxml"));
 			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);

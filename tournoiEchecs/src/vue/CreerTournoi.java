@@ -14,7 +14,7 @@ public class CreerTournoi extends Stage{
 	public CreerTournoi(Window window) {
 		super();
 		try {
-			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/creationTournoi.fxml"));
+			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/creerTournoi.fxml"));
 			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);
