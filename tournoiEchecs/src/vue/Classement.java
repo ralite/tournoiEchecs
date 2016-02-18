@@ -14,7 +14,7 @@ public class Classement extends Stage{
 	public Classement(Window window) {
 		super();
 		try {
-			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classementFinal.fxml"));
+			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classement.fxml"));
 			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);
