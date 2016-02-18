@@ -168,12 +168,12 @@ public class ControleurAppariement implements Initializable {
 		if(joueurBlanc == null || joueurNoir==null){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Selectionnez deux joueurs à apparier !");
+			alert.setContentText("Sélectionnez deux joueurs à apparier !");
 			alert.showAndWait();
 		}
 		if( joueurBlanc != null && joueurNoir!=null){
 			if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
-				AfficherAlerte("Ces deux joueurs ont déjà joués ensemble !");
+				AfficherAlerte("Ces deux joueurs ont déjà joué ensemble !");
 
 			}
 			else{
@@ -234,10 +234,10 @@ public class ControleurAppariement implements Initializable {
 	@FXML
 	public void actionLancerRonde(Event e){
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
-			AfficherAlerte("Tous les joueurs ne sont pas appariés !");
+			AfficherAlerte("Tout les joueurs ne sont pas appariés !");
 		}
 		else if(itemsJoueursInscrits.size()==1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
-				AfficherAlerte("Le joueur a déjà été exempt une fois");
+				AfficherAlerte("Le joueur a déjà été exempt une fois !");
 			}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
