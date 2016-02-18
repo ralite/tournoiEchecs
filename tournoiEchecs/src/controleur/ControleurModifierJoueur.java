@@ -80,18 +80,25 @@ public class ControleurModifierJoueur implements Initializable{
 			lb_info.setText("Veuillez sélectionner un joueur");
 		}
 		else{
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Suppression joueur");
-			alert.setContentText("Voulez-vous vraiment supprimer ce joueur ?\n( Attention ce joueur n'apparaîtra plus dans les tournois où il était inscrit !)");
-			alert.showAndWait();
-			if(alert.getResult().getText().equals("OK")){
-				ModeleJoueur.supprimerJoueur(joueurSelectionné);
-				JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
-				((Node)e.getSource()).getScene().getWindow().hide();
+			if(joueurSelectionné.isDansTournoi()){
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erreur suppression joueur");
+				alert.setContentText("Ce joueur est inscrit dans un ou plusieurs tournoi, vous ne pouvez donc pas le supprimer !");
+				alert.showAndWait();
 			}else{
-				data.clear();
-				tf_recherche.clear();
-			}
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Suppression joueur");
+				alert.setContentText("Voulez-vous vraiment supprimer ce joueur ?\n");
+				alert.showAndWait();
+				if(alert.getResult().getText().equals("OK")){
+					ModeleJoueur.supprimerJoueur(joueurSelectionné);
+					JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+					((Node)e.getSource()).getScene().getWindow().hide();
+				}else{
+					data.clear();
+					tf_recherche.clear();
+				}				
+			}	
 		}
 	}
 

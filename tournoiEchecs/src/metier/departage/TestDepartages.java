@@ -61,10 +61,10 @@ public class TestDepartages {
 		t = new Tournoi("test", "ici", LocalDate.parse("2016-05-02"), LocalDate.parse("2016-05-10"), "moi", 5, "Blitz");
 		ModeleTournoi.ajouterTournoi(t);
 		
-		j1 = new Joueur("A11111", "dfbgdfjgbgg", "fdbdfjb", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 1500, "FIDE", "Senegal", "Benjamin", "MTP");
-		j2 = new Joueur("B11111", "fnb", "fdbdfgfjb", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 1700, "FIDE", "Senegal", "Benjamin", "MTP");
-		j3 = new Joueur("C11111", "gfgfgffg", "egt", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 2000, "FIDE", "Senegal", "Benjamin", "MTP");
-		j4 = new Joueur("D11111", "sd", "dfh", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 700, "FIDE", "Senegal", "Benjamin", "MTP");
+		j1 = new Joueur("A11111", "dfbgdfjgbgg", "fdbdfjb", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 1500, "FIDE", "Senegal", "Benjamin", "MTP",true);
+		j2 = new Joueur("B11111", "fnb", "fdbdfgfjb", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 1700, "FIDE", "Senegal", "Benjamin", "MTP",true);
+		j3 = new Joueur("C11111", "gfgfgffg", "egt", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 2000, "FIDE", "Senegal", "Benjamin", "MTP",true);
+		j4 = new Joueur("D11111", "sd", "dfh", "Masculin", LocalDate.parse("1994-10-27"), "Aucun titre", "CBV", 700, "FIDE", "Senegal", "Benjamin", "MTP",true);
 		t.setRondeActuelle(1);
 		t.AddJoueur(j1);
 		t.AddJoueur(j2);
