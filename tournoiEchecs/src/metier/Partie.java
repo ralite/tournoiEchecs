@@ -186,7 +186,7 @@ public class Partie {
 	}
 
 	public String getAffichageGa(Joueur joueur, int i) {
-		String resAff=null;
+		String resAff="";
 		if(joueur==joueurBlanc){
 			if(resultat.equals("blancGagne")|| resultat.equals("noirForfait")){
 				resAff+="+";
