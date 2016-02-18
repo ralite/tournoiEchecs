@@ -1,7 +1,6 @@
 package modele;
 
 import metier.Joueur;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,8 +22,8 @@ public class ModeleJoueur {
 			return joueurAmodifier;
 		}
 
-		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club ) {
-			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue, elo, typeElo, federation, categorie,club));
+		public static void creerJoueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
+			collectionJoueurs.add(new Joueur(numLicence,nomJoueur,prenomJoueur,sexe,dateNaissance,titre, ligue, elo, typeElo, federation, categorie,club,false));
 		}
 
 		public static void ajouterJoueur(Joueur j) {
@@ -85,7 +84,8 @@ public class ModeleJoueur {
 			}
 		}
 
-
-
-
+		public static void modifDansTournoi(String numJoueur,boolean isDansTournoi){
+			Joueur j = rechercherJoueur(numJoueur);
+			j.setDansTournoi(true);
+		}
 }
