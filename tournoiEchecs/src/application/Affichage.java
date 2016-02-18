@@ -46,6 +46,7 @@ public class Affichage {
 		mapResultat.put("blancForfait", "F-1");
 		mapResultat.put("noirForfait", "1-F");
 		mapResultat.put("EXEMPT", "1-F");
+		mapResultat.put("doubleForfait", "F-F");
 
 		mapDepartages.put("Cumulatif", "Cu.");
 		mapDepartages.put("Buchholz", "Tr.");
