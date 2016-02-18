@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import vue.ItemGrilleAmericaine;
+import vue.ItemHeaderGA;
 import vue.pdf.PdfGrilleAmericaine;
 import metier.Joueur;
 import modele.ModeleTournoi;
@@ -19,6 +20,9 @@ import javafx.scene.control.ListView;
 public class ControleurGrilleAmericaine implements Initializable {
 
 	@FXML
+	ListView<String> lv_header;
+	
+	@FXML
 	ListView<Joueur> lv_classement;
 
 	@FXML
@@ -28,14 +32,23 @@ public class ControleurGrilleAmericaine implements Initializable {
 	Label lb_classement;
 
 	ObservableList<Joueur> itemsJoueur;
-
+	ObservableList<String> itemsHeader;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		int numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle();
 		if(numRonde==-1)
 			numRonde=ModeleTournoi.getTournoi().getNbRondes();
 		lb_titre.setText(ModeleTournoi.getTournoi().getNom());
 		lb_classement.setText("Grille américaine après la ronde "+numRonde);
+		
+		itemsHeader=FXCollections.observableArrayList();
+		itemsHeader.add("header");
+		lv_header.setStyle("-fx-control-inner-background : grey; ");
+		lv_header.setItems(itemsHeader);
+		lv_header.setCellFactory(lvheader->new ItemHeaderGA());
+		
 		itemsJoueur=FXCollections.observableArrayList();
 		itemsJoueur.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_classement.setItems(itemsJoueur);

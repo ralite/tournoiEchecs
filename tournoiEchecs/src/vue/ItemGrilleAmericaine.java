@@ -32,9 +32,9 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
     private final Label ligue = new Label();
     private final ArrayList<Label> rondes = new ArrayList<>();
     private final Label score = new Label();
-    private final Label cumulatif = new Label();
-    private final Label trs = new Label();
-    private final Label perfs = new Label();
+    private final Label dep1 = new Label();
+    private final Label dep2 = new Label();
+    private final Label dep3 = new Label();
 
     private final AnchorPane content = new AnchorPane();
 
@@ -60,9 +60,9 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
 	        	GridPane.setConstraints(rondes.get(i-7), i, 0);
 			}
 	        GridPane.setConstraints(score, i, 0);
-	        GridPane.setConstraints(cumulatif, i+1, 0);
-	        GridPane.setConstraints(trs, i+2, 0);
-	        GridPane.setConstraints(perfs,i+3, 0);
+	        GridPane.setConstraints(dep1, i+1, 0);
+	        GridPane.setConstraints(dep2, i+2, 0);
+	        GridPane.setConstraints(dep3,i+3, 0);
 
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(5, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
@@ -84,7 +84,7 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
 
 	        gridPane.setHgap(2);
 	        gridPane.setVgap(8);
-	        gridPane.getChildren().setAll(PI,titre,joueur, elo, categorie,federation,ligue,score,cumulatif,trs,perfs);
+	        gridPane.getChildren().setAll(PI,titre,joueur, elo, categorie,federation,ligue,score,dep1,dep2,dep3);
 	        for (int j =0;j<numRonde;j++) {
 	        	gridPane.getChildren().add(rondes.get(j));
 			}
@@ -120,16 +120,13 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
 	        	}
 			}
         	score.setText(String.valueOf(item.getScore()));
-        	cumulatif.setText(String.valueOf(item.getPointsDepartage("Cumulatif")));
-        	trs.setText(String.valueOf(item.getPointsDepartage("Buchholz")));
-        	perfs.setText(String.valueOf((int)item.getPointsDepartage("PerfElo")));
+        	dep1.setText(String.valueOf(item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(0).toString())));
+        	dep2.setText(String.valueOf(item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(1).toString())));
+        	dep3.setText(String.valueOf((int)item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(2).toString())));
 
             setText(null);
             setGraphic(content);
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         }
     }
-
-
-
 }

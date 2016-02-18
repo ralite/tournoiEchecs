@@ -1,6 +1,7 @@
 package vue;
 
 import metier.Joueur;
+import modele.ModeleTournoi;
 import application.Affichage;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -27,9 +28,9 @@ public class ItemClassement extends ListCell<Joueur>{
     private final Label ligue = new Label();
     private final Label club = new Label();
     private final Label score = new Label();
-    private final Label cumulatif = new Label();
-    private final Label trs = new Label();
-    private final Label perfs = new Label();
+    private final Label dep1 = new Label();
+    private final Label dep2 = new Label();
+    private final Label dep3 = new Label();
 
     private final AnchorPane content = new AnchorPane();
 
@@ -45,9 +46,9 @@ public class ItemClassement extends ListCell<Joueur>{
 	        GridPane.setConstraints(ligue, 6, 0);
 	        GridPane.setConstraints(club, 7, 0);
 	        GridPane.setConstraints(score, 8, 0);
-	        GridPane.setConstraints(cumulatif, 9, 0);
-	        GridPane.setConstraints(trs, 10, 0);
-	        GridPane.setConstraints(perfs, 11, 0);
+	        GridPane.setConstraints(dep1, 9, 0);
+	        GridPane.setConstraints(dep2, 10, 0);
+	        GridPane.setConstraints(dep3, 11, 0);
 
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(5, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
@@ -58,8 +59,8 @@ public class ItemClassement extends ListCell<Joueur>{
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(50, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(200, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
-	        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
-	        gridPane.getColumnConstraints().add(new ColumnConstraints(20, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
+	        gridPane.getColumnConstraints().add(new ColumnConstraints(30, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
+	        gridPane.getColumnConstraints().add(new ColumnConstraints(30, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 	        gridPane.getColumnConstraints().add(new ColumnConstraints(30, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.RIGHT, true));
 
 
@@ -67,7 +68,7 @@ public class ItemClassement extends ListCell<Joueur>{
 
 	        gridPane.setHgap(2);
 	        gridPane.setVgap(8);
-	        gridPane.getChildren().setAll(PI,titre,joueur, elo, categorie,federation,ligue,club,score,cumulatif,trs,perfs);
+	        gridPane.getChildren().setAll(PI,titre,joueur, elo, categorie,federation,ligue,club,score,dep1,dep2,dep3);
 	        AnchorPane.setTopAnchor(gridPane, 0d);
 	        AnchorPane.setLeftAnchor(gridPane, 0d);
 	        AnchorPane.setBottomAnchor(gridPane, 0d);
@@ -93,9 +94,9 @@ public class ItemClassement extends ListCell<Joueur>{
         	ligue.setText(item.getLigue());
         	club.setText(item.getClub());
         	score.setText(String.valueOf(item.getScore()));
-        	cumulatif.setText(String.valueOf(item.getPointsDepartage("Cumulatif")));
-        	trs.setText(String.valueOf(item.getPointsDepartage("Buchholz")));
-        	perfs.setText(String.valueOf((int)item.getPointsDepartage("PerfElo")));
+        	dep1.setText(String.valueOf(item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(0).toString())));
+        	dep2.setText(String.valueOf(item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(1).toString())));
+        	dep3.setText(String.valueOf((int)item.getPointsDepartage(ModeleTournoi.getTournoi().getListeDepartages().get(2).toString())));
 
             setText(null);
             setGraphic(content);
