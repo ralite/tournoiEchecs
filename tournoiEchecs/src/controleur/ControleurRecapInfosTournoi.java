@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import application.Affichage;
 import application.Main;
 import javafx.event.Event;
@@ -21,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.MenuItem;
 import metier.Joueur;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
@@ -177,6 +179,9 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	public void grilleAmericaine(){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
 			AfficherAlerte("Aucune ronde terminée");
+		}
+		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()!=-1) {
+			AfficherAlerte("Le tournoi n'est pas terminé !");
 		}
 		else{
 			GrilleAmericaine ga = new GrilleAmericaine(Main.getPrimaryStage());
