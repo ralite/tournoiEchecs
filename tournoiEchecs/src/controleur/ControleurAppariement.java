@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import application.AppariementAutomatique;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;

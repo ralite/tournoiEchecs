@@ -25,7 +25,7 @@ import metier.departage.Departage;
 import modele.ModeleTournoi;
 import modele.xml.TournoiXML;
 
-public class ControleurFenetreTournoi implements Initializable {
+public class ControleurCreerTournoi implements Initializable {
 
 	private ObservableList<Departage> items;
 

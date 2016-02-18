@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import vue.ItemClassementFinal;
+import vue.ItemClassement;
 import vue.pdf.PdfClassement;
 import metier.Joueur;
 import modele.ModeleTournoi;
@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-public class ControleurClassementFinal implements Initializable {
+public class ControleurClassement implements Initializable {
 
 	@FXML
 	ListView<Joueur> lv_classement;
@@ -39,7 +39,7 @@ public class ControleurClassementFinal implements Initializable {
 		itemsJoueur=FXCollections.observableArrayList();
 		itemsJoueur.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
 		lv_classement.setItems(itemsJoueur);
-		lv_classement.setCellFactory(lv->new ItemClassementFinal());
+		lv_classement.setCellFactory(lv->new ItemClassement());
 		ModeleTournoi.getTournoi().calculerDepartagesJoueurs();
 		FXCollections.sort(itemsJoueur, new Comparator<Joueur>() {
 
