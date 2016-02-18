@@ -6,9 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="599.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurSaisieResultat">
+<AnchorPane prefHeight="599.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurSaisieResultat">
    <children>
-      <ListView fx:id="lv_resultats" layoutX="14.0" layoutY="146.0" prefHeight="400.0" prefWidth="732.0" />
       <Button layoutX="557.0" layoutY="559.0" mnemonicParsing="false" onAction="#validerSaisieResultat" text="Valider" />
       <Button layoutX="433.0" layoutY="57.0" mnemonicParsing="false" onAction="#rechercherPartie" prefHeight="39.0" prefWidth="123.0" text="Rechercher" />
       <TextField fx:id="tf_recherche" layoutX="14.0" layoutY="57.0" prefHeight="39.0" prefWidth="417.0" />
@@ -29,5 +28,10 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <ListView fx:id="lv_parties" layoutX="23.0" layoutY="192.0" prefHeight="344.0" prefWidth="240.0" />
+      <ListView fx:id="lv_resultats" layoutX="484.0" layoutY="192.0" prefHeight="344.0" prefWidth="328.0" />
+      <ChoiceBox fx:id="cb_res" layoutX="301.0" layoutY="212.0" prefHeight="39.0" prefWidth="163.0" />
+      <Button layoutX="301.0" layoutY="290.0" mnemonicParsing="false" onAction="#validerResultat" text="Valider le resultat" />
+      <Button layoutX="335.0" layoutY="407.0" mnemonicParsing="false" onAction="#retirerPartie" text="Retirer" />
    </children>
 </AnchorPane>
