@@ -75,7 +75,7 @@ public class ControleurSaisieResultat implements Initializable{
 		String res = cb_res.getValue();
 		if(res==null || p==null){
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setContentText("Veuillez selectionner une partie et un resultat !");
+			alert.setContentText("Veuillez sélectionner une partie et un résultat !");
 			alert.showAndWait();
 		}
 		else{

@@ -97,7 +97,7 @@ public class AppariementAutomatique {
 		appImpossible=true;
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Erreur");
-		alert.setContentText("Vueillez appairer les joueurs à la main s'il vous plait !");
+		alert.setContentText("Veuillez apparier les joueurs à la main s'il vous plait !");
 		alert.showAndWait();
 		return appImpossible;
 	}
@@ -106,8 +106,6 @@ public class AppariementAutomatique {
 		int j=joueurs.size()/2;
 		int i=0;
 		while(i<joueurs.size()/2 && j<joueurs.size()){
-			System.out.println(i);
-			System.out.println(j);
 			parties.add(new Partie(joueurs.get(i), joueurs.get(j)));
 			j++;
 			i++;
@@ -121,8 +119,7 @@ public class AppariementAutomatique {
 		String str =j.getCouleur();
 		for (int i = 0; i < str.length(); i++)
 			if (str.charAt(i) == 'B')
-				System.out.println(str.charAt(i));
-		compteur++;
+				compteur++;
 		return compteur;
 	}
 
