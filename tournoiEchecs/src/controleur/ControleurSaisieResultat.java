@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControleurSaisieResultat implements Initializable{
-	
+
 	@FXML
 	private Label label_titreSaisieResultats;
 
@@ -46,9 +46,15 @@ public class ControleurSaisieResultat implements Initializable{
 	}
 
 	@FXML
-	public void validerSaisieResultat(){
+	public void validerSaisieResultat(Event e){
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("L'appariement a bien été sauvegardé !");
+		alert.showAndWait();
+		if(alert.getResult().getText().equals("OK"))
+			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@FXML
@@ -68,7 +74,7 @@ public class ControleurSaisieResultat implements Initializable{
 				for (Partie partie : itemResultat) {
 					partie.setScore();
 				}
-				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat); 
+				ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(false);
 				if(ModeleTournoi.getTournoi().getNumRondeActuelle()+1<ModeleTournoi.getTournoi().getNbRondes()){
 					ModeleTournoi.getTournoi().rondeSuivante();
