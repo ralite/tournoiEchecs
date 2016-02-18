@@ -5,36 +5,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRecapInfosTournoi">
    <children>
-      <Label fx:id="label_recapNom" layoutX="79.0" layoutY="7.0" prefHeight="17.0" prefWidth="303.0" text="label" />
-      <Label fx:id="label_recapLieu" layoutX="79.0" layoutY="46.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
-      <Label fx:id="label_recapArbitre" layoutX="79.0" layoutY="85.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
-      <Label fx:id="label_recapDateDeb" layoutX="526.0" layoutY="6.0" text="Label" />
-      <Label fx:id="label_recapDateFin" layoutX="526.0" layoutY="29.0" text="Label" />
-      <Label fx:id="label_recapNbRondes" layoutX="526.0" layoutY="66.0" text="Label" />
-      <ListView fx:id="lv_recapJoueursInscrits" layoutX="26.0" layoutY="144.0" prefHeight="218.0" prefWidth="202.0" />
-      <ListView fx:id="lv_recapDepartagesChoisis" layoutX="392.0" layoutY="144.0" prefHeight="218.0" prefWidth="170.0" />
-      <Label fx:id="label_joueursInscrits" layoutX="87.0" layoutY="124.0" text="Joueurs inscrits" />
-      <Label fx:id="button_recapDeaprtages" layoutX="416.0" layoutY="124.0" text="Départages du tournoi" />
-      <Button fx:id="button_recapGererJoueurs" layoutX="26.0" layoutY="374.0" mnemonicParsing="false" onAction="#recapGererJoueurs" prefHeight="25.0" prefWidth="202.0" text="Gérer les joueurs inscrits" />
-      <Button layoutX="115.0" layoutY="430.0" mnemonicParsing="false" onAction="#apparierJoueurs" prefHeight="25.0" prefWidth="202.0" text="Apparier les joueurs" />
-      <Button fx:id="button_recapModifierTournoi" layoutX="391.0" layoutY="374.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="170.0" text="Modifier tournoi" />
-      <Label fx:id="lb_recapWarning" layoutX="359.0" layoutY="400.0" prefHeight="17.0" prefWidth="225.0" />
-      <Label fx:id="lb_recapDebTournoi" layoutX="393.0" layoutY="6.0" prefHeight="17.0" prefWidth="109.0" text="Début du tournoi :" />
-      <Label fx:id="lb_recapFinTournoi" layoutX="393.0" layoutY="29.0" prefHeight="17.0" prefWidth="109.0" text="Fin du tournoi :" />
-      <Label fx:id="lb_recapRondes" layoutX="393.0" layoutY="65.0" prefHeight="17.0" prefWidth="109.0" text="Nombre de rondes :" />
-      <Label fx:id="lb_recapCadenceJeu" layoutX="393.0" layoutY="90.0" prefHeight="17.0" prefWidth="109.0" text="Cadence de jeu :" />
-      <Label fx:id="lb_recapCadenceDeJeu" layoutX="526.0" layoutY="90.0" text="Label" />
-      <Button layoutX="534.0" layoutY="534.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
-      <Button layoutX="347.0" layoutY="430.0" mnemonicParsing="false" onAction="#saisirResultat" text="Saisir les résultats" />
-      <Label layoutX="26.0" layoutY="7.0" text="Nom :" />
-      <Label layoutX="26.0" layoutY="46.0" text="Lieu :" />
-      <Label layoutX="26.0" layoutY="85.0" text="Arbitre :" />
-      <Button layoutX="115.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementRondes" prefHeight="25.0" prefWidth="202.0" text="Résultats de la ronde" />
-      <Button layoutX="347.0" layoutY="491.0" mnemonicParsing="false" onAction="#classementFinal" prefHeight="25.0" prefWidth="109.0" text="Classement final" />
-      <Button layoutX="115.0" layoutY="534.0" mnemonicParsing="false" onAction="#grilleAmericaine" prefHeight="25.0" prefWidth="340.0" text="Grille americaine" />
-      <Button layoutX="250.0" layoutY="284.0" mnemonicParsing="false" onAction="#actionImprimerListeParticipants" prefHeight="25.0" prefWidth="100.0" text="Imprimer liste joueurs" />
-      <Button layoutX="250.0" layoutY="337.0" mnemonicParsing="false" onAction="#actionImprimerAppariement" prefHeight="25.0" prefWidth="100.0" text="Imprimer Appariement" />
+      <Label fx:id="label_recapNom" layoutX="79.0" layoutY="38.0" prefHeight="17.0" prefWidth="303.0" text="label" />
+      <Label fx:id="label_recapLieu" layoutX="79.0" layoutY="77.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
+      <Label fx:id="label_recapArbitre" layoutX="79.0" layoutY="116.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
+      <Label fx:id="label_recapDateDeb" layoutX="526.0" layoutY="37.0" text="Label" />
+      <Label fx:id="label_recapDateFin" layoutX="526.0" layoutY="60.0" text="Label" />
+      <Label fx:id="label_recapNbRondes" layoutX="526.0" layoutY="97.0" text="Label" />
+      <ListView fx:id="lv_recapJoueursInscrits" layoutX="26.0" layoutY="175.0" prefHeight="218.0" prefWidth="202.0" />
+      <ListView fx:id="lv_recapDepartagesChoisis" layoutX="392.0" layoutY="175.0" prefHeight="218.0" prefWidth="170.0" />
+      <Label fx:id="label_joueursInscrits" layoutX="87.0" layoutY="155.0" text="Joueurs inscrits" />
+      <Label fx:id="button_recapDeaprtages" layoutX="416.0" layoutY="155.0" text="Départages du tournoi" />
+      <Button fx:id="button_recapGererJoueurs" layoutX="26.0" layoutY="405.0" mnemonicParsing="false" onAction="#recapGererJoueurs" prefHeight="25.0" prefWidth="202.0" text="Gérer les joueurs inscrits" />
+      <Button layoutX="27.0" layoutY="444.0" mnemonicParsing="false" onAction="#apparierJoueurs" prefHeight="25.0" prefWidth="202.0" text="Apparier les joueurs" />
+      <Button fx:id="button_recapModifierTournoi" layoutX="391.0" layoutY="405.0" mnemonicParsing="false" onAction="#recapModifierTournoi" prefHeight="25.0" prefWidth="170.0" text="Modifier tournoi" />
+      <Label fx:id="lb_recapWarning" layoutX="359.0" layoutY="431.0" prefHeight="17.0" prefWidth="225.0" />
+      <Label fx:id="lb_recapDebTournoi" layoutX="393.0" layoutY="37.0" prefHeight="17.0" prefWidth="109.0" text="Début du tournoi :" />
+      <Label fx:id="lb_recapFinTournoi" layoutX="393.0" layoutY="60.0" prefHeight="17.0" prefWidth="109.0" text="Fin du tournoi :" />
+      <Label fx:id="lb_recapRondes" layoutX="393.0" layoutY="96.0" prefHeight="17.0" prefWidth="109.0" text="Nombre de rondes :" />
+      <Label fx:id="lb_recapCadenceJeu" layoutX="393.0" layoutY="121.0" prefHeight="17.0" prefWidth="109.0" text="Cadence de jeu :" />
+      <Label fx:id="lb_recapCadenceDeJeu" layoutX="526.0" layoutY="121.0" text="Label" />
+      <Button layoutX="534.0" layoutY="509.0" mnemonicParsing="false" onAction="#fermerRecap" text="Fermer" />
+      <Button layoutX="392.0" layoutY="444.0" mnemonicParsing="false" onAction="#saisirResultat" prefHeight="25.0" prefWidth="170.0" text="Saisir les résultats" />
+      <Label layoutX="26.0" layoutY="38.0" text="Nom :" />
+      <Label layoutX="26.0" layoutY="77.0" text="Lieu :" />
+      <Label layoutX="26.0" layoutY="116.0" text="Arbitre :" />
+      <MenuBar layoutX="1.0" prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Gérer Tournoi">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#recapModifierTournoi" text="Modifier tournoi" />
+                  <MenuItem mnemonicParsing="false" onAction="#recapGererJoueurs" text="Gérer les joueurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#apparierJoueurs" text="Apparier les joueurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#saisirResultat" text="Saisir résultats" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Afficher résultats">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#classementRondes" text="Résultats rondes" />
+                  <MenuItem mnemonicParsing="false" onAction="#classementFinal" text="Classement actuel" />
+                  <MenuItem mnemonicParsing="false" onAction="#grilleAmericaine" text="Grille américaine" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Exporter en PDF">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Imprimer liste joueurs" onAction="#actionImprimerListeParticipants" />
+                  <MenuItem mnemonicParsing="false" onAction="#actionImprimerAppariement" text="Imprimer appariements" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

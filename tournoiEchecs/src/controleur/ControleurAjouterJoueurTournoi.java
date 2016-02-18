@@ -9,6 +9,7 @@ import application.Main;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.xml.JoueurXML;
 import modele.xml.TournoiXML;
 import vue.RecapTournoi;
 import javafx.collections.FXCollections;
@@ -47,8 +48,6 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	Label lb_info;
-
-
 
 	@FXML
 	public void actionChercher(){
@@ -101,7 +100,14 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	public void actionValider(Event e){
+		for (Joueur joueur : joueurInscrit) {
+			joueur.setDansTournoi(true);
+			ModeleJoueur.modifDansTournoi(joueur.getNumLicence(), true);
+		}
+		JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+		
 		listePersonne.setItems(joueurInscrit);
+		
 		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
 		
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());

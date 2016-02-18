@@ -21,9 +21,10 @@ public class Joueur {
 	private String couleurs;
 	private float score;
 	private int classement;
+	private boolean isDansTournoi;
 	private Map<String, Float> mapDepartages;
 
-	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club) {
+	public Joueur(String numLicence, String nomJoueur, String prenomJoueur, String sexe, LocalDate dateNaissance, String titre, String ligue, int elo, String typeElo, String federation, String categorie, String club, boolean isDansTournoi) {
 		mapDepartages=new HashMap<String, Float>();
 		this.numLicence = numLicence;
 		this.nomJoueur = nomJoueur;
@@ -39,6 +40,7 @@ public class Joueur {
 		this.club = club;
 		this.couleurs = "";
 		this.score = 0;
+		this.isDansTournoi = isDansTournoi;
 	}
 
 	public Joueur(String numLicence, String nomJoueur, String prenomJoueur) {
@@ -267,5 +269,12 @@ public class Joueur {
 		
 		return mapDepartages.get(nomDepartage);
 	}
-	
+
+	public boolean isDansTournoi() {
+		return isDansTournoi;
+	}
+
+	public void setDansTournoi(boolean isDansTournoi) {
+		this.isDansTournoi = isDansTournoi;
+	}
 }
