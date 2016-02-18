@@ -75,7 +75,7 @@ public class ItemResultatsRonde extends ListCell<Partie> {
         if (!empty && item != null) {
         	//calcul du score precedent la partie du joueur blanc
         	float scorePrecBlanc=item.getScoreJoueurBlancPartie();
-        	if(item.getResultat().equals("blancGagne")||item.getResultat().equals("EXEMPT")){
+        	if(item.getResultat().equals("blancGagne")||item.getResultat().equals("EXEMPT")||item.getResultat().equals("noirForfait")){
         		scorePrecBlanc+=-1;
         	}
         	if(item.getResultat().equals("partieNulle")){
@@ -90,7 +90,7 @@ public class ItemResultatsRonde extends ListCell<Partie> {
 	        if(item.getJoueurNoir()!=null){
 	        	//calcul du score precedent la partie du joueur noir
 	        	float scorePrecNoir=item.getScorejoueurNoirPartie();
-	        	if(item.getResultat().equals("noirGagne")){
+	        	if(item.getResultat().equals("noirGagne")||item.getResultat().equals("blancForfait")){
 	        		scorePrecNoir+=-1;
 	        	}
 	        	if(item.getResultat().equals("partieNulle")){
