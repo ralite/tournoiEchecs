@@ -26,7 +26,7 @@ public class PdfClassement extends Pdf{
 				nbRondeActuelle=ModeleTournoi.getTournoi().getNbRondes()-1;
 			}
 			String str = "ClassementRonde" + nbRondeActuelle + "_"+ ModeleTournoi.getTournoi().getNom() + ".pdf";
-			Document document = new Document();
+			Document document = new Document(PageSize.A4.rotate());
 			PdfWriter.getInstance(document, new FileOutputStream(str));
 			document.open();
 
@@ -136,7 +136,7 @@ public class PdfClassement extends Pdf{
 				}
 			}
 
-			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,15f,15f,15f};
+			float[] tailleColonne = new float[] {7f,4f,50f,19f,16f,30f,15f,25f,10f,11f,11f,11f};
 			table.setWidths(tailleColonne);
 			table.setTotalWidth(300);
 

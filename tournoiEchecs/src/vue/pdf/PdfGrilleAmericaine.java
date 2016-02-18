@@ -28,7 +28,7 @@ public class PdfGrilleAmericaine extends Pdf {
 			if(numRondeActuelle==-1)
 				numRondeActuelle=ModeleTournoi.getTournoi().getNbRondes();
 			String str = "GrilleAmericaineRonde" + numRondeActuelle + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
-			Document document = new Document();
+			Document document = new Document(PageSize.A4.rotate());
 			PdfWriter.getInstance(document, new FileOutputStream(str));
 			document.open();
 
@@ -161,15 +161,14 @@ public class PdfGrilleAmericaine extends Pdf {
 			tailleColonne[6]=15f;//valeurs fixes
 			for(i=7;i<7+nbRonde;i++)
 			{
-				tailleColonne[i] = 15f;//rondes
+				tailleColonne[i] = 10f;//rondes
 			}
 			tailleColonne[i]=10f;//pts
 			i++;
 			int fin = i+3;
-			System.out.println(i);
 			for(;i<fin;i++)
 			{
-				tailleColonne[i] = 15f;
+				tailleColonne[i] = 10f;//departages
 			}
 			table.setWidths(tailleColonne);
 
