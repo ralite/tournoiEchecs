@@ -64,9 +64,9 @@ public class ControleurSaisieResultat implements Initializable{
 		for (Partie partie : itemPartie) {
 			if(!partie.getResultat().equals("")){
 				itemResultat.add(partie);
-				itemPartie.remove(partie);
 			}
 		}
+		itemPartie.removeAll(itemResultat);
 	}
 
 	@FXML
@@ -132,7 +132,7 @@ public class ControleurSaisieResultat implements Initializable{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Saisie terminée");
 			alert.setContentText("Voulez-vous vraiment mettre fin à la saisie de résultat de cette ronde?"
-					+ "\n( Attention, les résultats de cette ronde seront non-modifiables !)");
+					+ "\n(Attention, les résultats de cette ronde seront non-modifiables !)");
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
 				for (Partie partie : itemResultat) {
