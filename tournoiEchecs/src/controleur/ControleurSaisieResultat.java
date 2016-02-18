@@ -104,6 +104,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	@FXML
 	public void validerSaisieResultat(Event e){
+		itemRechercher.addAll(itemPartie);
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
