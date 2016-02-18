@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -150,7 +151,27 @@ public class PdfGrilleAmericaine extends Pdf {
 				}
 			}
 
-			table.setWidthPercentage(100f);
+			float[] tailleColonne = new float[11+nbRonde] ;
+			tailleColonne[0]=7f;
+			tailleColonne[1]=4f;
+			tailleColonne[2]=30f;
+			tailleColonne[3]=19f;
+			tailleColonne[4]=16f;
+			tailleColonne[5]=20f;
+			tailleColonne[6]=15f;//valeurs fixes
+			for(i=7;i<7+nbRonde;i++)
+			{
+				tailleColonne[i] = 15f;//rondes
+			}
+			tailleColonne[i]=10f;//pts
+			i++;
+			int fin = i+3;
+			System.out.println(i);
+			for(;i<fin;i++)
+			{
+				tailleColonne[i] = 15f;
+			}
+			table.setWidths(tailleColonne);
 
 			document.add(table);
 			document.close();

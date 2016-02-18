@@ -4,13 +4,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
 import application.Affichage;
 import application.Main;
 import javafx.event.Event;
@@ -22,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.MenuItem;
 import metier.Joueur;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
