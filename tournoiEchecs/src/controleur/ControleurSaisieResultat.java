@@ -33,16 +33,32 @@ public class ControleurSaisieResultat implements Initializable{
 	private ObservableList<Partie> itemResultat;
 
 	private ObservableList<Partie> itemRechercher;
+	
+	private ObservableList<Partie> itemPage;
+	
+	private int nbPagePage;
+	
+	private int numPage;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		label_titreSaisieResultats.setText("Résultats de la ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
 		itemResultat = FXCollections.observableArrayList();
+		itemPage = FXCollections.observableArrayList();
 		itemResultat.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
-		lv_resultats.setItems(itemResultat);
+		numPage=0;
+		nbPagePage=itemResultat.size()/8;
+		chargerPage();
 		lv_resultats.setCellFactory(lv -> new ItemSaisieResultat());
 
 		itemRechercher = FXCollections.observableArrayList();
+	}
+
+	private void chargerPage() {
+		for(int i = numPage*8;i<numPage*8+8;i++){
+			itemPage.add(itemResultat.get(i));
+		}
+		lv_resultats.setItems(itemPage);
 	}
 
 	@FXML
