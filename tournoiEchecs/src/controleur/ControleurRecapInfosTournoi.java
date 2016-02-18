@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 
 
 
+
+
+
 import application.Affichage;
 import application.Main;
 import javafx.event.Event;
@@ -23,10 +26,10 @@ import metier.departage.Departage;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
-import vue.ClassementFinal;
-import vue.ClassementRonde;
-import vue.CreationTournoi;
+import vue.Classement;
+import vue.CreerTournoi;
 import vue.GrilleAmericaine;
+import vue.ResultatsRonde;
 import vue.SaisieResultat;
 import vue.pdf.PdfAppariement;
 import vue.pdf.PdfListeParticipant;
@@ -70,7 +73,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 
 	public void recapGererJoueurs(Event e){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()>0 || (ModeleTournoi.getTournoi().getNumRondeActuelle()==0 && !ModeleTournoi.getTournoi().getRondeActuelle().isApp())){
-			AfficherAlerte("Tournoi déjé commencé");
+			AfficherAlerte("Tournoi déjà commencé !");
 		}
 		else {
 			AjouterJoueurTournoi ajt=new AjouterJoueurTournoi(Main.getPrimaryStage());
@@ -94,7 +97,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			alert.showAndWait();
 		}
 		else {
-			CreationTournoi ct = new CreationTournoi(Main.getPrimaryStage());
+			CreerTournoi ct = new CreerTournoi(Main.getPrimaryStage());
 			ct.show();
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
@@ -119,11 +122,11 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	public void apparierJoueurs(){
 		if(ModeleTournoi.getTournoi().getListeJoueurs().size()<2){
-			AfficherAlerte("Nombre de joueurs insuffisant");
+			AfficherAlerte("Nombre de joueurs insuffisant !");
 
 		}
 		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
-			AfficherAlerte("Tournoi Fini !");
+			AfficherAlerte("Le tournoi est fini !");
 
 		}
 		else{
@@ -151,10 +154,10 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	public void classementRondes(){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
-			AfficherAlerte("Aucune ronde terminée");
+			AfficherAlerte("Aucune ronde terminée !");
 		}
 		else{
-			ClassementRonde cl = new ClassementRonde(Main.getPrimaryStage());
+			ResultatsRonde cl = new ResultatsRonde(Main.getPrimaryStage());
 			cl.show();
 		}
 	}
@@ -162,10 +165,10 @@ public class ControleurRecapInfosTournoi implements Initializable {
 	@FXML
 	public void classementFinal(){
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
-			AfficherAlerte("Aucune ronde terminée");
+			AfficherAlerte("Aucune ronde terminée !");
 		}
 		else{
-			ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
+			Classement cl = new Classement(Main.getPrimaryStage());
 			cl.show();
 		}
 	}

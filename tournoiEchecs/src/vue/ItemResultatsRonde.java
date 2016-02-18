@@ -16,7 +16,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
-public class ItemClassementRonde extends ListCell<Partie> {
+public class ItemResultatsRonde extends ListCell<Partie> {
 
 	private final GridPane gridPane = new GridPane();
 
@@ -31,7 +31,7 @@ public class ItemClassementRonde extends ListCell<Partie> {
 
     private final AnchorPane content = new AnchorPane();
 
-	public ItemClassementRonde() {
+	public ItemResultatsRonde() {
 
 		        GridPane.setConstraints(ech, 0, 0);
 		        GridPane.setConstraints(scoreBlanc, 1, 0);

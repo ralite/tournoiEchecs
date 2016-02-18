@@ -84,7 +84,7 @@ public class PdfAppariement extends Pdf{
 
 			document.add(table);
 			document.close();
-			affiherPdf(str);
+			afficherPdf(str);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}

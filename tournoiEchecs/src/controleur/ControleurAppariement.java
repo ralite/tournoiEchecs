@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import application.AppariementAutomatique;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -123,7 +124,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.remove(joueurNoir);
 			lv_joueurInscrit.getSelectionModel().clearSelection();
 		}
-		
+
 
 	}
 
@@ -167,16 +168,16 @@ public class ControleurAppariement implements Initializable {
 		if(joueurBlanc == null || joueurNoir==null){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Erreur");
-			alert.setContentText("Selectionnez deux joueurs à apparier !");
+			alert.setContentText("Sélectionnez deux joueurs à apparier !");
 			alert.showAndWait();
 		}
 		if( joueurBlanc != null && joueurNoir!=null){
 			if(ModeleTournoi.getTournoi().dejaRencontre(joueurNoir, joueurBlanc)){
-				AfficherAlerte("Ces deux joueurs ont déjà joués ensemble !");
+				AfficherAlerte("Ces deux joueurs ont déjà joué ensemble !");
 
 			}
 			else{
-				
+
 				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
 				joueurBlanc=null;
 				joueurNoir=null;
@@ -221,17 +222,22 @@ public class ControleurAppariement implements Initializable {
 	}
 
 	@FXML
-	public void actionValider(){
+	public void actionValider(Event e){
 		enregistrerApp();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("L'appariement a bien été sauvegardé !");
+		alert.showAndWait();
+		if(alert.getResult().getText().equals("OK"))
+			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@FXML
 	public void actionLancerRonde(Event e){
 		if(itemsJoueursInscrits.size()>1 || joueurBlanc!=null || joueurNoir!=null){
-			AfficherAlerte("Tous les joueurs ne sont pas appariés !");
+			AfficherAlerte("Tout les joueurs ne sont pas appariés !");
 		}
 		else if(itemsJoueursInscrits.size()==1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
-				AfficherAlerte("Le joueur a déjà été exempt une fois");
+				AfficherAlerte("Le joueur a déjà été exempt une fois !");
 			}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -299,7 +305,7 @@ public class ControleurAppariement implements Initializable {
 			joueursTriesParPoints(itemsJoueursInscrits);
 		}
 	}
-	
+
 	@FXML
 	public void calculAppAutomatique(){
 		AppariementAutomatique.calculAppariementAuto(itemsJoueursInscrits, itemsParties);

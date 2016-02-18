@@ -81,7 +81,7 @@ public class PdfGrilleAmericaine extends Pdf {
 
 			for(i=0;i<ModeleTournoi.getTournoi().getNbRondes();i++)
 			{
-				c1 = new PdfPCell(new Phrase("R"+String.valueOf(i)));
+				c1 = new PdfPCell(new Phrase("R"+String.valueOf(i+1)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				table.addCell(c1);
 			}
@@ -129,6 +129,9 @@ public class PdfGrilleAmericaine extends Pdf {
 					for(Partie partie :ModeleTournoi.getTournoi().getRonde(i).getListePartie()){
 		        		if(partie.joueurEstDansPartie(j)){
 		        			table.addCell(partie.getAffichageGa(j,i));
+		        		}else{
+		        			//joueurs absent ou forfait ou exempt
+		        			table.addCell(" ");
 		        		}
 		        	}
 				}
@@ -147,13 +150,11 @@ public class PdfGrilleAmericaine extends Pdf {
 				}
 			}
 
-			/*float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,10f,10f,14f};
-			table.setWidths(tailleColonne);
-			table.setTotalWidth(300);*/
+			table.setWidthPercentage(100f);
 
 			document.add(table);
 			document.close();
-			affiherPdf(str);
+			afficherPdf(str);
 		}
 		catch(Exception e){
 			e.printStackTrace();

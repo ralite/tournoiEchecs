@@ -20,7 +20,11 @@ public class PdfClassement extends Pdf{
 	public static void creerPDF(ObservableList<Joueur> itemsJoueur) {
 		try {
 			int i;
-			String str = "ClassementFinal" + "_"+ ModeleTournoi.getTournoi().getNom() + ".pdf";
+			int nbRondeActuelle = ModeleTournoi.getTournoi().getNumRondeActuelle();
+			if(nbRondeActuelle==-1){
+				nbRondeActuelle=ModeleTournoi.getTournoi().getNbRondes()-1;
+			}
+			String str = "ClassementRonde" + nbRondeActuelle + "_"+ ModeleTournoi.getTournoi().getNom() + ".pdf";
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(str));
 			document.open();
@@ -33,7 +37,7 @@ public class PdfClassement extends Pdf{
 			nomTournoi.setAlignment(Element.ALIGN_CENTER);
 			document.add(nomTournoi);
 
-			Paragraph numRonde = new Paragraph("Classement après la ronde "+ModeleTournoi.getTournoi().getNbRondes(), titreFont);
+			Paragraph numRonde = new Paragraph("Classement après la ronde "+nbRondeActuelle, titreFont);
 			numRonde.setAlignment(Element.ALIGN_CENTER);
 			document.add(numRonde);
 
@@ -43,7 +47,7 @@ public class PdfClassement extends Pdf{
 			//tables
 			//gerer dynamiquement avec nbRonde
 			PdfPTable table = new PdfPTable(12);
-			
+
 			PdfPCell c1 = new PdfPCell(new Phrase("PI"));
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
@@ -137,7 +141,7 @@ public class PdfClassement extends Pdf{
 
 			document.add(table);
 			document.close();
-			affiherPdf(str);
+			afficherPdf(str);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -91,6 +91,10 @@ public class JoueurXML {
 				club.appendChild(doc.createTextNode(jou.getClub()));
 				joueur.appendChild(club);
 				
+				Element isDansTournoi = doc.createElement("isdanstournoi");
+				isDansTournoi.appendChild(doc.createTextNode(String.valueOf(jou.isDansTournoi())));
+				joueur.appendChild(isDansTournoi);
+				
 				indiceJoueur++;
 			}
 
@@ -141,6 +145,7 @@ public class JoueurXML {
 				String federation = null;
 				String categorie = null;
 				String club = null;
+				boolean isDansTournoi = false;
 				
 				for (int j = 0; j < nbJoueurNoeuds; j++) {
 					
@@ -182,9 +187,12 @@ public class JoueurXML {
 					if(sousNode.getNodeName() == "club"){
 						club = sousNode.getTextContent();
 					}
+					if(sousNode.getNodeName() == "isdanstournoi"){
+						isDansTournoi = Boolean.parseBoolean(sousNode.getTextContent());
+					}
 				}
 				
-				listJoueur.add(new Joueur(num,nom,prenom,sexe,dateNaissance,titre,ligue,elo,typeElo,federation,categorie,club));
+				listJoueur.add(new Joueur(num,nom,prenom,sexe,dateNaissance,titre,ligue,elo,typeElo,federation,categorie,club,isDansTournoi));
 			}
 
 			return listJoueur;

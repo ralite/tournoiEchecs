@@ -9,20 +9,21 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class ClassementRonde extends Stage{
+public class CreerTournoi extends Stage{
 	
-	public ClassementRonde(Window window) {
+	public CreerTournoi(Window window) {
 		super();
 		try {
-			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classementRonde.fxml"));
+			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/creerTournoi.fxml"));
 			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);
 			Scene scene = new Scene(root);
 			this.setScene(scene);
+			this.setTitle("Creer un tournoi");
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
-
 }
