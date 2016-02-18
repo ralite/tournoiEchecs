@@ -23,9 +23,9 @@ import metier.departage.Departage;
 import modele.ModeleTournoi;
 import vue.AjouterJoueurTournoi;
 import vue.AppariementJoueur;
-import vue.ClassementFinal;
-import vue.ClassementRonde;
-import vue.CreationTournoi;
+import vue.Classement;
+import vue.ResultatsRonde;
+import vue.CreerTournoi;
 import vue.GrilleAmericaine;
 import vue.SaisieResultat;
 import vue.pdf.PdfAppariement;
@@ -94,7 +94,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			alert.showAndWait();
 		}
 		else {
-			CreationTournoi ct = new CreationTournoi(Main.getPrimaryStage());
+			CreerTournoi ct = new CreerTournoi(Main.getPrimaryStage());
 			ct.show();
 			((Node)e.getSource()).getScene().getWindow().hide();
 		}
@@ -154,7 +154,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			AfficherAlerte("Aucune ronde terminée");
 		}
 		else{
-			ClassementRonde cl = new ClassementRonde(Main.getPrimaryStage());
+			ResultatsRonde cl = new ResultatsRonde(Main.getPrimaryStage());
 			cl.show();
 		}
 	}
@@ -165,7 +165,7 @@ public class ControleurRecapInfosTournoi implements Initializable {
 			AfficherAlerte("Aucune ronde terminée");
 		}
 		else{
-			ClassementFinal cl = new ClassementFinal(Main.getPrimaryStage());
+			Classement cl = new Classement(Main.getPrimaryStage());
 			cl.show();
 		}
 	}

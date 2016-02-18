@@ -1,6 +1,6 @@
 package controleur;
 
-import vue.CreationTournoi;
+import vue.CreerTournoi;
 import vue.CreerJoueur;
 import vue.FenetreFileChooser;
 import vue.ModifierJoueur;
@@ -44,7 +44,7 @@ public class ControleurFenetreAccueil implements Initializable{
     private void actionCreerTournoi() {
     	ModeleTournoi.nouveauTournoi();
     	ModeleTournoi.setFichierTournoi(null);
-    	CreationTournoi creationTournoi = new CreationTournoi(Main.getPrimaryStage());
+    	CreerTournoi creationTournoi = new CreerTournoi(Main.getPrimaryStage());
 		creationTournoi.show();
     }
 
