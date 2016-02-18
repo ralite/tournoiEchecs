@@ -44,7 +44,7 @@
             <Menu mnemonicParsing="false" text="Afficher résultats">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#classementRondes" text="Résultats rondes" />
-                  <MenuItem mnemonicParsing="false" onAction="#classementFinal" text="Classement final" />
+                  <MenuItem mnemonicParsing="false" onAction="#classementFinal" text="Classement actuel" />
                   <MenuItem mnemonicParsing="false" onAction="#grilleAmericaine" text="Grille américaine" />
               </items>
             </Menu>
