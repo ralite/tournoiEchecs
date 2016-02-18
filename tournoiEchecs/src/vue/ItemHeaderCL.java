@@ -89,6 +89,7 @@ public class ItemHeaderCL extends ListCell<String>{
         categorie.setText("Cat.");
         federation.setText("Fede");
         ligue.setText("Ligue");
+        club.setText("Club");
         score.setText("Pts");
         dep1.setText(Affichage.mapDepartages.get(ModeleTournoi.getTournoi().getListeDepartages().get(0).toString()));
         dep2.setText(Affichage.mapDepartages.get(ModeleTournoi.getTournoi().getListeDepartages().get(1).toString()));
