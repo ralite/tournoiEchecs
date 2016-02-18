@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import application.AppariementAutomatique;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
@@ -123,7 +124,7 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.remove(joueurNoir);
 			lv_joueurInscrit.getSelectionModel().clearSelection();
 		}
-		
+
 
 	}
 
@@ -176,7 +177,7 @@ public class ControleurAppariement implements Initializable {
 
 			}
 			else{
-				
+
 				itemsParties.add(new Partie(joueurBlanc, joueurNoir));
 				joueurBlanc=null;
 				joueurNoir=null;
@@ -221,8 +222,13 @@ public class ControleurAppariement implements Initializable {
 	}
 
 	@FXML
-	public void actionValider(){
+	public void actionValider(Event e){
 		enregistrerApp();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("L'appariement a bien été sauvegardé !");
+		alert.showAndWait();
+		if(alert.getResult().getText().equals("OK"))
+			((Node)e.getSource()).getScene().getWindow().hide();
 	}
 
 	@FXML
@@ -299,7 +305,7 @@ public class ControleurAppariement implements Initializable {
 			joueursTriesParPoints(itemsJoueursInscrits);
 		}
 	}
-	
+
 	@FXML
 	public void calculAppAutomatique(){
 		AppariementAutomatique.calculAppariementAuto(itemsJoueursInscrits, itemsParties);

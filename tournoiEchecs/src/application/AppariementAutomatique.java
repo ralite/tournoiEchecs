@@ -1,4 +1,4 @@
-package controleur;
+package application;
 
 import metier.Joueur;
 import metier.Partie;

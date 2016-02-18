@@ -3,7 +3,7 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import vue.ItemClassementRonde;
+import vue.ItemResultatsRonde;
 import vue.pdf.PdfResultatsRondes;
 import metier.Joueur;
 import metier.Partie;
@@ -53,7 +53,7 @@ public class ControleurResultatsRondes implements Initializable{
 			bt_prec.setDisable(true);
 		chargeItems();
 		lv_classement.setItems(itemsPartie);
-		lv_classement.setCellFactory(lv -> new ItemClassementRonde());
+		lv_classement.setCellFactory(lv -> new ItemResultatsRonde());
 
 	}
 

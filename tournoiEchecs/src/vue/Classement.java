@@ -9,12 +9,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class ClassementRonde extends Stage{
+public class Classement extends Stage{
 	
-	public ClassementRonde(Window window) {
+	public Classement(Window window) {
 		super();
 		try {
-			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classementRonde.fxml"));
+			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/classementFinal.fxml"));
 			AnchorPane root = leLoader.load();
 			this.initModality(Modality.WINDOW_MODAL);
 			this.initOwner(window);
@@ -24,5 +24,4 @@ public class ClassementRonde extends Stage{
 			ex.printStackTrace();
 		}
 	}
-
 }

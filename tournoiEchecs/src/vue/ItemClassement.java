@@ -14,7 +14,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
-public class ItemClassementFinal extends ListCell<Joueur>{
+public class ItemClassement extends ListCell<Joueur>{
 
 	private final GridPane gridPane = new GridPane();
 
@@ -34,7 +34,7 @@ public class ItemClassementFinal extends ListCell<Joueur>{
     private final AnchorPane content = new AnchorPane();
 
 
-	public ItemClassementFinal(){
+	public ItemClassement(){
 
 	        GridPane.setConstraints(PI, 0, 0);
 	        GridPane.setConstraints(titre, 1, 0);
