@@ -135,7 +135,7 @@ public class PdfClassement extends Pdf{
 				}
 			}
 
-			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,10f,10f,14f};
+			float[] tailleColonne = new float[] {7f,4f,30f,19f,16f,20f,15f,25f,10f,15f,15f,15f};
 			table.setWidths(tailleColonne);
 			table.setTotalWidth(300);
 
