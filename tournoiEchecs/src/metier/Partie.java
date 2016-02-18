@@ -189,27 +189,27 @@ public class Partie {
 		String resAff="";
 		if(joueur==joueurBlanc){
 			if(resultat.equals("blancGagne")|| resultat.equals("noirForfait")){
-				resAff+="+";
+				resAff="+";
 			}
 			else if(resultat.equals("partieNulle")){
-					resAff+="=";
-				}
-				else{
-					resAff+="-";
-				}
+				resAff="=";
+			}
+			else{
+				resAff="-";
+			}
 			resAff+=" "+joueurNoir.getClassement();
 			resAff+=joueurBlanc.getCouleurRonde(i);
 		}
 		else {
 			if(resultat.equals("noirGagne")|| resultat.equals("blancForfait")){
-				resAff+="+";
+				resAff="+";
 			}
 			else if(resultat.equals("partieNulle")){
-					resAff+="=";
-				}
-				else{
-					resAff+="-";
-				}
+				resAff="=";
+			}
+			else{
+				resAff="-";
+			}
 			resAff+=" "+joueurBlanc.getClassement();
 			resAff+=joueurNoir.getCouleurRonde(i);
 		}
