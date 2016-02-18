@@ -19,7 +19,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="830.0" layoutY="43.0" mnemonicParsing="false" onAction="#actionImprimer" text="Afficher le PDF" />
+      <Button layoutX="830.0" layoutY="43.0" mnemonicParsing="false" onAction="#actionImprimer" text="Afficher le PDF" AnchorPane.rightAnchor="67.0" />
       <ListView fx:id="lv_header" layoutX="408.0" layoutY="53.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button layoutX="196.0" layoutY="43.0" mnemonicParsing="false" onAction="#actionQuitter" text="Quitter" AnchorPane.leftAnchor="67.0" />
    </children>
 </AnchorPane>
