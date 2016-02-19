@@ -2,8 +2,10 @@ package vue;
 
 
 
+import controleur.ControleurResultatsRondes;
 import application.Affichage;
 import metier.Partie;
+import modele.ModeleTournoi;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.ContentDisplay;
@@ -75,7 +77,7 @@ public class ItemResultatsRonde extends ListCell<Partie> {
         if (!empty && item != null) {
         	//calcul du score precedent la partie du joueur blanc
         	float scorePrecBlanc=item.getScoreJoueurBlancPartie();
-        	if(item.getResultat().equals("blancGagne")||item.getResultat().equals("EXEMPT")||item.getResultat().equals("noirForfait")){
+        	if(item.getResultat().equals("blancGagne")||item.getResultat().equals("noirForfait")){
         		scorePrecBlanc+=-1;
         	}
         	if(item.getResultat().equals("partieNulle")){

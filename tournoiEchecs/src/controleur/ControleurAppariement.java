@@ -66,6 +66,7 @@ public class ControleurAppariement implements Initializable {
 		itemsJoueursAbsent = FXCollections.observableArrayList();
 		itemsJoueursForfait = FXCollections.observableArrayList();
 		itemsJoueursInscrits.addAll(ModeleTournoi.getTournoi().getListeJoueurs());
+		itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueurForfait());
 		if(ModeleTournoi.getTournoi().getPartieRondeActuelle()!=null){
 			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 			itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueursRondeActuelle());
@@ -104,7 +105,7 @@ public class ControleurAppariement implements Initializable {
 		}
 		lv_absent.setItems(itemsJoueursAbsent);
 		if(ModeleTournoi.getTournoi().getJoueurForfait()!=null){
-			itemsJoueursForfait.addAll(ModeleTournoi.getTournoi().getJoueurForfait());
+			itemsJoueursForfait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
 			itemsJoueursInscrits.removeAll(itemsJoueursForfait);
 		}
 		lv_forfait.setItems(itemsJoueursForfait);
@@ -247,8 +248,11 @@ public class ControleurAppariement implements Initializable {
 			alert.showAndWait();
 			if(alert.getResult().getText().equals("OK")){
 				if(itemsJoueursInscrits.size()==1){
+					ModeleTournoi.getTournoi().getRondeActuelle().setJoueurExempt(itemsJoueursInscrits.get(0));
+					ModeleTournoi.getTournoi().getRondeActuelle().setScoreJoueurExemptRonde(itemsJoueursInscrits.get(0).getScore());
 					itemsJoueursInscrits.get(0).gagne1Point();
 					itemsJoueursInscrits.get(0).setExempt();
+					
 				}
 
 				for (Partie partie : itemsParties) {
@@ -259,7 +263,6 @@ public class ControleurAppariement implements Initializable {
 				}
 				for (Joueur joueur : itemsJoueursForfait) {
 					joueur.joueForfait();
-					ModeleTournoi.getTournoi().abandonJoueur(joueur);
 				}
 				ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);

@@ -11,7 +11,13 @@ public class Ronde {
 	private ObservableList<Joueur> ListeJoueurForfait;
 	private boolean saisiePossible= false;
 	private boolean appariementPossible= true;
+	private Joueur joueurExempt;
+	private float scoreJoueurExemptRonde;
 	
+	public void setJoueurExempt(Joueur joueurExempt) {
+		this.joueurExempt = joueurExempt;
+	}
+
 	public boolean isSaisie() {
 		return saisiePossible;
 	}
@@ -78,5 +84,21 @@ public class Ronde {
 
 	public ObservableList<Joueur> getListeJoueurForfait() {
 		return ListeJoueurForfait;
+	}
+
+	public String getNumJoueurExempt() {
+		return joueurExempt.getNumLicence();
+	}
+
+	public Joueur getJoueurExempt() {
+		return joueurExempt;
+	}
+
+	public float getScoreJoueurExemptRonde() {
+		return scoreJoueurExemptRonde;
+	}
+
+	public void setScoreJoueurExemptRonde(float scoreJoueurExemptRonde) {
+		this.scoreJoueurExemptRonde = scoreJoueurExemptRonde;
 	}
 }

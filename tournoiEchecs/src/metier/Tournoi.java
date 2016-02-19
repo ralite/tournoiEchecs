@@ -226,9 +226,10 @@ public class Tournoi {
 		}
 	}
 
-	public void abandonJoueur(Joueur joueur) {
-		ListeJoueurs.remove(joueur);
-		
+	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
+		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
 	}
+
+
 
 }

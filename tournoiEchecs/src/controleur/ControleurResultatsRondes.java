@@ -23,7 +23,7 @@ public class ControleurResultatsRondes implements Initializable{
 
 	@FXML
 	ListView<Partie> lv_classement;
-	
+
 	@FXML
 	ListView<String> lv_header;
 
@@ -46,21 +46,21 @@ public class ControleurResultatsRondes implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bt_suiv.setDisable(true);
-		
+
 		itemsHeader=FXCollections.observableArrayList();
 		itemsHeader.add("header");
 		lv_header.setStyle("-fx-control-inner-background : grey; ");
 		lv_header.setItems(itemsHeader);
 		lv_header.setCellFactory(lvheader->new ItemHeaderRonde());
-		
+
 		itemsPartie=FXCollections.observableArrayList();
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
 			numRonde=ModeleTournoi.getTournoi().getNbRondes()-1;
 		}
 		else if(ModeleTournoi.getTournoi().getRondeActuelle().isApp()||(!ModeleTournoi.getTournoi().getRondeActuelle().isApp()&& !ModeleTournoi.getTournoi().getRonde(ModeleTournoi.getTournoi().getNumRondeActuelle()-1).isSaisie()))
-				numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle()-1;
-			else
-				numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle();
+			numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle()-1;
+		else
+			numRonde=ModeleTournoi.getTournoi().getNumRondeActuelle();
 		numRondeMax=numRonde;
 		if(numRonde==0)
 			bt_prec.setDisable(true);
@@ -80,14 +80,15 @@ public class ControleurResultatsRondes implements Initializable{
 				return p2.compareTo(p1);
 			}
 		});*/
-		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
-			if(j.getCouleurRonde(numRonde).equals("X")){
-				Partie p = new Partie(j,null);
-				p.setResultat("EXEMPT");
-				p.setScorejoueurBlancPartie(j.getScore());
-				itemsPartie.add(p);
-			}
+
+		Joueur j = ModeleTournoi.getTournoi().getRonde(numRonde).getJoueurExempt();
+		if(j!=null){
+			Partie p = new Partie(j,null);
+			p.setResultat("EXEMPT");
+			p.setScorejoueurBlancPartie(ModeleTournoi.getTournoi().getRonde(numRonde).getScoreJoueurExemptRonde());
+			itemsPartie.add(p);
 		}
+
 		for(int i=0;i<itemsPartie.size();i++){
 			itemsPartie.get(i).setClassement(i+1);
 		}
