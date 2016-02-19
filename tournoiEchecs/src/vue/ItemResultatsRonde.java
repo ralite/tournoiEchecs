@@ -2,10 +2,8 @@ package vue;
 
 
 
-import controleur.ControleurResultatsRondes;
 import application.Affichage;
 import metier.Partie;
-import modele.ModeleTournoi;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.ContentDisplay;
