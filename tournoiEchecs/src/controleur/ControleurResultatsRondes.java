@@ -3,6 +3,7 @@ package controleur;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import vue.ItemHeaderRonde;
 import vue.ItemResultatsRonde;
 import vue.pdf.PdfResultatsRondes;
 import metier.Joueur;
@@ -22,8 +23,12 @@ public class ControleurResultatsRondes implements Initializable{
 
 	@FXML
 	ListView<Partie> lv_classement;
+	
+	@FXML
+	ListView<String> lv_header;
 
 	ObservableList<Partie> itemsPartie;
+	ObservableList<String> itemsHeader;
 
 	@FXML
 	Label lb_titre;
@@ -41,8 +46,14 @@ public class ControleurResultatsRondes implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bt_suiv.setDisable(true);
+		
+		itemsHeader=FXCollections.observableArrayList();
+		itemsHeader.add("header");
+		lv_header.setStyle("-fx-control-inner-background : grey; ");
+		lv_header.setItems(itemsHeader);
+		lv_header.setCellFactory(lvheader->new ItemHeaderRonde());
+		
 		itemsPartie=FXCollections.observableArrayList();
-
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==-1){
 			numRonde=ModeleTournoi.getTournoi().getNbRondes()-1;
 		}
@@ -63,11 +74,9 @@ public class ControleurResultatsRondes implements Initializable{
 		itemsPartie.clear();
 		lb_titre.setText("Résultats de la ronde "+String.valueOf(numRonde+1));
 		itemsPartie.addAll(ModeleTournoi.getTournoi().getPartieRonde(numRonde));
-	/*	FXCollections.sort(itemsPartie, new Comparator<Partie>() {
-
+		/*FXCollections.sort(itemsPartie, new Comparator<Partie>() {
 			@Override
 			public int compare(Partie p1, Partie p2) {
-
 				return p2.compareTo(p1);
 			}
 		});*/

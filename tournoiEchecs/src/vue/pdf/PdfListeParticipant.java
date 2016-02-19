@@ -39,15 +39,19 @@ public class PdfListeParticipant extends Pdf{
 		document.add(new Paragraph(" "));
 
 		//table
-		PdfPTable table = new PdfPTable(7);
+		PdfPTable table = new PdfPTable(8);
 
-		float[] columnWidths = new float[] {5f, 40f, 10f, 10f, 15f, 10f, 25f};
+		float[] columnWidths = new float[] {5f, 5f, 40f, 10f, 10f, 15f, 10f, 25f};
 		table.setWidths(columnWidths);
 
 		PdfPCell c1 = new PdfPCell(new Phrase("Nr"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c1);
 
+		c1 = new PdfPCell(new Phrase(" "));
+		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		table.addCell(c1);
+		
 		PdfPCell c2 = new PdfPCell(new Phrase("Nom"));
 		c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c2);
@@ -56,7 +60,7 @@ public class PdfListeParticipant extends Pdf{
 		c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c3);
 
-		PdfPCell c4 = new PdfPCell(new Phrase("Cat."));
+		PdfPCell c4 = new PdfPCell(new Phrase("Cat"));
 		c4.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c4);
 
@@ -77,7 +81,8 @@ public class PdfListeParticipant extends Pdf{
 		int i = 1;
 		for (Joueur j : ModeleTournoi.getTournoi().getListeJoueurs()) {
 			table.addCell(Integer.toString(i));
-			table.addCell(Affichage.mapTitre.get(j.getTitre()) + " " + j.getNomJoueur() + " " + j.getPrenomJoueur());
+			table.addCell(Affichage.mapTitre.get(j.getTitre()));
+			table.addCell(j.getNomJoueur() + " " + j.getPrenomJoueur());
 			table.addCell(Integer.toString(j.getElo()) + " " + Affichage.mapTypeElo.get(j.getTypeElo()));
 			table.addCell(Affichage.mapCategorie.get(j.getCategorie())+Affichage.mapSexe.get(j.getSexe()));
 			table.addCell(j.getFederation());

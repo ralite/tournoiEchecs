@@ -12,37 +12,8 @@
       <Label fx:id="lb_titre" layoutX="337.0" layoutY="35.0" text="Résultats de la Ronde" />
       <Button fx:id="bt_prec" layoutX="276.0" layoutY="29.0" mnemonicParsing="false" onAction="#rondePrecedante" text="&lt;" />
       <Button fx:id="bt_suiv" layoutX="526.0" layoutY="29.0" mnemonicParsing="false" onAction="#rondeSuivante" text="&gt;" />
-      <Label layoutY="91.0" text="Ech.">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="91.0" text="Pts">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="71.0" layoutY="91.0" prefHeight="20.0" prefWidth="50.0" text="Blancs">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="352.0" layoutY="91.0" text="Res.">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="472.0" layoutY="91.0" prefHeight="20.0" prefWidth="37.0" text="Noirs">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="810.0" layoutY="91.0" prefHeight="12.0" prefWidth="19.0" text="Pts">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Button layoutX="605.0" layoutY="29.0" mnemonicParsing="false" onAction="#actionImprimer" text="Afficher le PDF" AnchorPane.rightAnchor="134.0" />
       <Button layoutX="51.0" layoutY="29.0" mnemonicParsing="false" onAction="#actionQuitter" text="Quitter" AnchorPane.leftAnchor="134.0" />
+      <ListView fx:id="lv_header" layoutX="317.0" layoutY="18.0" prefHeight="25.0" prefWidth="833.0" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

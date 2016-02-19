@@ -66,7 +66,7 @@ public class PdfClassement extends Pdf{
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
-			c1 = new PdfPCell(new Phrase("Cat."));
+			c1 = new PdfPCell(new Phrase("Cat"));
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 

@@ -86,7 +86,7 @@ public class ItemHeaderCL extends ListCell<String>{
         titre.setText(" ");
         joueur.setText("Nom");
         elo.setText("ELO");
-        categorie.setText("Cat.");
+        categorie.setText("Cat");
         federation.setText("Fede");
         ligue.setText("Ligue");
         club.setText("Club");

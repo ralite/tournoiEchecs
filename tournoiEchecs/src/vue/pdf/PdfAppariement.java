@@ -47,11 +47,11 @@ public class PdfAppariement extends Pdf{
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
-			c1 = new PdfPCell(new Phrase("Joueur BLANC"));
+			c1 = new PdfPCell(new Phrase("Joueur Blancs"));
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
-			c1 = new PdfPCell(new Phrase("Joueur NOIR"));
+			c1 = new PdfPCell(new Phrase("Joueur Noirs"));
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
