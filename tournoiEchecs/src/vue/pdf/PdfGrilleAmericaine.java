@@ -23,10 +23,15 @@ public class PdfGrilleAmericaine extends Pdf {
 	public static void creerPDF(ObservableList<Joueur> itemsJoueur) {
 		try {
 			int i;
-			int nbRonde = ModeleTournoi.getTournoi().getNbRondes();
+			int nbRondeTotal = ModeleTournoi.getTournoi().getNbRondes();
 			int numRondeActuelle=ModeleTournoi.getTournoi().getNumRondeActuelle();
-			if(numRondeActuelle==-1)
-				numRondeActuelle=ModeleTournoi.getTournoi().getNbRondes();
+			int nbRonde = 0;
+			if(numRondeActuelle==-1){
+				numRondeActuelle=nbRondeTotal;
+				nbRonde = nbRondeTotal;
+			}else{
+				nbRonde = numRondeActuelle;
+			}
 			String str = "GrilleAmericaineRonde" + numRondeActuelle + "_" + ModeleTournoi.getTournoi().getNom() + ".pdf";
 			Document document = new Document(PageSize.A4.rotate());
 			PdfWriter.getInstance(document, new FileOutputStream(str));
@@ -80,7 +85,7 @@ public class PdfGrilleAmericaine extends Pdf {
 			c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c1);
 
-			for(i=0;i<ModeleTournoi.getTournoi().getNbRondes();i++)
+			for(i=0;i<nbRonde;i++)
 			{
 				c1 = new PdfPCell(new Phrase("R"+String.valueOf(i+1)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -131,10 +136,13 @@ public class PdfGrilleAmericaine extends Pdf {
 		        		if(partie.joueurEstDansPartie(j)){
 		        			table.addCell(partie.getAffichageGa(j,i));
 		        		}else{//joueurs absent ou forfait ou exempt
-		        			if(j.getCouleurRonde(i).equals("X"))
+		        			if(j.getCouleurRonde(i).equals("X")){
 		        				table.addCell("EXE");
-		        			else
+		        			}else if(j.getCouleurRonde(i).equals("A")){
 		        				table.addCell(" ");
+		        			}else if(j.getCouleurRonde(i).equals("F")){
+		        				table.addCell(" ");
+		        			}else{}
 		        		}
 		        	}
 				}
