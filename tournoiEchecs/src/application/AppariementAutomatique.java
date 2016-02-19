@@ -105,8 +105,21 @@ public class AppariementAutomatique {
 	private static void calculAppariementPremiereRonde(ObservableList<Joueur> joueurs, ObservableList<Partie> parties) {
 		int j=joueurs.size()/2;
 		int i=0;
+		double random = Math.random();
 		while(i<joueurs.size()/2 && j<joueurs.size()){
-			parties.add(new Partie(joueurs.get(i), joueurs.get(j)));
+			if(random>0.5){
+				if(i%2==0)
+					parties.add(new Partie(joueurs.get(i), joueurs.get(j)));
+				else 
+					parties.add(new Partie(joueurs.get(j), joueurs.get(i)));
+			}
+			else{
+				if(i%2==0)
+					parties.add(new Partie(joueurs.get(j), joueurs.get(i)));
+				else 
+					parties.add(new Partie(joueurs.get(i), joueurs.get(j)));
+			}
+			
 			j++;
 			i++;
 		}

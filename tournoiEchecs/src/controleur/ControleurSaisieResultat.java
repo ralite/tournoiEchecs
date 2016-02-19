@@ -51,7 +51,7 @@ public class ControleurSaisieResultat implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		cb_res.setItems(FXCollections.observableArrayList("Blancs gagnent","Noirs gagnent","Partie nulle","Blancs forfaits","Noirs Forfaits","Double forfait"));
+		cb_res.setItems(FXCollections.observableArrayList("1 - 0","0 - 1","X - X","F - 1","1 - F","F - F"));
 		label_titreSaisieResultats.setText("Résultats de la ronde "+String.valueOf(ModeleTournoi.getTournoi().getNumRondeActuelle()+1));
 		itemResultat = FXCollections.observableArrayList();
 		itemPartie = FXCollections.observableArrayList();
@@ -66,7 +66,9 @@ public class ControleurSaisieResultat implements Initializable{
 				itemResultat.add(partie);
 			}
 		}
+		System.out.println(itemPartie.size());
 		itemPartie.removeAll(itemResultat);
+		System.out.println(itemPartie.size());
 	}
 
 	@FXML
@@ -80,22 +82,22 @@ public class ControleurSaisieResultat implements Initializable{
 		}
 		else{
 			switch (res) {
-			case "Blancs gagnent":
+			case "1 - 0":
 				p.joueurBlancGagne();
 				break;
-			case "Noirs gagnent":
+			case "0 - 1":
 				p.joueurNoirGagne();
 				break;
-			case "Partie nulle":
+			case "X - X":
 				p.partieNulle();
 				break;
-			case "Blancs forfaits":
+			case "F - 1":
 				p.joueurBlancForfait();
 				break;
-			case "Noirs forfaits":
+			case "1 - F":
 				p.joueurNoirForfait();
 				break;
-			case "Double forfait":
+			case "F - F":
 				p.doubleForfait();
 				break;
 			}
@@ -159,6 +161,7 @@ public class ControleurSaisieResultat implements Initializable{
 	public void retirerPartie(){
 		Partie p =lv_resultats.getSelectionModel().getSelectedItem();
 		if(p!=null){
+			p.setResultat("");
 			itemResultat.remove(p);
 			itemPartie.add(p);
 		}
