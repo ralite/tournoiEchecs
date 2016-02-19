@@ -58,7 +58,7 @@ public class PdfResultatsRondes extends Pdf{
 			c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c2);
 
-			PdfPCell c3 = new PdfPCell(new Phrase("Blanc"));
+			PdfPCell c3 = new PdfPCell(new Phrase("Joueurs Blancs"));
 			c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c3);
 
@@ -70,7 +70,7 @@ public class PdfResultatsRondes extends Pdf{
 			c5.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c5);
 
-			PdfPCell c6 = new PdfPCell(new Phrase("Noir"));
+			PdfPCell c6 = new PdfPCell(new Phrase("Joueur Noirs"));
 			c6.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(c6);
 

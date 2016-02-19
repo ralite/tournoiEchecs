@@ -1,14 +1,11 @@
 package vue;
 
 import application.Affichage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -22,8 +19,6 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 
     private final Label joueurBlanc = new Label();
     private final Label joueurNoir = new Label();
-    private final Label eloJoueurBlanc = new Label();
-    private final Label eloJoueurNoir = new Label();
     private final Label lb_resultat = new Label();
 
     private final AnchorPane content = new AnchorPane();
@@ -57,12 +52,8 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 		        AnchorPane.setBottomAnchor(gridPane, 0d);
 		        AnchorPane.setRightAnchor(gridPane, 0d);
 		        content.getChildren().add(gridPane);
-
-
+		        
 		        Affichage.chargerMapsGrilleAEtClassements();
-
-
-
 	}
 
 	@Override
@@ -72,7 +63,6 @@ public class ItemSaisieResultat extends ListCell<Partie> {
         setText(null);
         setContentDisplay(ContentDisplay.LEFT);
 
-
         if (!empty && item != null) {
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc());
             joueurNoir.setText(item.getNomPrenomJoueurNoir());
@@ -80,13 +70,5 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 	        setGraphic(content);
 	        setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         }
-
     }
-
-
-
-
-
-
-
 }
