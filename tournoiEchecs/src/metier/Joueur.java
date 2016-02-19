@@ -199,14 +199,14 @@ public class Joueur {
 	
 	public void joueAbs(){
 		if(couleurs.isEmpty())
-			couleurs="a";
-		else couleurs+="/a";
+			couleurs="A";
+		else couleurs+="/A";
 	}
 	
 	public void joueForfait(){
 		if(couleurs.isEmpty())
-			couleurs="f";
-		else couleurs+="/f";
+			couleurs="F";
+		else couleurs+="/F";
 	}
 
 	public void gagne1Point() {

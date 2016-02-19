@@ -177,9 +177,6 @@ public class ControleurRecapInfosTournoi implements Initializable {
 		if(ModeleTournoi.getTournoi().getNumRondeActuelle()==0){
 			AfficherAlerte("Aucune ronde terminée");
 		}
-		else if(ModeleTournoi.getTournoi().getNumRondeActuelle()!=-1) {
-			AfficherAlerte("Le tournoi n'est pas terminé !");
-		}
 		else{
 			GrilleAmericaine ga = new GrilleAmericaine(Main.getPrimaryStage());
 			ga.show();

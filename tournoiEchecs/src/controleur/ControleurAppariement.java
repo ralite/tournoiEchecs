@@ -70,6 +70,7 @@ public class ControleurAppariement implements Initializable {
 			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 			itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueursRondeActuelle());
 		}
+		
 		lv_appariements.setItems(itemsParties);
 		lv_joueurInscrit.setCellFactory(new Callback<ListView<Joueur>, ListCell<Joueur>>() {
 
@@ -102,8 +103,8 @@ public class ControleurAppariement implements Initializable {
 			itemsJoueursInscrits.removeAll(itemsJoueursAbsent);
 		}
 		lv_absent.setItems(itemsJoueursAbsent);
-		if(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle()!=null){
-			itemsJoueursForfait.addAll(ModeleTournoi.getTournoi().getJoueurForfaitRondeActuelle());
+		if(ModeleTournoi.getTournoi().getJoueurForfait()!=null){
+			itemsJoueursForfait.addAll(ModeleTournoi.getTournoi().getJoueurForfait());
 			itemsJoueursInscrits.removeAll(itemsJoueursForfait);
 		}
 		lv_forfait.setItems(itemsJoueursForfait);
@@ -258,6 +259,7 @@ public class ControleurAppariement implements Initializable {
 				}
 				for (Joueur joueur : itemsJoueursForfait) {
 					joueur.joueForfait();
+					ModeleTournoi.getTournoi().abandonJoueur(joueur);
 				}
 				ModeleTournoi.getTournoi().getRondeActuelle().setApp(false);
 				ModeleTournoi.getTournoi().getRondeActuelle().setSaisie(true);

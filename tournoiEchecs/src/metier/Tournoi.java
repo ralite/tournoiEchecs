@@ -188,8 +188,12 @@ public class Tournoi {
 		return ListeRondes.get(rondeActuelle).getListeJoueurAbs();
 	}
 
-	public ObservableList<Joueur> getJoueurForfaitRondeActuelle() {
-		return ListeRondes.get(rondeActuelle).getListeJoueurForfait();
+	public ObservableList<Joueur> getJoueurForfait() {
+		ObservableList<Joueur> joueursForfaits= FXCollections.observableArrayList();
+		for (Ronde ronde : ListeRondes) {
+			joueursForfaits.addAll(ronde.getListeJoueurForfait());
+		}
+		return joueursForfaits;
 	}
 
 	public void rondeSuivante() {
@@ -220,6 +224,11 @@ public class Tournoi {
 				joueur.setPointsDepartage(departage.toString(),pointsDepartage);
 			}
 		}
+	}
+
+	public void abandonJoueur(Joueur joueur) {
+		ListeJoueurs.remove(joueur);
+		
 	}
 
 }

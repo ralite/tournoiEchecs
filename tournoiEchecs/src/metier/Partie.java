@@ -188,8 +188,14 @@ public class Partie {
 	public String getAffichageGa(Joueur joueur, int i) {
 		String resAff="";
 		if(joueur==joueurBlanc){
-			if(resultat.equals("blancGagne")|| resultat.equals("noirForfait")){
+			if(resultat.equals("blancGagne")){
 				resAff="+";
+			}
+			else if(resultat.equals("noirForfait")){
+				resAff=">";
+			}			
+			else if(resultat.equals("blancForfait")){
+				resAff="<";
 			}
 			else if(resultat.equals("partieNulle")){
 				resAff="=";
@@ -201,8 +207,14 @@ public class Partie {
 			resAff+=joueurBlanc.getCouleurRonde(i);
 		}
 		else {
-			if(resultat.equals("noirGagne")|| resultat.equals("blancForfait")){
+			if(resultat.equals("noirGagne")){
 				resAff="+";
+			}
+			else if(resultat.equals("blancForfait")){
+				resAff=">";
+			}
+			else if(resultat.equals("noirForfait")){
+				resAff="<";
 			}
 			else if(resultat.equals("partieNulle")){
 				resAff="=";

@@ -117,6 +117,10 @@ public class ItemGrilleAmericaine extends ListCell<Joueur>{
 	        		if(partie.joueurEstDansPartie(item)){
 	        			rondes.get(i).setText(partie.getAffichageGa(item,i));
 	        		}
+	        		else{
+	        			if(item.getCouleurRonde(i).equals("X"))
+	        				rondes.get(i).setText("EXE");
+	        		}
 	        	}
 			}
         	score.setText(String.valueOf(item.getScore()));
