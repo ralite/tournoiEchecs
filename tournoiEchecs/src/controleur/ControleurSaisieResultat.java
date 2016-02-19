@@ -63,9 +63,7 @@ public class ControleurSaisieResultat implements Initializable{
 				itemResultat.add(partie);
 			}
 		}
-		System.out.println(itemPartie.size());
 		itemPartie.removeAll(itemResultat);
-		System.out.println(itemPartie.size());
 	}
 
 	@FXML
@@ -106,10 +104,9 @@ public class ControleurSaisieResultat implements Initializable{
 		}
 	}
 
-
 	@FXML
 	public void validerSaisieResultat(Event e){
-		itemRechercher.addAll(itemPartie);
+		itemResultat.addAll(itemPartie);
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
@@ -149,9 +146,7 @@ public class ControleurSaisieResultat implements Initializable{
 				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
 		}
-
 	}
 
 	@FXML

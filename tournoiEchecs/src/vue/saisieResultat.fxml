@@ -18,20 +18,30 @@
             <Font name="Arial Bold" size="27.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="140.0" layoutY="119.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
+      <Label alignment="CENTER" layoutX="148.0" layoutY="162.0" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="119.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
+      <Label alignment="CENTER" layoutX="20.0" layoutY="162.0" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="lv_parties" layoutX="23.0" layoutY="192.0" prefHeight="344.0" prefWidth="240.0" />
-      <ListView fx:id="lv_resultats" layoutX="484.0" layoutY="192.0" prefHeight="344.0" prefWidth="328.0" />
+      <ListView fx:id="lv_parties" layoutX="23.0" layoutY="192.0" prefHeight="350.0" prefWidth="253.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" />
+      <ListView fx:id="lv_resultats" layoutX="484.0" layoutY="192.0" prefHeight="350.0" prefWidth="330.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="20.0" />
       <ChoiceBox fx:id="cb_res" layoutX="301.0" layoutY="212.0" prefHeight="39.0" prefWidth="163.0" />
-      <Button layoutX="301.0" layoutY="290.0" mnemonicParsing="false" onAction="#validerResultat" text="Valider le resultat" />
-      <Button layoutX="335.0" layoutY="407.0" mnemonicParsing="false" onAction="#retirerPartie" text="Retirer" />
+      <Button layoutX="328.0" layoutY="287.0" mnemonicParsing="false" onAction="#validerResultat" text="Valider le resultat" />
+      <Button layoutX="357.0" layoutY="339.0" mnemonicParsing="false" onAction="#retirerPartie" text="Retirer" />
+      <Label alignment="CENTER" layoutX="659.0" layoutY="162.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: black;" text="Joueurs Noirs" textAlignment="CENTER" textFill="#f8f6f6" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="495.0" layoutY="162.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: white;" text="Joueurs Blancs" textFill="#1e0404" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
