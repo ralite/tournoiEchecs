@@ -14,7 +14,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import application.Affichage;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Cell;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
