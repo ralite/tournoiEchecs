@@ -4,7 +4,7 @@ import vue.CreerTournoi;
 import vue.CreerJoueur;
 import vue.FenetreFileChooser;
 import vue.ModifierJoueur;
-import vue.RecapTournoi;
+import vue.RecapInfosTournoi;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,7 +68,7 @@ public class ControleurFenetreAccueil implements Initializable{
 			Tournoi t = TournoiXML.readXMLTournoi(fileTournoi.getPath());
 			ModeleTournoi.ajouterTournoi(t);
 			ModeleTournoi.setFichierTournoi(fileTournoi.getPath());
-			RecapTournoi recapT = new RecapTournoi(Main.getPrimaryStage());
+			RecapInfosTournoi recapT = new RecapInfosTournoi(Main.getPrimaryStage());
 			recapT.show();
 		}
     }

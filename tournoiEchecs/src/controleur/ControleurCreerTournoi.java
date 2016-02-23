@@ -19,7 +19,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import vue.FenetreFileChooser;
-import vue.RecapTournoi;
+import vue.RecapInfosTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
@@ -99,7 +99,7 @@ public class ControleurCreerTournoi implements Initializable {
 				if(ModeleTournoi.getFichierTournoi()!=null){
 					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
 
-					RecapTournoi rt = new RecapTournoi(Main.getPrimaryStage());
+					RecapInfosTournoi rt = new RecapInfosTournoi(Main.getPrimaryStage());
 					rt.show();
 					((Node)e.getSource()).getScene().getWindow().hide();
 				}
@@ -182,7 +182,7 @@ public class ControleurCreerTournoi implements Initializable {
 	@FXML
 	public void actionAnnuler(Event e) {
 		if(ModeleTournoi.getTournoi()!=null){
-			RecapTournoi rp = new RecapTournoi(Main.getPrimaryStage());
+			RecapInfosTournoi rp = new RecapInfosTournoi(Main.getPrimaryStage());
 			rp.show();
 		}
 		((Node)e.getSource()).getScene().getWindow().hide();

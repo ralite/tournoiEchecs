@@ -9,9 +9,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class RecapTournoi extends Stage {
+public class RecapInfosTournoi extends Stage {
 	
-	public RecapTournoi(Window window) {
+	public RecapInfosTournoi(Window window) {
 		super();
 		try {
 			FXMLLoader leLoader = new FXMLLoader(this.getClass().getResource("/vue/recapInfosTournoi.fxml"));

@@ -11,7 +11,7 @@ import modele.ModeleJoueur;
 import modele.ModeleTournoi;
 import modele.xml.JoueurXML;
 import modele.xml.TournoiXML;
-import vue.RecapTournoi;
+import vue.RecapInfosTournoi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -93,7 +93,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 
 	@FXML
 	public void actionAnnuler(Event e){
-		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
+		RecapInfosTournoi recap = new RecapInfosTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
@@ -111,7 +111,7 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
 		
 		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
-		RecapTournoi recap = new RecapTournoi(Main.getPrimaryStage());
+		RecapInfosTournoi recap = new RecapInfosTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();
 	}
