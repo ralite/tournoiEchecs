@@ -131,21 +131,29 @@ public class PdfGrilleAmericaine extends Pdf {
 				table.addCell(j.getLigue());
 
 				//Rondes
-				for(i=0;i<nbRonde;i++)
+				for(i=0;i<numRondeActuelle;i++)
 				{
+					boolean joueurTrouve=false;
 					for(Partie partie :ModeleTournoi.getTournoi().getRonde(i).getListePartie()){
 		        		if(partie.joueurEstDansPartie(j)){
 		        			table.addCell(partie.getAffichageGa(j,i));
-		        		}else{//joueurs absent ou forfait ou exempt
+		        			joueurTrouve=true;
+		        		}/*else{//joueurs absent ou forfait ou exempt
+		        			System.out.println(j.getCouleurRonde(i));
 		        			if(j.getCouleurRonde(i).equals("X")){
 		        				table.addCell("EXE");
 		        			}else if(j.getCouleurRonde(i).equals("A")){
 		        				table.addCell(" ");
 		        			}else if(j.getCouleurRonde(i).equals("F")){
 		        				table.addCell(" ");
-		        			}else{}
+		        			}*/
 		        		}
-		        	}
+						if(joueurTrouve==false)
+							if(j.getCouleurRonde(i).equals("X"))
+		        				table.addCell("EXE");
+		        			else
+		        				table.addCell(" ");
+		        	
 				}
 
 				//Pts
