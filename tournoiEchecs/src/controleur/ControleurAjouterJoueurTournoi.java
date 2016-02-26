@@ -9,6 +9,8 @@ import application.Main;
 import metier.Joueur;
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.xml.I_DALJoueur;
+import modele.xml.I_DALTournoi;
 import modele.xml.JoueurXML;
 import modele.xml.TournoiXML;
 import vue.RecapInfosTournoi;
@@ -104,13 +106,15 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 			joueur.setDansTournoi(true);
 			ModeleJoueur.modifDansTournoi(joueur.getNumLicence(), true);
 		}
-		JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+		I_DALJoueur joueurXML =  new JoueurXML();
+		joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
 		
 		listePersonne.setItems(joueurInscrit);
 		
 		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
 		
-		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+		I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
+		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
 		RecapInfosTournoi recap = new RecapInfosTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();

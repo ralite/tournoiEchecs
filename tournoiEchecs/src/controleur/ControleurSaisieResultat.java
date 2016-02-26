@@ -7,6 +7,7 @@ import vue.ItemAppariement;
 import vue.ItemSaisieResultat;
 import metier.Partie;
 import modele.ModeleTournoi;
+import modele.xml.I_DALTournoi;
 import modele.xml.TournoiXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +45,8 @@ public class ControleurSaisieResultat implements Initializable{
 	private ObservableList<Partie> itemRechercher;
 
 	private ObservableList<Partie> itemPartie;
+	
+	private I_DALTournoi tournoiXML;
 
 
 	@Override
@@ -64,6 +67,8 @@ public class ControleurSaisieResultat implements Initializable{
 			}
 		}
 		itemPartie.removeAll(itemResultat);
+		
+		tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
 	}
 
 	@FXML
@@ -108,7 +113,7 @@ public class ControleurSaisieResultat implements Initializable{
 	public void validerSaisieResultat(Event e){
 		itemResultat.addAll(itemPartie);
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
-		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("L'appariement a bien été sauvegardé !");
@@ -143,7 +148,7 @@ public class ControleurSaisieResultat implements Initializable{
 				else{
 					ModeleTournoi.getTournoi().tournoiFini();
 				}
-				TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+				tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 		}

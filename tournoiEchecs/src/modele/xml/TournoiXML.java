@@ -29,9 +29,14 @@ import metier.departage.Departage;
 import modele.ModeleDepartage;
 import modele.ModeleJoueur;
 
-public class TournoiXML {
+public class TournoiXML implements I_DALTournoi {
+	private String savePath;
+	
+	public TournoiXML(String savePath){
+		this.savePath=savePath;
+	}
 
-	public static void writeXMLTournoi(Tournoi tournoi,String savePath){
+	public  void writeXMLTournoi(Tournoi tournoi){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -209,9 +214,9 @@ public class TournoiXML {
 		}
 	}
 
-	public static Tournoi readXMLTournoi(String filePath){
+	public Tournoi readXMLTournoi(){
 		try {
-			File XMLFile = new File(filePath);
+			File XMLFile = new File(savePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(XMLFile);

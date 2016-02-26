@@ -8,6 +8,7 @@ import application.Main;
 import vue.CreerJoueur;
 import metier.Joueur;
 import modele.ModeleJoueur;
+import modele.xml.I_DALJoueur;
 import modele.xml.JoueurXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,7 +93,8 @@ public class ControleurModifierJoueur implements Initializable{
 				alert.showAndWait();
 				if(alert.getResult().getText().equals("OK")){
 					ModeleJoueur.supprimerJoueur(joueurSelectionné);
-					JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+					I_DALJoueur joueurXML = new JoueurXML();
+					joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
 					((Node)e.getSource()).getScene().getWindow().hide();
 				}else{
 					data.clear();

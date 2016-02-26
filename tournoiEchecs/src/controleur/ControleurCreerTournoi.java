@@ -23,6 +23,7 @@ import vue.RecapInfosTournoi;
 import metier.Tournoi;
 import metier.departage.Departage;
 import modele.ModeleTournoi;
+import modele.xml.I_DALTournoi;
 import modele.xml.TournoiXML;
 
 public class ControleurCreerTournoi implements Initializable {
@@ -97,7 +98,8 @@ public class ControleurCreerTournoi implements Initializable {
 				}
 
 				if(ModeleTournoi.getFichierTournoi()!=null){
-					TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+					I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
+					tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
 
 					RecapInfosTournoi rt = new RecapInfosTournoi(Main.getPrimaryStage());
 					rt.show();

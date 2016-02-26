@@ -23,11 +23,11 @@ import org.xml.sax.SAXException;
 
 import metier.Joueur;
 
-public class JoueurXML {
+public class JoueurXML implements I_DALJoueur{
 
-	public static String joueurFilePath = "src\\ressource\\saveJoueur.xml";
+	public  String joueurFilePath = "src\\ressource\\saveJoueur.xml";
 
-	public static void WriteXMLJoueur(String savePath,ArrayList<Joueur> listJoueur){
+	public  void WriteXMLJoueur(ArrayList<Joueur> listJoueur){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -101,7 +101,7 @@ public class JoueurXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(savePath));
+			StreamResult result = new StreamResult(new File(joueurFilePath));
 			transformer.transform(source, result);
 			
 		} catch (ParserConfigurationException pce) {
@@ -111,9 +111,9 @@ public class JoueurXML {
 		}
 	}
 
-	public static ArrayList<Joueur> readXMLJoueur(String filePath){
+	public  ArrayList<Joueur> readXMLJoueur(){
 		try {
-			File XMLFile = new File(filePath);
+			File XMLFile = new File(joueurFilePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(XMLFile);

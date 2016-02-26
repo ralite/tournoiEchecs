@@ -17,8 +17,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import modele.ModeleJoueur;
 import modele.ModeleTournoi;
+import modele.xml.I_DALJoueur;
+import modele.xml.I_DALTournoi;
 import modele.xml.JoueurXML;
 import modele.xml.TournoiXML;
 import application.Lastdir;
@@ -65,7 +68,8 @@ public class ControleurFenetreAccueil implements Initializable{
     	ModeleTournoi.nouveauTournoi();
     	fileTournoi = FenetreFileChooser.choisirDir(Main.getPrimaryStage());
 		if (fileTournoi != null) {
-			Tournoi t = TournoiXML.readXMLTournoi(fileTournoi.getPath());
+			I_DALTournoi tournoiXML = new TournoiXML(fileTournoi.getPath());
+			Tournoi t = tournoiXML.readXMLTournoi();
 			ModeleTournoi.ajouterTournoi(t);
 			ModeleTournoi.setFichierTournoi(fileTournoi.getPath());
 			RecapInfosTournoi recapT = new RecapInfosTournoi(Main.getPrimaryStage());
@@ -97,7 +101,8 @@ public class ControleurFenetreAccueil implements Initializable{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
     	Lastdir.readLastdir(Lastdir.lastDirFilePath);
-    	ArrayList<Joueur> listJoueur = JoueurXML.readXMLJoueur(JoueurXML.joueurFilePath);
+    	I_DALJoueur joueurXML = new JoueurXML();
+    	ArrayList<Joueur> listJoueur = joueurXML.readXMLJoueur();
     	if(listJoueur != null){
 	    	for (Joueur joueur : listJoueur) {
 				ModeleJoueur.ajouterJoueur(joueur);

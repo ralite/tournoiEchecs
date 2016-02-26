@@ -8,6 +8,7 @@ import application.AppariementAutomatique;
 import metier.Joueur;
 import metier.Partie;
 import modele.ModeleTournoi;
+import modele.xml.I_DALTournoi;
 import modele.xml.TournoiXML;
 import vue.ItemAppariement;
 import javafx.collections.FXCollections;
@@ -280,7 +281,8 @@ public class ControleurAppariement implements Initializable {
 		ModeleTournoi.getTournoi().setPartiesRonde(itemsParties);
 		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
 		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
-		TournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi(), ModeleTournoi.getFichierTournoi());
+		I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
+		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
 	}
 
 	private void AfficherAlerte(String s) {

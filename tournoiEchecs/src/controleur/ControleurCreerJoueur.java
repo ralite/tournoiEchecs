@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import metier.Joueur;
 import modele.ModeleJoueur;
+import modele.xml.I_DALJoueur;
 import modele.xml.JoueurXML;
 
 public class ControleurCreerJoueur implements Initializable {
@@ -455,8 +456,8 @@ public class ControleurCreerJoueur implements Initializable {
 				alert.showAndWait();
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
-
-			JoueurXML.WriteXMLJoueur(JoueurXML.joueurFilePath, ModeleJoueur.getArrayJoueurs());
+			I_DALJoueur joueurXML = new JoueurXML();
+			joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
 			clearFormulaire();
 		}//formulaireCorrect
 	}
