@@ -71,29 +71,29 @@ public class ControleurAppariement implements Initializable {
 			itemsParties.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 			itemsJoueursInscrits.removeAll(ModeleTournoi.getTournoi().getJoueursRondeActuelle());
 		}
-		
+
 		lv_appariements.setItems(itemsParties);
 		lv_joueurInscrit.setCellFactory(new Callback<ListView<Joueur>, ListCell<Joueur>>() {
 
-		    @Override
-		    public ListCell<Joueur> call(ListView<Joueur> p) {
-		        return new ListCell<Joueur>() {
+			@Override
+			public ListCell<Joueur> call(ListView<Joueur> p) {
+				return new ListCell<Joueur>() {
 
-		            @Override
-		            protected void updateItem(Joueur value, boolean empty) {
-		            	String text = "";
-		                super.updateItem(value, empty);
-		                if (!empty && value != null) {
-		                	text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts ";
-		                	if(!value.getCouleur().isEmpty()){
-		                		text+="|"+ value.getCouleur();
-		                	}
-		                }
-		                setText(text);
-		            }
-		        };
+					@Override
+					protected void updateItem(Joueur value, boolean empty) {
+						String text = "";
+						super.updateItem(value, empty);
+						if (!empty && value != null) {
+							text = value.getNomJoueur()+" "+value.getPrenomJoueur()+ " " + value.getElo() + " | "+value.getScore()+" pts ";
+							if(!value.getCouleur().isEmpty()){
+								text+="|"+ value.getCouleur();
+							}
+						}
+						setText(text);
+					}
+				};
 
-		}});
+			}});
 		lv_joueurInscrit.setItems(itemsJoueursInscrits);
 		joueursTriesParPoints(itemsJoueursInscrits);
 
@@ -239,8 +239,8 @@ public class ControleurAppariement implements Initializable {
 			AfficherAlerte("Tout les joueurs ne sont pas appariés !");
 		}
 		else if(itemsJoueursInscrits.size()==1 && itemsJoueursInscrits.get(0).getCouleur().contains("X")){
-				AfficherAlerte("Le joueur a déjà été exempt une fois !");
-			}
+			AfficherAlerte("Le joueur a déjà été exempt une fois !");
+		}
 		else{
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Appariement terminé");
@@ -252,7 +252,7 @@ public class ControleurAppariement implements Initializable {
 					ModeleTournoi.getTournoi().getRondeActuelle().setScoreJoueurExemptRonde(itemsJoueursInscrits.get(0).getScore());
 					itemsJoueursInscrits.get(0).gagne1Point();
 					itemsJoueursInscrits.get(0).setExempt();
-					
+
 				}
 
 				for (Partie partie : itemsParties) {
@@ -331,3 +331,4 @@ public class ControleurAppariement implements Initializable {
 		});
 	}
 }
+	
