@@ -36,7 +36,7 @@ public class TournoiXML implements I_DALTournoi {
 		this.savePath=savePath;
 	}
 
-	public  void writeXMLTournoi(Tournoi tournoi){
+	public  void writeTournoi(Tournoi tournoi){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -214,7 +214,7 @@ public class TournoiXML implements I_DALTournoi {
 		}
 	}
 
-	public Tournoi readXMLTournoi(){
+	public Tournoi readTournoi(){
 		try {
 			File XMLFile = new File(savePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

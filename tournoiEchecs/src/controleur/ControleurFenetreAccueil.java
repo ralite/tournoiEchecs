@@ -69,7 +69,7 @@ public class ControleurFenetreAccueil implements Initializable{
     	fileTournoi = FenetreFileChooser.choisirDir(Main.getPrimaryStage());
 		if (fileTournoi != null) {
 			I_DALTournoi tournoiXML = new TournoiXML(fileTournoi.getPath());
-			Tournoi t = tournoiXML.readXMLTournoi();
+			Tournoi t = tournoiXML.readTournoi();
 			ModeleTournoi.ajouterTournoi(t);
 			ModeleTournoi.setFichierTournoi(fileTournoi.getPath());
 			RecapInfosTournoi recapT = new RecapInfosTournoi(Main.getPrimaryStage());
@@ -102,7 +102,7 @@ public class ControleurFenetreAccueil implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
     	Lastdir.readLastdir(Lastdir.lastDirFilePath);
     	I_DALJoueur joueurXML = new JoueurXML();
-    	ArrayList<Joueur> listJoueur = joueurXML.readXMLJoueur();
+    	ArrayList<Joueur> listJoueur = joueurXML.readJoueur();
     	if(listJoueur != null){
 	    	for (Joueur joueur : listJoueur) {
 				ModeleJoueur.ajouterJoueur(joueur);

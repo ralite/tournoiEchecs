@@ -27,7 +27,7 @@ public class JoueurXML implements I_DALJoueur{
 
 	public  String joueurFilePath = "src\\ressource\\saveJoueur.xml";
 
-	public  void WriteXMLJoueur(ArrayList<Joueur> listJoueur){
+	public  void WriteJoueur(ArrayList<Joueur> listJoueur){
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -111,7 +111,7 @@ public class JoueurXML implements I_DALJoueur{
 		}
 	}
 
-	public  ArrayList<Joueur> readXMLJoueur(){
+	public  ArrayList<Joueur> readJoueur(){
 		try {
 			File XMLFile = new File(joueurFilePath);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

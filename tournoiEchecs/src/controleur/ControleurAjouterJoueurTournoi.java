@@ -107,14 +107,14 @@ public class ControleurAjouterJoueurTournoi implements Initializable {
 			ModeleJoueur.modifDansTournoi(joueur.getNumLicence(), true);
 		}
 		I_DALJoueur joueurXML =  new JoueurXML();
-		joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
+		joueurXML.WriteJoueur(ModeleJoueur.getArrayJoueurs());
 		
 		listePersonne.setItems(joueurInscrit);
 		
 		ModeleTournoi.getTournoi().setListeJoueurs(listePersonne.getItems());
 		
 		I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
-		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
+		tournoiXML.writeTournoi(ModeleTournoi.getTournoi());
 		RecapInfosTournoi recap = new RecapInfosTournoi(Main.getPrimaryStage());
 		recap.show();
 		((Node)e.getSource()).getScene().getWindow().hide();

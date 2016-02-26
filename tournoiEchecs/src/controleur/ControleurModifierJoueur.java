@@ -94,7 +94,7 @@ public class ControleurModifierJoueur implements Initializable{
 				if(alert.getResult().getText().equals("OK")){
 					ModeleJoueur.supprimerJoueur(joueurSelectionné);
 					I_DALJoueur joueurXML = new JoueurXML();
-					joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
+					joueurXML.WriteJoueur(ModeleJoueur.getArrayJoueurs());
 					((Node)e.getSource()).getScene().getWindow().hide();
 				}else{
 					data.clear();

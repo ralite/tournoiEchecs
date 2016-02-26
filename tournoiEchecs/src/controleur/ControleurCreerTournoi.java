@@ -99,7 +99,7 @@ public class ControleurCreerTournoi implements Initializable {
 
 				if(ModeleTournoi.getFichierTournoi()!=null){
 					I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
-					tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
+					tournoiXML.writeTournoi(ModeleTournoi.getTournoi());
 
 					RecapInfosTournoi rt = new RecapInfosTournoi(Main.getPrimaryStage());
 					rt.show();

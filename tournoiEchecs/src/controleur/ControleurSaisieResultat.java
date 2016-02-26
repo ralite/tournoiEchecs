@@ -113,7 +113,7 @@ public class ControleurSaisieResultat implements Initializable{
 	public void validerSaisieResultat(Event e){
 		itemResultat.addAll(itemPartie);
 		ModeleTournoi.getTournoi().setPartiesRonde(itemResultat);
-		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
+		tournoiXML.writeTournoi(ModeleTournoi.getTournoi());
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("L'appariement a bien été sauvegardé !");
@@ -148,7 +148,7 @@ public class ControleurSaisieResultat implements Initializable{
 				else{
 					ModeleTournoi.getTournoi().tournoiFini();
 				}
-				tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
+				tournoiXML.writeTournoi(ModeleTournoi.getTournoi());
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 		}

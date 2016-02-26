@@ -282,7 +282,7 @@ public class ControleurAppariement implements Initializable {
 		ModeleTournoi.getTournoi().setAbsentRonde(itemsJoueursAbsent);
 		ModeleTournoi.getTournoi().setForfaitRonde(itemsJoueursForfait);
 		I_DALTournoi tournoiXML = new TournoiXML(ModeleTournoi.getFichierTournoi());
-		tournoiXML.writeXMLTournoi(ModeleTournoi.getTournoi());
+		tournoiXML.writeTournoi(ModeleTournoi.getTournoi());
 	}
 
 	private void AfficherAlerte(String s) {

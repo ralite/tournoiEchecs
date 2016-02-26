@@ -457,7 +457,7 @@ public class ControleurCreerJoueur implements Initializable {
 				((Node)e.getSource()).getScene().getWindow().hide();
 			}
 			I_DALJoueur joueurXML = new JoueurXML();
-			joueurXML.WriteXMLJoueur(ModeleJoueur.getArrayJoueurs());
+			joueurXML.WriteJoueur(ModeleJoueur.getArrayJoueurs());
 			clearFormulaire();
 		}//formulaireCorrect
 	}
