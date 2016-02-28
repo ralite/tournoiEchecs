@@ -81,7 +81,7 @@ public class ItemResultatsRonde extends ListCell<Partie> {
         	if(item.getResultat().equals("partieNulle")){
         		scorePrecBlanc+=-0.5;
         	}
-        	ech.setText(String.valueOf(item.getClassement())+"\t");
+        	ech.setText(String.valueOf(item.getNumEchequier())+"\t");
         	scoreBlanc.setText(String.valueOf(scorePrecBlanc));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc());
             eloBlanc.setText(String.valueOf(item.getJoueurBlanc().getElo())+" "+Affichage.mapTypeElo.get(item.getJoueurBlanc().getTypeElo()));

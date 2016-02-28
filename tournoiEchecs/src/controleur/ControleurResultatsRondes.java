@@ -86,12 +86,10 @@ public class ControleurResultatsRondes implements Initializable{
 			Partie p = new Partie(j,null);
 			p.setResultat("EXEMPT");
 			p.setScorejoueurBlancPartie(ModeleTournoi.getTournoi().getRonde(numRonde).getScoreJoueurExemptRonde());
+			p.setNumEchequier(itemsPartie.size()+1);
 			itemsPartie.add(p);
 		}
 
-		for(int i=0;i<itemsPartie.size();i++){
-			itemsPartie.get(i).setClassement(i+1);
-		}
 	}
 
 	@FXML

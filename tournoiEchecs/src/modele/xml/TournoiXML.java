@@ -180,6 +180,10 @@ public class TournoiXML implements I_DALTournoi {
 							Element scoreNoir = doc.createElement("scoreNoir");
 							scoreNoir.appendChild(doc.createTextNode(String.valueOf(par.getScorejoueurNoirPartie())));
 							partie.appendChild(scoreNoir);
+							
+							Element numEchequier = doc.createElement("numEchequier");
+							numEchequier.appendChild(doc.createTextNode(String.valueOf(par.getNumEchequier())));
+							partie.appendChild(numEchequier);
 
 							indicePartie++;
 						}
@@ -374,8 +378,9 @@ public class TournoiXML implements I_DALTournoi {
 									String joueurBlanc = "";
 									String joueurNoir = "";
 									String resultat = "";
-									float scoreBlanc=0.0f;;
-									float scoreNoir=0.0f;;
+									float scoreBlanc=0.0f;
+									float scoreNoir=0.0f;
+									int numEchequier=0;
 
 									for (int i5 = 0; i5 < nbPartieNoeuds; i5++) {
 
@@ -403,12 +408,17 @@ public class TournoiXML implements I_DALTournoi {
 										if(sousNodePartie.getNodeName() == "scoreNoir"){
 											scoreNoir = Float.parseFloat(sousNodePartie.getTextContent());
 										}
+										
+										if(sousNodePartie.getNodeName() == "numEchequier"){
+											numEchequier = Integer.parseInt(sousNodePartie.getTextContent());
+										}
 									}
 
 									Partie partie = new Partie(ModeleJoueur.rechercherJoueur(joueurBlanc), ModeleJoueur.rechercherJoueur(joueurNoir));
 									partie.setResultat(resultat);
 									partie.setScorejoueurBlancPartie(scoreBlanc);
 									partie.setScorejoueurNoirPartie(scoreNoir);
+									partie.setNumEchequier(numEchequier);
 									listPartie.add(partie);
 								}
 							}

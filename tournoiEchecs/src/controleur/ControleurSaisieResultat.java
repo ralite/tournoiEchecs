@@ -1,6 +1,7 @@
 package controleur;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import vue.ItemAppariement;
@@ -57,7 +58,7 @@ public class ControleurSaisieResultat implements Initializable{
 		itemPartie = FXCollections.observableArrayList();
 		itemPartie.addAll(ModeleTournoi.getTournoi().getPartieRondeActuelle());
 		lv_parties.setItems(itemPartie);
-		lv_parties.setCellFactory(lv -> new ItemAppariement());
+		lv_parties.setCellFactory(lv -> new ItemSaisieResultat());
 		lv_resultats.setItems(itemResultat);
 		lv_resultats.setCellFactory(lv -> new ItemSaisieResultat());
 		itemRechercher = FXCollections.observableArrayList();
@@ -106,6 +107,7 @@ public class ControleurSaisieResultat implements Initializable{
 			if(itemRechercher.contains(p)){
 				itemRechercher.remove(p);
 			}
+			triéParties(itemResultat);
 		}
 	}
 
@@ -162,6 +164,7 @@ public class ControleurSaisieResultat implements Initializable{
 			itemResultat.remove(p);
 			itemPartie.add(p);
 		}
+		triéParties(itemPartie);
 	}
 
 
@@ -178,6 +181,17 @@ public class ControleurSaisieResultat implements Initializable{
 	@FXML
 	public void toutesParties(){
 		lv_parties.setItems(itemPartie);
+	}
+	
+	void triéParties(ObservableList<Partie> parties){
+		FXCollections.sort(parties, new Comparator<Partie>(){
+
+			@Override
+			public int compare(Partie p1, Partie p2) {
+				return Integer.compare(p1.getNumEchequier(), p2.getNumEchequier());
+			}
+			
+		});
 	}
 
 }

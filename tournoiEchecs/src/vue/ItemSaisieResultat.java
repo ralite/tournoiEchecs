@@ -17,6 +17,7 @@ import metier.Partie;
 public class ItemSaisieResultat extends ListCell<Partie> {
     private final GridPane gridPane = new GridPane();
 
+    private final Label numEchequier = new Label();
     private final Label joueurBlanc = new Label();
     private final Label joueurNoir = new Label();
     private final Label lb_resultat = new Label();
@@ -28,25 +29,23 @@ public class ItemSaisieResultat extends ListCell<Partie> {
 		 		joueurBlanc.setStyle("-fx-font-weight: bold;");
 		 		joueurNoir.setStyle("-fx-font-weight: bold;");
 
-		        GridPane.setConstraints(joueurBlanc, 1, 0);
-		        GridPane.setConstraints(joueurNoir, 3, 0);
-		        GridPane.setConstraints(lb_resultat, 2, 0);
+		 		GridPane.setConstraints(numEchequier, 1, 0);
+		        GridPane.setConstraints(joueurBlanc, 2, 0);
+		        GridPane.setConstraints(joueurNoir, 4, 0);
+		        GridPane.setConstraints(lb_resultat, 3, 0);
 		       
 
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
-		        gridPane.getColumnConstraints().add(new ColumnConstraints());
 		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
-		        gridPane.getColumnConstraints().add(new ColumnConstraints());
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
-		        gridPane.getColumnConstraints().add(new ColumnConstraints());
-		        gridPane.getColumnConstraints().add(new ColumnConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.ALWAYS, HPos.LEFT, true));
+
+		       
 		        gridPane.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE, Priority.NEVER, VPos.CENTER, true));
 		       
-		        gridPane.setHgap(3);
+		        gridPane.setHgap(4);
 		        gridPane.setVgap(8);
-		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir,lb_resultat);
+		        gridPane.getChildren().setAll(joueurBlanc,joueurNoir,lb_resultat, numEchequier);
 		        AnchorPane.setTopAnchor(gridPane, 0d);
 		        AnchorPane.setLeftAnchor(gridPane, 0d);
 		        AnchorPane.setBottomAnchor(gridPane, 0d);
@@ -64,6 +63,7 @@ public class ItemSaisieResultat extends ListCell<Partie> {
         setContentDisplay(ContentDisplay.LEFT);
 
         if (!empty && item != null) {
+        	numEchequier.setText(String.valueOf(item.getNumEchequier()));
             joueurBlanc.setText(item.getNomPrenomJoueurBlanc());
             joueurNoir.setText(item.getNomPrenomJoueurNoir());
             lb_resultat.setText(Affichage.mapResultat.get(item.getResultat()));

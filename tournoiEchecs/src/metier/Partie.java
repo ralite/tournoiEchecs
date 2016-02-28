@@ -2,6 +2,7 @@ package metier;
 
 public class Partie {
 
+	private int numEchequier;
 	private Joueur joueurBlanc;
 	private Joueur joueurNoir;
 	private float scoreBlanc;
@@ -17,7 +18,7 @@ public class Partie {
 	}
 
 	private String resultat = "";
-	private int classement;
+
 
 
 	public Partie(Joueur joueurBlanc, Joueur joueurNoir) {
@@ -159,14 +160,6 @@ public class Partie {
 		return res ;
 	}*/
 
-	public int getClassement() {
-		return classement;
-	}
-
-	public void setClassement(int i) {
-		classement=i;
-
-	}
 
 	public void setScorejoueurBlancPartie(float scoreBlanc) {
 		this.scoreBlanc=scoreBlanc;
@@ -226,5 +219,14 @@ public class Partie {
 			resAff+=joueurNoir.getCouleurRonde(i);
 		}
 		return resAff;
+	}
+
+	public void setNumEchequier(int i) {
+		numEchequier=i;
+		
+	}
+
+	public int getNumEchequier() {
+		return numEchequier;
 	}
 }

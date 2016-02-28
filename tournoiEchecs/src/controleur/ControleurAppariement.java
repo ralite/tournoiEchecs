@@ -255,9 +255,11 @@ public class ControleurAppariement implements Initializable {
 					itemsJoueursInscrits.get(0).setExempt();
 
 				}
-
+				int i =1;
 				for (Partie partie : itemsParties) {
 					partie.setCouleurJoueur();
+					partie.setNumEchequier(i);
+					i++;
 				}
 				for (Joueur joueur : itemsJoueursAbsent) {
 					joueur.joueAbs();
